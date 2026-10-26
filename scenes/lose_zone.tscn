@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d04bjlqglo2jg"]
+
+[ext_resource type="Script" uid="uid://c4yxb84pt0wdv" path="res://scripts/lose_zone.gd" id="1_htl5l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4bcl2"]
+
+[node name="LoseZone" type="Node3D" unique_id=1377013288]
+script = ExtResource("1_htl5l")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=988984891]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=255299966]
+shape = SubResource("BoxShape3D_4bcl2")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	
 	var move_direction := camera_right * tilt_input.x + camera_forward * -tilt_input.y
 	
-	var gravity := Vector3(move_direction.x * tilt_strength, -9.8, move_direction.z * tilt_strength)
+	var gravity := Vector3(move_direction.x * tilt_strength, 0.0, move_direction.z * tilt_strength)
 	
 	apply_central_force(gravity * mass)
 

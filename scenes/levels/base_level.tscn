@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bafdbgunof2qt" path="res://scenes/player/player.tscn" id="1_md458"]
 [ext_resource type="PackedScene" uid="uid://cckyiw23hug73" path="res://scenes/camera/camera_rig.tscn" id="2_uk53i"]
 [ext_resource type="Script" uid="uid://qjf4ljdhimm8" path="res://scripts/camera/camera_rig.gd" id="3_ukglk"]
+[ext_resource type="PackedScene" uid="uid://d04bjlqglo2jg" path="res://scenes/lose_zone.tscn" id="4_wwrw0"]
+[ext_resource type="PackedScene" uid="uid://bikcjbq7tjrdr" path="res://scenes/goal.tscn" id="5_o1chu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sthun"]
 
@@ -97,9 +99,16 @@ shape = SubResource("BoxShape3D_4bcl2")
 
 [node name="Player" parent="." unique_id=120649697 node_paths=PackedStringArray("camera_rig") instance=ExtResource("1_md458")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, 25.68552)
+gravity_scale = 2.0
 camera_rig = NodePath("../CameraRig")
 
 [node name="CameraRig" parent="." unique_id=187381219 node_paths=PackedStringArray("player") instance=ExtResource("2_uk53i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, -1.7587575)
 script = ExtResource("3_ukglk")
 player = NodePath("../Player")
+
+[node name="LoseZone" parent="." unique_id=1377013288 instance=ExtResource("4_wwrw0")]
+transform = Transform3D(461.65176, 0, 0, 0, -8.087007, 0, 0, 0, 374.1486, 0, -24.32715, 6.647294)
+
+[node name="Goal" parent="." unique_id=632394821 instance=ExtResource("5_o1chu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536429, -11.8322, -0.27988946)
