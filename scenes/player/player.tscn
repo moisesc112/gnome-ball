@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bafdbgunof2qt"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_4bcl2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sthun"]
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=120649697]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=30297728]
+mesh = SubResource("SphereMesh_4bcl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=364294595]
+shape = SubResource("SphereShape3D_sthun")

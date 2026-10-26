@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dmlbcfprniqbj"]
+
+[ext_resource type="PackedScene" uid="uid://bafdbgunof2qt" path="res://scenes/player/player.tscn" id="1_md458"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sthun"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4bcl2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4bcl2"]
+size = Vector3(1, 0.5, 5)
+
+[node name="BaseLevel" type="Node3D" unique_id=302026370]
+
+[node name="Platform" type="StaticBody3D" parent="." unique_id=184125617]
+physics_material_override = SubResource("PhysicsMaterial_sthun")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform" unique_id=1306934470]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("BoxMesh_4bcl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform" unique_id=495037481]
+shape = SubResource("BoxShape3D_4bcl2")
+
+[node name="Player" parent="." unique_id=120649697 instance=ExtResource("1_md458")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, -1.7587575)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1114574897]
+transform = Transform3D(1, 0, 0, 0, 0.9185301, 0.39535108, 0, -0.39535108, 0.9185301, -0.030289173, 1.2189498, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1920299976]
+transform = Transform3D(1, 0, 0, 0, 0.7281304, 0.68543863, 0, -0.68543863, 0.7281304, 0, 0, 0)
