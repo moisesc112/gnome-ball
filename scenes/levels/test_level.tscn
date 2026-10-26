@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bqu4dxuhgj4ki"]
+
+[ext_resource type="PackedScene" uid="uid://bafdbgunof2qt" path="res://scenes/player/player.tscn" id="1_v45ci"]
+[ext_resource type="PackedScene" uid="uid://cckyiw23hug73" path="res://scenes/camera/camera_rig.tscn" id="2_48ne7"]
+[ext_resource type="Script" uid="uid://qjf4ljdhimm8" path="res://scripts/camera/camera_rig.gd" id="3_6xh4u"]
+[ext_resource type="PackedScene" uid="uid://8m0ucssmnhnv" path="res://scenes/launch_pad.tscn" id="4_cyt5c"]
+[ext_resource type="PackedScene" uid="uid://d04bjlqglo2jg" path="res://scenes/lose_zone.tscn" id="5_48ne7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7x1jh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hfwtw"]
+size = Vector3(10, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2mu0v"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gqk7g"]
+size = Vector3(10, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4uoea"]
+size = Vector3(10, 1, 5)
+
+[node name="TestLevel" type="Node3D" unique_id=2010928926]
+
+[node name="Platform" type="StaticBody3D" parent="." unique_id=277449464]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.86660975, 0, 0, -3.258375)
+physics_material_override = SubResource("PhysicsMaterial_7x1jh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform" unique_id=1797455592]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 5, 0, 0, -1.2524415)
+mesh = SubResource("BoxMesh_hfwtw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform" unique_id=1157575221]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004398346, 0, -1.2465822)
+shape = SubResource("BoxShape3D_2mu0v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=569670938]
+transform = Transform3D(1, 0, 0, 0, 0.7281304, 0.68543863, 0, -0.68543863, 0.7281304, 0, 0, 0)
+
+[node name="Player" parent="." unique_id=120649697 node_paths=PackedStringArray("camera_rig") instance=ExtResource("1_v45ci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, -5.7226753)
+gravity_scale = 2.0
+camera_rig = NodePath("../CameraRig")
+
+[node name="CameraRig" parent="." unique_id=187381219 node_paths=PackedStringArray("player") instance=ExtResource("2_48ne7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, -1.7587575)
+script = ExtResource("3_6xh4u")
+player = NodePath("../Player")
+
+[node name="Node3D" parent="." unique_id=1467356504 instance=ExtResource("4_cyt5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25763154, -0.8692138)
+
+[node name="Node3D2" parent="." unique_id=232704930 instance=ExtResource("4_cyt5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22607827, 6.391507)
+
+[node name="Platform2" type="StaticBody3D" parent="." unique_id=1602243227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.306587, 19.864285)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform2" unique_id=930038015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.998291)
+mesh = SubResource("BoxMesh_gqk7g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform2" unique_id=867934427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.9675999)
+shape = SubResource("BoxShape3D_4uoea")
+
+[node name="LoseZone" parent="." unique_id=1377013288 instance=ExtResource("5_48ne7")]
+transform = Transform3D(415.5171, 0, 0, 0, 1, 0, 0, 0, 111.074776, 0, -11.141736, 0)

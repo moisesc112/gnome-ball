@@ -3,6 +3,8 @@ extends RigidBody3D
 @export var tilt_strength: float = 15.0
 @export var camera_rig: Node3D
 
+@onready var ground_ray: RayCast3D = $RayCast3D
+
 var tilt_input: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
@@ -14,6 +16,10 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	ground_ray.global_rotation = Vector3.ZERO
+	if not ground_ray.is_colliding():
+		return
+		
 	tilt_input = Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
 	
 	var camera_forward := -camera_rig.global_basis.z
