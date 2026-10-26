@@ -3,8 +3,8 @@ extends Node3D
 @export var player: RigidBody3D = null
 @export var follow_speed: float = 8.0
 @export var max_tilt_degrees: float = 12.0
-@export var orbit_speed: float = 1.5
-@export var tilt_speed: float = 6.0
+@export var orbit_speed: float = 8.0
+@export var tilt_speed: float = 3.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,13 +34,6 @@ func _physics_process(delta: float) -> void:
 	#print("Horizontal Velocity: ", horizontal_velocity.x, ", ", horizontal_velocity.z)
 	#print("Horizontal Velocity Length: ", horizontal_velocity.length())
 	
-	var target_yaw := atan2(
-		-horizontal_velocity.x,
-		-horizontal_velocity.z
-	)
-	
-	rotation.y = lerp_angle(
-		rotation.y,
-		target_yaw,
-		clampf(orbit_speed * delta, 0.0, 1.0)
-	)
+	var target_yaw := atan2(-horizontal_velocity.x, -horizontal_velocity.z)
+
+	rotation.y = lerp_angle(rotation.y, target_yaw, clampf(orbit_speed * delta, 0.0, 1.0))
