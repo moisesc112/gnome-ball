@@ -25,7 +25,7 @@ shape = SubResource("BoxShape3D_4bcl2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, -1.7587575)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1114574897]
-transform = Transform3D(1, 0, 0, 0, 0.9185301, 0.39535108, 0, -0.39535108, 0.9185301, -0.030289173, 1.2189498, 0)
+transform = Transform3D(-4.371139e-08, -0.39554554, 0.9184464, 0, 0.9184464, 0.39554554, -1, 1.7289844e-08, -4.0146567e-08, 3.482, 2.475, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1920299976]
 transform = Transform3D(1, 0, 0, 0, 0.7281304, 0.68543863, 0, -0.68543863, 0.7281304, 0, 0, 0)
