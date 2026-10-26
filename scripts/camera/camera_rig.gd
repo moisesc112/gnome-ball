@@ -1,6 +1,7 @@
-extends RigidBody3D
+extends Node3D
 
-@export var tilt_strength: float = 15.0
+@export var player: RigidBody3D = null
+@export var follow_speed: float = 8.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,8 +12,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	var input_dir := Input.get_vector("Move_Left", "Move_Right", "Move_Backward", "Move_Forward")
-	var gravity := Vector3(input_dir.x * tilt_strength, -9.8, input_dir.y * tilt_strength)	
-	apply_central_force(gravity * mass)
-
-	
+	if player == null:
+		return
+		
+	global_position = global_position.lerp(player.global_position, follow_speed * delta)

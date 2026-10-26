@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dmlbcfprniqbj"]
 
 [ext_resource type="PackedScene" uid="uid://bafdbgunof2qt" path="res://scenes/player/player.tscn" id="1_md458"]
+[ext_resource type="PackedScene" uid="uid://cckyiw23hug73" path="res://scenes/camera/camera_rig.tscn" id="2_uk53i"]
+[ext_resource type="Script" uid="uid://qjf4ljdhimm8" path="res://scripts/camera/camera_rig.gd" id="3_ukglk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sthun"]
 
@@ -24,8 +26,10 @@ shape = SubResource("BoxShape3D_4bcl2")
 [node name="Player" parent="." unique_id=120649697 instance=ExtResource("1_md458")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, -1.7587575)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1114574897]
-transform = Transform3D(-4.371139e-08, -0.39554554, 0.9184464, 0, 0.9184464, 0.39554554, -1, 1.7289844e-08, -4.0146567e-08, 3.482, 2.475, 0)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1920299976]
 transform = Transform3D(1, 0, 0, 0, 0.7281304, 0.68543863, 0, -0.68543863, 0.7281304, 0, 0, 0)
+
+[node name="CameraRig" parent="." unique_id=187381219 node_paths=PackedStringArray("player") instance=ExtResource("2_uk53i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, -1.7587575)
+script = ExtResource("3_ukglk")
+player = NodePath("../Player")
