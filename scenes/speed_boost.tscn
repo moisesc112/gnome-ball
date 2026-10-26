@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://b25g2igm28pmc"]
+
+[ext_resource type="Script" uid="uid://c1tw1gtp7clu2" path="res://scripts/speed_boost.gd" id="1_7wd3c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqk7g"]
+albedo_color = Color(0.40214106, 0.8226117, 0.48682433, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gqk7g"]
+material = SubResource("StandardMaterial3D_gqk7g")
+size = Vector3(1.5, 0.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4uoea"]
+size = Vector3(1.5, 0.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gqk7g"]
+size = Vector3(1.5, 0.25, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4uoea"]
+albedo_color = Color(0.9838988, 0.92064595, 3.080368e-06, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_gqk7g"]
+material = SubResource("StandardMaterial3D_4uoea")
+size = Vector3(0.75, 0.75, 0.25)
+
+[node name="Node3D" type="Node3D" unique_id=248625820]
+script = ExtResource("1_7wd3c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=93325297]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=650446818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+mesh = SubResource("BoxMesh_gqk7g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1093824098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_4uoea")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1260450422]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1498973027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0074462295, 0)
+shape = SubResource("BoxShape3D_gqk7g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1576358800]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.12, 0)
+mesh = SubResource("PrismMesh_gqk7g")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

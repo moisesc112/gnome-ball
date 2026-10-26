@@ -5,20 +5,21 @@
 [ext_resource type="Script" uid="uid://qjf4ljdhimm8" path="res://scripts/camera/camera_rig.gd" id="3_6xh4u"]
 [ext_resource type="PackedScene" uid="uid://8m0ucssmnhnv" path="res://scenes/launch_pad.tscn" id="4_cyt5c"]
 [ext_resource type="PackedScene" uid="uid://d04bjlqglo2jg" path="res://scenes/lose_zone.tscn" id="5_48ne7"]
+[ext_resource type="PackedScene" uid="uid://b25g2igm28pmc" path="res://scenes/speed_boost.tscn" id="6_6xh4u"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7x1jh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hfwtw"]
-size = Vector3(10, 1, 2)
+size = Vector3(15, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2mu0v"]
 size = Vector3(10, 0.5, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_gqk7g"]
-size = Vector3(10, 1, 5)
+size = Vector3(5, 1, 25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4uoea"]
-size = Vector3(10, 1, 5)
+size = Vector3(5, 1, 25)
 
 [node name="TestLevel" type="Node3D" unique_id=2010928926]
 
@@ -54,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25763154, -0.8692138)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22607827, 6.391507)
 
 [node name="Platform2" type="StaticBody3D" parent="." unique_id=1602243227]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.306587, 19.864285)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.306587, 29.89085)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Platform2" unique_id=930038015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.998291)
@@ -64,5 +65,23 @@ mesh = SubResource("BoxMesh_gqk7g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.9675999)
 shape = SubResource("BoxShape3D_4uoea")
 
+[node name="Platform3" type="StaticBody3D" parent="." unique_id=612208244]
+transform = Transform3D(0.9551763, -0.20387016, -0.18601918, 0.21465161, 0.97629154, 0.024197165, 0.20387016, -0.0727454, 0.8460638, -2.028607, -11.971998, 52.73679)
+physics_material_override = SubResource("PhysicsMaterial_7x1jh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform3" unique_id=85712151]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 5, 0, 0, -1.2524415)
+mesh = SubResource("BoxMesh_hfwtw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform3" unique_id=1280849457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004398346, 0, -1.2465822)
+shape = SubResource("BoxShape3D_2mu0v")
+
 [node name="LoseZone" parent="." unique_id=1377013288 instance=ExtResource("5_48ne7")]
-transform = Transform3D(415.5171, 0, 0, 0, 1, 0, 0, 0, 111.074776, 0, -11.141736, 0)
+transform = Transform3D(415.5171, 0, 0, 0, 1, 0, 0, 0, 111.074776, 0, -31.518707, 0)
+
+[node name="Node3D3" parent="." unique_id=248625820 instance=ExtResource("6_6xh4u")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.01432085, -5.7936435, 22.056034)
+
+[node name="Node3D4" parent="." unique_id=1176691718 instance=ExtResource("6_6xh4u")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.01432085, -5.7936435, 31.119713)
