@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://d405yp65uneh" path="res://scripts/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://de05p2h6ubk4a" path="res://scenes/player/gnome.tscn" id="2_dovo2"]
 [ext_resource type="Shader" uid="uid://ij20ce20ninw" path="res://shaders/player_ball.gdshader" id="2_gmlin"]
+[ext_resource type="PackedScene" uid="uid://cckyiw23hug73" path="res://scenes/camera/camera_rig.tscn" id="4_lvxji"]
+[ext_resource type="Script" uid="uid://qjf4ljdhimm8" path="res://scripts/camera/camera_rig.gd" id="5_p47bc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dovo2"]
 render_priority = 0
@@ -15,6 +17,23 @@ shader_parameter/opacity = 0.5
 material = SubResource("ShaderMaterial_dovo2")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_sthun"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gmlin"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:target_pitch")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:target_roll")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:is_walking")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:target_yaw")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [node name="RigidBody3D" type="RigidBody3D" unique_id=120649697]
 script = ExtResource("1_8afob")
@@ -34,3 +53,9 @@ transform = Transform3D(0.24, 0, 0, 0, 0.24, 0, 0, 0, 0.24, 0, -0.4719761, 0)
 [node name="GnomeFacing" type="Node3D" parent="GnomePivot" unique_id=937373429]
 
 [node name="Gnome" parent="GnomePivot/GnomeFacing" unique_id=1772017909 instance=ExtResource("2_dovo2")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=874951942]
+replication_config = SubResource("SceneReplicationConfig_gmlin")
+
+[node name="CameraRig" parent="." unique_id=187381219 instance=ExtResource("4_lvxji")]
+script = ExtResource("5_p47bc")

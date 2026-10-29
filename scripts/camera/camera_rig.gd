@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var player: RigidBody3D = null
+@onready var player: RigidBody3D = get_parent() as RigidBody3D
 @export var follow_speed: float = 8.0
 @export var max_tilt_degrees: float = 12.0
 @export var orbit_speed: float = 8.0
@@ -17,6 +17,9 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if player == null:
 		return
+		
+	if not player.is_multiplayer_authority():
+		set_physics_process(false)
 		
 	global_position = global_position.lerp(player.global_position, follow_speed * delta)
 	

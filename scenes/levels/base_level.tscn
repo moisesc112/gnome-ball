@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://qjf4ljdhimm8" path="res://scripts/camera/camera_rig.gd" id="3_ukglk"]
 [ext_resource type="PackedScene" uid="uid://d04bjlqglo2jg" path="res://scenes/lose_zone.tscn" id="4_wwrw0"]
 [ext_resource type="PackedScene" uid="uid://bikcjbq7tjrdr" path="res://scenes/goal.tscn" id="5_o1chu"]
+[ext_resource type="PackedScene" uid="uid://dghoqycw0qqka" path="res://scenes/high_level_ui.tscn" id="6_h4ce7"]
+[ext_resource type="Script" uid="uid://bt3cgoef0ldx" path="res://scripts/high_level_multiplayer_spawner.gd" id="7_53c65"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sthun"]
 
@@ -97,15 +99,9 @@ mesh = SubResource("BoxMesh_4bcl2")
 transform = Transform3D(0.99999964, 1.4901161e-08, 2.7939677e-09, -4.7683716e-07, 0.99999976, -3.7252903e-09, -1.3038516e-08, 4.656613e-10, 0.99999946, -0.02, -0.1, 1.739)
 shape = SubResource("BoxShape3D_4bcl2")
 
-[node name="Player" parent="." unique_id=120649697 node_paths=PackedStringArray("camera_rig") instance=ExtResource("1_md458")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76600623, 25.68552)
-gravity_scale = 2.0
-camera_rig = NodePath("../CameraRig")
-
-[node name="CameraRig" parent="." unique_id=187381219 node_paths=PackedStringArray("player") instance=ExtResource("2_uk53i")]
+[node name="CameraRig" parent="." unique_id=187381219 instance=ExtResource("2_uk53i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, -1.7587575)
 script = ExtResource("3_ukglk")
-player = NodePath("../Player")
 
 [node name="LoseZone" parent="." unique_id=1377013288 instance=ExtResource("4_wwrw0")]
 transform = Transform3D(461.65176, 0, 0, 0, -8.087007, 0, 0, 0, 374.1486, 0, -24.32715, 6.647294)
@@ -128,3 +124,13 @@ operation = 2
 radius = 20.0
 radial_segments = 64
 rings = 32
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1011803724]
+_spawnable_scenes = PackedStringArray("uid://bafdbgunof2qt")
+spawn_path = NodePath("..")
+script = ExtResource("7_53c65")
+network_player = ExtResource("1_md458")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1350599304]
+
+[node name="HighLevelUI" parent="CanvasLayer" unique_id=354274264 instance=ExtResource("6_h4ce7")]
