@@ -4,5 +4,5 @@
 resource_name = "SphereBottom"
 transparency = 1
 cull_mode = 2
-albedo_color = Color(0.90588236, 0.1882353, 0.25882354, 0.19607843)
-roughness = 0.05
+albedo_color = Color(0.90588236, 0.1882353, 0.25882354, 0.5882353)
+roughness = 0.15
