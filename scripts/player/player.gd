@@ -28,6 +28,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	#gnome_pivot.top_level = true
 	camera_rig.top_level = true
+	self.position = Vector3(0.0, 1.0, 27.0)
 	
 	if is_multiplayer_authority():
 		camera.make_current()
