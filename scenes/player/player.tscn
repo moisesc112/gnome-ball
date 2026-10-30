@@ -53,6 +53,7 @@ transform = Transform3D(0.24, 0, 0, 0, 0.24, 0, 0, 0, 0.24, 0, -0.4719761, 0)
 [node name="GnomeFacing" type="Node3D" parent="GnomePivot" unique_id=937373429]
 
 [node name="Gnome" parent="GnomePivot/GnomeFacing" unique_id=1772017909 instance=ExtResource("2_dovo2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=874951942]
 replication_config = SubResource("SceneReplicationConfig_gmlin")
