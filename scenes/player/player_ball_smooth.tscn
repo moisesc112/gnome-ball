@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://clqxp1726i8bq"]
+
+[ext_resource type="PackedScene" uid="uid://7ktxpwe3uoit" path="res://assets/characters/player_ball_smooth.glb" id="1_sdalv"]
+[ext_resource type="Material" uid="uid://nsobe4rfun8l" path="res://assets/characters/SphereTop.tres" id="2_4p2av"]
+[ext_resource type="Material" uid="uid://bvlg8fx7yk78l" path="res://assets/characters/SphereBottom.tres" id="3_dxjy0"]
+
+[node name="player_ball_smooth" unique_id=1141308037 instance=ExtResource("1_sdalv")]
+
+[node name="Sphere" parent="." index="0" unique_id=1896198807]
+surface_material_override/0 = ExtResource("2_4p2av")
+surface_material_override/1 = ExtResource("3_dxjy0")

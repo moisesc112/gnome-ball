@@ -2,19 +2,9 @@
 
 [ext_resource type="Script" uid="uid://d405yp65uneh" path="res://scripts/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://de05p2h6ubk4a" path="res://scenes/player/gnome.tscn" id="2_dovo2"]
-[ext_resource type="Shader" uid="uid://ij20ce20ninw" path="res://shaders/player_ball.gdshader" id="2_gmlin"]
 [ext_resource type="PackedScene" uid="uid://cckyiw23hug73" path="res://scenes/camera/camera_rig.tscn" id="4_lvxji"]
+[ext_resource type="PackedScene" uid="uid://clqxp1726i8bq" path="res://scenes/player/player_ball_smooth.tscn" id="5_75vfm"]
 [ext_resource type="Script" uid="uid://qjf4ljdhimm8" path="res://scripts/camera/camera_rig.gd" id="5_p47bc"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dovo2"]
-render_priority = 0
-shader = ExtResource("2_gmlin")
-shader_parameter/color_1 = Color(0.1, 0.4, 1, 1)
-shader_parameter/color_2 = Color(1, 0.2, 0.1, 1)
-shader_parameter/opacity = 0.5
-
-[sub_resource type="SphereMesh" id="SphereMesh_4bcl2"]
-material = SubResource("ShaderMaterial_dovo2")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_sthun"]
 
@@ -38,8 +28,8 @@ properties/4/replication_mode = 1
 [node name="RigidBody3D" type="RigidBody3D" unique_id=120649697]
 script = ExtResource("1_8afob")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=30297728]
-mesh = SubResource("SphereMesh_4bcl2")
+[node name="player_ball_smooth" parent="." unique_id=1141308037 instance=ExtResource("5_75vfm")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=364294595]
 shape = SubResource("SphereShape3D_sthun")

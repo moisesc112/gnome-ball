@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://nsobe4rfun8l"]
+
+[resource]
+resource_name = "SphereTop"
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.972549, 0.99607843, 1, 0.19607843)
+roughness = 0.05
