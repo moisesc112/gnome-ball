@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ba5g4je8qiy4s"]
+
+[ext_resource type="PackedScene" uid="uid://dghoqycw0qqka" path="res://scenes/high_level_ui.tscn" id="1_a1g6y"]
+
+[node name="Lobby" type="Node3D" unique_id=1352970754]
+
+[node name="LobbyUI" parent="." unique_id=354274264 instance=ExtResource("1_a1g6y")]

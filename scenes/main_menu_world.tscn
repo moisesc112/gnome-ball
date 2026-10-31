@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dhmqlwv7pxooa"]
+
+[ext_resource type="PackedScene" uid="uid://ce8nict27v7t7" path="res://scenes/ui/menus/main_menu.tscn" id="1_lmwo4"]
+[ext_resource type="Script" uid="uid://c2wdv7n04ugxe" path="res://scripts/main_menu_world.gd" id="1_mgxyb"]
+[ext_resource type="PackedScene" uid="uid://de05p2h6ubk4a" path="res://scenes/player/gnome.tscn" id="2_qkk0i"]
+
+[node name="MainMenuWorld" type="Node3D" unique_id=1585825354]
+script = ExtResource("1_mgxyb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1804429683]
+
+[node name="MainMenu" parent="CanvasLayer" unique_id=890744655 instance=ExtResource("1_lmwo4")]
+
+[node name="Gnome" parent="." unique_id=1772017909 instance=ExtResource("2_qkk0i")]
+
+[node name="Camera3D" type="Camera3D" parent="Gnome" unique_id=1019449728]
+transform = Transform3D(0.8750521, 0.03618975, -0.48267394, 0.049971934, 0.9851176, 0.16445719, 0.48144224, -0.16802877, 0.86022073, 0.27342105, 2.5716681, 4.1981287)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Gnome/Camera3D" unique_id=1049311031]

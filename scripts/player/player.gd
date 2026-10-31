@@ -16,6 +16,7 @@ extends RigidBody3D
 @export var target_yaw: float = 0.0
 @export var control_yaw: float = 0.0
 @export var is_walking: bool = false
+@export var jump_speed: float = 3.5
 
 @onready var gnome_facing: Node3D = $GnomePivot/GnomeFacing
 
@@ -103,7 +104,11 @@ func _physics_process(delta: float) -> void:
 	ground_ray.global_rotation = Vector3.ZERO
 	update_animation()
 	
-	if !is_multiplayer_authority(): return
+	if !is_multiplayer_authority(): 
+		return
+	
+	if (Input.is_action_just_pressed("Jump") and ground_ray.is_colliding()):
+		apply_central_impulse(Vector3.UP * mass * jump_speed)
 	
 	tilt_input = Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
 	
