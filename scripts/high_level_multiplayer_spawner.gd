@@ -3,7 +3,9 @@ extends MultiplayerSpawner
 @export var network_player: PackedScene
 
 func _ready() -> void:
-	multiplayer.peer_connected.connect(spawn_player)
+	if multiplayer.is_server():
+		multiplayer.peer_connected.connect(spawn_player)
+		spawn_player(1)
 	
 func spawn_player(id: int) -> void:
 	if !multiplayer.is_server(): return
