@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b8bps7tirfldp"]
+
+[ext_resource type="PackedScene" uid="uid://categas2vj16j" path="res://assets/characters/fairy_king/fairy_king.glb" id="1_v4a7d"]
+[ext_resource type="Script" uid="uid://bxpiwmgrs5i3s" path="res://scripts/fairy_king.gd" id="2_4s2ho"]
+
+[node name="fairy_king" unique_id=1342506538 instance=ExtResource("1_v4a7d")]
+script = ExtResource("2_4s2ho")
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1284000404) index="0" unique_id=1051045242]
+bones/1/rotation = Quaternion(0.01006078, 0.7545894, 0.6557831, -0.021030355)
+bones/3/rotation = Quaternion(-0.069101475, -0.005189386, -0.021108063, 0.9973728)
+bones/5/rotation = Quaternion(-0.007828529, 0.018348956, -0.13991056, 0.9899632)
+bones/7/rotation = Quaternion(0.4225641, -0.014495687, 0.9061919, -0.006759448)
+bones/8/rotation = Quaternion(0.0053296783, -2.2079513e-07, -0.006351678, 0.9999657)
+bones/11/rotation = Quaternion(-0.007828533, -0.018348964, 0.13991056, 0.9899632)
+bones/14/rotation = Quaternion(0.00532968, 1.386411e-07, 0.00635167, 0.9999657)
+bones/16/rotation = Quaternion(-0.5098103, 0.8321341, -0.099593066, 0.19423558)
+bones/18/rotation = Quaternion(0.85128593, -0.3954352, 0.11021477, -0.32679668)
+bones/20/rotation = Quaternion(0.5098103, 0.83213407, -0.09959308, -0.19423568)
+bones/22/rotation = Quaternion(0.85128593, 0.395435, -0.11021489, -0.32679674)
