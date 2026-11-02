@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var animation_player: AnimationPlayer = $Gnome/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $Gnome_smooth/AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

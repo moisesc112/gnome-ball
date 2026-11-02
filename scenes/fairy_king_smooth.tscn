@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://yeak0bgrh556"]
+
+[ext_resource type="PackedScene" uid="uid://8ttu5orrsc48" path="res://assets/characters/fairy_king/fairy_king_smooth.glb" id="1_87j27"]
+[ext_resource type="Script" uid="uid://bxpiwmgrs5i3s" path="res://scripts/fairy_king.gd" id="2_gk1d4"]
+
+[node name="fairy_king_smooth" unique_id=1816964908 instance=ExtResource("1_87j27")]
+script = ExtResource("2_gk1d4")

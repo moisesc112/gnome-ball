@@ -7,7 +7,7 @@ extends RigidBody3D
 @onready var camera: Camera3D = $CameraRig/SpringArm3D/Camera3D
 
 @onready var ground_ray: RayCast3D = $RayCast3D
-@onready var animation_player: AnimationPlayer = $GnomePivot/GnomeFacing/Gnome/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $GnomePivot/GnomeFacing/Gnome_smooth/AnimationPlayer
 @onready var gnome_pivot: Node3D = $GnomePivot
 @export var gnome_turn_speed: float = 8.0
 

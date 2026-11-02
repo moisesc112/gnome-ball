@@ -8,8 +8,12 @@
 [ext_resource type="Script" uid="uid://qjf4ljdhimm8" path="res://scripts/camera/camera_rig.gd" id="3_ukglk"]
 [ext_resource type="PackedScene" uid="uid://d04bjlqglo2jg" path="res://scenes/lose_zone.tscn" id="4_wwrw0"]
 [ext_resource type="Texture2D" uid="uid://ct6oqeyhh20tr" path="res://assets/grid_material/Purple/texture_01.png" id="5_43bxi"]
+[ext_resource type="Texture2D" uid="uid://c05m1028f28vi" path="res://assets/characters/PNG/Red/texture_01.png" id="6_qhwlw"]
 [ext_resource type="Script" uid="uid://bt3cgoef0ldx" path="res://scripts/high_level_multiplayer_spawner.gd" id="7_53c65"]
-[ext_resource type="PackedScene" uid="uid://b8bps7tirfldp" path="res://scenes/fairy_king.tscn" id="10_j7gcg"]
+[ext_resource type="PackedScene" uid="uid://yeak0bgrh556" path="res://scenes/fairy_king_smooth.tscn" id="11_qhwlw"]
+[ext_resource type="PackedScene" uid="uid://dj6xy5q6v4u6v" path="res://scenes/environment/trees/mesh_tree_pine_01.tscn" id="12_1vfnp"]
+[ext_resource type="PackedScene" uid="uid://dmylcs1ufpgg7" path="res://scenes/environment/trees/mesh_tree_pine_02.tscn" id="13_575cj"]
+[ext_resource type="PackedScene" uid="uid://c48d5ohxu4r03" path="res://scenes/environment/trees/mesh_tree_pine_03.tscn" id="14_i5apv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_53c65")
@@ -22,6 +26,11 @@ uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7gcg"]
 albedo_texture = ExtResource("5_43bxi")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0caop"]
+albedo_texture = ExtResource("6_qhwlw")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
@@ -121,6 +130,12 @@ height = 302.2461
 sides = 12
 material = SubResource("StandardMaterial3D_j7gcg")
 
+[node name="Mountain" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=413354253]
+transform = Transform3D(2.412638, 0, -1.6472723, 0, 21.468203, 0, 1.3141735, 0, 3.0241609, 1449.0775, -188.2221, -2165.4312)
+polygon = PackedVector2Array(-554.2913, 2.0832949, -42.570847, 23.576729, 31.643631, 23.517069, 365.77032, 1.0375218)
+depth = 100.0
+material = SubResource("StandardMaterial3D_0caop")
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1011803724]
 _spawnable_scenes = PackedStringArray("uid://bafdbgunof2qt")
 spawn_path = NodePath("..")
@@ -139,8 +154,17 @@ shape = SubResource("BoxShape3D_sthun")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1096400920]
 mesh = SubResource("BoxMesh_sthun")
 
-[node name="fairy_king" parent="." unique_id=1342506538 instance=ExtResource("10_j7gcg")]
+[node name="fairy_king_smooth" parent="." unique_id=1816964908 instance=ExtResource("11_qhwlw")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.290447, 0.88835263, 8.779835)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1650778298]
 environment = SubResource("Environment_4bcl2")
+
+[node name="mesh_tree_pine_01" parent="." unique_id=944735524 instance=ExtResource("12_1vfnp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.916725, 0.17113936, 6.4873905)
+
+[node name="mesh_tree_pine_02" parent="." unique_id=584212452 instance=ExtResource("13_575cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.628384, 0.17943467, 8.84345)
+
+[node name="mesh_tree_pine_03" parent="." unique_id=258871665 instance=ExtResource("14_i5apv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.792534, 0.17943466, 3.0544338)

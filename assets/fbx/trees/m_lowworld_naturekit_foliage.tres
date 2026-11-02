@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://0buxd6wmowvr"]
+
+[ext_resource type="Texture2D" uid="uid://cmtvtpqtkocpy" path="res://assets/fbx/trees/t_lowworld_naturekit_foliage.png" id="1_ngrx2"]
+
+[resource]
+resource_name = "m_lowworld_naturekit_foliage"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.47058824, 0.6627451, 0.18431373, 1)
+albedo_texture = ExtResource("1_ngrx2")
+emission_enabled = true
