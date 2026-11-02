@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b5uv2n0srdprs"]
+
+[ext_resource type="PackedScene" uid="uid://h48jakwpsui0" path="res://assets/fbx/terrain/mesh_terrain_medium_06.fbx" id="1_46fnf"]
+
+[node name="mesh_terrain_medium_06" unique_id=408281506 instance=ExtResource("1_46fnf")]
+
+[node name="mesh_terrain_medium_06" parent="." index="0" unique_id=1780473868]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, -2.1855694e-08, 0, 2.1855694e-08, 0.5, 0, 0, 0)
