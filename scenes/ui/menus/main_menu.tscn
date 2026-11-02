@@ -21,7 +21,7 @@ offset_right = 149.5
 offset_bottom = 138.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 72
-text = "Gnome Ball"
+text = "Oh Gnome!"
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=2005224302]
 layout_mode = 1

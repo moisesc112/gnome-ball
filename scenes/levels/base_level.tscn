@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dj6xy5q6v4u6v" path="res://scenes/environment/trees/mesh_tree_pine_01.tscn" id="12_1vfnp"]
 [ext_resource type="PackedScene" uid="uid://dmylcs1ufpgg7" path="res://scenes/environment/trees/mesh_tree_pine_02.tscn" id="13_575cj"]
 [ext_resource type="PackedScene" uid="uid://c48d5ohxu4r03" path="res://scenes/environment/trees/mesh_tree_pine_03.tscn" id="14_i5apv"]
+[ext_resource type="PackedScene" uid="uid://be3ksp7c58ngi" path="res://scenes/environment/gnome_house.tscn" id="15_575cj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_53c65")
@@ -84,19 +85,31 @@ size = Vector3(1.0839844, 0.7696533, 10.278809)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1589439204]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.106356, 1.6754408, -1.7740765)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.106356, 1.4512253, -1.7740765)
 size = Vector3(1.0839844, 0.7696533, 1.1878052)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1298307671]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.106356, 1.6754408, -12.874093)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.106356, 1.5414705, -12.874093)
 size = Vector3(1.0839844, 0.7696533, 1.1878052)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="Ramp" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=423698541]
-transform = Transform3D(-0.023415538, -1.92521e-12, -0.9997258, -0.01920228, 0.9998155, 0.000449755, 0.9995415, 0.019207552, -0.023411216, -1.5981207, 0.102332115, 6.7131367)
+transform = Transform3D(-0.023415538, -1.92521e-12, -0.9997258, -0.01920228, 0.9998155, 0.000449755, 0.9995415, 0.019207552, -0.023411216, -1.5981207, 0.12601149, 6.7131367)
 polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
 depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp6" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1259419276]
+transform = Transform3D(0.008561861, -0.00028538378, 0.9999632, -0.019202275, 0.99981546, 0.00044975482, -0.999779, -0.01920543, 0.008554827, 10.222234, 0.009778619, 53.17204)
+polygon = PackedVector2Array(0.0671196, -0.16911727, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 20.0
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp7" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=32468530]
+transform = Transform3D(0.008561861, -0.00028538378, 0.9999632, -0.019202275, 0.99981546, 0.00044975482, -0.999779, -0.01920543, 0.008554827, 10.227001, -0.017606378, 59.61384)
+polygon = PackedVector2Array(-0.019111633, -0.238706, 0, 1, 6.427349, 1.1606787, 6.4554405, -0.16827679)
+depth = 20.0
 material = SubResource("StandardMaterial3D_53c65")
 
 [node name="Ramp2" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=202147019]
@@ -118,13 +131,13 @@ depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
 [node name="Ramp5" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=922392584]
-transform = Transform3D(0.03046155, 0.020187737, -0.9993321, -0.018299576, 0.9996397, 0.019636156, 0.9993689, 0.017689196, 0.030819952, 11.622529, 0.13899708, 7.029419)
+transform = Transform3D(0.03046155, 0.020187737, -0.9993321, -0.018299576, 0.9996397, 0.019636156, 0.9993689, 0.017689196, 0.030819952, 11.622529, 0.09523058, 7.029419)
 polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
 [node name="TreeTrunk" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1368578395]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 146.61403, -47.866814)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 146.61403, -88.83297)
 radius = 26.346
 height = 302.2461
 sides = 12
@@ -136,11 +149,12 @@ polygon = PackedVector2Array(-554.2913, 2.0832949, -42.570847, 23.576729, 31.643
 depth = 100.0
 material = SubResource("StandardMaterial3D_0caop")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1011803724]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1011803724 node_paths=PackedStringArray("spawn_point")]
 _spawnable_scenes = PackedStringArray("uid://bafdbgunof2qt")
 spawn_path = NodePath("..")
 script = ExtResource("7_53c65")
 network_player = ExtResource("1_md458")
+spawn_point = NodePath("../Marker3D")
 
 [node name="LoseZone" parent="." unique_id=1377013288 instance=ExtResource("4_wwrw0")]
 transform = Transform3D(500, 0, 0, 0, 100, 0, 0, 0, 500, 0, -100, 0)
@@ -152,6 +166,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_sthun")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1096400920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015974045, 0.01409483, 0.014823914)
 mesh = SubResource("BoxMesh_sthun")
 
 [node name="fairy_king_smooth" parent="." unique_id=1816964908 instance=ExtResource("11_qhwlw")]
@@ -168,3 +183,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.628384, 0.17943467, 8.8434
 
 [node name="mesh_tree_pine_03" parent="." unique_id=258871665 instance=ExtResource("14_i5apv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.792534, 0.17943466, 3.0544338)
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=2027639449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 56)
+
+[node name="Environment" type="Node3D" parent="." unique_id=2012382694]
+
+[node name="GnomeHouse" parent="." unique_id=1778555671 instance=ExtResource("15_575cj")]
+transform = Transform3D(2.7188072, 0, 1.2681038, 0, 3, 0, -1.2681038, 0, 2.7188072, -2.1572342, 1.7759042, -23.086823)

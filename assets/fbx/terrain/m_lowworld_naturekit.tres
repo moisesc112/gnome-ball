@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cmgaeh2f2yu2r"]
+
+[ext_resource type="Texture2D" uid="uid://kxdsnk24d7vi" path="res://assets/fbx/trees/t_lowworld_naturekit.png" id="1_c0xmp"]
+
+[resource]
+resource_name = "m_lowworld_naturekit"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_c0xmp")
+emission_enabled = true

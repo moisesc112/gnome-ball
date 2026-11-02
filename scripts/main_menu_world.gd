@@ -1,12 +1,16 @@
 extends Node3D
 
-@onready var animation_player: AnimationPlayer = $Gnome_smooth/AnimationPlayer
+@onready var gnome_animation_player: AnimationPlayer = $Gnome_smooth/AnimationPlayer
+@onready var fairy_animation_player: AnimationPlayer = $fairy_king_smooth/AnimationPlayer
+@onready var player_ball: Node3D = $player_ball_smooth
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	animation_player.play("IdleAction")
+	gnome_animation_player.play("WalkAction")
+	fairy_animation_player.play("Idle")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	player_ball.rotate_x(0.01)
+	player_ball.rotate_z(0.01)

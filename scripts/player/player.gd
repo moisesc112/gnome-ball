@@ -20,7 +20,7 @@ extends RigidBody3D
 
 @onready var gnome_facing: Node3D = $GnomePivot/GnomeFacing
 
-@export var turn_speed: float = 1.5
+@export var turn_speed: float = 3.0
 @export var lean_degrees: float = 10.0
 @export var lean_speed: float = 5.0
 @export var air_turn_speed: float = 2.0
@@ -34,7 +34,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	#gnome_pivot.top_level = true
 	camera_rig.top_level = true
-	self.position = Vector3(0.0, 1.0, 27.0)
+	#self.position = Vector3(0.0, 1.0, 27.0)
 	
 	if is_multiplayer_authority():
 		camera.make_current()
@@ -120,6 +120,7 @@ func _physics_process(delta: float) -> void:
 	if horizontal_velocity.length() > 0.5:
 		var desired_yaw := atan2(-linear_velocity.x, -linear_velocity.z)
 		control_yaw = lerp_angle(control_yaw, desired_yaw, clampf(turn_speed * delta, 0.0, 1.0))
+		#control_yaw = desired_yaw
 		target_yaw = desired_yaw;
 	
 	#if not ground_ray.is_colliding():

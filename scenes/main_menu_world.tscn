@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://ce8nict27v7t7" path="res://scenes/ui/menus/main_menu.tscn" id="1_lmwo4"]
 [ext_resource type="Script" uid="uid://c2wdv7n04ugxe" path="res://scripts/main_menu_world.gd" id="1_mgxyb"]
 [ext_resource type="PackedScene" uid="uid://jkk5q6w46eu3" path="res://assets/characters/Gnome_smooth.glb" id="3_mgxyb"]
+[ext_resource type="PackedScene" uid="uid://yeak0bgrh556" path="res://scenes/fairy_king_smooth.tscn" id="4_47nhc"]
+[ext_resource type="PackedScene" uid="uid://clqxp1726i8bq" path="res://scenes/player/player_ball_smooth.tscn" id="4_hf8dy"]
 
 [node name="MainMenuWorld" type="Node3D" unique_id=1585825354]
 script = ExtResource("1_mgxyb")
@@ -11,9 +13,16 @@ script = ExtResource("1_mgxyb")
 
 [node name="MainMenu" parent="CanvasLayer" unique_id=890744655 instance=ExtResource("1_lmwo4")]
 
-[node name="Gnome_smooth" parent="." unique_id=1278885091 instance=ExtResource("3_mgxyb")]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1019449728]
+transform = Transform3D(0.8750521, 0.03618975, -0.48267394, 0.049971934, 0.9851176, 0.16445719, 0.48144224, -0.16802877, 0.86022073, 0.27342105, 2.5716681, 4.1981287)
 
-[node name="Camera3D" type="Camera3D" parent="Gnome_smooth" unique_id=1019449728]
-transform = Transform3D(0.8750521, 0.036189742, -0.48267394, 0.049971934, 0.9851176, 0.16445719, 0.48144224, -0.16802877, 0.86022073, 0.27342105, 2.5716681, 4.1981287)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D" unique_id=1049311031]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Gnome_smooth/Camera3D" unique_id=1049311031]
+[node name="player_ball_smooth" parent="." unique_id=1141308037 instance=ExtResource("4_hf8dy")]
+transform = Transform3D(1.0075295, 0, -1.7276819, 0, 2, 0, 1.7276819, 0, 1.0075295, 0.636026, 1.770821, -4.7683716e-07)
+
+[node name="Gnome_smooth" parent="." unique_id=119455235 instance=ExtResource("3_mgxyb")]
+transform = Transform3D(0.5037647, 0, -0.863841, 0, 1, 0, 0.863841, 0, 0.5037647, 0.636026, -0.0628196, -4.7683716e-07)
+
+[node name="fairy_king_smooth" parent="." unique_id=1816964908 instance=ExtResource("4_47nhc")]
+transform = Transform3D(-0.043803826, -0.22773312, -0.97273785, -0.0354526, 0.9734136, -0.22629479, 0.9984108, 0.024573509, -0.050712958, 6.0232453, 0.16217446, 0.76318264)

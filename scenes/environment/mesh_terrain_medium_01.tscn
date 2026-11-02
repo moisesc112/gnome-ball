@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://choy5ayabrr0x"]
+
+[ext_resource type="PackedScene" uid="uid://d4ifov5bjx784" path="res://assets/fbx/terrain/mesh_terrain_medium_01.fbx" id="1_wxen1"]
+
+[node name="mesh_terrain_medium_01" unique_id=98727160 instance=ExtResource("1_wxen1")]
