@@ -26,8 +26,8 @@ func _physics_process(delta: float) -> void:
 	global_position = player.global_position
 	
 	# same reasoning with y rotation, might not be needed
-	#rotation.y = lerp_angle(rotation.y, player.control_yaw, clampf(orbit_speed * delta, 0.0, 1.0))
-	rotation.y = player.control_yaw
+	rotation.y = lerp_angle(rotation.y, player.control_yaw, clampf(orbit_speed * delta, 0.0, 1.0))
+	#rotation.y = player.control_yaw
 	
 	#
 	# Playtest if camera updates pitch and roll. maybe reduce from physics value. maybe only pitch no roll visual 

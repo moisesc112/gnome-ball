@@ -20,10 +20,13 @@ extends RigidBody3D
 
 @onready var gnome_facing: Node3D = $GnomePivot/GnomeFacing
 
-@export var turn_speed: float = 3.0
+@export var turn_speed: float = 6.0
 @export var lean_degrees: float = 10.0
 @export var lean_speed: float = 5.0
 @export var air_turn_speed: float = 2.0
+
+var takeoff_speed: float = 0.0
+var was_grounded: bool = false
 
 
 var tilt_input: Vector2 = Vector2.ZERO
@@ -134,4 +137,18 @@ func _physics_process(delta: float) -> void:
 	var stage_basis := Basis(Vector3.UP, control_yaw)
 	var world_acceleration = stage_basis * local_acceleration
 	
+	var grounded := ground_ray.is_colliding()
+	
+	if was_grounded and not grounded:
+		takeoff_speed = Vector2(linear_velocity.x, linear_velocity.z).length()
+	
 	apply_central_force(world_acceleration * mass)
+	
+	if not grounded:
+		if horizontal_velocity.length() > takeoff_speed:
+			horizontal_velocity = horizontal_velocity.normalized() * takeoff_speed
+			
+			linear_velocity.x = horizontal_velocity.x
+			linear_velocity.z = horizontal_velocity.z
+			
+	was_grounded = grounded
