@@ -3,3 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://c3ltcj0ilh4ae" path="res://assets/fbx/mushrooms/mesh_mushroom_03_red.fbx" id="1_dbdsh"]
 
 [node name="mesh_mushroom_03_red" unique_id=1740913427 instance=ExtResource("1_dbdsh")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh_mushroom_03_red_LOD0" parent_id_path=PackedInt32Array(836430351) index="0" unique_id=1205479203]
+transform = Transform3D(1.5459195, 0, 0, 0, 1.5459195, 6.757429e-08, 0, -6.757429e-08, 1.5459195, 0, 0, 0)
+
+[node name="mesh_mushroom_03_red_LOD1" parent="." index="1" unique_id=381272532]
+visible = false
+
+[node name="mesh_mushroom_03_red_LOD2" parent="." index="2" unique_id=1684154541]
+visible = false

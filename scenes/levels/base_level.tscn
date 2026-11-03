@@ -18,7 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://b5uv2n0srdprs" path="res://scenes/environment/mesh_terrain_medium_06.tscn" id="16_i5apv"]
 [ext_resource type="PackedScene" uid="uid://8m0ucssmnhnv" path="res://scenes/launch_pad.tscn" id="17_j8xgc"]
 [ext_resource type="PackedScene" uid="uid://b25g2igm28pmc" path="res://scenes/speed_boost.tscn" id="18_ovmjf"]
-[ext_resource type="PackedScene" uid="uid://c1q8qtova877j" path="res://scenes/environment/mesh_mushroom_03_red.tscn" id="19_mwefk"]
+[ext_resource type="PackedScene" uid="uid://yo4bfc6jdqu1" path="res://scenes/environment/red_mushroom_3.tscn" id="19_mwefk"]
+[ext_resource type="PackedScene" uid="uid://synsej8m6drd" path="res://scenes/safety_net.tscn" id="20_jua6e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_53c65")
@@ -104,7 +105,7 @@ size = Vector3(1.0839844, 0.7696533, 7.5842285)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge13" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1021422299]
-transform = Transform3D(-0.3156745, 0.9488676, -4.147632e-08, 4.3835006e-16, -4.371139e-08, -1, -0.9488676, -0.3156745, 1.3798571e-08, 62.71789, 2.1311984, -39.789394)
+transform = Transform3D(-0.3156745, 0.9488676, -4.147632e-08, 4.3835006e-16, -4.371139e-08, -1, -0.9488676, -0.3156745, 1.3798571e-08, 55.760456, 2.1311984, -39.789394)
 size = Vector3(1.0839844, 0.7696533, 10.278809)
 material = SubResource("StandardMaterial3D_43bxi")
 
@@ -793,9 +794,10 @@ height = 3.0023127
 sides = 12
 material = SubResource("StandardMaterial3D_j7gcg")
 
-[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=545900335]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.712776, 108.378365, -84.91312)
-radius = 9.205078
+[node name="VillageTreePlatform" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=545900335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9977837, 108.378365, -88.92094)
+visible = false
+radius = 38.918457
 height = 0.89501953
 
 [node name="Mountain" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=413354253]
@@ -880,7 +882,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.628384, 0.17943467, 8.8434
 transform = Transform3D(15, 0, 0, 0, 10, 0, 0, 0, 15, 67.935486, 0.039870143, -10.669349)
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=2027639449]
-transform = Transform3D(-0.26705888, 0, 0.9636802, 0, 1, 0, -0.9636802, 0, -0.26705888, -65.91049, 106.577965, -72.353165)
+transform = Transform3D(-0.26705888, 0, 0.9636802, 0, 1, 0, -0.9636802, 0, -0.26705888, -60.262917, 109.03913, -77.260124)
 
 [node name="Environment" type="Node3D" parent="." unique_id=2012382694]
 
@@ -984,7 +986,7 @@ transform = Transform3D(0.13052629, -0.00865188, 0.99140704, 0, 0.99996203, 0.00
 transform = Transform3D(-0.09931979, -0.008683388, 0.99501765, 0, 0.99996203, 0.008726535, -0.9950559, 0.0008667175, -0.09931597, 0.9139147, 0.08562925, -144.60011)
 
 [node name="JumpPad" parent="Environment" unique_id=1467356504 instance=ExtResource("17_j8xgc")]
-transform = Transform3D(1.897947, 0, 0.6307118, 0, 1, 0, -0.6307118, 0, 1.897947, 62.81823, 7.6071277, -39.73086)
+transform = Transform3D(1.897947, 0, 0.6307118, 0, 1, 0, -0.6307118, 0, 1.897947, 55.860794, 7.6071277, -39.73086)
 
 [node name="JumpPad2" parent="Environment" unique_id=1391086405 instance=ExtResource("17_j8xgc")]
 transform = Transform3D(4.7448673, 0, 1.5767795, 0, 1, 0, -1.5767795, 0, 4.7448673, 71.63094, 27.514603, 35.035114)
@@ -1010,5 +1012,18 @@ launch_speed = 17.0
 transform = Transform3D(2.4958844, 0.1271523, 0.1826047, -0.0043179495, 0.96475327, -0.7075995, -0.46680632, 0.67092514, 0.9828825, -81.60229, 36.03023, 52.038498)
 boost_strength = 40.0
 
-[node name="mesh_mushroom_03_red" parent="." unique_id=1740913427 instance=ExtResource("19_mwefk")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 63.289597, 0.04504118, -37.82545)
+[node name="RedMushroom3" parent="." unique_id=1076455517 instance=ExtResource("19_mwefk")]
+transform = Transform3D(-19.496868, 0, -4.457814, 0, 20, 0, 4.457814, 0, -19.496868, 63.0571, 0.04504118, -36.906994)
+
+[node name="RedMushroom4" parent="." unique_id=10326191 instance=ExtResource("19_mwefk")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 3.7868648, 0.04504118, -16.789612)
+
+[node name="SafetyNet" parent="." unique_id=1963718920 instance=ExtResource("20_jua6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 109.096, -88.728)
+net_pattern = 1
+center_hole = true
+inner_radius = 28.0
+outer_radius = 40.0
+radial_segments = 64
+ring_segments = 32
+impact_transfer = 3.0

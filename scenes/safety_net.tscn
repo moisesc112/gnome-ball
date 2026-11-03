@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://synsej8m6drd"]
+
+[ext_resource type="Script" uid="uid://jmtd4k81hc3k" path="res://scripts/safety_net.gd" id="1_du280"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_du280"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4bcl2"]
+lightmap_size_hint = Vector2i(20, 20)
+custom_aabb = AABB(0, 0, 0, 12, 12, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sthun"]
+size = Vector3(12, 3, 12)
+
+[node name="SafetyNet" type="Node3D" unique_id=1623921247]
+script = ExtResource("1_du280")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=727498279]
+material_override = SubResource("StandardMaterial3D_du280")
+mesh = SubResource("ArrayMesh_4bcl2")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1141297470]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=333370477]
+shape = SubResource("BoxShape3D_sthun")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
