@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b5uv2n0srdprs" path="res://scenes/environment/mesh_terrain_medium_06.tscn" id="16_i5apv"]
 [ext_resource type="PackedScene" uid="uid://8m0ucssmnhnv" path="res://scenes/launch_pad.tscn" id="17_j8xgc"]
 [ext_resource type="PackedScene" uid="uid://b25g2igm28pmc" path="res://scenes/speed_boost.tscn" id="18_ovmjf"]
+[ext_resource type="PackedScene" uid="uid://c1q8qtova877j" path="res://scenes/environment/mesh_mushroom_03_red.tscn" id="19_mwefk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_53c65")
@@ -108,12 +109,12 @@ size = Vector3(1.0839844, 0.7696533, 10.278809)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge15" type="CSGBox3D" parent="CSGCombiner3D" unique_id=137308304]
-transform = Transform3D(-0.3156745, 0.9488676, -4.147632e-08, 4.3835006e-16, -4.371139e-08, -1, -0.9488676, -0.3156745, 1.3798571e-08, 71.5306, 13.063686, 42.82555)
+transform = Transform3D(-0.3156745, 0.9488676, -4.147632e-08, 4.3835006e-16, -4.371139e-08, -1, -0.9488676, -0.3156745, 1.3798571e-08, 71.5306, 13.063686, 34.97658)
 size = Vector3(1.0839844, 0.7696533, 28.197632)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1117160534]
-transform = Transform3D(0.24719372, -0.2599817, -0.93343765, -0.0072276616, 0.96281177, -0.27007702, 0.968939, 0.073507965, 0.23612185, -5.586422, 3.6002088, -58.089455)
+transform = Transform3D(0.24715517, -0.25524697, -0.9347536, -0.008442356, 0.9640777, -0.2654865, 0.9689388, 0.073507935, 0.23612179, -5.586422, 3.6002088, -58.089455)
 size = Vector3(3.4835815, 0.7696533, 17.919243)
 material = SubResource("StandardMaterial3D_43bxi")
 
@@ -142,6 +143,76 @@ transform = Transform3D(-0.0128967045, -0.5226556, -0.8524461, -0.0491562, 0.851
 size = Vector3(1.0891724, 0.7696533, 16.522583)
 material = SubResource("StandardMaterial3D_43bxi")
 
+[node name="NarrowBridge26" type="CSGBox3D" parent="CSGCombiner3D" unique_id=603757299]
+transform = Transform3D(-0.030347584, -0.16608818, -0.9856437, -0.04076372, 0.98548293, -0.16480622, 0.9987079, 0.03517703, -0.036677394, -67.42936, 61.7549, -8.41457)
+size = Vector3(1.440342, 0.7696533, 16.522583)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge33" type="CSGBox3D" parent="CSGCombiner3D" unique_id=705715558]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.9816268, -0.19080897, 0, 0.19080892, 0.981627, -67.3228, 64.29389, -22.15597)
+size = Vector3(0.68348694, 0.7696533, 12.492249)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge31" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1847610451]
+transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999998, -58.795162, 63.14714, -11.814404)
+size = Vector3(1.174263, 0.7696533, 8.919205)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge32" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1082653777]
+transform = Transform3D(-4.371139e-08, 0, 0.9999998, 0, 0.9999997, 0, -1, 0, -4.371138e-08, -63.49585, 63.14714, -15.834832)
+size = Vector3(0.8905716, 0.7696533, 8.340363)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge34" type="CSGBox3D" parent="CSGCombiner3D" unique_id=249288353]
+transform = Transform3D(-4.371139e-08, 0, 0.9999998, 0, 0.9999997, 0, -1, 0, -4.371138e-08, -71.16689, 65.41578, -28.563377)
+size = Vector3(0.7700672, 0.7696533, 8.340363)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge35" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1012540549]
+transform = Transform3D(0.9992667, 0, 0.038288325, 0, 0.99999964, 0, -0.038288344, 0, 0.99926656, -75.29819, 65.41578, -38.185703)
+size = Vector3(0.7700672, 0.7696533, 18.64051)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge36" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1005664290]
+transform = Transform3D(0.9992667, 0, 0.038288325, 0.009287078, 0.970137, -0.24237837, -0.03714495, 0.24255618, 0.9694258, -76.00212, 67.61176, -56.318302)
+size = Vector3(0.7700672, 0.7696533, 18.64051)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge37" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1204260202]
+transform = Transform3D(-0.16485938, -0.23758644, -0.9572741, 0.009287078, 0.9701371, -0.24237838, 0.9862733, -0.04884859, -0.15772976, -69.90609, 71.39254, -67.42155)
+size = Vector3(2.362927, 0.7696533, 15.326143)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge38" type="CSGBox3D" parent="CSGCombiner3D" unique_id=9120790]
+transform = Transform3D(-0.16485938, -0.23758644, -0.9572741, 0.009287078, 0.9701371, -0.24237838, 0.9862733, -0.04884859, -0.15772976, -55.58012, 74.666695, -65.49575)
+size = Vector3(1.4045649, 0.7696533, 9.461411)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge39" type="CSGBox3D" parent="CSGCombiner3D" unique_id=625008582]
+transform = Transform3D(0.9997783, -0.004427023, 0.020588368, 0.009287078, 0.97013724, -0.2423784, -0.018900558, 0.24251579, 0.9699632, -52.01024, 76.33106, -74.37033)
+size = Vector3(1.4045649, 0.7696533, 13.857725)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge40" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1285669012]
+transform = Transform3D(-0.040405378, 0.39631492, 0.91722506, 0.016035493, 0.91811377, -0.39599258, -0.9990546, -0.001292068, -0.043451793, -62.9874, 80.8236, -78.827286)
+size = Vector3(1.4045649, 0.7696533, 18.810867)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge41" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1286614539]
+transform = Transform3D(-0.9996513, 0.006412253, -0.025613397, 0.016035492, 0.9181139, -0.3959926, 0.020976767, -0.39626518, -0.9178965, -69.50799, 87.92445, -68.26455)
+size = Vector3(2.2804074, 0.7696533, 18.638992)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge42" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1973052947]
+transform = Transform3D(-0.031998634, -0.3953693, -0.9179647, 0.016035495, 0.9181139, -0.3959926, 0.99935925, -0.027391195, -0.023038462, -58.03505, 92.821594, -61.020935)
+size = Vector3(1.4045649, 0.7696533, 16.44889)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge43" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1555476667]
+transform = Transform3D(0.99999994, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -51.28443, 96.08241, -67.927315)
+size = Vector3(1.4045649, 0.7696533, 9.74715)
+material = SubResource("StandardMaterial3D_43bxi")
+
 [node name="NarrowBridge24" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1993441553]
 transform = Transform3D(-0.029991454, 0.5201456, 0.8535506, -0.04913382, 0.85213524, -0.5210095, -0.9983418, -0.05756403, -3.7309878e-08, -36.350796, 42.26469, 79.92635)
 size = Vector3(1.0891724, 0.7696533, 17.167603)
@@ -152,9 +223,24 @@ transform = Transform3D(0.4409238, 0, 0.8975442, 0, 0.99999976, 0, -0.8975443, 0
 size = Vector3(1.0891724, 0.7696533, 15.549622)
 material = SubResource("StandardMaterial3D_43bxi")
 
-[node name="NarrowBridge26" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2130331667]
-transform = Transform3D(-0.903277, 0, 0.42905763, 0, 0.99999976, 0, -0.4290577, 0, -0.90327686, -72.601974, 72.19132, 65.64564)
-size = Vector3(7.0043488, 0.7696533, 8.77726)
+[node name="NarrowBridge27" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1504079352]
+transform = Transform3D(-0.34906116, 0, 0.9370996, 0, 0.99999976, 0, -0.93709975, 0, -0.34906113, -62.397614, 72.44061, 73.89373)
+size = Vector3(3.7359924, 0.7696533, 4.3231506)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge28" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1358880323]
+transform = Transform3D(-0.34906116, 0, 0.9370996, 0, 0.99999976, 0, -0.93709975, 0, -0.34906113, -69.88672, 73.042274, 71.07272)
+size = Vector3(3.7359924, 0.7696533, 4.3231506)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge29" type="CSGBox3D" parent="CSGCombiner3D" unique_id=298910323]
+transform = Transform3D(-0.34906116, 0, 0.9370996, 0, 0.99999976, 0, -0.93709975, 0, -0.34906113, -76.59059, 73.48548, 68.09971)
+size = Vector3(3.7359924, 0.7696533, 4.3231506)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge30" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1070025381]
+transform = Transform3D(-0.34906116, 0, 0.9370996, 0, 0.99999976, 0, -0.93709975, 0, -0.34906113, -78.96196, 73.42242, 60.832314)
+size = Vector3(3.7359924, 0.7696533, 4.3231506)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge22" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1514231017]
@@ -264,6 +350,12 @@ material = SubResource("StandardMaterial3D_53c65")
 [node name="Ramp4" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=29282092]
 transform = Transform3D(0.801076, 0.073601104, 0.59402025, -0.09309544, 0.99565476, 0.0021804795, -0.59127855, -0.057047293, 0.804447, -7.050811, 6.843357, -10.882252)
 polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp64" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1854691009]
+transform = Transform3D(-0.9136898, -0.08456101, -0.39751768, -0.09309545, 0.99565476, 0.0021804676, 0.39560592, 0.03899933, -0.91759175, -47.082893, 106.60762, -79.82783)
+polygon = PackedVector2Array(-3.704319, 0.26539612, -3.7133617, 1.2116852, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
@@ -429,6 +521,162 @@ polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.00
 depth = 4.5
 material = SubResource("StandardMaterial3D_53c65")
 
+[node name="Ramp38" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=36409580]
+transform = Transform3D(0.030031472, -0.025553137, 0.99922174, -0.1267431, 0.99150646, 0.029165104, -0.9914817, -0.12752038, 0.026538014, -77.53994, 38.34306, 72.251396)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 7.604126, -0.40658188)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp62" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1616650838]
+transform = Transform3D(-0.10326137, -0.04243078, 0.99374825, -0.1267431, 0.9915064, 0.029165104, -0.98654693, -0.12293915, -0.10776167, -77.53994, 36.16397, 64.8346)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 7.604126, -0.40658188)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp63" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=823205828]
+transform = Transform3D(-0.086008176, 0.008913627, 0.996254, 0.32063562, 0.94700754, 0.019207766, -0.9432905, 0.3210863, -0.08430803, -78.512245, 33.813763, 57.24939)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 7.604126, -0.40658188)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp39" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1757548665]
+transform = Transform3D(0.354706, 0.018813424, 0.93478817, -0.13133737, 0.9908866, 0.029893527, -0.92570794, -0.133376, 0.35394442, -79.44989, 39.51233, 76.916534)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp40" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=18570666]
+transform = Transform3D(0.52067846, 0.04881789, 0.85235584, -0.15979208, 0.9862938, 0.04112293, -0.83866644, -0.15761152, 0.5213422, -82.10667, 40.866905, 80.64266)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp41" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1656491523]
+transform = Transform3D(0.71537125, 0.10452506, 0.6908824, -0.19804315, 0.9785334, 0.057018247, -0.67009246, -0.17761368, 0.72071457, -85.74839, 42.482452, 84.09951)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp42" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=710275095]
+transform = Transform3D(0.76076806, 0.11498908, 0.6387572, -0.20044424, 0.9776949, 0.06272675, -0.61729735, -0.17575558, 0.7668475, -89.662506, 44.279457, 87.094444)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp43" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=102459929]
+transform = Transform3D(0.8611195, 0.15287438, 0.48487478, -0.22109576, 0.97141886, 0.08638203, -0.45781124, -0.1815889, 0.87030685, -93.76555, 45.90242, 88.913376)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp44" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=768908358]
+transform = Transform3D(0.90303034, 0.3132862, -0.29392117, -0.24477321, 0.93752205, 0.24726145, 0.3530211, -0.1513404, 0.9232937, -99.73671, 48.101128, 86.28499)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp45" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1468844450]
+transform = Transform3D(0.87828916, 0.31654906, -0.35833743, -0.23359506, 0.9380075, 0.2560762, 0.417184, -0.14120296, 0.8977852, -104.01254, 50.021553, 83.929474)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp46" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=43876723]
+transform = Transform3D(0.784567, 0.3389641, -0.5191895, -0.21640497, 0.93438303, 0.2830147, 0.58105415, -0.109688886, 0.8064388, -107.371376, 51.54707, 80.901535)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp47" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=2043887238]
+transform = Transform3D(0.6084334, 0.3561788, -0.7091869, -0.18887365, 0.9329394, 0.30651477, 0.77080274, -0.052547246, 0.63490355, -110.39957, 53.10467, 76.873405)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp48" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=886946819]
+transform = Transform3D(0.5553398, 0.3540135, -0.7525109, -0.17369404, 0.93428767, 0.3113462, 0.81328344, -0.04219602, 0.58033663, -112.93533, 54.706482, 72.569534)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp49" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=527956523]
+transform = Transform3D(0.39308158, 0.35790274, -0.84698987, -0.14721279, 0.93375194, 0.32624424, 0.90764344, -0.0035527647, 0.41972876, -114.34549, 55.89319, 68.16718)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp50" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=160316504]
+transform = Transform3D(-0.14124112, 0.41460967, -0.89897114, -0.20503974, 0.8761328, 0.436291, 0.96850973, 0.24594718, -0.03873515, -113.05754, 57.840324, 62.06802)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp51" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1390901314]
+transform = Transform3D(-0.20607118, 0.40602124, -0.89032596, -0.18043391, 0.87848675, 0.44238442, 0.96175855, 0.25180772, -0.10777116, -111.59099, 59.421646, 57.28597)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp52" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=778399116]
+transform = Transform3D(-0.3820677, 0.3815621, -0.84168494, -0.12752867, 0.88029987, 0.45695624, 0.9152931, 0.2819271, -0.2876737, -109.325516, 60.447456, 53.212547)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp53" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1794519897]
+transform = Transform3D(-0.60234785, 0.33199778, -0.72591656, -0.056167968, 0.8895211, 0.45342854, 0.796256, 0.31389475, -0.51715326, -106.02269, 61.29394, 49.188046)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp54" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=575261087]
+transform = Transform3D(-0.6534936, 0.32193428, -0.6850585, -0.030829502, 0.89297384, 0.44905066, 0.7563053, 0.3145718, -0.57362723, -102.31976, 62.110012, 45.56291)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp55" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=430532445]
+transform = Transform3D(-0.7803704, 0.2864373, -0.5558566, 0.020090386, 0.8999435, 0.4355434, 0.62499577, 0.32871747, -0.70804286, -98.307396, 62.45622, 43.00196)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp56" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=136902193]
+transform = Transform3D(-0.8286247, -0.13543549, -0.5431743, -0.43526107, 0.7660455, 0.47299308, 0.35203665, 0.62835664, -0.693713, -93.16661, 65.82367, 41.269745)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp57" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=695313009]
+transform = Transform3D(-0.9301405, -0.19411016, -0.31170562, -0.3431649, 0.7615897, 0.5497447, 0.13068107, 0.6183063, -0.77499676, -88.426094, 68.10596, 40.894913)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp58" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1604357863]
+transform = Transform3D(-0.94812226, -0.20271415, -0.24489257, -0.3095642, 0.76403165, 0.5660605, 0.072357506, 0.61250424, -0.7871481, -83.64445, 70.256485, 41.069122)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp59" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=754508927]
+transform = Transform3D(-0.9689832, -0.23922916, -0.061986476, -0.22724736, 0.7639728, 0.6039074, -0.09711677, 0.59926206, -0.7946402, -79.19783, 71.6423, 42.11051)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp60" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=195789862]
+transform = Transform3D(-0.8716535, -0.43610057, 0.22368999, -0.2272473, 0.76397276, 0.60390747, -0.43425828, 0.47556466, -0.76502186, -74.77646, 73.28597, 44.75831)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp61" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1863841087]
+transform = Transform3D(-0.23220426, -0.8877685, 0.3974266, -0.35321707, 0.45766473, 0.81595343, -0.90626705, 0.04908988, -0.4198468, -73.83761, 75.38656, 50.484596)
+polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.5
+material = SubResource("StandardMaterial3D_53c65")
+
 [node name="TreeTrunk" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1368578395]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 157.77711, -88.83297)
 radius = 26.346
@@ -496,9 +744,17 @@ sides = 12
 material = SubResource("StandardMaterial3D_j7gcg")
 
 [node name="TreeTrunk9" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=369752624]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.78589, 35.50878, 49.102463)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.78589, 35.50878, 48.72059)
 radius = 5.0
 height = 73.43848
+sides = 12
+material = SubResource("StandardMaterial3D_j7gcg")
+
+[node name="TreeTrunk11" type="CSGCylinder3D" parent="CSGCombiner3D/TreeTrunk9" unique_id=1816930709]
+transform = Transform3D(0.98963875, -0.14215939, 0.02014637, -0.011094402, 0.064182684, 0.99787635, -0.14315057, -0.98776066, 0.061940372, -0.15426636, 3.9095955, -1.1724205)
+operation = 2
+radius = 4.477051
+height = 29.287228
 sides = 12
 material = SubResource("StandardMaterial3D_j7gcg")
 
@@ -510,11 +766,37 @@ sides = 12
 material = SubResource("StandardMaterial3D_j7gcg")
 
 [node name="TreeTrunk7" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=324456570]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.404514, 64.198235, -71.92662)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.404514, 52.465324, -71.92662)
 radius = 5.0
-height = 130.81738
+height = 107.35156
 sides = 12
 material = SubResource("StandardMaterial3D_j7gcg")
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="CSGCombiner3D/TreeTrunk7" unique_id=1028823616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21321869, 53.19999, -0.020744324)
+radius = 9.224121
+height = 0.89501953
+
+[node name="TreeTrunk12" type="CSGCylinder3D" parent="CSGCombiner3D/TreeTrunk7" unique_id=1915327160]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999998, -0.14642334, 49.688004, 0.17527008)
+operation = 2
+radius = 4.3867188
+height = 14.01918
+sides = 12
+material = SubResource("StandardMaterial3D_j7gcg")
+
+[node name="TreeTrunk13" type="CSGCylinder3D" parent="CSGCombiner3D/TreeTrunk7" unique_id=996680686]
+transform = Transform3D(-4.371139e-08, -0.9999999, 0, 1, -4.3711385e-08, 0, 0, 0, 0.9999998, 5.1171494, 45.42601, 0.17527008)
+operation = 2
+radius = 2.5830078
+height = 3.0023127
+sides = 12
+material = SubResource("StandardMaterial3D_j7gcg")
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=545900335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.712776, 108.378365, -84.91312)
+radius = 9.205078
+height = 0.89501953
 
 [node name="Mountain" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=413354253]
 transform = Transform3D(2.412638, 0, -1.6472723, 0, 21.468203, 0, 1.3141735, 0, 3.0241609, 1449.0775, -188.2221, -2165.4312)
@@ -540,6 +822,11 @@ height = 0.89501953
 [node name="CSGCylinder3D7" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1709290932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.38572, 41.716904, 59.22976)
 radius = 16.329102
+height = 0.89501953
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=65366249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.06125, 61.345314, -8.550152)
+radius = 9.224121
 height = 0.89501953
 
 [node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=122992959]
@@ -590,10 +877,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.916725, 0.17113936, 6.4873
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.628384, 0.17943467, 8.84345)
 
 [node name="mesh_tree_pine_03" parent="." unique_id=258871665 instance=ExtResource("14_i5apv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.792534, 0.17943466, 3.0544338)
+transform = Transform3D(15, 0, 0, 0, 10, 0, 0, 0, 15, 67.935486, 0.039870143, -10.669349)
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=2027639449]
-transform = Transform3D(-0.26705888, 0, 0.9636802, 0, 1, 0, -0.9636802, 0, -0.26705888, -2.0865974, 3.379343, -33.867767)
+transform = Transform3D(-0.26705888, 0, 0.9636802, 0, 1, 0, -0.9636802, 0, -0.26705888, -65.91049, 106.577965, -72.353165)
 
 [node name="Environment" type="Node3D" parent="." unique_id=2012382694]
 
@@ -700,7 +987,7 @@ transform = Transform3D(-0.09931979, -0.008683388, 0.99501765, 0, 0.99996203, 0.
 transform = Transform3D(1.897947, 0, 0.6307118, 0, 1, 0, -0.6307118, 0, 1.897947, 62.81823, 7.6071277, -39.73086)
 
 [node name="JumpPad2" parent="Environment" unique_id=1391086405 instance=ExtResource("17_j8xgc")]
-transform = Transform3D(4.7448673, 0, 1.5767795, 0, 1, 0, -1.5767795, 0, 4.7448673, 71.63094, 27.514603, 42.884083)
+transform = Transform3D(4.7448673, 0, 1.5767795, 0, 1, 0, -1.5767795, 0, 4.7448673, 71.63094, 27.514603, 35.035114)
 launch_speed = 20.0
 
 [node name="JumpPad3" parent="Environment" unique_id=255259360 instance=ExtResource("17_j8xgc")]
@@ -715,10 +1002,13 @@ launch_speed = 15.0
 transform = Transform3D(2.997725, 0, -0.11680913, 0, 1, 0, 0.11680913, 0, 2.997725, -56.059235, 61.918, 72.30971)
 launch_speed = 17.0
 
-[node name="JumpPad6" parent="Environment" unique_id=1300770572 instance=ExtResource("17_j8xgc")]
-transform = Transform3D(0.88234687, 0, -0.47059953, 0, 1, 0, 0.47059953, 0, 0.88234687, -58.46585, 72.38118, 73.91129)
-launch_speed = 15.0
+[node name="JumpPad6" parent="Environment" unique_id=1544544447 instance=ExtResource("17_j8xgc")]
+transform = Transform3D(2.997725, 0, -0.11680913, 0, 1, 0, 0.11680913, 0, 2.997725, -58.996994, 95.201164, -71.726776)
+launch_speed = 17.0
 
 [node name="SpeedPad" parent="Environment" unique_id=248625820 instance=ExtResource("18_ovmjf")]
-transform = Transform3D(0.638716, -0.5186659, -0.56835526, 0.10504563, 0.79052126, -0.60335875, 0.7622385, 0.3256716, 0.5594021, -55.162888, 9.3650255, -53.3802)
-boost_strength = 30.0
+transform = Transform3D(2.4958844, 0.1271523, 0.1826047, -0.0043179495, 0.96475327, -0.7075995, -0.46680632, 0.67092514, 0.9828825, -81.60229, 36.03023, 52.038498)
+boost_strength = 40.0
+
+[node name="mesh_mushroom_03_red" parent="." unique_id=1740913427 instance=ExtResource("19_mwefk")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 63.289597, 0.04504118, -37.82545)

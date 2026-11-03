@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://clqxp1726i8bq" path="res://scenes/player/player_ball_smooth.tscn" id="5_75vfm"]
 [ext_resource type="Script" uid="uid://qjf4ljdhimm8" path="res://scripts/camera/camera_rig.gd" id="5_p47bc"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ovmjf"]
+friction = 0.8
+bounce = 0.2
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_sthun"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gmlin"]
@@ -26,6 +30,7 @@ properties/4/spawn = true
 properties/4/replication_mode = 1
 
 [node name="RigidBody3D" type="RigidBody3D" unique_id=120649697]
+physics_material_override = SubResource("PhysicsMaterial_ovmjf")
 script = ExtResource("1_8afob")
 
 [node name="player_ball_smooth" parent="." unique_id=1141308037 instance=ExtResource("5_75vfm")]

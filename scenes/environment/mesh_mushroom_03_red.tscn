@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c1q8qtova877j"]
+
+[ext_resource type="PackedScene" uid="uid://c3ltcj0ilh4ae" path="res://assets/fbx/mushrooms/mesh_mushroom_03_red.fbx" id="1_dbdsh"]
+
+[node name="mesh_mushroom_03_red" unique_id=1740913427 instance=ExtResource("1_dbdsh")]

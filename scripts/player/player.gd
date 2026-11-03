@@ -1,8 +1,16 @@
 extends RigidBody3D
 
 @export var tilt_strength: float = 15.0
+
+# not going to use tilt since not tilting camera anymore, maybe can use for debuff from fairy
 @export var tilt_gravity: float = 36.0
 @export var max_tilt_degrees: float = 12.0
+
+@export var max_move_speed: float = 15.0
+@export var movement_acceleration: float = 20.0
+@export var forward_acceleration: float = 7.5
+@export var steering_acceleration: float = 7.5
+
 @onready var camera_rig: Node3D = $CameraRig
 @onready var camera: Camera3D = $CameraRig/SpringArm3D/Camera3D
 
@@ -16,7 +24,7 @@ extends RigidBody3D
 @export var target_yaw: float = 0.0
 @export var control_yaw: float = 0.0
 @export var is_walking: bool = false
-@export var jump_speed: float = 3.5
+@export var jump_speed: float = 3.5 # og was 3.5
 
 @onready var gnome_facing: Node3D = $GnomePivot/GnomeFacing
 
@@ -115,6 +123,20 @@ func _physics_process(delta: float) -> void:
 	
 	tilt_input = Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
 	
+	var camera_forward := -camera_rig.global_basis.z
+	var camera_right := camera_rig.global_basis.x
+
+	camera_forward.y = 0.0
+	camera_right.y = 0.0
+
+	camera_forward = camera_forward.normalized()
+	camera_right = camera_right.normalized()
+
+	var move_direction := (
+		camera_right * tilt_input.x
+		- camera_forward * tilt_input.y
+	)
+	
 	target_pitch = deg_to_rad(-tilt_input.y * max_tilt_degrees)
 	target_roll = deg_to_rad(tilt_input.x * max_tilt_degrees)
 	
@@ -130,17 +152,32 @@ func _physics_process(delta: float) -> void:
 	#	return
 	
 	var local_direction := Vector3(tilt_input.x, 0.0, tilt_input.y)
-	var acceleration_strength := sin(deg_to_rad(max_tilt_degrees)) * tilt_gravity
-	var local_acceleration := local_direction * acceleration_strength
+	#var acceleration_strength := sin(deg_to_rad(max_tilt_degrees)) * tilt_gravity
+	#var local_acceleration := local_direction * acceleration_strength
+	#var local_acceleration := local_direction * movement_acceleration
+	var local_acceleration := Vector3(tilt_input.x * steering_acceleration, 0.0, tilt_input.y * forward_acceleration)
+	
+	#var local_acceleration := move_direction * acceleration_strength
 	
 	#var local_acceleration = Vector3(sin(target_roll), 0.0, -sin(target_pitch)) * tilt_gravity;
 	var stage_basis := Basis(Vector3.UP, control_yaw)
+	#var stage_basis := Basis(Vector3.UP, camera_rig.global_rot)
 	var world_acceleration = stage_basis * local_acceleration
 	
 	var grounded := ground_ray.is_colliding()
 	
 	if was_grounded and not grounded:
 		takeoff_speed = Vector2(linear_velocity.x, linear_velocity.z).length()
+	
+	print("Horizontal Speed: ", horizontal_velocity.length())
+	if horizontal_velocity.length() >= max_move_speed:
+		var velocity_direction := horizontal_velocity.normalized()
+
+		# Remove acceleration that would increase speed further.
+		var forward_acceleration := world_acceleration.dot(velocity_direction)
+
+		if forward_acceleration > 0.0:
+			world_acceleration -= velocity_direction * forward_acceleration
 	
 	apply_central_force(world_acceleration * mass)
 	
