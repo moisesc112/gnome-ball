@@ -55,7 +55,7 @@ func _ready() -> void:
 func calculate_local_gnome_rotation() -> void:
 	var horizontal_velocity := Vector3(linear_velocity.x, 0.0, linear_velocity.z)
 	if horizontal_velocity.length() > 0.2:
-		target_yaw = atan2(horizontal_velocity.x, horizontal_velocity.z)
+		target_yaw = atan2(-horizontal_velocity.x, -horizontal_velocity.z)
 
 	var camera_forward := -camera_rig.global_basis.z
 	var camera_right := camera_rig.global_basis.x

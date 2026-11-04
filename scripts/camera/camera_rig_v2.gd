@@ -29,6 +29,8 @@ var time_since_mouse_input: float = 999.0
 func _ready() -> void:
 	camera_pitch = deg_to_rad(default_pitch)
 	spring_arm.rotation.x = camera_pitch
+	
+	rotation.y = player.get_node("GnomePivot/GnomeFacing").global_rotation.y
 
 	if player.is_multiplayer_authority():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
