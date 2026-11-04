@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bafdbgunof2qt"]
 
-[ext_resource type="Script" uid="uid://d405yp65uneh" path="res://scripts/player/player.gd" id="1_8afob"]
+[ext_resource type="Script" uid="uid://nu8377hkygx3" path="res://scripts/player/player_v2.gd" id="1_p47bc"]
 [ext_resource type="PackedScene" uid="uid://cobp8hwx3015x" path="res://scenes/gnome_smooth.tscn" id="4_75vfm"]
 [ext_resource type="PackedScene" uid="uid://cckyiw23hug73" path="res://scenes/camera/camera_rig.tscn" id="4_lvxji"]
 [ext_resource type="PackedScene" uid="uid://clqxp1726i8bq" path="res://scenes/player/player_ball_smooth.tscn" id="5_75vfm"]
-[ext_resource type="Script" uid="uid://qjf4ljdhimm8" path="res://scripts/camera/camera_rig.gd" id="5_p47bc"]
+[ext_resource type="Script" uid="uid://f5xjbou24cm" path="res://scripts/camera/camera_rig_v2.gd" id="5_p47bc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ovmjf"]
 friction = 0.8
@@ -31,7 +31,8 @@ properties/4/replication_mode = 1
 
 [node name="RigidBody3D" type="RigidBody3D" unique_id=120649697]
 physics_material_override = SubResource("PhysicsMaterial_ovmjf")
-script = ExtResource("1_8afob")
+continuous_cd = true
+script = ExtResource("1_p47bc")
 
 [node name="player_ball_smooth" parent="." unique_id=1141308037 instance=ExtResource("5_75vfm")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -55,3 +56,17 @@ replication_config = SubResource("SceneReplicationConfig_gmlin")
 
 [node name="CameraRig" parent="." unique_id=187381219 instance=ExtResource("4_lvxji")]
 script = ExtResource("5_p47bc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1842659380]
+
+[node name="SpeedLabel" type="Label" parent="CanvasLayer" unique_id=1231670839]
+anchors_preset = -1
+anchor_top = 0.92600006
+anchor_right = 0.059000004
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = -0.048034668
+offset_right = 0.03199768
+offset_bottom = -25.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32

@@ -105,7 +105,7 @@ size = Vector3(1.0839844, 0.7696533, 7.5842285)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge13" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1021422299]
-transform = Transform3D(-0.3156745, 0.9488676, -4.147632e-08, 4.3835006e-16, -4.371139e-08, -1, -0.9488676, -0.3156745, 1.3798571e-08, 55.760456, 2.1311984, -39.789394)
+transform = Transform3D(-0.3156745, 0.9488676, -4.147632e-08, 4.3835006e-16, -4.371139e-08, -1, -0.9488676, -0.3156745, 1.3798571e-08, 61.9443, 2.1311984, -35.571644)
 size = Vector3(1.0839844, 0.7696533, 10.278809)
 material = SubResource("StandardMaterial3D_43bxi")
 
@@ -766,6 +766,27 @@ height = 99.24921
 sides = 12
 material = SubResource("StandardMaterial3D_j7gcg")
 
+[node name="TreeTrunk10" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1151824038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.87486, 57.597427, -143.02658)
+radius = 5.0
+height = 117.61577
+sides = 12
+material = SubResource("StandardMaterial3D_j7gcg")
+
+[node name="TreeTrunk11" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1447838303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4692917, 57.597427, -177.07301)
+radius = 5.0
+height = 117.61577
+sides = 12
+material = SubResource("StandardMaterial3D_j7gcg")
+
+[node name="TreeTrunk12" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=449268211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.86533, 57.597427, -136.62927)
+radius = 5.0
+height = 117.61577
+sides = 12
+material = SubResource("StandardMaterial3D_j7gcg")
+
 [node name="TreeTrunk7" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=324456570]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.404514, 52.465324, -71.92662)
 radius = 5.0
@@ -882,7 +903,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.628384, 0.17943467, 8.8434
 transform = Transform3D(15, 0, 0, 0, 10, 0, 0, 0, 15, 67.935486, 0.039870143, -10.669349)
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=2027639449]
-transform = Transform3D(-0.26705888, 0, 0.9636802, 0, 1, 0, -0.9636802, 0, -0.26705888, -60.262917, 109.03913, -77.260124)
+transform = Transform3D(-0.26705888, 0, 0.9636802, 0, 1, 0, -0.9636802, 0, -0.26705888, -21.9628, 1.3836789, -19.127514)
 
 [node name="Environment" type="Node3D" parent="." unique_id=2012382694]
 
@@ -986,7 +1007,7 @@ transform = Transform3D(0.13052629, -0.00865188, 0.99140704, 0, 0.99996203, 0.00
 transform = Transform3D(-0.09931979, -0.008683388, 0.99501765, 0, 0.99996203, 0.008726535, -0.9950559, 0.0008667175, -0.09931597, 0.9139147, 0.08562925, -144.60011)
 
 [node name="JumpPad" parent="Environment" unique_id=1467356504 instance=ExtResource("17_j8xgc")]
-transform = Transform3D(1.897947, 0, 0.6307118, 0, 1, 0, -0.6307118, 0, 1.897947, 55.860794, 7.6071277, -39.73086)
+transform = Transform3D(1.897947, 0, 0.6307118, 0, 1, 0, -0.6307118, 0, 1.897947, 62.04464, 7.6071277, -35.51311)
 
 [node name="JumpPad2" parent="Environment" unique_id=1391086405 instance=ExtResource("17_j8xgc")]
 transform = Transform3D(4.7448673, 0, 1.5767795, 0, 1, 0, -1.5767795, 0, 4.7448673, 71.63094, 27.514603, 35.035114)
@@ -1013,7 +1034,8 @@ transform = Transform3D(2.4958844, 0.1271523, 0.1826047, -0.0043179495, 0.964753
 boost_strength = 40.0
 
 [node name="RedMushroom3" parent="." unique_id=1076455517 instance=ExtResource("19_mwefk")]
-transform = Transform3D(-19.496868, 0, -4.457814, 0, 20, 0, 4.457814, 0, -19.496868, 63.0571, 0.04504118, -36.906994)
+transform = Transform3D(-19.496868, 0, -4.457814, 0, 20, 0, 4.457814, 0, -19.496868, 69.95501, 0.04504118, -36.906994)
+visible = false
 
 [node name="RedMushroom4" parent="." unique_id=10326191 instance=ExtResource("19_mwefk")]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 3.7868648, 0.04504118, -16.789612)
