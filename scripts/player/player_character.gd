@@ -27,11 +27,21 @@ var target_roll = 0.0
 
 @export var visual_follow_speed: float = 15.0
 
+@export var tumble_speed: float = 5.0
+@export var tumble_min_ball_speed: float = 2.0
+var idle_ball_rotation: Quaternion
+var idle_offset: Vector3
+var idle_gnome_rotation: Quaternion
+var is_tumbling := false
+
+var tumble_rotation: float = 0.0
+
 var is_grounded: bool = false
 var previous_ball_position: Vector3
 var movement_input: Vector2 = Vector2.ZERO
 var is_touching_ball: bool = false
 var initial_gnome_offset: Vector3
+var idle_gnome_scale: Vector3
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -99,17 +109,54 @@ func apply_gnome_rotation(delta: float) -> void:
 	gnome_mesh.rotation.y = lerp_angle(gnome_mesh.rotation.y, target_yaw, turn_weight)
 	gnome_mesh.rotation.z = lerp_angle(gnome_mesh.rotation.z, target_roll, lean_weight)
 
+func start_tumbling(ball_visual: Node3D) -> void:
+	is_tumbling = true
+
+	idle_ball_rotation = ball_visual.global_basis.get_rotation_quaternion()
+
+	idle_offset = gnome_mesh.global_position - ball_visual.global_position
+
+	idle_gnome_rotation = gnome_mesh.global_basis.get_rotation_quaternion()
+	
+	idle_gnome_scale = gnome_mesh.global_basis.get_scale()
+
+func update_tumbling(ball_visual: Node3D) -> void:
+	var current_rotation := ball_visual.global_basis.get_rotation_quaternion()
+
+	var rotation_delta := current_rotation * idle_ball_rotation.inverse()
+
+	gnome_mesh.global_position = (
+		ball_visual.global_position
+		+ rotation_delta * idle_offset
+	)
+	
+	var new_rotation := rotation_delta * idle_gnome_rotation
+
+	gnome_mesh.global_basis = Basis(new_rotation).scaled(idle_gnome_scale)
+
 func _process(delta: float) -> void:
 	if ball == null:
 		return
 	
+	var ball_visual := ball.get_node_or_null("BallVisual") as Node3D
+	
+	if ball_visual == null:
+		return
+	
 	var visual_ball_position: Vector3 = ball.get_node("BallVisual").global_position
 	
-	gnome_mesh.global_position = (
-		visual_ball_position
-		+ relative_position
-		+ global_basis * initial_gnome_offset
-	)
+	var should_tumble := not is_walking
+	
+	if should_tumble:
+		if not is_tumbling:
+			gnome_mesh.global_position = (visual_ball_position + relative_position + global_basis * initial_gnome_offset)
+			start_tumbling(ball.get_node("BallVisual"))
+		update_tumbling(ball.get_node("BallVisual"))
+	else:
+		if is_tumbling:
+			is_tumbling = false
+			gnome_mesh.rotation = Vector3(0.0, target_yaw, 0.0)
+		gnome_mesh.global_position = (visual_ball_position + relative_position + global_basis * initial_gnome_offset)
 
 func _physics_process(delta: float) -> void:
 	if ball == null:
@@ -229,8 +276,9 @@ func _physics_process(delta: float) -> void:
 	else :
 		global_position = ball.global_position + relative_position
 	
-	calculate_local_gnome_rotation(network_direction)
-	apply_gnome_rotation(delta)
+	if not is_tumbling:
+		calculate_local_gnome_rotation(network_direction)
+		apply_gnome_rotation(delta)
 	update_animation()
 	
 	#move_and_slide()
