@@ -38,15 +38,13 @@ shape = SubResource("BoxShape3D_2mu0v")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=569670938]
 transform = Transform3D(1, 0, 0, 0, 0.7281304, 0.68543863, 0, -0.68543863, 0.7281304, 0, 0, 0)
 
-[node name="Player" parent="." unique_id=120649697 node_paths=PackedStringArray("camera_rig") instance=ExtResource("1_v45ci")]
+[node name="Player" parent="." unique_id=120649697 instance=ExtResource("1_v45ci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, -5.7226753)
 gravity_scale = 2.0
-camera_rig = NodePath("../CameraRig")
 
-[node name="CameraRig" parent="." unique_id=187381219 node_paths=PackedStringArray("player") instance=ExtResource("2_48ne7")]
+[node name="CameraRig" parent="." unique_id=187381219 instance=ExtResource("2_48ne7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, -1.7587575)
 script = ExtResource("3_6xh4u")
-player = NodePath("../Player")
 
 [node name="Node3D" parent="." unique_id=1467356504 instance=ExtResource("4_cyt5c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25763154, -0.8692138)

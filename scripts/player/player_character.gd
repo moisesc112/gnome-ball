@@ -1,0 +1,212 @@
+extends CharacterBody3D
+
+#@onready var camera_rig: Node3D = $CameraRig
+#@onready var camera: Camera3D = $CameraRig/SpringArm3D/Camera3D
+@onready var camera: Camera3D = $CameraRig/SpringArm3D/Camera3D
+@onready var camera_rig: Node3D = $CameraRig
+@onready var animation_player: AnimationPlayer = $Gnome_smooth/AnimationPlayer
+@export var camera_follow_speed: float = 8.0
+var target_yaw = 0.0
+var target_pitch = 0.0
+var target_roll = 0.0
+
+@export var gnome_turn_speed: float = 8.0
+@export var lean_speed: float = 5.0
+@export var lean_degrees: float = 10.0
+
+@onready var gnome_mesh: Node3D = $Gnome_smooth
+@export var is_walking: bool = false
+@export var ball: RigidBody3D
+@export var interior_radius: float = 1.0
+@export var push_strength: float = 20.0
+@export var character_half_height: float = 0.5
+@export var movement_acceleration: float = 25.0
+@export var ground_friction: float = 2.0
+
+var is_grounded: bool = false
+var previous_ball_position: Vector3
+var movement_input: Vector2 = Vector2.ZERO
+var is_touching_ball: bool = false
+
+const SPEED = 5.0
+const JUMP_VELOCITY = 4.5
+
+func _ready() -> void:
+	camera_rig.top_level = true
+	
+	gnome_mesh.rotation.y = PI
+	target_yaw = PI
+	
+	if is_multiplayer_authority():
+		camera.make_current()
+	else:
+		camera.set_process(false)
+	previous_ball_position = ball.global_position
+
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
+
+func setup(shared_ball: RigidBody3D) -> void:
+	ball = shared_ball
+
+func update_animation() -> void:
+	if is_multiplayer_authority():
+		#var speed := Vector2(velocity.x, velocity.z).length()
+		is_walking = movement_input.length_squared() > 0.01
+	if is_walking:
+		if animation_player.current_animation != "WalkAction":
+			animation_player.play("WalkAction", 0.2)
+	else:
+		if animation_player.current_animation != "IdleAction":
+			animation_player.play("IdleAction", 0.2)
+
+func is_ball_grounded() -> bool:
+	var ground_ray := ball.get_node("RayCast3D") as RayCast3D
+	return ground_ray.is_colliding()
+
+func calculate_local_gnome_rotation(direction: Vector3) -> void:
+	# Face the direction the player wants to move.
+	if direction.length_squared() > 0.01:
+		target_yaw = atan2(direction.x, direction.z)
+
+	# Convert movement direction into gnome-local space.
+	var yaw_basis := Basis(Vector3.UP, gnome_mesh.rotation.y)
+	var local_direction := yaw_basis.inverse() * direction
+
+	# Lean relative to the gnome's facing direction.
+	target_pitch = deg_to_rad(local_direction.z * lean_degrees)
+	target_roll = deg_to_rad(-local_direction.x * lean_degrees)
+
+func apply_gnome_rotation(delta: float) -> void:
+	var lean_weight := 1.0 - exp(-lean_speed * delta)
+	var turn_weight := 1.0 - exp(-gnome_turn_speed * delta)
+	gnome_mesh.rotation.x = lerp_angle(gnome_mesh.rotation.x, target_pitch, lean_weight)
+	gnome_mesh.rotation.y = lerp_angle(gnome_mesh.rotation.y, target_yaw, turn_weight)
+	gnome_mesh.rotation.z = lerp_angle(gnome_mesh.rotation.z, target_roll, lean_weight)
+
+func _process(delta: float) -> void:
+	#if not is_multiplayer_authority() or ball == null:
+		#return
+	
+	camera_rig.global_position = ball.global_position
+	#camera_rig.global_position = camera_rig.global_position.lerp(
+	#	ball.global_position,
+	#	1.0 - exp(-camera_follow_speed * delta)
+	#)
+
+func _physics_process(delta: float) -> void:
+	#update_animation()
+		
+	if ball == null:
+		return
+
+	# Calculate position relative to the ball
+	var offset := global_position - ball.global_position
+	var distance := offset.length()
+
+	# Detect contact with the interior surface
+	is_grounded = distance >= interior_radius - 0.05 and offset.y < 0.0
+	
+	# Apply gravity
+	#if not is_grounded:
+	velocity += get_gravity() * delta
+
+	# Jump
+	if Input.is_action_just_pressed("Jump") and is_grounded:
+		velocity.y = JUMP_VELOCITY
+		is_grounded = false
+		
+	if Input.is_action_just_pressed("Jump") and is_ball_grounded():
+		var jump_impulse := Vector3.UP * 5.0
+		ball.apply_central_impulse(jump_impulse)
+	
+	# Add the gravity.
+	#if not is_on_floor():
+		#velocity += get_gravity() * delta
+
+	# Handle jump.
+	#if Input.is_action_just_pressed("Jump") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	#var input_dir := Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
+	movement_input = Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
+	
+	var camera_forward := -camera.global_basis.z
+	var camera_right := camera.global_basis.x
+
+	camera_forward.y = 0.0
+	camera_right.y = 0.0
+
+	camera_forward = camera_forward.normalized()
+	camera_right = camera_right.normalized()
+	
+	var direction := (camera_right * movement_input.x - camera_forward * movement_input.y).normalized()
+	
+	calculate_local_gnome_rotation(direction)
+	apply_gnome_rotation(delta)
+	
+	#if direction:
+		#velocity.x = direction.x * SPEED
+		#velocity.z = direction.z * SPEED
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, SPEED)
+		#velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	if direction.length_squared() > 0.01:
+		velocity.x = move_toward(
+			velocity.x,
+			direction.x * SPEED,
+			movement_acceleration * delta
+		)
+		velocity.z = move_toward(
+			velocity.z,
+			direction.z * SPEED,
+			movement_acceleration * delta
+		)
+	else:
+		# Gentle damping rather than instantly stopping
+		velocity.x = move_toward(
+			velocity.x,
+			0.0,
+			ground_friction * delta
+		)
+		velocity.z = move_toward(
+			velocity.z,
+			0.0,
+			ground_friction * delta
+		)
+
+	var ball_displacement := ball.global_position - previous_ball_position
+	global_position += ball_displacement
+	previous_ball_position = ball.global_position
+
+	# Move the gnome
+	global_position += velocity * delta
+
+	# Keep the gnome inside the sphere
+	offset = global_position - ball.global_position
+	distance = offset.length()
+	var max_distance := interior_radius #- character_half_height
+	is_touching_ball = distance >= max_distance - 0.05
+
+	if distance > max_distance:
+		var normal := offset.normalized()
+
+		global_position = ball.global_position + normal * interior_radius
+
+		# Remove velocity pointing through the sphere
+		var outward_speed := velocity.dot(normal)
+
+		if outward_speed > 0.0:
+			velocity -= normal * outward_speed
+			
+	if is_touching_ball and direction.length_squared() > 0.01:
+		var push_force := direction * push_strength
+		var contact_offset := global_position - ball.global_position
+
+		ball.apply_force(push_force, contact_offset)		
+			
+	update_animation()
+	#move_and_slide()

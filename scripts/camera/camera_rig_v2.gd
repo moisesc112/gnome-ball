@@ -35,7 +35,6 @@ func _ready() -> void:
 	if player.is_multiplayer_authority():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-
 func _unhandled_input(event: InputEvent) -> void:
 	if not player.is_multiplayer_authority():
 		return

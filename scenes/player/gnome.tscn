@@ -4,7 +4,7 @@
 
 [node name="Gnome" unique_id=1772017909 instance=ExtResource("1_1kotq")]
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(341595541) index="0" unique_id=1751276421]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(110555104) index="0" unique_id=2041691364]
 bones/0/position = Vector3(0.25096732, 0.94337595, 0.006753693)
 bones/0/rotation = Quaternion(0.19319397, -0.0028070787, 0.98042357, 0.0379209)
 bones/2/rotation = Quaternion(0.3372318, 0.16020013, 0.09764391, 0.92253804)

@@ -2,6 +2,7 @@ extends MultiplayerSpawner
 
 @export var network_player: PackedScene
 @export var spawn_point: Marker3D
+@export var ball: RigidBody3D
 
 func _ready() -> void:
 	if multiplayer.is_server():
@@ -14,5 +15,7 @@ func spawn_player(id: int) -> void:
 	var player: Node = network_player.instantiate()
 	player.name = str(id)
 	player.position = spawn_point.global_position
+	player.ball = ball
+	player.position = ball.position + Vector3.DOWN * 2.0
 	
 	get_node(spawn_path).call_deferred("add_child", player)

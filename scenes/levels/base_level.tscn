@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://dmlbcfprniqbj"]
 
-[ext_resource type="PackedScene" uid="uid://bafdbgunof2qt" path="res://scenes/player/player.tscn" id="1_md458"]
 [ext_resource type="PackedScene" uid="uid://cckyiw23hug73" path="res://scenes/camera/camera_rig.tscn" id="2_uk53i"]
 [ext_resource type="Texture2D" uid="uid://bpu2b1dplie13" path="res://assets/grid_material/Green/texture_01.png" id="3_53c65"]
 [ext_resource type="Texture2D" uid="uid://3mjf022drtf1" path="res://assets/grid_material/Orange/texture_01.png" id="3_h4ce7"]
@@ -10,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://ct6oqeyhh20tr" path="res://assets/grid_material/Purple/texture_01.png" id="5_43bxi"]
 [ext_resource type="Texture2D" uid="uid://c05m1028f28vi" path="res://assets/characters/PNG/Red/texture_01.png" id="6_qhwlw"]
 [ext_resource type="Script" uid="uid://bt3cgoef0ldx" path="res://scripts/high_level_multiplayer_spawner.gd" id="7_53c65"]
+[ext_resource type="PackedScene" uid="uid://dg7mpbxjsltc6" path="res://scenes/player/player_character.tscn" id="8_vtnee"]
 [ext_resource type="PackedScene" uid="uid://yeak0bgrh556" path="res://scenes/fairy_king_smooth.tscn" id="11_qhwlw"]
+[ext_resource type="PackedScene" uid="uid://var5yuo4o3jc" path="res://scenes/ramp_1.tscn" id="11_vtnee"]
 [ext_resource type="PackedScene" uid="uid://dj6xy5q6v4u6v" path="res://scenes/environment/trees/mesh_tree_pine_01.tscn" id="12_1vfnp"]
 [ext_resource type="PackedScene" uid="uid://dmylcs1ufpgg7" path="res://scenes/environment/trees/mesh_tree_pine_02.tscn" id="13_575cj"]
 [ext_resource type="PackedScene" uid="uid://c48d5ohxu4r03" path="res://scenes/environment/trees/mesh_tree_pine_03.tscn" id="14_i5apv"]
@@ -20,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b25g2igm28pmc" path="res://scenes/speed_boost.tscn" id="18_ovmjf"]
 [ext_resource type="PackedScene" uid="uid://yo4bfc6jdqu1" path="res://scenes/environment/red_mushroom_3.tscn" id="19_mwefk"]
 [ext_resource type="PackedScene" uid="uid://synsej8m6drd" path="res://scenes/safety_net.tscn" id="20_jua6e"]
+[ext_resource type="PackedScene" uid="uid://cu4015ff0jps4" path="res://scenes/player/player_large_ball.tscn" id="22_w4ycj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_53c65")
@@ -74,6 +76,7 @@ shadow_enabled = true
 
 [node name="CameraRig" parent="." unique_id=187381219 instance=ExtResource("2_uk53i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, -1.7587575)
+visible = false
 script = ExtResource("3_ukglk")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1407968290]
@@ -106,6 +109,11 @@ material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge13" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1021422299]
 transform = Transform3D(-0.3156745, 0.9488676, -4.147632e-08, 4.3835006e-16, -4.371139e-08, -1, -0.9488676, -0.3156745, 1.3798571e-08, 61.9443, 2.1311984, -35.571644)
+size = Vector3(1.0839844, 0.7696533, 10.278809)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge44" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1756725]
+transform = Transform3D(-0.3156745, 0.9488676, -4.147632e-08, 4.3835006e-16, -4.371139e-08, -1, -0.9488676, -0.3156745, 1.3798571e-08, -41.187843, 2.1311984, -53.71032)
 size = Vector3(1.0839844, 0.7696533, 10.278809)
 material = SubResource("StandardMaterial3D_43bxi")
 
@@ -259,11 +267,6 @@ transform = Transform3D(0.8864661, 0.0009485245, 0.46279323, 0.006112203, 0.9998
 size = Vector3(3.8166504, 0.7696533, 4.175171)
 material = SubResource("StandardMaterial3D_43bxi")
 
-[node name="NarrowBridge6" type="CSGBox3D" parent="CSGCombiner3D" unique_id=993924086]
-transform = Transform3D(-0.9872077, 0.121199176, -0.103592575, 0.04941506, 0.85032415, 0.5239344, 0.15158762, 0.51211315, -0.84543574, -65.31622, 3.1396575, 24.933392)
-size = Vector3(1.0839844, 0.7696533, 14.52478)
-material = SubResource("StandardMaterial3D_43bxi")
-
 [node name="NarrowBridge3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1589439204]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.106356, 1.4512253, -1.7740765)
 size = Vector3(1.0839844, 0.7696533, 1.1878052)
@@ -272,26 +275,6 @@ material = SubResource("StandardMaterial3D_43bxi")
 [node name="NarrowBridge4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1298307671]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.106356, 1.5414705, -12.874093)
 size = Vector3(1.0839844, 0.7696533, 1.1878052)
-material = SubResource("StandardMaterial3D_43bxi")
-
-[node name="NarrowBridge7" type="CSGBox3D" parent="CSGCombiner3D" unique_id=211512146]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.329994, 7.59204, -9.590807)
-size = Vector3(2.5151367, 0.7696533, 7.7501526)
-material = SubResource("StandardMaterial3D_43bxi")
-
-[node name="NarrowBridge9" type="CSGBox3D" parent="CSGCombiner3D" unique_id=756947886]
-transform = Transform3D(1, 0, 0, 0, 0.97402066, -0.22645915, 0, 0.22645915, 0.97402066, -65.329994, 7.59204, 8.266928)
-size = Vector3(2.5151367, 0.7696533, 7.7501526)
-material = SubResource("StandardMaterial3D_43bxi")
-
-[node name="NarrowBridge10" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1233279530]
-transform = Transform3D(0.740021, -0.15231277, -0.6551107, -1.8502968e-09, 0.9740206, -0.2264591, 0.6725839, 0.16758451, 0.7207957, -57.932755, 7.59204, -50.42854)
-size = Vector3(2.5151367, 0.7696533, 7.7501526)
-material = SubResource("StandardMaterial3D_43bxi")
-
-[node name="NarrowBridge8" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1161372444]
-transform = Transform3D(0.9624967, 0, -0.2712935, 0, 1, 0, 0.2712935, 0, 0.9624967, -65.329994, 7.59204, -23.373426)
-size = Vector3(2.5151367, 0.7696533, 7.7501526)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="Ramp" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=423698541]
@@ -867,12 +850,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.684227, 13.890664, -72.07
 radius = 10.0
 height = 1.0
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1011803724 node_paths=PackedStringArray("spawn_point")]
-_spawnable_scenes = PackedStringArray("uid://bafdbgunof2qt")
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1011803724 node_paths=PackedStringArray("spawn_point", "ball")]
+_spawnable_scenes = PackedStringArray("uid://dg7mpbxjsltc6")
 spawn_path = NodePath("..")
 script = ExtResource("7_53c65")
-network_player = ExtResource("1_md458")
+network_player = ExtResource("8_vtnee")
 spawn_point = NodePath("../SpawnPoint")
+ball = NodePath("../PlayerLargeBall")
 
 [node name="LoseZone" parent="." unique_id=1377013288 instance=ExtResource("4_wwrw0")]
 transform = Transform3D(500, 0, 0, 0, 100, 0, 0, 0, 500, 0, -100, 0)
@@ -884,7 +868,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_sthun")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1096400920]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015974045, 0.01409483, 0.014823914)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8013582, 0.01409483, 6.8365555)
 mesh = SubResource("BoxMesh_sthun")
 
 [node name="fairy_king_smooth" parent="." unique_id=1816964908 instance=ExtResource("11_qhwlw")]
@@ -903,15 +887,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.628384, 0.17943467, 8.8434
 transform = Transform3D(15, 0, 0, 0, 10, 0, 0, 0, 15, 67.935486, 0.039870143, -10.669349)
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=2027639449]
-transform = Transform3D(-0.26705888, 0, 0.9636802, 0, 1, 0, -0.9636802, 0, -0.26705888, -21.9628, 1.3836789, -19.127514)
+transform = Transform3D(-0.26705888, 0, 0.9636802, 0, 1, 0, -0.9636802, 0, -0.26705888, -8.524653, 2.6532679, 87.70259)
 
 [node name="Environment" type="Node3D" parent="." unique_id=2012382694]
 
-[node name="GnomeHouse" parent="Environment" unique_id=1778555671 instance=ExtResource("15_575cj")]
-transform = Transform3D(4.744452, 0, -1.5780293, 0, 5, 0, 1.5780293, 0, 4.744452, -61.513733, 1.7759042, -44.89637)
+[node name="GnomeHouse14" parent="Environment" unique_id=1850244539 instance=ExtResource("15_575cj")]
+transform = Transform3D(4.822631, 0, 1.3199354, 0, 5.0000005, 0, -1.3199354, 0, 4.822631, -64.827675, 1.7759061, 44.071312)
 
-[node name="GnomeHouse7" parent="Environment" unique_id=1946387068 instance=ExtResource("15_575cj")]
-transform = Transform3D(4.9866977, 0, 0.36448932, 0, 5.000001, 0, -0.36448932, 0, 4.9866977, -66.745384, 1.7759042, 12.021074)
+[node name="GnomeHouse15" parent="Environment" unique_id=1778555671 instance=ExtResource("15_575cj")]
+transform = Transform3D(4.9646115, 0, -0.5938257, 0, 5, 0, 0.5938257, 0, 4.9646115, -68.278, 1.7759061, 9.460717)
+
+[node name="GnomeHouse16" parent="Environment" unique_id=252667494 instance=ExtResource("15_575cj")]
+transform = Transform3D(3.9979768, 0, -3.002695, 0, 5, 0, 3.002695, 0, 3.9979768, -57.848713, 1.7450414, -21.543652)
 
 [node name="GnomeHouse8" parent="Environment" unique_id=523921531 instance=ExtResource("15_575cj")]
 transform = Transform3D(2.9753032, 0, 4.0184045, 0, 5.000001, 0, -4.0184045, 0, 2.9753032, -40.304245, 4.5043435, 63.627266)
@@ -1009,6 +996,10 @@ transform = Transform3D(-0.09931979, -0.008683388, 0.99501765, 0, 0.99996203, 0.
 [node name="JumpPad" parent="Environment" unique_id=1467356504 instance=ExtResource("17_j8xgc")]
 transform = Transform3D(1.897947, 0, 0.6307118, 0, 1, 0, -0.6307118, 0, 1.897947, 62.04464, 7.6071277, -35.51311)
 
+[node name="JumpPad7" parent="Environment" unique_id=489908567 instance=ExtResource("17_j8xgc")]
+transform = Transform3D(1.897947, 0, 0.6307118, 0, 1, 0, -0.6307118, 0, 1.897947, -41.08751, 7.6071277, -53.651787)
+launch_speed = 20.0
+
 [node name="JumpPad2" parent="Environment" unique_id=1391086405 instance=ExtResource("17_j8xgc")]
 transform = Transform3D(4.7448673, 0, 1.5767795, 0, 1, 0, -1.5767795, 0, 4.7448673, 71.63094, 27.514603, 35.035114)
 launch_speed = 20.0
@@ -1033,6 +1024,35 @@ launch_speed = 17.0
 transform = Transform3D(2.4958844, 0.1271523, 0.1826047, -0.0043179495, 0.96475327, -0.7075995, -0.46680632, 0.67092514, 0.9828825, -81.60229, 36.03023, 52.038498)
 boost_strength = 40.0
 
+[node name="ramps" type="Node3D" parent="." unique_id=1653011744]
+
+[node name="ramp_1" parent="ramps" unique_id=1836009263 instance=ExtResource("11_vtnee")]
+transform = Transform3D(1.212141, 0, 3.9770546, 0, 4.678538, 0, -1.5908219, 0, 3.0303526, -30.931145, 0.0076653957, 72.47569)
+
+[node name="ramp_2" parent="ramps" unique_id=1391925607 instance=ExtResource("11_vtnee")]
+transform = Transform3D(1.6221837, -0.8691586, 3.625224, -0.008262232, 1.5469481, 3.161144, -2.1884255, -0.6501098, 2.6752856, -44.631393, 10.339595, 63.244728)
+
+[node name="ramp_3" parent="ramps" unique_id=635135074 instance=ExtResource("11_vtnee")]
+transform = Transform3D(2.65697, -0.3300492, 0.59464055, 0.046065032, 1.1985028, 2.4829688, -0.7077343, -1.1610594, 2.3940063, -67.90001, 10.233852, 39.411907)
+
+[node name="ramp_5" parent="ramps" unique_id=2020485877 instance=ExtResource("11_vtnee")]
+transform = Transform3D(2.734413, 0.1067636, -0.3003562, 0.046065036, 1.1985028, 2.4829688, 0.2887274, -1.2023282, 2.4483976, -70.175415, 12.020615, 4.1554017)
+
+[node name="ramp_9" parent="ramps" unique_id=1427878810 instance=ExtResource("11_vtnee")]
+transform = Transform3D(2.1983967, 0.7088389, -1.5146472, 0.04606491, 1.1985028, 2.4829688, 1.6514938, -0.97700506, 1.9469743, -55.711395, 14.028599, -28.463322)
+
+[node name="ramp_4" parent="ramps" unique_id=1770768886 instance=ExtResource("11_vtnee")]
+transform = Transform3D(-2.6582856, 0.19573706, -1.143974, 3.355754e-07, 1.5196245, 2.2465944, 0.7042825, 0.73880184, -4.317885, -61.494728, 7.5667067, 47.495842)
+
+[node name="ramp_6" parent="ramps" unique_id=1876032756 instance=ExtResource("11_vtnee")]
+transform = Transform3D(-2.727778, -0.09696454, 0.5667039, 3.355754e-07, 1.5196245, 2.2465944, -0.34888828, 0.75811553, -4.430762, -66.48045, 7.5667067, 13.888445)
+
+[node name="ramp_7" parent="ramps" unique_id=784493699 instance=ExtResource("11_vtnee")]
+transform = Transform3D(2.1806254, 0.9528203, -4.153528, 3.462018e-07, 3.109359, 3.4286447, 1.6755219, -1.2400581, 5.4056516, -56.34928, 7.535842, -27.32145)
+
+[node name="ramp_8" parent="ramps" unique_id=1994183117 instance=ExtResource("11_vtnee")]
+transform = Transform3D(-2.185329, -0.46396145, 2.7115955, 3.4597306e-07, 1.5196242, 2.2465944, -1.669381, 0.60735583, -3.5496552, -58.513096, 7.535842, -16.811365)
+
 [node name="RedMushroom3" parent="." unique_id=1076455517 instance=ExtResource("19_mwefk")]
 transform = Transform3D(-19.496868, 0, -4.457814, 0, 20, 0, 4.457814, 0, -19.496868, 69.95501, 0.04504118, -36.906994)
 visible = false
@@ -1049,3 +1069,7 @@ outer_radius = 40.0
 radial_segments = 64
 ring_segments = 32
 impact_transfer = 3.0
+
+[node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("22_w4ycj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.505522, 1.6467133, 75.44769)
+collision_layer = 4

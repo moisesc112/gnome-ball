@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dj6xy5q6v4u6v" path="res://scenes/environment/trees/mesh_tree_pine_01.tscn" id="12_0qbcn"]
 [ext_resource type="PackedScene" uid="uid://dmylcs1ufpgg7" path="res://scenes/environment/trees/mesh_tree_pine_02.tscn" id="13_4171j"]
 [ext_resource type="PackedScene" uid="uid://c48d5ohxu4r03" path="res://scenes/environment/trees/mesh_tree_pine_03.tscn" id="14_rg0q5"]
+[ext_resource type="PackedScene" uid="uid://var5yuo4o3jc" path="res://scenes/ramp_1.tscn" id="15_wpby6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_eo7uf")
@@ -168,3 +169,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.628384, 0.17943467, 8.8434
 
 [node name="mesh_tree_pine_03" parent="." unique_id=258871665 instance=ExtResource("14_rg0q5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.792534, 0.17943466, 3.0544338)
+
+[node name="ramp_1" parent="." unique_id=1836009263 instance=ExtResource("15_wpby6")]
+transform = Transform3D(0.511072, 0, 0.8595379, 0, 1, 0, -0.8595379, 0, 0.511072, 14.913351, -1.1920929e-07, 66.01151)
