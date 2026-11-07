@@ -75,7 +75,7 @@ light_color = Color(1, 0.94509804, 0.8392157, 1)
 shadow_enabled = true
 
 [node name="CameraRig" parent="." unique_id=187381219 instance=ExtResource("2_uk53i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68364704, -1.7587575)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.991803, 11.886198, 61.033264)
 visible = false
 script = ExtResource("3_ukglk")
 

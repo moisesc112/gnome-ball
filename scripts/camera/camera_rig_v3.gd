@@ -11,6 +11,7 @@ extends Node3D
 @export var max_pitch: float = 30.0
 
 @export_group("Auto Rotation")
+@export var camera_follow_speed: float = 5.0
 @export var horizontal_auto_rotate: bool = true
 @export var vertical_auto_rotate: bool = false
 @export var auto_rotate_delay: float = 2.0
@@ -28,6 +29,7 @@ var time_since_mouse_input: float = 999.0
 
 
 func _ready() -> void:
+	process_priority = 10
 	top_level = true
 
 	if not player.is_multiplayer_authority():
@@ -42,7 +44,7 @@ func _ready() -> void:
 	camera_pitch = deg_to_rad(default_pitch)
 	spring_arm.rotation.x = camera_pitch
 
-	ball = player.ball
+	ball = player.get_node_or_null("../PlayerLargeBall") as RigidBody3D
 
 	if ball != null:
 		global_position = ball.global_position
@@ -78,73 +80,63 @@ func _unhandled_input(event: InputEvent) -> void:
 		spring_arm.rotation.x = camera_pitch
 		time_since_mouse_input = 0.0
 
+func _process(delta: float) -> void:
+	if not player.is_multiplayer_authority():
+		return
 
-func _physics_process(delta: float) -> void:
 	if ball == null:
 		ball = player.ball
-		if ball == null:
-			return
 
-	# Follow the shared ball, not the individual gnome.
-	global_position = ball.global_position
+	if ball == null:
+		return
 
+	var ball_visual := ball.get_node_or_null("BallVisual") as Node3D
+	if ball_visual == null:
+		return
+
+	# Camera position: follow the visual ball.
+	global_position = ball_visual.global_position
+
+	# Camera rotation.
 	time_since_mouse_input += delta
 
 	if time_since_mouse_input < auto_rotate_delay:
 		return
 
 	var velocity := ball.linear_velocity
-
-	var horizontal_velocity := Vector3(
-		velocity.x,
-		0.0,
-		velocity.z
-	)
-
+	var horizontal_velocity := Vector3(velocity.x, 0.0, velocity.z)
 	var horizontal_speed := horizontal_velocity.length()
 
 	var grounded = player.is_ball_grounded()
-
 	var has_movement_input = player.movement_input.length() > 0.1
 
-	# Horizontal auto rotation
-	if horizontal_auto_rotate:
-		if horizontal_speed > minimum_follow_speed:
+	if horizontal_auto_rotate and horizontal_speed > minimum_follow_speed:
+		var should_follow := false
+		var follow_speed_value := horizontal_follow_speed
 
-			var should_follow := false
-			var follow_speed_value := horizontal_follow_speed
+		if has_movement_input and active_steering_follow:
+			should_follow = true
+			follow_speed_value = steering_follow_speed
+		elif grounded and not has_movement_input:
+			should_follow = true
 
-			if has_movement_input and active_steering_follow:
-				should_follow = true
-				follow_speed_value = steering_follow_speed
+		if should_follow:
+			var desired_yaw := atan2(
+				-horizontal_velocity.x,
+				-horizontal_velocity.z
+			)
 
-			elif grounded and not has_movement_input:
-				should_follow = true
-				follow_speed_value = horizontal_follow_speed
+			var weight := 1.0 - exp(-follow_speed_value * delta)
 
-			if should_follow:
-				var desired_yaw := atan2(
-					-horizontal_velocity.x,
-					-horizontal_velocity.z
-				)
+			rotation.y = lerp_angle(
+				rotation.y,
+				desired_yaw,
+				weight
+			)
 
-				var weight := 1.0 - exp(
-					-follow_speed_value * delta
-				)
-
-				rotation.y = lerp_angle(
-					rotation.y,
-					desired_yaw,
-					weight
-				)
-
-	# Vertical auto rotation
 	if vertical_auto_rotate and grounded:
 		var target_pitch := deg_to_rad(default_pitch)
-
-		var weight := 1.0 - exp(
-			-vertical_follow_speed * delta
-		)
+		var weight := 1.0 - exp(-vertical_follow_speed * delta)
 
 		camera_pitch = lerp_angle(
 			camera_pitch,
