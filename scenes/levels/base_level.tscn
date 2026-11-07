@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dmlbcfprniqbj"]
 
+[ext_resource type="Script" uid="uid://cjbqf8tcyp1dd" path="res://scripts/base_level.gd" id="1_8ohfs"]
 [ext_resource type="PackedScene" uid="uid://cckyiw23hug73" path="res://scenes/camera/camera_rig.tscn" id="2_uk53i"]
 [ext_resource type="Texture2D" uid="uid://bpu2b1dplie13" path="res://assets/grid_material/Green/texture_01.png" id="3_53c65"]
 [ext_resource type="Texture2D" uid="uid://3mjf022drtf1" path="res://assets/grid_material/Orange/texture_01.png" id="3_h4ce7"]
@@ -68,6 +69,7 @@ reflected_light_source = 2
 tonemap_mode = 2
 
 [node name="BaseLevel" type="Node3D" unique_id=302026370]
+script = ExtResource("1_8ohfs")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1920299976]
 transform = Transform3D(0.9539651, -0.12362555, 0.27325332, -0.010633663, 0.8965796, 0.44275516, -0.29972914, -0.42527863, 0.85399103, 0, 0, 0)

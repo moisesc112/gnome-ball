@@ -38,8 +38,12 @@ func _ready() -> void:
 		set_process_unhandled_input(false)
 		return
 
-	camera.make_current()
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	update_camera()
+	
+	if player.is_multiplayer_authority() and GameManager.game_state == GameManager.GameState.PLAYING:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	camera_pitch = deg_to_rad(default_pitch)
 	spring_arm.rotation.x = camera_pitch
@@ -52,6 +56,12 @@ func _ready() -> void:
 	# Start facing the same direction as the gnome.
 	global_rotation.y = player.global_rotation.y
 
+
+func update_camera() -> void:
+	if player.is_multiplayer_authority() and GameManager.game_state == GameManager.GameState.PLAYING:
+		camera.make_current()
+	else:
+		camera.current = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

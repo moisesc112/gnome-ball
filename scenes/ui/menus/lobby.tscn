@@ -1,7 +1,82 @@
 [gd_scene format=3 uid="uid://ba5g4je8qiy4s"]
 
 [ext_resource type="PackedScene" uid="uid://dghoqycw0qqka" path="res://scenes/high_level_ui.tscn" id="1_a1g6y"]
+[ext_resource type="Script" uid="uid://duk23tg7y1ejn" path="res://scripts/lobby.gd" id="1_t7lud"]
+[ext_resource type="PackedScene" uid="uid://cu4015ff0jps4" path="res://scenes/player/player_large_ball.tscn" id="2_cstg3"]
+[ext_resource type="Script" uid="uid://bt3cgoef0ldx" path="res://scripts/high_level_multiplayer_spawner.gd" id="3_y584s"]
+[ext_resource type="PackedScene" uid="uid://dg7mpbxjsltc6" path="res://scenes/player/player_character.tscn" id="4_y584s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4bcl2"]
+size = Vector3(3, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4bcl2"]
+size = Vector3(3, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cstg3"]
+height = 2.6
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y584s"]
+height = 2.63
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_y584s"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Lobby" type="Node3D" unique_id=1352970754]
+script = ExtResource("1_t7lud")
 
 [node name="LobbyUI" parent="." unique_id=354274264 instance=ExtResource("1_a1g6y")]
+
+[node name="SuspensionAnchor" type="StaticBody3D" parent="." unique_id=1475856857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SuspensionAnchor" unique_id=516194619]
+mesh = SubResource("BoxMesh_4bcl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SuspensionAnchor" unique_id=689438445]
+shape = SubResource("BoxShape3D_4bcl2")
+
+[node name="SuspensionRod" type="RigidBody3D" parent="." unique_id=277952731]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2003722, 0)
+linear_damp = 2.0
+angular_damp = 4.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SuspensionRod" unique_id=1272148420]
+mesh = SubResource("CapsuleMesh_cstg3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SuspensionRod" unique_id=1133893006]
+shape = SubResource("CapsuleShape3D_y584s")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="SuspensionRod" unique_id=1289293324]
+replication_config = SubResource("SceneReplicationConfig_y584s")
+
+[node name="CeilingJoint" type="PinJoint3D" parent="." unique_id=1941011227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5280933, 0)
+node_a = NodePath("../SuspensionAnchor")
+node_b = NodePath("../SuspensionRod")
+
+[node name="BallJoint" type="PinJoint3D" parent="." unique_id=1286729141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3815413, 0)
+node_a = NodePath("../SuspensionRod")
+node_b = NodePath("../PlayerLargeBall")
+
+[node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("2_cstg3")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1147723763 node_paths=PackedStringArray("spawn_point", "ball")]
+_spawnable_scenes = PackedStringArray("uid://dg7mpbxjsltc6")
+spawn_path = NodePath("..")
+script = ExtResource("3_y584s")
+network_player = ExtResource("4_y584s")
+spawn_point = NodePath("../SpawnPoint")
+ball = NodePath("../PlayerLargeBall")
+
+[node name="LobbyCamera" type="Camera3D" parent="." unique_id=1503390896]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6893437, 6.1534276)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="LobbyCamera" unique_id=727958002]
+
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=695713757]

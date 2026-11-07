@@ -6,7 +6,7 @@ extends CharacterBody3D
 @onready var camera_rig: Node3D = $CameraRig
 @onready var animation_player: AnimationPlayer = $Gnome_smooth/AnimationPlayer
 @export var camera_follow_speed: float = 3.0
-var target_yaw = 0.0
+@export var target_yaw: float = PI
 var target_pitch = 0.0
 var target_roll = 0.0
 
@@ -58,14 +58,8 @@ func _ready() -> void:
 	initial_gnome_offset = gnome_mesh.position
 	
 	gnome_mesh.position = Vector3.ZERO
-	gnome_mesh.rotation.y = PI
-	target_yaw = PI
-	
-	if is_multiplayer_authority():
-		camera.make_current()
-	else:
-		camera.set_process(false)
-	
+	gnome_mesh.rotation.y = target_yaw
+
 	previous_ball_position = ball.global_position
 
 func _enter_tree() -> void:
@@ -91,11 +85,11 @@ func is_ball_grounded() -> bool:
 
 func calculate_local_gnome_rotation(direction: Vector3) -> void:
 	# Face the direction the player wants to move.
-	if direction.length_squared() > 0.01:
+	if is_multiplayer_authority() and direction.length_squared() > 0.01:
 		target_yaw = atan2(direction.x, direction.z)
 
 	# Convert movement direction into gnome-local space.
-	var yaw_basis := Basis(Vector3.UP, gnome_mesh.rotation.y)
+	var yaw_basis := Basis(Vector3.UP, target_yaw)
 	var local_direction := yaw_basis.inverse() * direction
 
 	# Lean relative to the gnome's facing direction.
@@ -145,7 +139,7 @@ func _process(delta: float) -> void:
 	
 	var visual_ball_position: Vector3 = ball.get_node("BallVisual").global_position
 	
-	var should_tumble := not is_walking
+	var should_tumble := not is_walking and GameManager.game_state == GameManager.GameState.PLAYING
 	
 	if should_tumble:
 		if not is_tumbling:

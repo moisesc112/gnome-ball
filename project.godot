@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 HighLevelNetworkHandler="*uid://bt3ptadvhjh11"
+GameManager="*uid://ctmmmlms8fqmd"
 
 [display]
 

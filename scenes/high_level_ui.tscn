@@ -26,13 +26,8 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Server" type="Button" parent="VBoxContainer" unique_id=476767187]
+[node name="StartGameButton" type="Button" parent="VBoxContainer" unique_id=476767187]
 layout_mode = 2
-text = "SERVER"
+text = "Start Game"
 
-[node name="Client" type="Button" parent="VBoxContainer" unique_id=1296923789]
-layout_mode = 2
-text = "CLIENT"
-
-[connection signal="pressed" from="VBoxContainer/Server" to="." method="_on_server_pressed"]
-[connection signal="pressed" from="VBoxContainer/Client" to="." method="_on_client_pressed"]
+[connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]

@@ -40,24 +40,36 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1225572098]
 layout_mode = 2
 
-[node name="PlaySoloButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1973979544]
+[node name="HostGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=818428285]
+layout_mode = 2
+text = "Host Game
+"
+
+[node name="JoinGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1102529855]
+layout_mode = 2
+text = "Join Game
+"
+
+[node name="PlayOfflineButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1973979544]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-text = "Play Solo"
-
-[node name="MultiplayerButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=818428285]
-layout_mode = 2
-text = "Multiplayer"
+text = "Play Offline
+"
 
 [node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1054024535]
 layout_mode = 2
 text = "Settings"
 
+[node name="CreditsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=96740393]
+layout_mode = 2
+text = "Credits"
+
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1441857245]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/PlaySoloButton" to="." method="_on_play_solo_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HostGameButton" to="." method="_on_host_game_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/JoinGameButton" to="." method="_on_join_game_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayOfflineButton" to="." method="_on_play_offline_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

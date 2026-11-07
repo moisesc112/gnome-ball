@@ -62,15 +62,19 @@ func request_push(
 ) -> void:
 	if not multiplayer.is_server():
 		return
-
+	
 	# TODO: Validate the sender, direction, contact
 	# position, and whether their gnome is touching.
 	if push_direction.length_squared() < 0.01:
 		return
 
-	var push_force := push_direction.normalized() * 20.0
-
-	apply_force(push_force, contact_offset)
+	match GameManager.game_state:
+		GameManager.GameState.LOBBY:
+			var push_force := push_direction.normalized() * 1.5
+			apply_force(push_force, contact_offset)
+		GameManager.GameState.PLAYING:
+			var push_force := push_direction.normalized() * 20.0
+			apply_force(push_force, contact_offset)
 
 @rpc("authority", "call_remote", "unreliable_ordered")
 func receive_ball_snapshot(ball_transform: Transform3D) -> void:

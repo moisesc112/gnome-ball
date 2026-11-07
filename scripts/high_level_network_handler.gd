@@ -4,30 +4,156 @@ const IP_ADDRESS: String = "192.168.0.10"
 const PORT: int = 42069
 
 const base_level_scene = "res://scenes/levels/base_level.tscn"
+const lobby_scene = "res://scenes/ui/menus/lobby.tscn"
 
 var peer : ENetMultiplayerPeer
 
-enum GameMode {
-	SOLO,
-	SHARED_BALL,
-	RACE
+enum NetworkScene {
+	LOBBY,
+	GAME
 }
 
-var game_mode: GameMode = GameMode.SOLO
+var ready_peers: Dictionary = {}
+var expected_peers: Array[int] = []
+var scene_spawner: MultiplayerSpawner
+var current_scene: NetworkScene = NetworkScene.LOBBY
+var spawned_peers: Dictionary = {}
+
+func start_game() -> void:
+	if not multiplayer.is_server():
+		return
+	
+	expected_peers.clear()
+	expected_peers.append(1)
+	
+	for id in multiplayer.get_peers():
+		expected_peers.append(id)
+	
+	change_network_scene.rpc(NetworkScene.GAME)
+
+@rpc("authority", "call_local", "reliable")
+func change_network_scene(scene_type: NetworkScene) -> void:
+	current_scene = scene_type
+	scene_spawner = null
+	ready_peers.clear()
+	spawned_peers.clear()
+	
+	match scene_type:
+		NetworkScene.LOBBY:
+			GameManager.game_state = GameManager.GameState.LOBBY
+			get_tree().change_scene_to_file(lobby_scene)
+		NetworkScene.GAME:
+			GameManager.game_state = GameManager.GameState.PLAYING
+			get_tree().change_scene_to_file(base_level_scene)
+	
+func register_scene_spawner(spawner: MultiplayerSpawner, scene_type: NetworkScene) -> void:
+	scene_spawner = spawner
+	
+	if multiplayer.is_server():
+		ready_peers[1] = true
+		
+		if scene_type == NetworkScene.LOBBY:
+			spawn_peer(1)
+		else:
+			check_all_ready()
+	else:
+		notify_scene_ready.rpc_id(1, scene_type)
+
+@rpc("any_peer", "reliable")
+func notify_scene_ready(scene_type: NetworkScene) -> void:
+	if not multiplayer.is_server():
+		return
+	
+	if scene_type != current_scene:
+		return
+	
+	var id := multiplayer.get_remote_sender_id()
+		
+	if current_scene == NetworkScene.GAME:
+		if id not in expected_peers:
+			return
+		
+	ready_peers[id] = true
+	print("Player ", id, " finished loading!")
+	
+	if current_scene == NetworkScene.LOBBY:
+		spawn_peer(id)
+	else:
+		check_all_ready()
+	
+func spawn_peer(id: int) -> void:
+	if not multiplayer.is_server():
+		return
+		
+	if scene_spawner == null:
+		return
+		
+	if spawned_peers.has(id):
+		return
+		
+	spawned_peers[id] = true
+	scene_spawner.spawn_player(id)
+	
+	
+func check_all_ready() -> void:
+	if not multiplayer.is_server():
+		return
+		
+	if scene_spawner == null:
+		return
+		
+	for id in expected_peers:
+		if not ready_peers.has(id):
+			return
+			
+	print("All Players loaded. Spawning gnomes!")
+	
+	for id in expected_peers:
+		spawn_peer(id)
 
 func start_solo() -> void:
-	game_mode = GameMode.SOLO
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
+	
+	current_scene = NetworkScene.GAME
+	
+	ready_peers.clear()
+	expected_peers.clear()
+	spawned_peers.clear()
+	scene_spawner = null
+	
+	expected_peers.append(1)
+	
+	GameManager.game_state = GameManager.GameState.PLAYING
 	get_tree().change_scene_to_file(base_level_scene)
 
 func start_server() -> void:
 	peer = ENetMultiplayerPeer.new()
-	peer.create_server(PORT)
+	var error := peer.create_server(PORT)
+	
+	if error != OK:
+		push_error("Failed to start server!")
+		return
+	
 	multiplayer.multiplayer_peer = peer
-	get_tree().change_scene_to_file(base_level_scene)
+	
+	current_scene = NetworkScene.LOBBY
+	ready_peers.clear()
+	expected_peers.clear()
+	spawned_peers.clear()
+	scene_spawner = null
+	
+	get_tree().change_scene_to_file(lobby_scene)
 
 func start_client() -> void:
 	peer = ENetMultiplayerPeer.new()
-	peer.create_client(IP_ADDRESS, PORT)
+	var error := peer.create_client(IP_ADDRESS, PORT)
+	
+	if error != OK:
+		push_error("Failed to create client!")
+		return
+		
 	multiplayer.multiplayer_peer = peer
-	get_tree().change_scene_to_file(base_level_scene)
+	
+	await multiplayer.connected_to_server
+	
+	get_tree().change_scene_to_file(lobby_scene)

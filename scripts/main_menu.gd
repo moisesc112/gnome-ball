@@ -10,11 +10,14 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_multiplayer_button_pressed() -> void:
-	get_tree().change_scene_to_packed(lobby_scene)
+func _on_host_game_button_pressed() -> void:
+	HighLevelNetworkHandler.start_server()
+
+func _on_join_game_button_pressed() -> void:
+	HighLevelNetworkHandler.start_client()
 
 
-func _on_play_solo_button_pressed() -> void:
+func _on_play_offline_button_pressed() -> void:
 	HighLevelNetworkHandler.start_solo()
 
 
