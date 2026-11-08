@@ -7,8 +7,8 @@ extends RigidBody3D
 @export var correction_speed: float = 8.0
 
 @export var max_input_speed: float = 15.0
-@export var downhill_assist: float = 2.0
-@export var air_gravity_multiplier: float = 1.5
+@export var downhill_assist: float = 4.0
+@export var air_gravity_multiplier: float = 2.5
 
 @export var snapshot_interval: float = 0.033
 @export var interpolation_delay: float = 0.15
@@ -165,8 +165,16 @@ func apply_gravity_assist() -> void:
 		# Gravity projected onto the slope.
 		var gravity := Vector3.DOWN * 9.8
 		var downhill := gravity.slide(normal)
+		
+		if downhill.length_squared() < 0.001:
+			return
 
-		apply_central_force(downhill * downhill_assist)
+		# Check whether the ball is moving downhill.
+		var downhill_direction := downhill.normalized()
+		var downhill_speed := linear_velocity.dot(downhill_direction)
+		
+		if downhill_speed > 0.0:
+			apply_central_force(downhill * downhill_assist * mass)
 	else:
 		var gravity := Vector3.DOWN * 9.8
 		var extra_gravity := gravity * (air_gravity_multiplier - 1.0)
