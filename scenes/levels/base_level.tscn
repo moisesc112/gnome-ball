@@ -1143,7 +1143,7 @@ ring_segments = 32
 impact_transfer = 3.0
 
 [node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("22_w4ycj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.69838, 47.07293, 71.248314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.69838, 28.52718, -2.3133488)
 collision_layer = 4
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1297982833 node_paths=PackedStringArray("ball")]

@@ -6,9 +6,13 @@ extends RigidBody3D
 @export var visual_follow_speed: float = 15.0
 @export var correction_speed: float = 8.0
 
+@export var jump_force: float = 7.0
+@export var lobby_push_force: float = 1.5
+@export var push_force: float = 25.0
 @export var max_input_speed: float = 15.0
-@export var downhill_assist: float = 4.0
-@export var air_gravity_multiplier: float = 2.5
+@export var downhill_assist: float = 5.0
+@export var air_gravity_multiplier: float = 3.0
+@export var air_steer_multiplier: float = 0.4
 
 @export var snapshot_interval: float = 0.033
 @export var interpolation_delay: float = 0.15
@@ -65,7 +69,7 @@ func request_jump() -> void:
 	if not ground_cast.is_colliding():
 		return
 
-	apply_central_impulse(Vector3.UP * 5.0)
+	apply_central_impulse(Vector3.UP * jump_force * mass)
 
 
 @rpc("any_peer", "call_local", "unreliable")
@@ -83,12 +87,9 @@ func request_push(
 
 	match GameManager.game_state:
 		GameManager.GameState.LOBBY:
-			var push_force := push_direction.normalized() * 1.5
-			apply_force(push_force, contact_offset)
+			var current_push_force := push_direction.normalized() * lobby_push_force
+			apply_force(current_push_force, contact_offset)
 		GameManager.GameState.PLAYING:
-			if not ground_cast.is_colliding():
-				return
-			
 			var direction := push_direction.normalized()
 			
 			var horizontal_velocity := Vector3(linear_velocity.x, 0.0, linear_velocity.z)
@@ -100,9 +101,14 @@ func request_push(
 				
 				if forward_component > 0.0:
 					direction -= velocity_direction * forward_component
+
+			var current_push_force := direction * push_force
+
+			if not ground_cast.is_colliding():
+				apply_force(current_push_force * air_steer_multiplier)
+				return
 			
-			var push_force := direction * 25.0
-			apply_force(push_force, contact_offset)
+			apply_force(current_push_force, contact_offset)
 
 @rpc("authority", "call_remote", "unreliable_ordered")
 func receive_ball_snapshot(ball_transform: Transform3D, ball_velocity: Vector3) -> void:

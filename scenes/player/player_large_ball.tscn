@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://clqxp1726i8bq" path="res://scenes/player/player_ball_smooth.tscn" id="1_32ypb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s66ro"]
+friction = 0.2
 bounce = 0.15
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4bcl2"]
@@ -27,9 +28,10 @@ properties/3/spawn = true
 properties/3/replication_mode = 1
 
 [node name="PlayerLargeBall" type="RigidBody3D" unique_id=2043058082]
+mass = 2.5
 physics_material_override = SubResource("PhysicsMaterial_s66ro")
-linear_damp = 0.1
-angular_damp = 0.5
+linear_damp = 0.05
+angular_damp = 0.2
 script = ExtResource("1_26lfa")
 
 [node name="ExteriorCollision" type="CollisionShape3D" parent="." unique_id=1498989799]
