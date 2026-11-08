@@ -80,8 +80,8 @@ func update_animation() -> void:
 			animation_player.play("IdleAction", 0.2)
 
 func is_ball_grounded() -> bool:
-	var ground_ray := ball.get_node("RayCast3D") as RayCast3D
-	return ground_ray.is_colliding()
+	var ground_cast := ball.get_node("GroundCast") as ShapeCast3D
+	return ground_cast.is_colliding()
 
 func calculate_local_gnome_rotation(direction: Vector3) -> void:
 	# Face the direction the player wants to move.

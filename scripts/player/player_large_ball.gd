@@ -1,9 +1,13 @@
 extends RigidBody3D
 
 @onready var ground_ray: RayCast3D = $RayCast3D
+@onready var ground_cast: ShapeCast3D = $GroundCast
 @onready var ball_visual: Node3D = $BallVisual
 @export var visual_follow_speed: float = 15.0
 @export var correction_speed: float = 8.0
+
+@export var downhill_assist: float = 2.0
+@export var air_gravity_multiplier: float = 1.5
 
 @export var snapshot_interval: float = 0.033
 @export var interpolation_delay: float = 0.15
@@ -32,6 +36,9 @@ var test_initialized := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	process_priority = -10
+	
+	ground_cast.top_level = true
+	
 	ball_visual.top_level = true
 	ball_visual.global_transform = global_transform
 	
@@ -49,7 +56,7 @@ func request_jump() -> void:
 		return
 
 	# TODO: Validate the requesting player's eligibility.
-	if not $RayCast3D.is_colliding():
+	if not ground_cast.is_colliding():
 		return
 
 	apply_central_impulse(Vector3.UP * 5.0)
@@ -123,12 +130,34 @@ func _process(_delta: float) -> void:
 		alpha
 	)
 
+func apply_gravity_assist() -> void:
+	if ground_cast.is_colliding():
+
+		var normal := ground_cast.get_collision_normal(0)
+		
+		if normal.y < 0.5:
+			print("ball contact is not the floor")
+			return
+
+		# Gravity projected onto the slope.
+		var gravity := Vector3.DOWN * 9.8
+		var downhill := gravity.slide(normal)
+
+		apply_central_force(downhill * downhill_assist)
+	else:
+		var gravity := Vector3.DOWN * 9.8
+		var extra_gravity := gravity * (air_gravity_multiplier - 1.0)
+		
+		apply_central_force(extra_gravity * mass)
 
 func _physics_process(delta: float) -> void:
-	ground_ray.global_rotation = Vector3.ZERO
+	ground_cast.global_position = global_position
+	ground_cast.global_rotation = Vector3.ZERO
 
 	if not multiplayer.is_server():
 		return
+	
+	apply_gravity_assist()
 
 	snapshot_timer += delta
 
