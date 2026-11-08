@@ -6,11 +6,14 @@ extends RigidBody3D
 @export var visual_follow_speed: float = 15.0
 @export var correction_speed: float = 8.0
 
+@export var max_input_speed: float = 15.0
 @export var downhill_assist: float = 2.0
 @export var air_gravity_multiplier: float = 1.5
 
 @export var snapshot_interval: float = 0.033
 @export var interpolation_delay: float = 0.15
+
+var replicated_velocity: Vector3 = Vector3.ZERO
 
 var snapshot_timer: float = 0.0
 var server_time: float = 0.0
@@ -54,7 +57,10 @@ func _ready() -> void:
 func request_jump() -> void:
 	if not multiplayer.is_server():
 		return
-
+	
+	if GameManager.game_state == GameManager.GameState.LOBBY:
+		return
+	
 	# TODO: Validate the requesting player's eligibility.
 	if not ground_cast.is_colliding():
 		return
@@ -80,13 +86,30 @@ func request_push(
 			var push_force := push_direction.normalized() * 1.5
 			apply_force(push_force, contact_offset)
 		GameManager.GameState.PLAYING:
-			var push_force := push_direction.normalized() * 20.0
+			if not ground_cast.is_colliding():
+				return
+			
+			var direction := push_direction.normalized()
+			
+			var horizontal_velocity := Vector3(linear_velocity.x, 0.0, linear_velocity.z)
+			
+			if horizontal_velocity.length() >= max_input_speed:
+				var velocity_direction := horizontal_velocity.normalized()
+				
+				var forward_component := direction.dot(velocity_direction)
+				
+				if forward_component > 0.0:
+					direction -= velocity_direction * forward_component
+			
+			var push_force := direction * 25.0
 			apply_force(push_force, contact_offset)
 
 @rpc("authority", "call_remote", "unreliable_ordered")
-func receive_ball_snapshot(ball_transform: Transform3D) -> void:
+func receive_ball_snapshot(ball_transform: Transform3D, ball_velocity: Vector3) -> void:
 	if multiplayer.is_server():
 		return
+
+	replicated_velocity = ball_velocity
 
 	var now := Time.get_ticks_msec()
 
@@ -150,6 +173,12 @@ func apply_gravity_assist() -> void:
 		
 		apply_central_force(extra_gravity * mass)
 
+func get_ball_speed() -> float:
+	if multiplayer.is_server():
+		return linear_velocity.length()
+	
+	return replicated_velocity.length()
+
 func _physics_process(delta: float) -> void:
 	ground_cast.global_position = global_position
 	ground_cast.global_rotation = Vector3.ZERO
@@ -164,4 +193,4 @@ func _physics_process(delta: float) -> void:
 	if snapshot_timer >= snapshot_interval:
 		snapshot_timer -= snapshot_interval
 
-		receive_ball_snapshot.rpc(global_transform)
+		receive_ball_snapshot.rpc(global_transform, linear_velocity)

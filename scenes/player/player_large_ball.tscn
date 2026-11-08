@@ -9,6 +9,9 @@ bounce = 0.15
 [sub_resource type="SphereShape3D" id="SphereShape3D_4bcl2"]
 radius = 2.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_sthun"]
+radius = 1.95
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_26lfa"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
@@ -23,9 +26,6 @@ properties/3/path = NodePath(".:angular_velocity")
 properties/3/spawn = true
 properties/3/replication_mode = 1
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_sthun"]
-radius = 1.95
-
 [node name="PlayerLargeBall" type="RigidBody3D" unique_id=2043058082]
 physics_material_override = SubResource("PhysicsMaterial_s66ro")
 linear_damp = 0.1
@@ -35,8 +35,9 @@ script = ExtResource("1_26lfa")
 [node name="ExteriorCollision" type="CollisionShape3D" parent="." unique_id=1498989799]
 shape = SubResource("SphereShape3D_4bcl2")
 
-[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1296591191]
-target_position = Vector3(0, -2.18, 0)
+[node name="GroundCast" type="ShapeCast3D" parent="." unique_id=1599332798]
+shape = SubResource("SphereShape3D_sthun")
+target_position = Vector3(0, -0.15, 0)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=571973998]
 replication_config = SubResource("SceneReplicationConfig_26lfa")
@@ -45,7 +46,3 @@ replication_config = SubResource("SceneReplicationConfig_26lfa")
 
 [node name="player_ball_smooth" parent="BallVisual" unique_id=1141308037 instance=ExtResource("1_32ypb")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-
-[node name="GroundCast" type="ShapeCast3D" parent="." unique_id=1599332798]
-shape = SubResource("SphereShape3D_sthun")
-target_position = Vector3(0, -0.15, 0)

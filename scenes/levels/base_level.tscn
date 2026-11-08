@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://yo4bfc6jdqu1" path="res://scenes/environment/red_mushroom_3.tscn" id="19_mwefk"]
 [ext_resource type="PackedScene" uid="uid://synsej8m6drd" path="res://scenes/safety_net.tscn" id="20_jua6e"]
 [ext_resource type="PackedScene" uid="uid://cu4015ff0jps4" path="res://scenes/player/player_large_ball.tscn" id="22_w4ycj"]
+[ext_resource type="Script" uid="uid://dut4ecbd8ymsh" path="res://scripts/hud.gd" id="24_r6qow"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_53c65")
@@ -1075,3 +1076,20 @@ impact_transfer = 3.0
 [node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("22_w4ycj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.505522, 1.6467133, 75.44769)
 collision_layer = 4
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1297982833 node_paths=PackedStringArray("ball")]
+script = ExtResource("24_r6qow")
+ball = NodePath("../PlayerLargeBall")
+
+[node name="SpeedLabel" type="Label" parent="HUD" unique_id=2039489541]
+anchors_preset = -1
+anchor_top = 0.92600006
+anchor_right = 0.059000004
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = -0.048034668
+offset_right = 0.03199768
+offset_bottom = -25.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+metadata/_edit_use_anchors_ = true
