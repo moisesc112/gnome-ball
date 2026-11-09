@@ -181,8 +181,12 @@ func _physics_process(delta: float) -> void:
 			velocity.y = JUMP_VELOCITY
 			is_grounded = false
 			
-		if Input.is_action_just_pressed("Jump"):
-			ball.request_jump.rpc_id(1)
+			
+		### MAYBE BRING BACK JUMP BUT DISABLE FOR NOW
+		#if Input.is_action_just_pressed("Jump"):
+		#	if not multiplayer.is_server():
+		#		ball.apply_jump_impulse()
+		#	ball.request_jump.rpc_id(1)
 	
 		movement_input = Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
 		
@@ -233,7 +237,11 @@ func _physics_process(delta: float) -> void:
 				
 		if is_touching_ball and direction.length_squared() > 0.01:
 			var contact_offset = global_position - ball_position
-			ball.request_push.rpc_id(1, direction, contact_offset)
+			
+			ball.apply_push(direction, contact_offset)
+			
+			if not multiplayer.is_server():
+				ball.request_push.rpc_id(1, direction, contact_offset)
 			
 		relative_position = global_position - ball_position
 	else :

@@ -14,9 +14,11 @@ extends RigidBody3D
 var server_transform: Transform3D
 var server_linear_velocity: Vector3 = Vector3.ZERO
 var server_angular_velocity: Vector3 = Vector3.ZERO
+var last_applied_jump_frame: int = -1
 var last_received_frame: int = -1
 var server_frame: int = 0
 var correction_frames_remaining: int = 0
+var pending_jumps: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,15 +39,22 @@ func request_jump() -> void:
 	# TODO: Validate the requesting player's eligibility.
 	if not ground_cast.is_colliding():
 		return
+		
+	apply_jump_impulse()
 
+
+func apply_jump_impulse() -> void:
 	apply_central_impulse(Vector3.UP * jump_force * mass)
-
 
 @rpc("any_peer", "call_local", "unreliable")
 func request_push(push_direction: Vector3, contact_offset: Vector3) -> void:
 	if not multiplayer.is_server():
 		return
-	
+		
+	apply_push(push_direction, contact_offset)
+
+			
+func apply_push(push_direction: Vector3, contact_offset: Vector3) -> void:
 	# TODO: Validate the sender, direction, contact
 	# position, and whether their gnome is touching.
 	if push_direction.length_squared() < 0.01:
@@ -75,6 +84,7 @@ func request_push(push_direction: Vector3, contact_offset: Vector3) -> void:
 				return
 			
 			apply_force(current_push_force, contact_offset)
+	
 
 @rpc("authority", "call_remote", "unreliable")
 func receive_ball_state(frame: int, ball_transform: Transform3D, ball_linear_velocity: Vector3, ball_angular_velocity: Vector3) -> void:
@@ -92,7 +102,6 @@ func receive_ball_state(frame: int, ball_transform: Transform3D, ball_linear_vel
 	server_angular_velocity = ball_angular_velocity
 
 	correction_frames_remaining = 2
-
 
 func _process(_delta: float) -> void:
 	pass
@@ -136,6 +145,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if multiplayer.is_server():
 		server_frame += 1
+		
 		receive_ball_state.rpc(server_frame, global_transform, linear_velocity, angular_velocity)
 	else:
 		if correction_frames_remaining > 0:
