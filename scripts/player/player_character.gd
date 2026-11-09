@@ -183,10 +183,13 @@ func _physics_process(delta: float) -> void:
 			
 			
 		### MAYBE BRING BACK JUMP BUT DISABLE FOR NOW
+		###
 		#if Input.is_action_just_pressed("Jump"):
 		#	if not multiplayer.is_server():
 		#		ball.apply_jump_impulse()
 		#	ball.request_jump.rpc_id(1)
+		###
+		###
 	
 		movement_input = Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
 		
