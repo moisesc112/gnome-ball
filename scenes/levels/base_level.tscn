@@ -172,8 +172,8 @@ size = Vector3(1.174263, 0.7696533, 8.919205)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge45" type="CSGBox3D" parent="CSGCombiner3D" unique_id=844482236]
-transform = Transform3D(1, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999976, 67.60055, 8.968341, 35.58853)
-size = Vector3(5.59099, 0.7696533, 14.085268)
+transform = Transform3D(1, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999976, 67.60055, 8.968341, 31.255602)
+size = Vector3(5.59099, 0.7696533, 22.75113)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge46" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2031383670]

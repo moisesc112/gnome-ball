@@ -15,6 +15,24 @@ radius = 1.95
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_26lfa"]
 
+[sub_resource type="Gradient" id="Gradient_26lfa"]
+offsets = PackedFloat32Array(0.03968254, 0.73015875, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.5882353, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4bcl2"]
+gradient = SubResource("Gradient_26lfa")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26lfa"]
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_4bcl2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_26lfa"]
+material = SubResource("StandardMaterial3D_26lfa")
+
 [node name="PlayerLargeBall" type="RigidBody3D" unique_id=2043058082]
 mass = 2.5
 physics_material_override = SubResource("PhysicsMaterial_s66ro")
@@ -36,3 +54,10 @@ replication_config = SubResource("SceneReplicationConfig_26lfa")
 
 [node name="player_ball_smooth" parent="BallVisual" unique_id=1141308037 instance=ExtResource("1_32ypb")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="ContactShadow" type="MeshInstance3D" parent="." unique_id=980830715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9840442, 0)
+mesh = SubResource("PlaneMesh_26lfa")
+
+[node name="ShadowRay" type="RayCast3D" parent="." unique_id=1733442003]
+target_position = Vector3(0, -4, 0)

@@ -2,6 +2,8 @@ extends RigidBody3D
 
 @onready var ground_cast: ShapeCast3D = $GroundCast
 @onready var ball_visual: Node3D = $BallVisual
+@onready var contact_shadow: MeshInstance3D = $ContactShadow
+@onready var shadow_ray: RayCast3D = $ShadowRay
 
 @export var jump_force: float = 7.0
 @export var lobby_push_force: float = 1.5
@@ -25,6 +27,8 @@ func _ready() -> void:
 	process_priority = -10
 	
 	ground_cast.top_level = true
+	shadow_ray.top_level = true
+	contact_shadow.top_level = true
 	
 	set_multiplayer_authority(1)
 
@@ -137,9 +141,25 @@ func apply_gravity_assist() -> void:
 func get_ball_speed() -> float:
 	return linear_velocity.length()
 
+func update_contact_shadow() -> void:
+	if not shadow_ray.is_colliding():
+		contact_shadow.visible = false
+		return
+	
+	contact_shadow.visible = true
+	
+	var point := shadow_ray.get_collision_point()
+	var normal := shadow_ray.get_collision_normal()
+	
+	contact_shadow.global_position = point + normal * 0.02
+	contact_shadow.global_basis = Basis(Quaternion(Vector3.UP, normal))
+
 func _physics_process(_delta: float) -> void:
 	ground_cast.global_position = global_position
 	ground_cast.global_rotation = Vector3.ZERO
+	
+	shadow_ray.global_position = global_position
+	shadow_ray.global_rotation = Vector3.ZERO
 
 	apply_gravity_assist()
 	
@@ -159,3 +179,5 @@ func _physics_process(_delta: float) -> void:
 				global_transform = global_transform.interpolate_with(server_transform, 0.02)
 						
 			correction_frames_remaining -= 1
+	
+	update_contact_shadow()
