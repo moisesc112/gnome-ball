@@ -14,14 +14,15 @@ var is_free_looking: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	top_level = true
 	spring_arm.rotation.x = camera_pitch
 
 	#if player.is_multiplayer_authority():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _unhandled_input(event: InputEvent) -> void:
-	#if not player.is_multiplayer_authority():
-	#return
+	if player == null or not player.is_multiplayer_authority():
+		return
 
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
@@ -49,23 +50,35 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
-func _physics_process(delta: float) -> void:
 	if player == null:
 		return
 		
 	if not player.is_multiplayer_authority():
 		return;
 	
-	# Don't need lerping on camera rig position right now, decide through play testing
-	#global_position = global_position.lerp(player.global_position, clampf(follow_speed * delta, 0.0, 1.0))
-	global_position = player.global_position
+	global_position = player.get_global_transform_interpolated().origin
 	
-	# same reasoning with y rotation, might not be needed
 	if not is_free_looking:
 		rotation.y = lerp_angle(rotation.y, player.control_yaw, clampf(orbit_speed * delta, 0.0, 1.0))
 		spring_arm.rotation.x = lerp_angle(spring_arm.rotation.x, deg_to_rad(-25.0), clampf(orbit_speed * delta, 0.0, 1.0))
+	
+
+func _physics_process(_delta: float) -> void:
+	pass
+	#if player == null:
+	#	return
+		
+	#if not player.is_multiplayer_authority():
+	#	return;
+	
+	# Don't need lerping on camera rig position right now, decide through play testing
+	#global_position = global_position.lerp(player.global_position, clampf(follow_speed * delta, 0.0, 1.0))
+	#global_position = player.global_position
+	
+	# same reasoning with y rotation, might not be needed
+	#if not is_free_looking:
+	#	rotation.y = lerp_angle(rotation.y, player.control_yaw, clampf(orbit_speed * delta, 0.0, 1.0))
+	#	spring_arm.rotation.x = lerp_angle(spring_arm.rotation.x, deg_to_rad(-25.0), clampf(orbit_speed * delta, 0.0, 1.0))
 	#rotation.y = player.control_yaw
 	
 	#

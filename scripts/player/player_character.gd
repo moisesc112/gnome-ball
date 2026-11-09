@@ -26,6 +26,7 @@ var target_roll = 0.0
 @export var ground_friction: float = 2.0
 
 @export var visual_follow_speed: float = 15.0
+var smoothed_relative_position: Vector3 = Vector3.ZERO
 
 @export var tumble_speed: float = 5.0
 @export var tumble_min_ball_speed: float = 2.0
@@ -55,12 +56,17 @@ func _ready() -> void:
 	if ball == null:
 		push_error("PlayerLargeBall not found!")
 		return
-	initial_gnome_offset = gnome_mesh.position
+	#initial_gnome_offset = gnome_mesh.position
+	#gnome_mesh.position = initial_gnome_offset
 	
-	gnome_mesh.position = Vector3.ZERO
+	#gnome_mesh.position = Vector3.ZERO
 	gnome_mesh.rotation.y = target_yaw
 
-	previous_ball_position = ball.global_position
+	if not is_multiplayer_authority():
+		relative_position = global_position - ball.global_position
+
+	smoothed_relative_position = relative_position
+	previous_ball_position = get_ball_physics_position()
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
@@ -85,7 +91,7 @@ func is_ball_grounded() -> bool:
 
 func calculate_local_gnome_rotation(direction: Vector3) -> void:
 	# Face the direction the player wants to move.
-	if is_multiplayer_authority() and direction.length_squared() > 0.01:
+	if direction.length_squared() > 0.01:
 		target_yaw = atan2(direction.x, direction.z)
 
 	# Convert movement direction into gnome-local space.
@@ -127,40 +133,40 @@ func update_tumbling(ball_visual: Node3D) -> void:
 	var new_rotation := rotation_delta * idle_gnome_rotation
 
 	gnome_mesh.global_basis = Basis(new_rotation).scaled(idle_gnome_scale)
+	
+func get_ball_physics_position() -> Vector3:
+	return ball.global_position
 
 func _process(delta: float) -> void:
 	if ball == null:
 		return
 	
-	var ball_visual := ball.get_node_or_null("BallVisual") as Node3D
+	#var visual_ball_position: Vector3 = ball.get_global_transform_interpolated().origin
+	#var should_tumble := not is_walking and GameManager.game_state == GameManager.GameState.PLAYING
+	#var should_tumble = false
 	
-	if ball_visual == null:
-		return
-	
-	var visual_ball_position: Vector3 = ball.get_node("BallVisual").global_position
-	
-	var should_tumble := not is_walking and GameManager.game_state == GameManager.GameState.PLAYING
-	
-	if should_tumble:
-		if not is_tumbling:
-			gnome_mesh.global_position = (visual_ball_position + relative_position + global_basis * initial_gnome_offset)
-			start_tumbling(ball.get_node("BallVisual"))
-		update_tumbling(ball.get_node("BallVisual"))
-	else:
-		if is_tumbling:
-			is_tumbling = false
-			gnome_mesh.rotation = Vector3(0.0, target_yaw, 0.0)
-		gnome_mesh.global_position = (visual_ball_position + relative_position + global_basis * initial_gnome_offset)
+	#if should_tumble:
+		#if not is_tumbling:
+			#gnome_mesh.global_position = (visual_ball_position + relative_position + global_basis * initial_gnome_offset)
+			#start_tumbling(ball.get_node("BallVisual"))
+		#update_tumbling(ball.get_node("BallVisual"))
+	#else:
+		#if is_tumbling:
+			#is_tumbling = false
+			#gnome_mesh.rotation = Vector3(0.0, target_yaw, 0.0)
+		#gnome_mesh.global_position = (get_global_transform_interpolated().origin + global_basis * initial_gnome_offset)
 
 func _physics_process(delta: float) -> void:
 	if ball == null:
 		return
 	
+	var ball_position = get_ball_physics_position()
+	
 	if is_multiplayer_authority():
 		#update_animation()
 
 		# Calculate position relative to the ball
-		var offset := global_position - ball.global_position
+		var offset = global_position - ball_position
 		var distance := offset.length()
 
 		# Detect contact with the interior surface
@@ -176,20 +182,8 @@ func _physics_process(delta: float) -> void:
 			is_grounded = false
 			
 		if Input.is_action_just_pressed("Jump"):
-			var jump_impulse := Vector3.UP * 5.0
 			ball.request_jump.rpc_id(1)
-		
-		# Add the gravity.
-		#if not is_on_floor():
-			#velocity += get_gravity() * delta
-
-		# Handle jump.
-		#if Input.is_action_just_pressed("Jump") and is_on_floor():
-			#velocity.y = JUMP_VELOCITY
-
-		# Get the input direction and handle the movement/deceleration.
-		# As good practice, you should replace UI actions with custom gameplay actions.
-		#var input_dir := Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
+	
 		movement_input = Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
 		
 		var camera_forward := -camera.global_basis.z
@@ -204,47 +198,24 @@ func _physics_process(delta: float) -> void:
 		var direction := (camera_right * movement_input.x - camera_forward * movement_input.y).normalized()
 		network_direction = direction
 		
-		#if direction:
-			#velocity.x = direction.x * SPEED
-			#velocity.z = direction.z * SPEED
-		#else:
-			#velocity.x = move_toward(velocity.x, 0, SPEED)
-			#velocity.z = move_toward(velocity.z, 0, SPEED)
-		
 		if direction.length_squared() > 0.01:
-			velocity.x = move_toward(
-				velocity.x,
-				direction.x * SPEED,
-				movement_acceleration * delta
-			)
-			velocity.z = move_toward(
-				velocity.z,
-				direction.z * SPEED,
-				movement_acceleration * delta
-			)
+			velocity.x = move_toward(velocity.x, direction.x * SPEED, movement_acceleration * delta)
+			velocity.z = move_toward(velocity.z, direction.z * SPEED, movement_acceleration * delta)
 		else:
 			# Gentle damping rather than instantly stopping
-			velocity.x = move_toward(
-				velocity.x,
-				0.0,
-				ground_friction * delta
-			)
-			velocity.z = move_toward(
-				velocity.z,
-				0.0,
-				ground_friction * delta
-			)
+			velocity.x = move_toward(velocity.x, 0.0, ground_friction * delta)
+			velocity.z = move_toward(velocity.z, 0.0, ground_friction * delta)
 
-		var ball_displacement := ball.global_position - previous_ball_position
+		var ball_displacement = ball_position - previous_ball_position
 
 		global_position += ball_displacement
-		previous_ball_position = ball.global_position
+		previous_ball_position = ball_position
 
 		# Move the gnome
 		global_position += velocity * delta
 
 		# Keep the gnome inside the sphere
-		offset = global_position - ball.global_position
+		offset = global_position - ball_position
 		distance = offset.length()
 		var max_distance := interior_radius #- character_half_height
 		is_touching_ball = distance >= max_distance - 0.05
@@ -252,7 +223,7 @@ func _physics_process(delta: float) -> void:
 		if distance > max_distance:
 			var normal := offset.normalized()
 
-			global_position = ball.global_position + normal * interior_radius
+			global_position = ball_position + normal * interior_radius
 
 			# Remove velocity pointing through the sphere
 			var outward_speed := velocity.dot(normal)
@@ -261,18 +232,17 @@ func _physics_process(delta: float) -> void:
 				velocity -= normal * outward_speed
 				
 		if is_touching_ball and direction.length_squared() > 0.01:
-			var push_force := direction * push_strength
-			var contact_offset := global_position - ball.global_position
-
+			var contact_offset = global_position - ball_position
 			ball.request_push.rpc_id(1, direction, contact_offset)
 			
-		relative_position = global_position - ball.global_position
+		relative_position = global_position - ball_position
 	else :
-		global_position = ball.global_position + relative_position
+		#smoothed_relative_position = smoothed_relative_position.lerp(relative_position, 1.0 - exp(-15.0 * delta))
+		#global_position = ball_position + smoothed_relative_position
+		# add smoothing if gnome mesh jumps around between frames
+		global_position = ball_position + relative_position
 	
 	if not is_tumbling:
 		calculate_local_gnome_rotation(network_direction)
 		apply_gnome_rotation(delta)
 	update_animation()
-	
-	#move_and_slide()

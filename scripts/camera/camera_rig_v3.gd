@@ -100,20 +100,15 @@ func _process(delta: float) -> void:
 	if ball == null:
 		return
 
-	var ball_visual := ball.get_node_or_null("BallVisual") as Node3D
-	if ball_visual == null:
-		return
-
 	# Camera position: follow the visual ball.
-	global_position = ball_visual.global_position
-
+	global_position = ball.get_global_transform_interpolated().origin
 	# Camera rotation.
 	time_since_mouse_input += delta
 
 	if time_since_mouse_input < auto_rotate_delay:
 		return
 
-	var velocity := ball.linear_velocity
+	var velocity: Vector3 = ball.linear_velocity
 	var horizontal_velocity := Vector3(velocity.x, 0.0, velocity.z)
 	var horizontal_speed := horizontal_velocity.length()
 

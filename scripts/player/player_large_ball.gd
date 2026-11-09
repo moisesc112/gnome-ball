@@ -1,10 +1,7 @@
 extends RigidBody3D
 
-@onready var ground_ray: RayCast3D = $RayCast3D
 @onready var ground_cast: ShapeCast3D = $GroundCast
 @onready var ball_visual: Node3D = $BallVisual
-@export var visual_follow_speed: float = 15.0
-@export var correction_speed: float = 8.0
 
 @export var jump_force: float = 7.0
 @export var lobby_push_force: float = 1.5
@@ -14,31 +11,12 @@ extends RigidBody3D
 @export var air_gravity_multiplier: float = 3.0
 @export var air_steer_multiplier: float = 0.4
 
-@export var snapshot_interval: float = 0.033
-@export var interpolation_delay: float = 0.15
-
-var replicated_velocity: Vector3 = Vector3.ZERO
-
-var snapshot_timer: float = 0.0
-var server_time: float = 0.0
-var snapshots: Array[Dictionary] = []
-var render_time: float = 0.0
-var timeline_initialized: bool = false
-var buffer_underruns: int = 0
-
-var previous_snapshot: Transform3D
-var latest_snapshot: Transform3D
-var interpolation_elapsed: float = 0.0
-var last_received_transform: Transform3D
-
-var start_transform: Transform3D
-var target_transform: Transform3D
-var last_sync_time: int = 0
-var smoothed_sync_delta: float = 33.0
-var has_snapshot: bool = false
-
-var test_position: Vector3
-var test_initialized := false
+var server_transform: Transform3D
+var server_linear_velocity: Vector3 = Vector3.ZERO
+var server_angular_velocity: Vector3 = Vector3.ZERO
+var last_received_frame: int = -1
+var server_frame: int = 0
+var correction_frames_remaining: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,16 +24,7 @@ func _ready() -> void:
 	
 	ground_cast.top_level = true
 	
-	ball_visual.top_level = true
-	ball_visual.global_transform = global_transform
-	
-	start_transform = global_transform
-	target_transform = global_transform
-
 	set_multiplayer_authority(1)
-	
-	if not multiplayer.is_server():
-		freeze = true
 
 @rpc("any_peer", "call_local", "reliable")
 func request_jump() -> void:
@@ -73,10 +42,7 @@ func request_jump() -> void:
 
 
 @rpc("any_peer", "call_local", "unreliable")
-func request_push(
-	push_direction: Vector3,
-	contact_offset: Vector3
-) -> void:
+func request_push(push_direction: Vector3, contact_offset: Vector3) -> void:
 	if not multiplayer.is_server():
 		return
 	
@@ -110,54 +76,26 @@ func request_push(
 			
 			apply_force(current_push_force, contact_offset)
 
-@rpc("authority", "call_remote", "unreliable_ordered")
-func receive_ball_snapshot(ball_transform: Transform3D, ball_velocity: Vector3) -> void:
+@rpc("authority", "call_remote", "unreliable")
+func receive_ball_state(frame: int, ball_transform: Transform3D, ball_linear_velocity: Vector3, ball_angular_velocity: Vector3) -> void:
 	if multiplayer.is_server():
 		return
 
-	replicated_velocity = ball_velocity
+	# Ignore packets that arrive out of order
+	if frame <= last_received_frame:
+		return
 
-	var now := Time.get_ticks_msec()
+	last_received_frame = frame
 
-	if has_snapshot:
-		var current_delta := now - last_sync_time
+	server_transform = ball_transform
+	server_linear_velocity = ball_linear_velocity
+	server_angular_velocity = ball_angular_velocity
 
-		if current_delta > 0 and current_delta < 1000:
-			smoothed_sync_delta = lerpf(
-				smoothed_sync_delta,
-				float(current_delta),
-				0.2
-			)
-	else:
-		has_snapshot = true
-		ball_visual.global_transform = ball_transform
-
-	last_sync_time = now
-
-	start_transform = ball_visual.global_transform
-	target_transform = ball_transform
+	correction_frames_remaining = 2
 
 
 func _process(_delta: float) -> void:
-	if multiplayer.is_server():
-		ball_visual.global_transform = global_transform
-		return
-
-	if not has_snapshot:
-		return
-
-	var elapsed := Time.get_ticks_msec() - last_sync_time
-
-	var alpha := clampf(
-		float(elapsed) / maxf(smoothed_sync_delta, 1.0),
-		0.0,
-		1.2
-	)
-
-	ball_visual.global_transform = start_transform.interpolate_with(
-		target_transform,
-		alpha
-	)
+	pass
 
 func apply_gravity_assist() -> void:
 	if ground_cast.is_colliding():
@@ -188,23 +126,26 @@ func apply_gravity_assist() -> void:
 		apply_central_force(extra_gravity * mass)
 
 func get_ball_speed() -> float:
-	if multiplayer.is_server():
-		return linear_velocity.length()
-	
-	return replicated_velocity.length()
+	return linear_velocity.length()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	ground_cast.global_position = global_position
 	ground_cast.global_rotation = Vector3.ZERO
 
-	if not multiplayer.is_server():
-		return
-	
 	apply_gravity_assist()
-
-	snapshot_timer += delta
-
-	if snapshot_timer >= snapshot_interval:
-		snapshot_timer -= snapshot_interval
-
-		receive_ball_snapshot.rpc(global_transform, linear_velocity)
+	
+	if multiplayer.is_server():
+		server_frame += 1
+		receive_ball_state.rpc(server_frame, global_transform, linear_velocity, angular_velocity)
+	else:
+		if correction_frames_remaining > 0:
+			linear_velocity = linear_velocity.lerp(server_linear_velocity, 0.85)
+			angular_velocity = angular_velocity.lerp(server_angular_velocity, 0.85)
+			
+			var position_error := global_position.distance_to(server_transform.origin)
+			if position_error > 2.0:
+				global_transform = server_transform
+			else:
+				global_transform = global_transform.interpolate_with(server_transform, 0.02)
+						
+			correction_frames_remaining -= 1
