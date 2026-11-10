@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dawriq8nd0l3s"]
+
+[ext_resource type="PackedScene" uid="uid://pq4x576g2d40" path="res://assets/characters/gnome_low_poly.glb" id="1_ox8p4"]
+
+[node name="gnome_low_poly" unique_id=1396917824 instance=ExtResource("1_ox8p4")]
+
+[node name="Gnome_Rig" parent="." index="0" unique_id=2144665708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Hat_WithEyes" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1769132948) index="6" unique_id=1515914111]
+visible = false

@@ -4,7 +4,8 @@ extends CharacterBody3D
 #@onready var camera: Camera3D = $CameraRig/SpringArm3D/Camera3D
 @onready var camera: Camera3D = $CameraRig/SpringArm3D/Camera3D
 @onready var camera_rig: Node3D = $CameraRig
-@onready var animation_player: AnimationPlayer = $Gnome_smooth/AnimationPlayer
+#@onready var animation_player: AnimationPlayer = $Gnome_smooth/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $gnome_low_poly_smooth/AnimationPlayer
 @export var camera_follow_speed: float = 3.0
 @export var target_yaw: float = PI
 var target_pitch = 0.0
@@ -16,7 +17,8 @@ var target_roll = 0.0
 
 @export var network_direction: Vector3 = Vector3.ZERO
 @export var relative_position: Vector3 = Vector3.ZERO
-@onready var gnome_mesh: Node3D = $Gnome_smooth
+#@onready var gnome_mesh: Node3D = $Gnome_smooth
+@onready var gnome_mesh: Node3D = $gnome_low_poly_smooth
 @export var is_walking: bool = false
 @onready var ball: RigidBody3D = get_node_or_null("../PlayerLargeBall") as RigidBody3D
 @export var interior_radius: float = 1.0
@@ -79,11 +81,15 @@ func update_animation() -> void:
 		#var speed := Vector2(velocity.x, velocity.z).length()
 		is_walking = movement_input.length_squared() > 0.01
 	if is_walking:
-		if animation_player.current_animation != "WalkAction":
-			animation_player.play("WalkAction", 0.2)
+		if animation_player.current_animation != "Gnome_Rig|Skip":
+			animation_player.play("Gnome_Rig|Skip", 0.2)
+		#if animation_player.current_animation != "WalkAction":
+			#animation_player.play("WalkAction", 0.2)
 	else:
-		if animation_player.current_animation != "IdleAction":
-			animation_player.play("IdleAction", 0.2)
+		if animation_player.current_animation != "Gnome_Rig|Idle":
+			animation_player.play("Gnome_Rig|Idle", 0.2)
+		#if animation_player.current_animation != "IdleAction":
+			#animation_player.play("IdleAction", 0.2)
 
 func is_ball_grounded() -> bool:
 	var ground_cast := ball.get_node("GroundCast") as ShapeCast3D

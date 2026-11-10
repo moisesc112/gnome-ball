@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://jkk5q6w46eu3" path="res://assets/characters/Gnome_smooth.glb" id="3_mgxyb"]
 [ext_resource type="PackedScene" uid="uid://yeak0bgrh556" path="res://scenes/fairy_king_smooth.tscn" id="4_47nhc"]
 [ext_resource type="PackedScene" uid="uid://clqxp1726i8bq" path="res://scenes/player/player_ball_smooth.tscn" id="4_hf8dy"]
+[ext_resource type="PackedScene" uid="uid://vkil7vuwyxpv" path="res://scenes/player/gnome_low_poly_smooth.tscn" id="6_7akwi"]
 
 [node name="MainMenuWorld" type="Node3D" unique_id=1585825354]
 script = ExtResource("1_mgxyb")
@@ -23,6 +24,10 @@ transform = Transform3D(1.0075295, 0, -1.7276819, 0, 2, 0, 1.7276819, 0, 1.00752
 
 [node name="Gnome_smooth" parent="." unique_id=119455235 instance=ExtResource("3_mgxyb")]
 transform = Transform3D(0.5037647, 0, -0.863841, 0, 1, 0, 0.863841, 0, 0.5037647, 0.636026, -0.0628196, -4.7683716e-07)
+visible = false
 
 [node name="fairy_king_smooth" parent="." unique_id=1816964908 instance=ExtResource("4_47nhc")]
 transform = Transform3D(-0.043803826, -0.22773312, -0.97273785, -0.0354526, 0.9734136, -0.22629479, 0.9984108, 0.024573509, -0.050712958, 6.0232453, 0.16217446, 0.76318264)
+
+[node name="gnome_low_poly_smooth" parent="." unique_id=33204168 instance=ExtResource("6_7akwi")]
+transform = Transform3D(0.9557378, 0, -1.6421221, 0, 1.9, 0, 1.6421221, 0, 0.9557378, 0.636, -0.06, 0)

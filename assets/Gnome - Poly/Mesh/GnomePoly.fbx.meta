@@ -1,0 +1,968 @@
+fileFormatVersion: 2
+guid: 7fbc91046db8cce42976d5460401db49
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: "\nClip 'Gnome_Rig|Idle' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'LegUpper.L' has translation animation that
+      will be discarded.\n\t'LegUpper.R' has translation animation that will be discarded.\n\nClip
+      'Gnome_Rig|Idle.001' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'LegUpper.L'
+      has translation animation that will be discarded.\n\t'LegUpper.R' has translation
+      animation that will be discarded.\n\nClip 'Gnome_Rig|IdleBreak' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'LegUpper.L' has translation
+      animation that will be discarded.\n\t'LegUpper.R' has translation animation
+      that will be discarded.\n\nClip 'Gnome_Rig|Impact' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'LegUpper.L' has translation animation that
+      will be discarded.\n\t'LegUpper.R' has translation animation that will be discarded.\n\nClip
+      'Gnome_Rig|ImpactDeath' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'LegUpper.L'
+      has translation animation that will be discarded.\n\t'LegUpper.R' has translation
+      animation that will be discarded.\n\nClip 'Gnome_Rig|JumpLand' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'LegUpper.L' has translation
+      animation that will be discarded.\n\t'LegUpper.R' has translation animation
+      that will be discarded.\n\nClip 'Gnome_Rig|Skip' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'LegUpper.L' has translation animation that
+      will be discarded.\n\t'LegUpper.R' has translation animation that will be discarded.\n\nClip
+      'Gnome_Rig|SlapL' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'LegUpper.L'
+      has translation animation that will be discarded.\n\t'LegUpper.R' has translation
+      animation that will be discarded.\n\nClip 'Gnome_Rig|SlapR' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'LegUpper.L' has translation
+      animation that will be discarded.\n\t'LegUpper.R' has translation animation
+      that will be discarded.\n\nClip 'Gnome_Rig|Walk' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'LegUpper.L' has translation animation that
+      will be discarded.\n\t'LegUpper.R' has translation animation that will be discarded.\n\nClip
+      'Gnome_Rig|WalkSlow' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'LegUpper.L'
+      has translation animation that will be discarded.\n\t'LegUpper.R' has translation
+      animation that will be discarded.\n\nClip 'Gnome_Rig|Wave' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'LegUpper.L' has translation
+      animation that will be discarded.\n\t'LegUpper.R' has translation animation
+      that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Gnome_Rig|Idle
+      takeName: Gnome_Rig|Idle
+      internalID: 8608311937192916599
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|IdleBreak
+      takeName: Gnome_Rig|IdleBreak
+      internalID: -1930963927374792437
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|IdleSit
+      takeName: Gnome_Rig|IdleSit
+      internalID: -2379964006765561887
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|Impact
+      takeName: Gnome_Rig|Impact
+      internalID: 1011380417802257384
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|ImpactDeath
+      takeName: Gnome_Rig|ImpactDeath
+      internalID: -8208938753680390183
+      firstFrame: 0
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|Jump
+      takeName: Gnome_Rig|Jump
+      internalID: 5323194537743377492
+      firstFrame: 0
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|JumpFall
+      takeName: Gnome_Rig|JumpFall
+      internalID: -3614454991100323307
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|JumpLand
+      takeName: Gnome_Rig|JumpLand
+      internalID: -7169641031782113887
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|JumpRise
+      takeName: Gnome_Rig|JumpRise
+      internalID: -6404118985835592399
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|Skip
+      takeName: Gnome_Rig|Skip
+      internalID: -2778264736003417463
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|SlapL
+      takeName: Gnome_Rig|SlapL
+      internalID: -2584241993508300784
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|SlapR
+      takeName: Gnome_Rig|SlapR
+      internalID: 1900650546305511840
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|Walk
+      takeName: Gnome_Rig|Walk
+      internalID: -8798480742799175047
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|WalkSlow
+      takeName: Gnome_Rig|WalkSlow
+      internalID: 5327112943525828930
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gnome_Rig|Wave
+      takeName: Gnome_Rig|Wave
+      internalID: -3916566014335647548
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Gnome_Rigged(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hat
+      parentName: Gnome_Rigged(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Beard
+      parentName: Gnome_Rigged(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Moustache
+      parentName: Gnome_Rigged(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HairL
+      parentName: Gnome_Rigged(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Body
+      parentName: Gnome_Rigged(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hat_WithEyes
+      parentName: Gnome_Rigged(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Gnome_Rig
+      parentName: Gnome_Rigged(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hip
+      parentName: Gnome_Rig
+      position: {x: -9.300222e-19, y: 0.0013961494, z: 0.21310703}
+      rotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spine
+      parentName: Hip
+      position: {x: -0, y: 0.17586124, z: 0}
+      rotation: {x: -0, y: -0.00000011920929, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head
+      parentName: Spine
+      position: {x: -9.300222e-19, y: 0.22931752, z: 0}
+      rotation: {x: -0, y: 0.00000011920929, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hat1
+      parentName: Head
+      position: {x: -0, y: 0.28320634, z: 0}
+      rotation: {x: -0.020575168, y: -0, z: -0, w: 0.99978834}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
+    - name: Hat2
+      parentName: Hat1
+      position: {x: -2.1645974e-10, y: 0.23754703, z: -0.0000000035288394}
+      rotation: {x: 0.014824106, y: -0.00000011919618, z: -0.0000000017671674, w: 0.99989015}
+      scale: {x: 0.9999999, y: 1, z: 1}
+    - name: Hat3
+      parentName: Hat2
+      position: {x: 0.000000007450581, y: 0.26295948, z: 0.0000000012805685}
+      rotation: {x: 0.014574098, y: -2.842171e-14, z: -0.0000000034747356, w: 0.99989384}
+      scale: {x: 0.99999994, y: 0.9999995, z: 0.99999994}
+    - name: Hat4
+      parentName: Hat3
+      position: {x: -0.0000000040163286, y: 0.19781929, z: -0.000000009662472}
+      rotation: {x: -0.000360799, y: -1.0393601e-16, z: 8.601405e-11, w: 1}
+      scale: {x: 1, y: 0.99999934, z: 0.9999984}
+    - name: Hat5
+      parentName: Hat4
+      position: {x: 0.0000000027939677, y: 0.16500248, z: 0.000000020372681}
+      rotation: {x: 0.015010268, y: 2.535346e-16, z: -0.000000003578716, w: 0.9998874}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Moustache.L
+      parentName: Head
+      position: {x: -0.0083663985, y: 0.063636005, z: 0.25223568}
+      rotation: {x: -0.000000029802322, y: 0.000000029802322, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1.0000015, y: 1.0000015, z: 1}
+    - name: Moustache.R
+      parentName: Head
+      position: {x: 0.0083663985, y: 0.063636005, z: 0.25223568}
+      rotation: {x: -0.000000029802322, y: -0.000000029802322, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1.0000015, y: 1.0000015, z: 1}
+    - name: Eye.L
+      parentName: Head
+      position: {x: -0.11806437, y: 0.1678133, z: 0.1954954}
+      rotation: {x: -0.70167583, y: -0.14896414, z: -0.1524639, w: 0.6798643}
+      scale: {x: 1, y: 0.9999996, z: 1.0000001}
+    - name: EyeLidUpper.L
+      parentName: Eye.L
+      position: {x: -0.000000008731149, y: 0.025096739, z: 0.0000001557637}
+      rotation: {x: 0.92564344, y: -0.009482607, z: -0.009626761, w: 0.37815565}
+      scale: {x: 1.0000002, y: 1, z: 0.9999997}
+    - name: EyeLidLower.L
+      parentName: Eye.L
+      position: {x: 0.0014448432, y: 0.025019262, z: -0.0074573834}
+      rotation: {x: 0.9762623, y: -0.0112762535, z: -0.014038385, w: -0.21584198}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000004}
+    - name: Eye.R
+      parentName: Head
+      position: {x: 0.11806437, y: 0.1678133, z: 0.1954954}
+      rotation: {x: -0.70167583, y: 0.14896414, z: 0.1524639, w: 0.6798643}
+      scale: {x: 1, y: 0.9999996, z: 1.0000001}
+    - name: EyeLidUpper.R
+      parentName: Eye.R
+      position: {x: 0.000000008731149, y: 0.025096739, z: 0.0000001557637}
+      rotation: {x: 0.92564344, y: 0.009482607, z: 0.009626761, w: 0.37815565}
+      scale: {x: 1.0000002, y: 1, z: 0.9999997}
+    - name: EyeLidLower.R
+      parentName: Eye.R
+      position: {x: -0.0014448432, y: 0.025019262, z: -0.0074573834}
+      rotation: {x: 0.9762623, y: 0.0112762535, z: 0.014038385, w: -0.21584198}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000004}
+    - name: Shoulder.L
+      parentName: Spine
+      position: {x: -0.18072015, y: 0.13290676, z: 0.0037814863}
+      rotation: {x: -0.03954402, y: -0.03954402, z: 0.7060002, w: 0.7060002}
+      scale: {x: 1.0000014, y: 1.0000007, z: 0.9999995}
+    - name: ArmUpper.L
+      parentName: Shoulder.L
+      position: {x: -0.000000011350494, y: 0.12097529, z: 6.6653527e-10}
+      rotation: {x: 0.015873145, y: 0.000000048428774, z: -0.000000084517524, w: 0.99987406}
+      scale: {x: 1.0000026, y: 1.0000008, z: 1}
+    - name: ArmForearm.L
+      parentName: ArmUpper.L
+      position: {x: -0.00000001071021, y: 0.12595606, z: 0.0000000018626451}
+      rotation: {x: 0.033719294, y: -0.000000026085388, z: 0.00000008513743, w: 0.9994314}
+      scale: {x: 1.0000023, y: 1.0000024, z: 1.0000001}
+    - name: Hand.L
+      parentName: ArmForearm.L
+      position: {x: 0.0000000019645086, y: 0.15447329, z: -0.000000006868504}
+      rotation: {x: 0.021575991, y: 0.000015618514, z: 0.0017144551, w: 0.9997658}
+      scale: {x: 1.0000018, y: 1.0000007, z: 0.99999934}
+    - name: Index1.L
+      parentName: Hand.L
+      position: {x: 0.006082181, y: 0.08761293, z: 0.042149402}
+      rotation: {x: 0.08746068, y: 0.0033382294, z: -0.04918451, w: 0.9949475}
+      scale: {x: 1.0000029, y: 1.0000048, z: 0.99999994}
+    - name: Index2.L
+      parentName: Index1.L
+      position: {x: -0.000000010244548, y: 0.054764275, z: 0.0000000027939677}
+      rotation: {x: -0.002447135, y: 0.0023986257, z: 0.039290152, w: 0.99922204}
+      scale: {x: 1.0000014, y: 1.0000019, z: 1.0000011}
+    - name: Index3.L
+      parentName: Index2.L
+      position: {x: -0.000000014901161, y: 0.021742214, z: 0.000000019557774}
+      rotation: {x: 0.016334105, y: -0.0012893154, z: 0.043948047, w: 0.9988995}
+      scale: {x: 1.0000042, y: 1.000004, z: 0.9999988}
+    - name: Middle1.L
+      parentName: Hand.L
+      position: {x: 0.00663159, y: 0.08998134, z: 0.010545362}
+      rotation: {x: -0.0025919245, y: 0.090286165, z: 0.004266461, w: 0.9959033}
+      scale: {x: 1.0000024, y: 1.0000025, z: 1}
+    - name: Middle2.L
+      parentName: Middle1.L
+      position: {x: 0.000000015133992, y: 0.05572041, z: -9.313226e-10}
+      rotation: {x: -0.00907012, y: 0.0052655484, z: 0.036001112, w: 0.9992967}
+      scale: {x: 0.9999997, y: 1.0000007, z: 1.0000005}
+    - name: Middle3.L
+      parentName: Middle2.L
+      position: {x: -0.000000026775524, y: 0.02330986, z: -9.313226e-10}
+      rotation: {x: 0.003576729, y: 0.01192311, z: 0.06947564, w: 0.997506}
+      scale: {x: 1.0000042, y: 1.0000014, z: 0.99999917}
+    - name: Ring1.L
+      parentName: Hand.L
+      position: {x: -0.0028919578, y: 0.08850547, z: -0.020852193}
+      rotation: {x: -0.0032462936, y: 0.13463712, z: 0.017883446, w: 0.99072826}
+      scale: {x: 1.000004, y: 1.0000045, z: 1.0000011}
+    - name: Ring2.L
+      parentName: Ring1.L
+      position: {x: -0.000000004307367, y: 0.052607626, z: -4.656613e-10}
+      rotation: {x: -0.0037266081, y: 0.002777144, z: 0.032369077, w: 0.9994652}
+      scale: {x: 1.0000015, y: 0.9999997, z: 1.0000005}
+    - name: Ring3.L
+      parentName: Ring2.L
+      position: {x: 0.000000015104888, y: 0.02340167, z: 0}
+      rotation: {x: 0.0011654011, y: -0.013109485, z: 0.024047485, w: 0.99962425}
+      scale: {x: 1.0000063, y: 1.0000069, z: 1}
+    - name: Pinky1.L
+      parentName: Hand.L
+      position: {x: -0.017393053, y: 0.08278647, z: -0.048484392}
+      rotation: {x: 0.020255225, y: 0.16920869, z: 0.03666273, w: 0.9846899}
+      scale: {x: 1.000004, y: 1.0000035, z: 1.0000006}
+    - name: Pinky2.L
+      parentName: Pinky1.L
+      position: {x: 0.000000016530976, y: 0.043759484, z: -0.000000005122274}
+      rotation: {x: -0.0038887952, y: 0.011421913, z: 0.030785274, w: 0.9994532}
+      scale: {x: 1.0000039, y: 0.99999744, z: 1.0000008}
+    - name: Pinky3.L
+      parentName: Pinky2.L
+      position: {x: -0.0000000018626451, y: 0.020892935, z: -0.0000000027939677}
+      rotation: {x: -0.008712297, y: -0.02776698, z: -0.004392641, w: 0.99956685}
+      scale: {x: 1.0000021, y: 1.0000023, z: 1.0000013}
+    - name: Thumb1.L
+      parentName: Hand.L
+      position: {x: -0.008669368, y: 0.012182014, z: 0.034656473}
+      rotation: {x: 0.38907233, y: 0.13860777, z: 0.1080696, w: 0.9042852}
+      scale: {x: 1.000002, y: 1.0000033, z: 1}
+    - name: Thumb2.L
+      parentName: Thumb1.L
+      position: {x: 9.313226e-10, y: 0.04926537, z: -0.0000000037252903}
+      rotation: {x: -0.035330456, y: 0.030238762, z: 0.018057568, w: 0.99875486}
+      scale: {x: 1.0000002, y: 0.99999624, z: 1.000004}
+    - name: Thumb3.L
+      parentName: Thumb2.L
+      position: {x: -0.0000000055879354, y: 0.040709283, z: 0.000000013038516}
+      rotation: {x: -0.08836983, y: -0.010284059, z: 0.0011502974, w: 0.996034}
+      scale: {x: 1.0000015, y: 0.9999972, z: 1.0000035}
+    - name: Beard
+      parentName: Spine
+      position: {x: 0.000000033695382, y: 0.32533768, z: 0.14132868}
+      rotation: {x: 0.99190015, y: 0.000000056530386, z: 0.00000020495892, w: 0.12702014}
+      scale: {x: 1, y: 1.0000013, z: 0.9999987}
+    - name: Hair.L
+      parentName: Spine
+      position: {x: -0.21833013, y: 0.24340174, z: 0.1347418}
+      rotation: {x: 0.9945958, y: 0.013556976, z: -0.0018944031, w: 0.102916546}
+      scale: {x: 1, y: 1.0000015, z: 1.0000055}
+    - name: Shoulder.R
+      parentName: Spine
+      position: {x: 0.18072015, y: 0.13290676, z: 0.0037814}
+      rotation: {x: -0.03954419, y: 0.03954416, z: -0.70600027, w: 0.70600015}
+      scale: {x: 1.0000019, y: 1.000001, z: 1}
+    - name: ArmUpper.R
+      parentName: Shoulder.R
+      position: {x: 0.000000071071554, y: 0.12097528, z: -0.0000000013297043}
+      rotation: {x: 0.015872896, y: -0.0000000949949, z: 0.00000019010622, w: 0.99987406}
+      scale: {x: 1.0000033, y: 1.0000015, z: 1.0000007}
+    - name: ArmForearm.R
+      parentName: ArmUpper.R
+      position: {x: 0.000000026542693, y: 0.125956, z: 0.000000013038516}
+      rotation: {x: 0.03371935, y: 0.000000029070723, z: -0.00000006078371, w: 0.99943143}
+      scale: {x: 1.0000029, y: 1.0000026, z: 0.9999989}
+    - name: Hand.R
+      parentName: ArmForearm.R
+      position: {x: 0.000000015264959, y: 0.15447329, z: 0.0000000012805685}
+      rotation: {x: 0.02157596, y: -0.000015596726, z: -0.0017143075, w: 0.99976575}
+      scale: {x: 1.0000011, y: 1.0000014, z: 1.0000004}
+    - name: Index1.R
+      parentName: Hand.R
+      position: {x: -0.0060821055, y: 0.087612934, z: 0.04214941}
+      rotation: {x: 0.08746066, y: -0.003338233, z: 0.049184375, w: 0.99494743}
+      scale: {x: 1.000003, y: 1.0000038, z: 0.9999988}
+    - name: Index2.R
+      parentName: Index1.R
+      position: {x: -0.000000018626451, y: 0.054764222, z: -0.000000019557774}
+      rotation: {x: -0.0024470983, y: -0.0023985314, z: -0.039295733, w: 0.9992218}
+      scale: {x: 0.99999934, y: 1.0000018, z: 1.0000014}
+    - name: Index3.R
+      parentName: Index2.R
+      position: {x: 0.000000044703484, y: 0.02174221, z: 0.0000000018626451}
+      rotation: {x: 0.016334191, y: 0.001289292, z: -0.04394801, w: 0.99889946}
+      scale: {x: 1.0000007, y: 1.0000012, z: 0.9999997}
+    - name: Middle1.R
+      parentName: Hand.R
+      position: {x: -0.006631516, y: 0.08998133, z: 0.010545371}
+      rotation: {x: -0.00259193, y: -0.0902861, z: -0.004266504, w: 0.9959034}
+      scale: {x: 1.0000013, y: 1.0000017, z: 0.9999999}
+    - name: Middle2.R
+      parentName: Middle1.R
+      position: {x: 0.000000029685907, y: 0.05572042, z: -0.0000000018626451}
+      rotation: {x: -0.009070148, y: -0.005265644, z: -0.03600179, w: 0.9992967}
+      scale: {x: 1.0000015, y: 1.0000027, z: 1.0000002}
+    - name: Middle3.R
+      parentName: Middle2.R
+      position: {x: 0.000000027474016, y: 0.023309859, z: 0.0000000018626451}
+      rotation: {x: 0.0035765981, y: -0.01192301, z: -0.06947548, w: 0.997506}
+      scale: {x: 1.000003, y: 1.000003, z: 1.0000004}
+    - name: Ring1.R
+      parentName: Hand.R
+      position: {x: 0.0028920018, y: 0.08850545, z: -0.020852203}
+      rotation: {x: -0.003246912, y: -0.13463697, z: -0.017884675, w: 0.9907283}
+      scale: {x: 1.0000037, y: 1.0000043, z: 1.0000004}
+    - name: Ring2.R
+      parentName: Ring1.R
+      position: {x: 0.000000003608875, y: 0.052607648, z: -0.0000000010477379}
+      rotation: {x: 0.0037263776, y: 0.0027770535, z: 0.032366082, w: -0.99946535}
+      scale: {x: 1.0000051, y: 1.0000018, z: 0.99999994}
+    - name: Ring3.R
+      parentName: Ring2.R
+      position: {x: -0.000000023486791, y: 0.023401693, z: 4.656613e-10}
+      rotation: {x: 0.0011653001, y: 0.01310949, z: -0.024047555, w: 0.9996242}
+      scale: {x: 1.0000011, y: 1.0000011, z: 1.0000001}
+    - name: Pinky1.R
+      parentName: Hand.R
+      position: {x: 0.017393097, y: 0.08278644, z: -0.048484392}
+      rotation: {x: 0.020254923, y: -0.1692089, z: -0.036663365, w: 0.98468983}
+      scale: {x: 1.0000049, y: 1.0000038, z: 1.0000004}
+    - name: Pinky2.R
+      parentName: Pinky1.R
+      position: {x: -9.313226e-10, y: 0.043759476, z: 0.0000000037252903}
+      rotation: {x: 0.0038889516, y: 0.011421824, z: 0.030789394, w: -0.9994531}
+      scale: {x: 1.0000025, y: 0.99999577, z: 0.99999994}
+    - name: Pinky3.R
+      parentName: Pinky2.R
+      position: {x: -0.000000008381903, y: 0.020892922, z: 0}
+      rotation: {x: -0.0087123, y: 0.027766908, z: 0.0043928954, w: 0.9995668}
+      scale: {x: 1.0000023, y: 1.0000021, z: 1.0000015}
+    - name: Thumb1.R
+      parentName: Hand.R
+      position: {x: 0.008669424, y: 0.012182012, z: 0.034656473}
+      rotation: {x: 0.3890725, y: -0.13860811, z: -0.10806911, w: 0.9042851}
+      scale: {x: 1.0000048, y: 1.000005, z: 0.999999}
+    - name: Thumb2.R
+      parentName: Thumb1.R
+      position: {x: 0.000000006519258, y: 0.049265414, z: -0.0000000018626451}
+      rotation: {x: 0.035331298, y: 0.030238677, z: 0.018058201, w: -0.9987549}
+      scale: {x: 1.0000015, y: 0.9999965, z: 1.0000049}
+    - name: Thumb3.R
+      parentName: Thumb2.R
+      position: {x: -0.0000000018626451, y: 0.040709227, z: -0.000000022351742}
+      rotation: {x: 0.08836992, y: -0.010283989, z: 0.0011501922, w: -0.996034}
+      scale: {x: 1.0000025, y: 0.99999887, z: 1.0000046}
+    - name: Hair.R
+      parentName: Spine
+      position: {x: 0.21833019, y: 0.24340174, z: 0.1347417}
+      rotation: {x: 0.9945959, y: -0.013556938, z: 0.0018941148, w: 0.1029166}
+      scale: {x: 1, y: 1.0000024, z: 1.0000052}
+    - name: LegUpper.L
+      parentName: Hip
+      position: {x: -0.12433484, y: 0.027855784, z: 0.00000000896398}
+      rotation: {x: 0.9996423, y: -0.0000000031882694, z: -0.00000011916662, w: 0.026745142}
+      scale: {x: 1, y: 1.000001, z: 1.0000033}
+    - name: LegLower.L
+      parentName: LegUpper.L
+      position: {x: 0.000000004163198, y: 0.13641186, z: 0.0000000012383286}
+      rotation: {x: 0.06254026, y: -1.9428903e-16, z: -0.000000014910752, w: 0.99804246}
+      scale: {x: 1, y: 1.0000026, z: 1.0000025}
+    - name: Foot.L
+      parentName: LegLower.L
+      position: {x: 0.0000000011192667, y: 0.10186702, z: 4.2343018e-10}
+      rotation: {x: -0.73861134, y: -0.000000021427866, z: 0.00000019957682, w: 0.6741315}
+      scale: {x: 1, y: 1.0000008, z: 1.0000017}
+    - name: Toe.L
+      parentName: Foot.L
+      position: {x: -0.0000000064811756, y: 0.19833942, z: 0.0000000019249882}
+      rotation: {x: -0.18624106, y: -0.00000032014103, z: 0.00000011692839, w: 0.9825041}
+      scale: {x: 1, y: 0.9999998, z: 1.0000006}
+    - name: LegUpper.R
+      parentName: Hip
+      position: {x: 0.12433484, y: 0.027855784, z: 0.00000000896398}
+      rotation: {x: 0.9996423, y: 0.0000000031882694, z: 0.00000011916662, w: 0.026745142}
+      scale: {x: 1, y: 1.000001, z: 1.0000033}
+    - name: LegLower.R
+      parentName: LegUpper.R
+      position: {x: -0.000000004163198, y: 0.13641186, z: 0.0000000012383286}
+      rotation: {x: 0.06254026, y: 1.9428903e-16, z: 0.000000014910752, w: 0.99804246}
+      scale: {x: 1, y: 1.0000026, z: 1.0000025}
+    - name: Foot.R
+      parentName: LegLower.R
+      position: {x: -0.0000000011192667, y: 0.10186702, z: 4.2343018e-10}
+      rotation: {x: -0.73861134, y: 0.000000021427866, z: -0.00000019957682, w: 0.6741315}
+      scale: {x: 1, y: 1.0000008, z: 1.0000017}
+    - name: Toe.R
+      parentName: Foot.R
+      position: {x: 0.0000000064811756, y: 0.19833942, z: 0.0000000019249882}
+      rotation: {x: -0.18624106, y: 0.00000032014103, z: -0.00000011692839, w: 0.9825041}
+      scale: {x: 1, y: 0.9999998, z: 1.0000006}
+    - name: HairR
+      parentName: Gnome_Rigged(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Body_V2
+      parentName: Gnome_Rigged(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308624
+  packageName: Gnome - Poly
+  packageVersion: 1.0.2
+  assetPath: Assets/SnoozyRat/Gnome - Poly/Mesh/GnomePoly.fbx
+  uploadId: 869936
