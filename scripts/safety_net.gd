@@ -31,10 +31,10 @@ enum NetPattern {
 @export var max_support_acceleration: float = 200.0
 
 @export_group("Ball Interaction")
-@export var support_strength: float = 75.0
-@export var support_damping: float = 12.0
+@export var support_strength: float = 200.0
+@export var support_damping: float = 20.0
 @export var impact_transfer: float = 1.0
-@export var ball_radius: float = 0.5
+@export var ball_radius: float = 2.0
 
 @export_group("Detection")
 @export var detection_height: float = 10.0
@@ -464,8 +464,8 @@ func _apply_ball_forces(delta: float) -> void:
 		var net_height := vertices_rest[i].y + heights[i]
 		var ball_bottom := local_pos.y - ball_radius
 
-		# Prevent suction from underneath.
-		if local_pos.y < net_height - contact_tolerance:
+		# Prevent the net from catching a ball coming from underneath.
+		if local_pos.y < net_height - ball_radius:
 			continue
 
 		var penetration := net_height - ball_bottom

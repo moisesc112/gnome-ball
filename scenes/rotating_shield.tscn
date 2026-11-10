@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://b0eigd8vegl2j"]
+
+[ext_resource type="Script" uid="uid://otbpfmuf3lc8" path="res://scripts/rotating_platform.gd" id="1_egdax"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4bcl2"]
+top_radius = 7.0
+bottom_radius = 7.0
+height = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sthun"]
+height = 1.0
+radius = 7.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_4bcl2"]
+size = Vector3(14, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bavol"]
+size = Vector3(14, 1, 1)
+
+[node name="RotatingShield" type="AnimatableBody3D" unique_id=97080223]
+script = ExtResource("1_egdax")
+
+[node name="BaseMesh" type="MeshInstance3D" parent="." unique_id=1805901028]
+mesh = SubResource("CylinderMesh_4bcl2")
+
+[node name="BaseCollision" type="CollisionShape3D" parent="." unique_id=2119123179]
+shape = SubResource("CylinderShape3D_sthun")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2098629884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_4bcl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2095522892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_bavol")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=166034093]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 0)
+mesh = SubResource("BoxMesh_4bcl2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=137987738]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 0)
+shape = SubResource("BoxShape3D_bavol")

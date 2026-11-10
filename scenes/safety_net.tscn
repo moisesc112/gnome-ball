@@ -13,12 +13,35 @@ size = Vector3(12, 3, 12)
 
 [node name="SafetyNet" type="Node3D" unique_id=1623921247]
 script = ExtResource("1_du280")
+net_pattern = null
+center_hole = null
+inner_radius = null
+outer_radius = null
+net_width = null
+net_depth = null
+resolution = null
+radial_segments = null
+ring_segments = null
+spring_strength = null
+neighbor_strength = null
+damping = null
+max_sag = null
+contact_tolerance = null
+max_support_acceleration = null
+support_strength = null
+support_damping = null
+impact_transfer = null
+ball_radius = null
+detection_height = null
+detection_padding = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=727498279]
 material_override = SubResource("StandardMaterial3D_du280")
 mesh = SubResource("ArrayMesh_4bcl2")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1141297470]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=333370477]
 shape = SubResource("BoxShape3D_sthun")

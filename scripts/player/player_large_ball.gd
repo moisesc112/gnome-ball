@@ -9,7 +9,7 @@ extends RigidBody3D
 @export var lobby_push_force: float = 1.5
 @export var push_force: float = 25.0
 @export var max_input_speed: float = 15.0
-@export var downhill_assist: float = 5.0
+@export var downhill_assist: float = 6.0
 @export var air_gravity_multiplier: float = 3.0
 @export var air_steer_multiplier: float = 0.4
 

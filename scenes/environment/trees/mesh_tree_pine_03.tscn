@@ -3,3 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://dfgc3chmoha0c" path="res://assets/fbx/trees/mesh_tree_pine_03.fbx" id="1_7ceyj"]
 
 [node name="mesh_tree_pine_03" unique_id=258871665 instance=ExtResource("1_7ceyj")]
+
+[node name="mesh_tree_pine_03_trunk_LOD1" parent="." index="2" unique_id=2012581387]
+visible = false
+
+[node name="mesh_tree_pine_03_trunk_LOD2" parent="." index="3" unique_id=1656175225]
+visible = false
+
+[node name="mesh_tree_pine_03_trunk_LOD3" parent="." index="4" unique_id=1363736321]
+visible = false
