@@ -15,32 +15,32 @@ enum AxisDirection {
 @export var rotation_direction: RotationDirection = RotationDirection.CLOCKWISE
 @export var axis_direction: AxisDirection = AxisDirection.Y
 
-func rotate_x_axis(delta: float) -> void:
-	if rotation_direction == RotationDirection.CLOCKWISE:
-		rotate_x(deg_to_rad(rotation_speed) * delta)
-	else:
-		rotate_x(deg_to_rad(-rotation_speed) * delta)
+var initial_rotation: Quaternion
 
-func rotate_y_axis(delta: float) -> void:
-	if rotation_direction == RotationDirection.CLOCKWISE:
-		rotate_y(deg_to_rad(rotation_speed) * delta)
-	else:
-		rotate_y(deg_to_rad(-rotation_speed) * delta)
+func _ready() -> void:
+	initial_rotation = quaternion
 
-func rotate_z_axis(delta: float) -> void:
-	if rotation_direction == RotationDirection.CLOCKWISE:
-		rotate_z(deg_to_rad(rotation_speed) * delta)
-	else:
-		rotate_z(deg_to_rad(-rotation_speed) * delta)
-
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not GameManager.game_active:
 		return
+		
+	var t := GameManager.get_level_time()
 	
+	var direction := 1.0
+	if rotation_direction == RotationDirection.COUNTERCLOCKWISE:
+		direction = -1.0
+
+	var angle_degrees := fposmod(rotation_speed * direction * t, 360.0)
+	var angle := deg_to_rad(angle_degrees)
+
+	var axis := Vector3.UP
+
 	match axis_direction:
 		AxisDirection.X:
-			rotate_x_axis(delta)
+			axis = Vector3.RIGHT
 		AxisDirection.Y:
-			rotate_y_axis(delta)
+			axis = Vector3.UP
 		AxisDirection.Z:
-			rotate_z_axis(delta)
+			axis = Vector3.BACK
+
+	quaternion = initial_rotation * Quaternion(axis, angle)

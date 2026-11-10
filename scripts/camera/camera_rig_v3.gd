@@ -38,6 +38,8 @@ func _ready() -> void:
 		set_process_unhandled_input(false)
 		return
 
+	GameManager.game_started.connect(update_camera)
+
 	update_camera()
 	
 	if player.is_multiplayer_authority() and GameManager.game_state == GameManager.GameState.PLAYING:
@@ -60,8 +62,10 @@ func _ready() -> void:
 func update_camera() -> void:
 	if player.is_multiplayer_authority() and GameManager.game_state == GameManager.GameState.PLAYING:
 		camera.make_current()
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		camera.current = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

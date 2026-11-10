@@ -37,19 +37,24 @@ func change_network_scene(scene_type: NetworkScene) -> void :
 	scene_spawner = null
 	ready_peers.clear()
 	spawned_peers.clear()
+	
+	GameManager.reset_level()
 
 	match scene_type:
 		NetworkScene.LOBBY:
-			GameManager.game_active = false
+			#GameManager.game_active = false
 			GameManager.game_state = GameManager.GameState.LOBBY
 			get_tree().change_scene_to_file(lobby_scene)
 		NetworkScene.GAME:
-			GameManager.game_active = false
+			#GameManager.game_active = false
 			#GameManager.game_state = GameManager.GameState.STARTING
-			GameManager.game_state = GameManager.GameState.PLAYING
+			#GameManager.game_state = GameManager.GameState.PLAYING
 			get_tree().change_scene_to_file(base_level_scene)
 
-func register_scene_spawner(spawner: MultiplayerSpawner, scene_type: NetworkScene) -> void :
+func register_scene_spawner(
+	spawner: MultiplayerSpawner,
+	scene_type: NetworkScene
+) -> void:
 	scene_spawner = spawner
 
 	if multiplayer.is_server():
@@ -60,6 +65,20 @@ func register_scene_spawner(spawner: MultiplayerSpawner, scene_type: NetworkScen
 		else:
 			check_all_ready()
 	else:
+		if scene_type == NetworkScene.GAME:
+			while not GameManager.clock_synchronized:
+				await GameManager.clock_sync_completed
+
+				if not multiplayer.has_multiplayer_peer():
+					return
+
+			# Scene may have changed while awaiting sync.
+			if current_scene != scene_type:
+				return
+
+			if scene_spawner != spawner:
+				return
+
 		notify_scene_ready.rpc_id(1, scene_type)
 
 @rpc("any_peer", "reliable")
@@ -104,6 +123,9 @@ func check_all_ready() -> void :
 
 	if scene_spawner == null:
 		return
+		
+	if GameManager.start_scheduled or GameManager.game_active:
+		return
 
 	for id in expected_peers:
 		if not ready_peers.has(id):
@@ -114,7 +136,8 @@ func check_all_ready() -> void :
 	for id in expected_peers:
 		spawn_peer(id)
 
-	GameManager.start_game.rpc()
+	#GameManager.start_game.rpc()
+	GameManager.begin_game()
 
 func start_solo() -> void :
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
@@ -129,11 +152,18 @@ func start_solo() -> void :
 	expected_peers.append(1)
 
 	#GameManager.game_state = GameManager.GameState.STARTING
-	GameManager.game_state = GameManager.GameState.PLAYING
-	GameManager.game_active = false
+	#GameManager.game_state = GameManager.GameState.PLAYING
+	#GameManager.game_active = false
+	
+	GameManager.reset_clock()
+	GameManager.reset_level()
+	
 	get_tree().change_scene_to_file(base_level_scene)
 
 func start_server() -> void :
+	GameManager.reset_clock()
+	GameManager.reset_level()
+	
 	peer = ENetMultiplayerPeer.new()
 	var error: = peer.create_server(PORT)
 
@@ -152,6 +182,9 @@ func start_server() -> void :
 	get_tree().change_scene_to_file(lobby_scene)
 
 func start_client() -> void :
+	GameManager.reset_clock()
+	GameManager.reset_level()
+	
 	peer = ENetMultiplayerPeer.new()
 	var error: = peer.create_client(IP_ADDRESS, PORT)
 
@@ -162,5 +195,7 @@ func start_client() -> void :
 	multiplayer.multiplayer_peer = peer
 
 	await multiplayer.connected_to_server
+	
+	GameManager.request_server_time()
 
 	get_tree().change_scene_to_file(lobby_scene)
