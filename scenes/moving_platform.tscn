@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dex36f4a8heyc"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://42wvx3ecjile" path="res://assets/default_platform_physics_mat.tres" id="1_1tdcd"]
+[ext_resource type="Script" uid="uid://bnfxxiytqum8o" path="res://scripts/moving_platform.gd" id="1_ms375"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4bcl2"]
+size = Vector3(6, 1, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1tdcd"]
+size = Vector3(6, 1, 6)
+
+[node name="MovingPlatform" type="AnimatableBody3D" unique_id=1569228954]
+physics_material_override = ExtResource("1_1tdcd")
+script = ExtResource("1_ms375")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1901880196]
+mesh = SubResource("BoxMesh_4bcl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1419027427]
+shape = SubResource("BoxShape3D_1tdcd")

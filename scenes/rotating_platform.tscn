@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://okbjfchtv0kh"]
+
+[ext_resource type="Script" uid="uid://otbpfmuf3lc8" path="res://scripts/rotating_platform.gd" id="1_ch1di"]
+[ext_resource type="PhysicsMaterial" uid="uid://42wvx3ecjile" path="res://assets/default_platform_physics_mat.tres" id="1_dt5r4"]
+[ext_resource type="Material" uid="uid://baq7cdbu4ermj" path="res://assets/characters/fairy_king/Face.tres" id="2_rt4pv"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m5pou"]
+material = ExtResource("2_rt4pv")
+top_radius = 7.0
+bottom_radius = 7.0
+height = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ch1di"]
+height = 0.2
+radius = 7.0
+
+[node name="RotatingPlatform" type="AnimatableBody3D" unique_id=1450420511]
+physics_material_override = ExtResource("1_dt5r4")
+script = ExtResource("1_ch1di")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1985404587]
+mesh = SubResource("CylinderMesh_m5pou")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=887419995]
+shape = SubResource("CylinderShape3D_ch1di")

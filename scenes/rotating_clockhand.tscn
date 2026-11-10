@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cmgrres4u7xyg"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://42wvx3ecjile" path="res://assets/default_platform_physics_mat.tres" id="1_ty2rx"]
+[ext_resource type="Script" uid="uid://otbpfmuf3lc8" path="res://scripts/rotating_platform.gd" id="2_a2dn8"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ldjd5"]
+top_radius = 7.0
+bottom_radius = 7.0
+height = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4bcl2"]
+height = 1.0
+radius = 7.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_a2dn8"]
+size = Vector3(30, 1, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sthun"]
+size = Vector3(30, 1, 6)
+
+[node name="RotatingClockhand" type="AnimatableBody3D" unique_id=374107497]
+physics_material_override = ExtResource("1_ty2rx")
+script = ExtResource("2_a2dn8")
+rotation_speed = 30.0
+
+[node name="ClockBase" type="MeshInstance3D" parent="." unique_id=2055346041]
+mesh = SubResource("CylinderMesh_ldjd5")
+
+[node name="BaseCollision" type="CollisionShape3D" parent="." unique_id=1939306767]
+shape = SubResource("CylinderShape3D_4bcl2")
+
+[node name="Hand1" type="MeshInstance3D" parent="." unique_id=314406235]
+mesh = SubResource("BoxMesh_a2dn8")
+
+[node name="Hand1Collision" type="CollisionShape3D" parent="." unique_id=211454166]
+shape = SubResource("BoxShape3D_sthun")
+
+[node name="Hand2" type="MeshInstance3D" parent="." unique_id=2032020638]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_a2dn8")
+
+[node name="Hand2Collision" type="CollisionShape3D" parent="." unique_id=945637820]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_sthun")
