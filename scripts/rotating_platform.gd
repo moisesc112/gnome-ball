@@ -34,14 +34,13 @@ func rotate_z_axis(delta: float) -> void:
 		rotate_z(deg_to_rad(-rotation_speed) * delta)
 
 func _physics_process(delta: float) -> void:
-	pass
-	#if not GameManager.game_active:
-	#	return
+	if not GameManager.game_active:
+		return
 	
-	#match axis_direction:
-	#	AxisDirection.X:
-	#		rotate_x_axis(delta)
-	#	AxisDirection.Y:
-	#		rotate_y_axis(delta)
-	#	AxisDirection.Z:
-	#		rotate_z_axis(delta)
+	match axis_direction:
+		AxisDirection.X:
+			rotate_x_axis(delta)
+		AxisDirection.Y:
+			rotate_y_axis(delta)
+		AxisDirection.Z:
+			rotate_z_axis(delta)

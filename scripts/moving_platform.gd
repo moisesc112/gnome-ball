@@ -23,13 +23,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	pass
-	#if not GameManager.game_active:
-	#	return
+	if not GameManager.game_active:
+		return
 		
-	#position.y += direction * move_speed * delta
+	position.y += direction * move_speed * delta
 
-	#if position.y >= start_position.y + move_distance:
-	#	direction = -1.0
+	if position.y >= start_position.y + move_distance:
+		direction = -1.0
 
-	#elif position.y <= start_position.y - move_distance:
-	#	direction = 1.0
+	elif position.y <= start_position.y - move_distance:
+		direction = 1.0
