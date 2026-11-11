@@ -10,8 +10,8 @@ enum NetPattern {
 @export_group("Pattern")
 @export var net_pattern: NetPattern = NetPattern.GRID
 @export var center_hole: bool = false
-@export var inner_radius: float = 2.0
-@export var outer_radius: float = 8.0
+@export var inner_radius: float = 26.0
+@export var outer_radius: float = 50.0
 
 @export_group("Grid")
 @export var net_width: float = 12.0
@@ -19,7 +19,7 @@ enum NetPattern {
 @export_range(4, 64) var resolution: int = 20
 
 @export_group("Spiderweb")
-@export_range(8, 64) var radial_segments: int = 24
+@export_range(8, 64) var radial_segments: int = 32
 @export_range(2, 32) var ring_segments: int = 12
 
 @export_group("Net Physics")

@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://cmgrres4u7xyg" path="res://scenes/rotating_clockhand.tscn" id="26"]
 [ext_resource type="PackedScene" uid="uid://dex36f4a8heyc" path="res://scenes/moving_platform.tscn" id="27"]
 [ext_resource type="PackedScene" uid="uid://b0eigd8vegl2j" path="res://scenes/rotating_shield.tscn" id="28_64olr"]
+[ext_resource type="PackedScene" uid="uid://c638h7o78jp0" path="res://scenes/rotating_log.tscn" id="29_yo52i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("4")
@@ -472,8 +473,8 @@ depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
 [node name="Ramp64" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1854691009]
-transform = Transform3D(-0.9136898, -0.08456101, -0.39751768, -0.09309545, 0.99565476, 0.0021804676, 0.39560592, 0.03899933, -0.91759175, -47.082893, 106.60762, -79.82783)
-polygon = PackedVector2Array(-9.429621, -0.05278015, -9.558771, 1.0866928, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+transform = Transform3D(-0.9136898, -0.08456101, -0.39751768, -0.09309545, 0.99565476, 0.0021804676, 0.39560592, 0.03899933, -0.91759175, -48.989944, 106.60762, -78.92508)
+polygon = PackedVector2Array(2.1389008, -0.02494812, 1.3300457, 1.4522095, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
@@ -898,6 +899,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.373177, 47.328358, -89.62
 radius = 16.631836
 height = 1.0
 
+[node name="CSGCylinder3D17" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1918980892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.373177, 132.29282, -89.6233)
+radius = 16.631836
+height = 1.0
+
 [node name="CSGCylinder3D16" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1012926417]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.57, 32.83336, -116.82411)
 radius = 16.631836
@@ -1235,14 +1241,10 @@ transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 3.7868648, 0.04504118, -16
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 107.92234, -88.728)
 net_pattern = 1
 center_hole = true
-inner_radius = 26.0
-outer_radius = 40.0
-radial_segments = 64
-ring_segments = 32
 impact_transfer = 3.0
 
 [node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("23")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.41826, 108.09871, -77.290665)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.584694, 32.523937, -46.6551)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1297982833 node_paths=PackedStringArray("ball")]
 script = ExtResource("24")
@@ -1476,10 +1478,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.687805, 43.32771, -63.499
 rotation_speed = 60.0
 
 [node name="RotatingShield2" parent="." unique_id=973361135 instance=ExtResource("28_64olr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.192524, 43.32771, -61.30895)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.933155, 43.32771, -38.982506)
 rotation_speed = 60.0
 rotation_direction = 1
 
 [node name="RotatingShield3" parent="." unique_id=729633308 instance=ExtResource("28_64olr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.41933, 43.32771, -57.00888)
 rotation_speed = 60.0
+
+[node name="RotatingLog" parent="." unique_id=1819719940 instance=ExtResource("29_yo52i")]
+transform = Transform3D(-0.01761443, 0.9715184, 0.23630923, 0.9975786, 0.0011727698, 0.06953779, 0.06728009, 0.2369619, -0.96918666, -28.666256, 38.765408, -60.554882)

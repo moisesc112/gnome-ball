@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c638h7o78jp0"]
+
+[ext_resource type="Script" uid="uid://otbpfmuf3lc8" path="res://scripts/rotating_platform.gd" id="1_oj3al"]
+[ext_resource type="Material" uid="uid://baq7cdbu4ermj" path="res://assets/characters/fairy_king/Face.tres" id="2_isou2"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4bcl2"]
+material = ExtResource("2_isou2")
+top_radius = 5.0
+bottom_radius = 5.0
+height = 15.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_oj3al"]
+height = 15.0
+radius = 5.0
+
+[node name="RotatingLog" type="AnimatableBody3D" unique_id=1819719940]
+script = ExtResource("1_oj3al")
+rotation_speed = 60.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1049001511]
+mesh = SubResource("CylinderMesh_4bcl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=711783542]
+shape = SubResource("CylinderShape3D_oj3al")
