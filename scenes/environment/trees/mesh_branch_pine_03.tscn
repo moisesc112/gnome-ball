@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://pubaucmhhxsy"]
+
+[ext_resource type="PackedScene" uid="uid://bhiu1bvn6dd8l" path="res://assets/fbx/branches/mesh_branch_pine_03.fbx" id="1_gohwh"]
+
+[node name="mesh_branch_pine_03" unique_id=1732254116 instance=ExtResource("1_gohwh")]
