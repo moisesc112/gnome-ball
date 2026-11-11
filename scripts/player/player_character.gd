@@ -6,6 +6,8 @@ extends CharacterBody3D
 @onready var camera_rig: Node3D = $CameraRig
 #@onready var animation_player: AnimationPlayer = $Gnome_smooth/AnimationPlayer
 @onready var animation_player: AnimationPlayer = $gnome_low_poly_smooth/AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
+
 @export var camera_follow_speed: float = 3.0
 @export var target_yaw: float = PI
 var target_pitch = 0.0
@@ -51,6 +53,7 @@ const JUMP_VELOCITY = 4.5
 
 func _ready() -> void:
 	camera_rig.top_level = true
+	animation_tree.active = true
 	
 	if ball == null:
 		ball = get_node_or_null("../PlayerLargeBall") as RigidBody3D
@@ -80,16 +83,12 @@ func update_animation() -> void:
 	if is_multiplayer_authority():
 		#var speed := Vector2(velocity.x, velocity.z).length()
 		is_walking = movement_input.length_squared() > 0.01
-	if is_walking:
-		if animation_player.current_animation != "Gnome_Rig|Skip":
-			animation_player.play("Gnome_Rig|Skip", 0.2)
-		#if animation_player.current_animation != "WalkAction":
-			#animation_player.play("WalkAction", 0.2)
-	else:
-		if animation_player.current_animation != "Gnome_Rig|Idle":
-			animation_player.play("Gnome_Rig|Idle", 0.2)
-		#if animation_player.current_animation != "IdleAction":
-			#animation_player.play("IdleAction", 0.2)
+		var speed := movement_input.length_squared()
+		
+		animation_tree.set("parameters/conditions/is_idle", speed <= 0.0099)
+		
+		animation_tree.set("parameters/conditions/is_walking", speed > 0.01)
+
 
 func is_ball_grounded() -> bool:
 	var ground_cast := ball.get_node("GroundCast") as ShapeCast3D
