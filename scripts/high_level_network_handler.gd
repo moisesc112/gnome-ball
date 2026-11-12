@@ -21,6 +21,9 @@ var spawned_peers: Dictionary = {}
 
 var is_solo: bool = false
 
+var transitioning_to_game: bool = false
+var cleanup_ready_peers: Dictionary = {}
+
 func _ready() -> void:
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
@@ -30,17 +33,25 @@ func _on_server_disconnected() -> void:
 	leave_session()
 	
 func _on_peer_disconnected(id: int) -> void:
+	if not multiplayer.has_multiplayer_peer():
+		return
+	
 	if not multiplayer.is_server():
 		return
 		
 	expected_peers.erase(id)
 	ready_peers.erase(id)
+	cleanup_ready_peers.erase(id)
+	
+	if scene_spawner != null:
+		scene_spawner.despawn_player(id)
+		
 	spawned_peers.erase(id)
-	
-	if scene_spawner == null:
-		return
-	
-	scene_spawner.despawn_player(id)
+
+	if transitioning_to_game:
+		check_cleanup_complete()
+	elif current_scene == NetworkScene.GAME:
+		check_all_ready()
 
 func leave_session() -> void:
 	var multiplayer_peer := multiplayer.multiplayer_peer
@@ -52,12 +63,16 @@ func leave_session() -> void:
 	expected_peers.clear()
 	ready_peers.clear()
 	spawned_peers.clear()
+	cleanup_ready_peers.clear()
 	
+	transitioning_to_game = false
 	is_solo = false
 	scene_spawner = null
 	current_scene = NetworkScene.LOBBY
 	GameManager.local_pause_menu_open = false
 	GameManager.game_active = false
+	GameManager.reset_clock()
+	GameManager.reset_level()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	get_tree().paused = false
@@ -67,11 +82,104 @@ func start_game() -> void :
 	if not multiplayer.is_server():
 		return
 
+	if transitioning_to_game:
+		return
+		
+	transitioning_to_game = true
+
 	expected_peers.clear()
 	expected_peers.append(1)
 
 	for id in multiplayer.get_peers():
 		expected_peers.append(id)
+
+	cleanup_ready_peers.clear()
+	
+	prepare_lobby_cleanup.rpc(expected_peers)
+	
+	for id in spawned_peers.keys():
+		scene_spawner.despawn_player(id)
+
+	#change_network_scene.rpc(NetworkScene.GAME)
+
+@rpc("authority", "call_local", "reliable")
+func prepare_lobby_cleanup(player_ids:Array[int]) -> void:
+	var cleanup_successful := await wait_for_lobby_players_removed(player_ids)
+	
+	if not cleanup_successful:
+		return
+	
+	if not multiplayer.has_multiplayer_peer():
+		return
+
+	if multiplayer.is_server():
+		cleanup_ready_peers[1] = true
+		check_cleanup_complete()
+	else:
+		notify_lobby_cleanup_complete.rpc_id(1)
+
+func wait_for_lobby_players_removed(player_ids: Array[int]) -> bool:
+	var start_time := Time.get_ticks_msec()
+	
+	while true:
+		if not multiplayer.has_multiplayer_peer():
+			return false
+
+		if current_scene != NetworkScene.LOBBY:
+			return false 
+
+		if Time.get_ticks_msec() - start_time > 5000:
+			push_warning("Lobby cleanup timed out")
+			return false
+
+		var lobby := get_tree().root.get_node_or_null("Lobby")
+	
+		if lobby == null:
+			return false
+
+		var all_removed := true
+
+		for id in player_ids:
+			if lobby.has_node(str(id)):
+				all_removed = false
+				break
+
+		if all_removed:
+			return true
+
+		await get_tree().process_frame
+		
+	return false
+
+@rpc("any_peer", "call_remote", "reliable")
+func notify_lobby_cleanup_complete() -> void:
+	if not multiplayer.is_server():
+		return
+
+	if not transitioning_to_game:
+		return
+
+	var sender := multiplayer.get_remote_sender_id()
+
+	if sender not in expected_peers:
+		return
+
+	cleanup_ready_peers[sender] = true
+	check_cleanup_complete()
+	
+func check_cleanup_complete() -> void:
+	if not multiplayer.is_server():
+		return
+
+	if not transitioning_to_game:
+		return
+
+	for id in expected_peers:
+		if not cleanup_ready_peers.has(id):
+			return
+
+	transitioning_to_game = false
+	cleanup_ready_peers.clear()
 
 	change_network_scene.rpc(NetworkScene.GAME)
 
@@ -151,6 +259,9 @@ func spawn_peer(id: int) -> void :
 	if not multiplayer.is_server():
 		return
 
+	if transitioning_to_game:
+		return
+
 	if scene_spawner == null:
 		return
 
@@ -191,6 +302,9 @@ func start_solo() -> void :
 	ready_peers.clear()
 	expected_peers.clear()
 	spawned_peers.clear()
+	cleanup_ready_peers.clear()
+	
+	transitioning_to_game = false
 	scene_spawner = null
 	is_solo = true
 
@@ -222,6 +336,9 @@ func start_server() -> void :
 	ready_peers.clear()
 	expected_peers.clear()
 	spawned_peers.clear()
+	cleanup_ready_peers.clear()
+	
+	transitioning_to_game = false
 	scene_spawner = null
 	is_solo = false
 
@@ -239,6 +356,15 @@ func start_client() -> void :
 		return
 
 	multiplayer.multiplayer_peer = peer
+	
+	current_scene = NetworkScene.LOBBY
+	ready_peers.clear()
+	expected_peers.clear()
+	spawned_peers.clear()
+	cleanup_ready_peers.clear()
+	
+	transitioning_to_game = false
+	scene_spawner = null
 	is_solo = false
 
 	await multiplayer.connected_to_server

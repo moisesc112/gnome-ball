@@ -36,18 +36,22 @@ const START_DELAY: float = 1.0
 
 func _process(delta: float) -> void:
 	# Client clock synchronization
-	if not multiplayer.is_server():
-		if multiplayer.has_multiplayer_peer():
-			sync_timer += delta
+	if not multiplayer.has_multiplayer_peer():
+		return
+	
+	if multiplayer.is_server():
+		return
+		
+	sync_timer += delta
 
-			var interval := NORMAL_SYNC_INTERVAL
+	var interval := NORMAL_SYNC_INTERVAL
 
-			if not clock_synchronized:
-				interval = INITIAL_SYNC_INTERVAL
+	if not clock_synchronized:
+		interval = INITIAL_SYNC_INTERVAL
 
-			if sync_timer >= interval:
-				sync_timer = 0.0
-				request_server_time()
+	if sync_timer >= interval:
+		sync_timer = 0.0
+		request_server_time()
 
 func _physics_process(_delta: float) -> void:
 	# Activate gameplay at the scheduled server time
