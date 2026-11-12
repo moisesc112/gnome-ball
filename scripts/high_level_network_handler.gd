@@ -53,8 +53,12 @@ func leave_session() -> void:
 	ready_peers.clear()
 	spawned_peers.clear()
 	
+	is_solo = false
+	scene_spawner = null
+	current_scene = NetworkScene.LOBBY
 	GameManager.local_pause_menu_open = false
 	GameManager.game_active = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main_menu_world.tscn")

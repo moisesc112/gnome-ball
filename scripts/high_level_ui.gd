@@ -12,3 +12,7 @@ func _ready() -> void:
 
 func _on_start_game_button_pressed() -> void:
 	HighLevelNetworkHandler.start_game()
+
+
+func _on_leave_lobby_button_pressed() -> void:
+	HighLevelNetworkHandler.leave_session()

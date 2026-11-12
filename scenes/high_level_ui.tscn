@@ -30,4 +30,9 @@ alignment = 1
 layout_mode = 2
 text = "Start Game"
 
+[node name="LeaveLobbyButton" type="Button" parent="VBoxContainer" unique_id=1419493746]
+layout_mode = 2
+text = "Leave Lobby"
+
 [connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LeaveLobbyButton" to="." method="_on_leave_lobby_button_pressed"]
