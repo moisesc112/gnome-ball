@@ -11,7 +11,7 @@ func _ready() -> void:
 		GameManager.disconnect_reason = "" 
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

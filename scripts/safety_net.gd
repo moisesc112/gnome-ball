@@ -126,10 +126,10 @@ func _build_pattern() -> void:
 	velocities.fill(0.0)
 
 
-func _add_vertex(position: Vector3, fixed: bool) -> int:
+func _add_vertex(_position: Vector3, fixed: bool) -> int:
 	var index := vertices_rest.size()
 
-	vertices_rest.append(position)
+	vertices_rest.append(_position)
 	neighbors.append(PackedInt32Array())
 	anchored.append(1 if fixed else 0)
 
@@ -321,16 +321,16 @@ func _add_clipped_grid_line(
 				t
 			)
 
-			var position: Vector3
+			var _position: Vector3
 
 			if horizontal:
-				position = Vector3(
+				_position = Vector3(
 					coordinate,
 					0.0,
 					fixed_coordinate
 				)
 			else:
-				position = Vector3(
+				_position = Vector3(
 					fixed_coordinate,
 					0.0,
 					coordinate
@@ -510,8 +510,8 @@ func _update_mesh() -> void:
 	var vertices := PackedVector3Array()
 
 	for i in range(vertices_rest.size()):
-		var position := vertices_rest[i]
-		position.y += heights[i]
+		var _position := vertices_rest[i]
+		_position.y += heights[i]
 
 		vertices.append(position)
 

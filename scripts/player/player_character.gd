@@ -142,7 +142,7 @@ func update_tumbling(ball_visual: Node3D) -> void:
 func get_ball_physics_position() -> Vector3:
 	return ball.global_position
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if ball == null:
 		return
 	
