@@ -22,6 +22,16 @@ var target_roll = 0.0
 #@onready var gnome_mesh: Node3D = $Gnome_smooth
 @onready var gnome_mesh: Node3D = $gnome_low_poly_smooth
 @export var is_walking: bool = false
+@export var is_idle: bool = false
+@export var is_falling: bool = false
+@export var is_rising: bool = false
+@export var is_lying_down: bool = false
+@export var is_standing_up: bool = false
+@export var just_jumped: bool = false
+@export var just_emoted: bool = false
+@export var just_waved: bool = false
+@export var just_slapped: bool = false
+
 @onready var ball: RigidBody3D = get_node_or_null("../PlayerLargeBall") as RigidBody3D
 @export var interior_radius: float = 1.0
 @export var push_strength: float = 20.0
@@ -41,7 +51,7 @@ var is_tumbling := false
 
 var tumble_rotation: float = 0.0
 
-var is_grounded: bool = false
+@export var is_grounded: bool = false
 var previous_ball_position: Vector3
 var movement_input: Vector2 = Vector2.ZERO
 var is_touching_ball: bool = false
@@ -82,13 +92,61 @@ func setup(shared_ball: RigidBody3D) -> void:
 func update_animation() -> void:
 	if is_multiplayer_authority():
 		#var speed := Vector2(velocity.x, velocity.z).length()
-		is_walking = movement_input.length_squared() > 0.01
+		var vertical_speed = velocity.y
 		var speed := movement_input.length_squared()
 		
-		animation_tree.set("parameters/conditions/is_idle", speed <= 0.0099)
+		if speed <= 0.0099:
+			is_idle = true
+			is_walking = false
+		else:
+			is_idle = false
+			is_walking = true
 		
-		animation_tree.set("parameters/conditions/is_walking", speed > 0.01)
+		if not is_grounded and vertical_speed <= 0.1:
+			is_falling = true
+		elif not is_grounded and vertical_speed > 0.1:
+			is_rising = true
+		elif is_grounded:
+			is_falling = false
+			is_rising = false
+		
+		if movement_input.length() > 0.1 or Input.is_action_just_pressed("Jump"):
+			is_lying_down = false
+			is_standing_up = true
+		
+		if (Input.is_action_just_pressed("Wave") or Input.is_action_just_pressed("Lay_Down") or Input.is_action_just_pressed("Slap")) and is_grounded:
+			just_emoted = true
+			
+			if Input.is_action_just_pressed("Wave") and is_grounded:
+				just_waved = true
+			else:
+				just_waved = false
 
+			if Input.is_action_just_pressed("Lay_Down") and is_grounded:
+				is_lying_down = true
+				is_standing_up = false
+
+			if Input.is_action_just_pressed("Slap") and is_grounded:
+				just_slapped = true
+			else:
+				just_slapped = false
+
+		else:
+			just_emoted = false
+			
+	animation_tree.set("parameters/conditions/is_idle", is_idle)
+	animation_tree.set("parameters/conditions/is_walking", is_walking)
+	animation_tree.set("parameters/conditions/jumped", just_jumped)
+	animation_tree.set("parameters/conditions/is_falling", is_falling)
+	animation_tree.set("parameters/conditions/is_rising", is_rising)
+	animation_tree.set("parameters/conditions/is_grounded", is_grounded)
+	animation_tree.set("parameters/conditions/emoted", just_emoted)
+	animation_tree.set("parameters/Emotes/conditions/waved", just_waved)
+	animation_tree.set("parameters/Emotes/conditions/layed_down", is_lying_down)
+	animation_tree.set("parameters/Emotes/conditions/stand_up", is_standing_up)
+	animation_tree.set("parameters/Emotes/conditions/slapped", just_slapped)
+	
+	
 
 func is_ball_grounded() -> bool:
 	var ground_cast := ball.get_node("GroundCast") as ShapeCast3D
@@ -185,11 +243,14 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("Jump") and is_grounded:
 			velocity.y = JUMP_VELOCITY
 			is_grounded = false
+			just_jumped = true
+		else:
+			just_jumped = false
 			
 			
 		### MAYBE BRING BACK JUMP BUT DISABLE FOR NOW
 		###
-		#if Input.is_action_just_pressed("Jump"):
+		#if Input.is_action_just_pressed("Jump"):x
 		#	if not multiplayer.is_server():
 		#		ball.apply_jump_impulse()
 		#	ball.request_jump.rpc_id(1)
