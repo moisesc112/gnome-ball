@@ -68,14 +68,11 @@ func update_camera() -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if not is_multiplayer_authority():
 		return
-
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			return
+		
+	if GameManager.local_pause_menu_open:
+		return
 
 	if event is InputEventMouseMotion:
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:

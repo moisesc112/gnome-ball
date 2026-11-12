@@ -19,6 +19,46 @@ var scene_spawner: MultiplayerSpawner
 var current_scene: NetworkScene = NetworkScene.LOBBY
 var spawned_peers: Dictionary = {}
 
+var is_solo: bool = false
+
+func _ready() -> void:
+	multiplayer.server_disconnected.connect(_on_server_disconnected)
+	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
+
+func _on_server_disconnected() -> void:
+	GameManager.disconnect_reason = "Connection to host lost"
+	leave_session()
+	
+func _on_peer_disconnected(id: int) -> void:
+	if not multiplayer.is_server():
+		return
+		
+	expected_peers.erase(id)
+	ready_peers.erase(id)
+	spawned_peers.erase(id)
+	
+	if scene_spawner == null:
+		return
+	
+	scene_spawner.despawn_player(id)
+
+func leave_session() -> void:
+	var multiplayer_peer := multiplayer.multiplayer_peer
+	
+	if multiplayer_peer != null:
+		multiplayer_peer.close()
+		multiplayer.multiplayer_peer = null
+		
+	expected_peers.clear()
+	ready_peers.clear()
+	spawned_peers.clear()
+	
+	GameManager.local_pause_menu_open = false
+	GameManager.game_active = false
+	
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/main_menu_world.tscn")
+
 func start_game() -> void :
 	if not multiplayer.is_server():
 		return
@@ -148,6 +188,7 @@ func start_solo() -> void :
 	expected_peers.clear()
 	spawned_peers.clear()
 	scene_spawner = null
+	is_solo = true
 
 	expected_peers.append(1)
 
@@ -178,6 +219,7 @@ func start_server() -> void :
 	expected_peers.clear()
 	spawned_peers.clear()
 	scene_spawner = null
+	is_solo = false
 
 	get_tree().change_scene_to_file(lobby_scene)
 
@@ -193,6 +235,7 @@ func start_client() -> void :
 		return
 
 	multiplayer.multiplayer_peer = peer
+	is_solo = false
 
 	await multiplayer.connected_to_server
 	

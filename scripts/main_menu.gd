@@ -2,8 +2,13 @@ extends Control
 
 const lobby_scene = preload("res://scenes/ui/menus/lobby.tscn")
 
+@onready var disconnect_popup: AcceptDialog = $CenterContainer/DisconnectPopup
+
 func _ready() -> void:
-	pass 
+	if GameManager.disconnect_reason != "":
+		disconnect_popup.dialog_text = GameManager.disconnect_reason
+		disconnect_popup.popup_centered()
+		GameManager.disconnect_reason = "" 
 
 
 func _process(delta: float) -> void:

@@ -195,8 +195,11 @@ func _physics_process(delta: float) -> void:
 		#	ball.request_jump.rpc_id(1)
 		###
 		###
-	
-		movement_input = Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
+		
+		if GameManager.local_pause_menu_open: 
+			movement_input = Vector2.ZERO
+		else:
+			movement_input = Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
 		
 		var camera_forward := -camera.global_basis.z
 		var camera_right := camera.global_basis.x

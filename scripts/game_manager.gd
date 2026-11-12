@@ -10,6 +10,9 @@ enum GameState{
 var game_state: GameState = GameState.LOBBY
 var game_active: bool = false
 
+var local_pause_menu_open: bool = false
+var disconnect_reason: String = ""
+
 signal game_started
 signal clock_sync_completed
 

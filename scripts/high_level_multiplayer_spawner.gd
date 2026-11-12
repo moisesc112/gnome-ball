@@ -15,3 +15,10 @@ func spawn_player(id: int) -> void:
 	
 	player.position = spawn_parent.to_local(spawn_point.global_position)
 	spawn_parent.add_child(player)
+
+func despawn_player(id: int) -> void:
+	var spawn_parent := get_node(spawn_path) as Node3D
+	var player := spawn_parent.get_node_or_null(str(id))
+	
+	if player != null:
+		player.queue_free()
