@@ -22,6 +22,8 @@ var server_frame: int = 0
 var correction_frames_remaining: int = 0
 var pending_jumps: int = 0
 
+var pending_pushes: Dictionary = {}
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	process_priority = -10
@@ -55,9 +57,25 @@ func request_push(push_direction: Vector3, contact_offset: Vector3) -> void:
 	if not multiplayer.is_server():
 		return
 		
-	apply_push(push_direction, contact_offset)
+	var sender := multiplayer.get_remote_sender_id()
+	
+	pending_pushes[sender] = {"direction": push_direction, "offset": contact_offset}
+		
+	#apply_push(push_direction, contact_offset)
 
-			
+func queue_push(peer_id: int, direction: Vector3, contact_offset: Vector3) -> void:
+	if not multiplayer.is_server():
+		return
+
+	pending_pushes[peer_id] = {"direction": direction, "offset": contact_offset}
+
+func process_pending_pushes() -> void:
+	for peer_id in pending_pushes:
+		var push = pending_pushes[peer_id]
+		apply_push(push["direction"], push["offset"])
+
+	pending_pushes.clear()
+
 func apply_push(push_direction: Vector3, contact_offset: Vector3) -> void:
 	# TODO: Validate the sender, direction, contact
 	# position, and whether their gnome is touching.
@@ -165,6 +183,8 @@ func _physics_process(_delta: float) -> void:
 	apply_gravity_assist()
 	
 	if multiplayer.is_server():
+		process_pending_pushes()
+		
 		server_frame += 1
 		
 		receive_ball_state.rpc(server_frame, global_transform, linear_velocity, angular_velocity)

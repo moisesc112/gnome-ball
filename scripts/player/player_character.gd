@@ -312,9 +312,14 @@ func _physics_process(delta: float) -> void:
 		if is_touching_ball and direction.length_squared() > 0.01:
 			var contact_offset = global_position - ball_position
 			
-			ball.apply_push(direction, contact_offset)
+			#ball.apply_push(direction, contact_offset)
 			
-			if not multiplayer.is_server():
+			#if not multiplayer.is_server():
+			#	ball.request_push.rpc_id(1, direction, contact_offset)
+			if multiplayer.is_server():
+				ball.queue_push(multiplayer.get_unique_id(), direction, contact_offset)
+			else:
+				ball.apply_push(direction, contact_offset)
 				ball.request_push.rpc_id(1, direction, contact_offset)
 			
 		relative_position = global_position - ball_position
