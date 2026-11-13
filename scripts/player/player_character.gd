@@ -91,7 +91,10 @@ func setup(shared_ball: RigidBody3D) -> void:
 
 func update_animation() -> void:
 	if is_multiplayer_authority():
-		#var speed := Vector2(velocity.x, velocity.z).length()
+		just_emoted = false
+		just_waved = false
+		just_slapped = false
+		
 		var vertical_speed = velocity.y
 		var speed := movement_input.length_squared()
 		
@@ -102,13 +105,8 @@ func update_animation() -> void:
 			is_idle = false
 			is_walking = true
 		
-		if not is_grounded and vertical_speed <= 0.1:
-			is_falling = true
-		elif not is_grounded and vertical_speed > 0.1:
-			is_rising = true
-		elif is_grounded:
-			is_falling = false
-			is_rising = false
+		is_falling = not is_grounded and vertical_speed <= 0.1
+		is_rising = not is_grounded and vertical_speed > 0.1
 		
 		if movement_input.length() > 0.1 or Input.is_action_just_pressed("Jump"):
 			is_lying_down = false
@@ -145,8 +143,6 @@ func update_animation() -> void:
 	animation_tree.set("parameters/Emotes/conditions/layed_down", is_lying_down)
 	animation_tree.set("parameters/Emotes/conditions/stand_up", is_standing_up)
 	animation_tree.set("parameters/Emotes/conditions/slapped", just_slapped)
-	
-	
 
 func is_ball_grounded() -> bool:
 	var ground_cast := ball.get_node("GroundCast") as ShapeCast3D
