@@ -13,6 +13,10 @@ extends CanvasLayer
 
 func _ready() -> void:
 	victory_screen.hide()
+	
+	if HighLevelNetworkHandler.is_solo:
+		return_lobby_button.hide()
+	
 	GameManager.game_finished.connect(_on_game_finished)
 
 func _process(_delta: float) -> void:
@@ -38,6 +42,7 @@ func format_time(seconds: float) -> String:
 func _on_game_finished(final_time: float) -> void:
 	finish_time_label.text = format_time(final_time)
 	victory_screen.show()
+	
 
 
 func _on_return_to_lobby_button_pressed() -> void:
