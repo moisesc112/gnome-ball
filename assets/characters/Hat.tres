@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://6m47hdm7bgai"]
+
+[resource]
+resource_name = "Hat"
+cull_mode = 2
+albedo_color = Color(0.9063827, 0.20591953, 0.21575518, 1)
+roughness = 0.5

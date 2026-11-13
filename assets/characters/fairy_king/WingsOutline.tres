@@ -3,5 +3,7 @@
 [resource]
 resource_name = "WingsOutline"
 cull_mode = 2
+diffuse_mode = 3
+specular_mode = 2
 albedo_color = Color(1, 0.7669496, 0.45657447, 1)
 roughness = 0.5

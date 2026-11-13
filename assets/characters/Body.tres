@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://crr8cc5u1dkqj"]
+
+[ext_resource type="Texture2D" uid="uid://bpw8gmghovm56" path="res://assets/characters/gnome_low_poly_smooth_GnomeBody_Color1.png" id="1_2win5"]
+
+[resource]
+resource_name = "Body"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("1_2win5")
+metadata/_gltf_primary_texture_coord = 0

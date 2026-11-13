@@ -10321,6 +10321,23 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 }
+},
+"materials": {
+"Body": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/characters/Body.tres",
+"use_external/path": "uid://crr8cc5u1dkqj"
+},
+"Clothes": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/characters/Clothes.tres",
+"use_external/path": "uid://d2guum718dau2"
+},
+"Hat": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/characters/Hat.tres",
+"use_external/path": "uid://6m47hdm7bgai"
+}
 }
 }
 gltf/naming_version=2

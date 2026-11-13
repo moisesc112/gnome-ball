@@ -1258,7 +1258,7 @@ visible = false
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 3.7868648, 0.04504118, -16.789612)
 
 [node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("23")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0044190884, 120.53135, -56.15987)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.534435, 8.66776, 151.57051)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1297982833 node_paths=PackedStringArray("ball")]
 script = ExtResource("24")
@@ -1659,6 +1659,7 @@ transform = Transform3D(-2.1855694e-06, -36.027557, 41.60411, 0, 34.67009, 43.23
 
 [node name="mesh_tree_pine_03" parent="Level2" unique_id=1812580685 instance=ExtResource("15")]
 transform = Transform3D(-55, 0, -4.808253e-06, 0, 60, 0, 4.808253e-06, 0, -55, -0.38771057, 0, -86.83138)
+visible = false
 
 [node name="FogVolume" type="FogVolume" parent="." unique_id=1543131043]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.356714, 176.27997, -88.60163)
