@@ -42,6 +42,17 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1225572098]
 layout_mode = 2
 
+[node name="HostSteamButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=318341559]
+layout_mode = 2
+text = "Host Steam Lobby"
+
+[node name="SteamLobbyIDInput" type="LineEdit" parent="CenterContainer/VBoxContainer" unique_id=490824819]
+layout_mode = 2
+
+[node name="JoinSteamButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=561955037]
+layout_mode = 2
+text = "Join Steam Lobby"
+
 [node name="HostGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=818428285]
 layout_mode = 2
 text = "Host Game
@@ -70,6 +81,8 @@ text = "Credits"
 layout_mode = 2
 text = "Quit"
 
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HostSteamButton" to="." method="_on_host_steam_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/JoinSteamButton" to="." method="_on_join_steam_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HostGameButton" to="." method="_on_host_game_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JoinGameButton" to="." method="_on_join_game_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayOfflineButton" to="." method="_on_play_offline_button_pressed"]

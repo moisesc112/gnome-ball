@@ -91,10 +91,6 @@ func setup(shared_ball: RigidBody3D) -> void:
 
 func update_animation() -> void:
 	if is_multiplayer_authority():
-		just_emoted = false
-		just_waved = false
-		just_slapped = false
-		
 		var vertical_speed = velocity.y
 		var speed := movement_input.length_squared()
 		

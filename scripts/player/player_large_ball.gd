@@ -116,8 +116,9 @@ func apply_gravity_assist() -> void:
 		var normal := ground_cast.get_collision_normal(0)
 		
 		if normal.y < 0.5:
-			print("ball contact is not the floor")
-			return
+			if GameManager.game_state != GameManager.GameState.LOBBY:
+				print("ball contact is not the floor")
+				return
 
 		# Gravity projected onto the slope.
 		var gravity := Vector3.DOWN * 9.8

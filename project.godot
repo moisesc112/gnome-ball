@@ -25,6 +25,10 @@ GameManager="*uid://ctmmmlms8fqmd"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godotsteam/plugin.cfg")
+
 [input]
 
 Move_Left={

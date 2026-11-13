@@ -34,5 +34,13 @@ text = "Start Game"
 layout_mode = 2
 text = "Leave Lobby"
 
+[node name="SteamLobbyID" type="Label" parent="VBoxContainer" unique_id=658913311]
+layout_mode = 2
+
+[node name="CopyLobbyIDButton" type="Button" parent="VBoxContainer" unique_id=134984242]
+layout_mode = 2
+text = "Copy Lobby ID"
+
 [connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LeaveLobbyButton" to="." method="_on_leave_lobby_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CopyLobbyIDButton" to="." method="_on_copy_lobby_id_button_pressed"]
