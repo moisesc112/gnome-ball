@@ -37,6 +37,7 @@ var cleanup_prepared_peers: Dictionary = {}
 var lobby_removal_started: bool = false
 
 var transition_id: int = 0
+var steam_available: bool = false
 
 func _ready() -> void:
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
@@ -44,8 +45,8 @@ func _ready() -> void:
 	multiplayer.connection_failed.connect(_on_connection_failed)
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	
-	var result = Steam.steamInit(480, true)
-	print("Steam initialization: ", result)
+	steam_available = Steam.steamInit(480, true)
+	print("Steam initialization: ", steam_available)
 	
 	Steam.initRelayNetworkAccess()
 	
@@ -93,8 +94,26 @@ func join_steam_lobby(lobby_id: int) -> void:
 
 
 func _on_steam_join_requested(lobby_id: int, _friend_id: int) -> void:
+	if not steam_available:
+		return
+		
+	if multiplayer.has_multiplayer_peer():
+		push_warning("Already in a multiplayer session")
+		return
+		
 	join_steam_lobby(lobby_id)
 
+
+### Steam friend invite won't work until I register game with Steam
+### and get own App ID
+func invite_steam_friends() -> void:
+	if network_transport != NetworkTransport.STEAM:
+		return
+		
+	if steam_lobby_id == 0:
+		return
+	
+	Steam.activateGameOverlayInviteDialog(steam_lobby_id)
 
 func _on_steam_lobby_joined(lobby_id: int, _permissions: int, _locked: bool, response: int) -> void:
 	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:

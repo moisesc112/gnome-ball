@@ -41,6 +41,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Copy Lobby ID"
 
+[node name="InviteFriendsButton" type="Button" parent="VBoxContainer" unique_id=1287004089]
+layout_mode = 2
+text = "Invite Friends"
+
 [connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LeaveLobbyButton" to="." method="_on_leave_lobby_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/CopyLobbyIDButton" to="." method="_on_copy_lobby_id_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/InviteFriendsButton" to="." method="_on_invite_friends_button_pressed"]
