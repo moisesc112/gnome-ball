@@ -13,6 +13,8 @@ extends RigidBody3D
 @export var air_gravity_multiplier: float = 3.0
 @export var air_steer_multiplier: float = 0.4
 
+var session_push_force: float = 25.0
+
 var server_transform: Transform3D
 var server_linear_velocity: Vector3 = Vector3.ZERO
 var server_angular_velocity: Vector3 = Vector3.ZERO
@@ -33,6 +35,8 @@ func _ready() -> void:
 	contact_shadow.top_level = true
 	
 	set_multiplayer_authority(1)
+	
+	configure_player_force(HighLevelNetworkHandler.session_player_count)
 
 @rpc("any_peer", "call_local", "reliable")
 func request_jump() -> void:
@@ -51,6 +55,16 @@ func request_jump() -> void:
 
 func apply_jump_impulse() -> void:
 	apply_central_impulse(Vector3.UP * jump_force * mass)
+
+func configure_player_force(player_count: int) -> void:
+	var count = max(1, player_count)
+
+	# Two players are the baseline.
+	### 1 player 35.4N force
+	### 2 player 25.0N per player, combined 50.0N
+	### 3 player 20.4N per player, combined 61.2N
+	### 4 player 17.07 per player, combined 70.7N
+	session_push_force = push_force * sqrt(2.0 / float(count))
 
 @rpc("any_peer", "call_local", "unreliable")
 func request_push(push_direction: Vector3, contact_offset: Vector3) -> void:
@@ -99,7 +113,8 @@ func apply_push(push_direction: Vector3, contact_offset: Vector3) -> void:
 				if forward_component > 0.0:
 					direction -= velocity_direction * forward_component
 
-			var current_push_force := direction * push_force
+			#var current_push_force := direction * push_force
+			var current_push_force := direction * session_push_force
 
 			if not ground_cast.is_colliding():
 				apply_force(current_push_force * air_steer_multiplier)

@@ -39,6 +39,7 @@ var target_scene: NetworkScene = NetworkScene.LOBBY
 
 var transition_id: int = 0
 var steam_available: bool = false
+var session_player_count: int = 1
 
 func _ready() -> void:
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
@@ -207,6 +208,7 @@ func leave_session() -> void:
 	peer = null
 	network_transport = NetworkTransport.ENET
 	
+	session_player_count = 1
 	transition_id = 0
 	removal_started = false
 	transitioning = false
@@ -469,7 +471,7 @@ func check_cleanup_complete() -> void:
 	cleanup_prepared_peers.clear()
 	cleanup_ready_peers.clear()
 
-	change_network_scene.rpc(target_scene)
+	change_network_scene.rpc(target_scene, expected_peers.size())
 
 @rpc("authority", "call_local", "reliable")
 func cancel_scene_transition(request_id: int) -> void:
@@ -490,9 +492,11 @@ func return_to_lobby() -> void:
 	begin_scene_transition(NetworkScene.LOBBY)
 
 @rpc("authority", "call_local", "reliable")
-func change_network_scene(scene_type: NetworkScene) -> void :
+func change_network_scene(scene_type: NetworkScene, player_count: int) -> void :
 	transitioning = false
 	removal_started = false
+	
+	session_player_count = player_count
 	
 	current_scene = scene_type
 	scene_spawner = null
@@ -624,6 +628,7 @@ func start_solo() -> void :
 	cleanup_prepared_peers.clear()
 	cleanup_ready_peers.clear()
 	
+	session_player_count = 1
 	transition_id = 0
 	removal_started = false
 	transitioning = false
@@ -655,6 +660,7 @@ func initialize_lobby_session() -> void:
 	cleanup_prepared_peers.clear()
 	cleanup_ready_peers.clear()
 	
+	session_player_count = 1
 	transition_id = 0
 	removal_started = false
 	transitioning = false

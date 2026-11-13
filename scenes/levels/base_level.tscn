@@ -1341,6 +1341,28 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 metadata/_edit_use_anchors_ = true
 
+[node name="ForceLabel" type="Label" parent="HUD" unique_id=1795713565]
+anchors_preset = -1
+anchor_top = 0.78900003
+anchor_bottom = 0.78900003
+offset_left = 20.0
+offset_top = -19.272034
+offset_right = 104.0
+offset_bottom = 37.727966
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="PlayerCountLabel" type="Label" parent="HUD" unique_id=1383771043]
+anchors_preset = -1
+anchor_top = 0.68200004
+anchor_bottom = 0.68200004
+offset_left = 19.0
+offset_top = -21.936035
+offset_right = 104.0
+offset_bottom = 24.063965
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+
 [node name="FPSLabel" type="Label" parent="HUD" unique_id=2073700494]
 anchors_preset = -1
 anchor_left = 0.89100003

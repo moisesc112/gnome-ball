@@ -3,6 +3,8 @@ extends CanvasLayer
 @export var ball: RigidBody3D
 @onready var speed_label: Label = $SpeedLabel
 @onready var fps_label: Label = $FPSLabel
+@onready var force_label: Label = $ForceLabel
+@onready var player_count_label : Label = $PlayerCountLabel
 @onready var collision_button: Button = $CollisionButton
 
 @onready var pause_menu: Control = $PauseMenu
@@ -18,11 +20,14 @@ func _ready() -> void:
 		return_lobby_button.hide()
 	
 	GameManager.game_finished.connect(_on_game_finished)
+	
+	player_count_label.text = "# Players: %d" % HighLevelNetworkHandler.session_player_count
+	force_label.text = "Push Force: %.1f N" % (25.0 * sqrt(2.0 / float(HighLevelNetworkHandler.session_player_count)))
 
 func _process(_delta: float) -> void:
 	if ball == null:
 		return
-
+	
 	speed_label.text = "%.1f mph" % (ball.get_ball_speed() * 2.23694)
 	fps_label.text ="%.1f FPS" % Engine.get_frames_per_second()
 
