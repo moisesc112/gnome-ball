@@ -509,6 +509,24 @@ func cancel_lobby_transition(request_id: int) -> void:
 
 	print("Lobby transition cancelled")
 
+func return_to_lobby() -> void:
+	if not multiplayer.is_server():
+		return
+
+	if current_scene != NetworkScene.GAME:
+		return
+
+	# Remove networked players through the spawner.
+	if scene_spawner != null:
+		for id in spawned_peers.keys():
+			scene_spawner.despawn_player(id)
+
+	# TEMPORARY DEBUG ONLY
+	await get_tree().create_timer(1.0).timeout
+
+	# Transition after despawns have been processed.
+	change_network_scene.rpc(NetworkScene.LOBBY)
+
 @rpc("authority", "call_local", "reliable")
 func change_network_scene(scene_type: NetworkScene) -> void :
 	current_scene = scene_type
@@ -606,6 +624,9 @@ func check_all_ready() -> void :
 		return
 		
 	if GameManager.start_scheduled or GameManager.game_active:
+		return
+	
+	if GameManager.game_state == GameManager.GameState.FINISHED:
 		return
 
 	for id in expected_peers:

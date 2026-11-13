@@ -15,6 +15,7 @@ var disconnect_reason: String = ""
 
 signal game_started
 signal clock_sync_completed
+signal game_finished(final_time: float)
 
 # Clock synchronization
 var server_clock_offset: float = 0.0
@@ -91,6 +92,7 @@ func reset_level() -> void:
 	game_active = false
 	start_scheduled = false
 	level_start_time = 0.0
+	local_pause_menu_open = false
 	game_state = GameState.STARTING
 
 
@@ -202,3 +204,20 @@ func activate_game() -> void:
 	game_started.emit()
 
 	print("Game started! Level time: ", get_level_time())
+	
+func finish_game() -> void:
+	if not multiplayer.is_server():
+		return
+		
+	if game_state != GameState.PLAYING:
+		return
+	
+	var final_time := get_level_time()
+	
+	show_victory.rpc(final_time)
+	
+@rpc("authority", "call_local", "reliable")
+func show_victory(final_time: float) -> void:
+	game_state = GameState.FINISHED
+	game_active = false
+	game_finished.emit(final_time)

@@ -4,6 +4,7 @@ extends Control
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	GameManager.game_finished.connect(_on_game_finished)
 	hide()
 
 func pause() -> void:
@@ -47,4 +48,11 @@ func _on_quit_button_pressed() -> void:
 	HighLevelNetworkHandler.leave_session()
 	
 func _process(_delta: float) -> void:
+	if GameManager.game_state != GameManager.GameState.PLAYING:
+		return
+	
 	close_pause_menu()
+	
+func _on_game_finished(_final_time: float) -> void:
+	if GameManager.local_pause_menu_open:
+		resume()

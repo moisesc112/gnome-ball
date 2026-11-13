@@ -39,6 +39,7 @@ func _ready() -> void:
 		return
 
 	GameManager.game_started.connect(update_camera)
+	GameManager.game_finished.connect(_on_game_finished)
 
 	update_camera()
 	
@@ -58,17 +59,27 @@ func _ready() -> void:
 	# Start facing the same direction as the gnome.
 	global_rotation.y = player.global_rotation.y
 
+func _on_game_finished(_final_time: float) -> void:
+	update_camera()
 
 func update_camera() -> void:
-	if player.is_multiplayer_authority() and GameManager.game_state == GameManager.GameState.PLAYING:
+	if not player.is_multiplayer_authority():
+		return
+	
+	if GameManager.game_state == GameManager.GameState.LOBBY:
+		camera.current = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	elif GameManager.game_state == GameManager.GameState.PLAYING:
 		camera.make_current()
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	else:
-		camera.current = false
+	elif GameManager.game_state == GameManager.GameState.FINISHED:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():
+		return
+		
+	if GameManager.game_state != GameManager.GameState.PLAYING:
 		return
 		
 	if GameManager.local_pause_menu_open:
