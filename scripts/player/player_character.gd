@@ -58,6 +58,8 @@ var is_touching_ball: bool = false
 var initial_gnome_offset: Vector3
 var idle_gnome_scale: Vector3
 
+@export var gnome_collisions_enabled: bool = true
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -88,6 +90,10 @@ func _enter_tree() -> void:
 
 func setup(shared_ball: RigidBody3D) -> void:
 	ball = shared_ball
+
+func set_gnome_collisions(enabled: bool) -> void:
+	gnome_collisions_enabled = enabled
+	set_collision_mask_value(2, enabled)
 
 func update_animation() -> void:
 	if is_multiplayer_authority():
@@ -279,8 +285,12 @@ func _physics_process(delta: float) -> void:
 		global_position += ball_displacement
 		previous_ball_position = ball_position
 
-		# Move the gnome
-		global_position += velocity * delta
+		### Move the gnome
+		if gnome_collisions_enabled:
+			move_and_slide()
+		else:
+			global_position += velocity * delta
+		
 
 		# Keep the gnome inside the sphere
 		offset = global_position - ball_position
@@ -309,10 +319,10 @@ func _physics_process(delta: float) -> void:
 			
 		relative_position = global_position - ball_position
 	else :
-		#smoothed_relative_position = smoothed_relative_position.lerp(relative_position, 1.0 - exp(-15.0 * delta))
-		#global_position = ball_position + smoothed_relative_position
+		smoothed_relative_position = smoothed_relative_position.lerp(relative_position, 1.0 - exp(-15.0 * delta))
+		global_position = ball_position + smoothed_relative_position
 		# add smoothing if gnome mesh jumps around between frames
-		global_position = ball_position + relative_position
+		#global_position = ball_position + relative_position
 	
 	if not is_tumbling:
 		calculate_local_gnome_rotation(network_direction)
