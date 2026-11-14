@@ -16,6 +16,15 @@ func reset_selection() -> void:
 	selection = 0
 	queue_redraw()
 
+func get_selected_emote() -> String:
+	if selection == 0:
+		return ""
+		
+	if selection >= options.size():
+		return ""
+		
+	return options[selection]
+
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, outer_radius, bkg_color)
 	draw_arc(Vector2.ZERO, inner_radius, 0, TAU, 128, line_color, line_width, true)
@@ -55,10 +64,10 @@ func _process(_delta: float) -> void:
 	var mouse_pos = get_local_mouse_position()
 	var mouse_radius = mouse_pos.length()
 	
-	var new_selection: int
+	var new_selection: int = 0
 	
 	if mouse_radius < inner_radius:
-		selection = 0
+		new_selection = 0
 	else:
 		var mouse_rads = fposmod(mouse_pos.angle() * -1, TAU)
 		new_selection = ceil((mouse_rads / TAU) * (len(options) - 1))

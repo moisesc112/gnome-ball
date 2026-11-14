@@ -43,9 +43,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	elif event.is_action_released("Emote_Wheel"):
+		var emote: String = selection_wheel.get_selected_emote()
+		
 		selection_wheel.hide()
 		selection_wheel.reset_selection()
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
+		
+		if emote.is_empty():
+			print("emote empty in hud")
+			return
+			
+		var local_player := get_tree().current_scene.get_node_or_null(str(multiplayer.get_unique_id()))
+		
+		if local_player != null:
+			local_player.request_emote(emote)
+		else:
+			print("local player null in hud")
 
 func _on_collision_button_toggled(toggled_on: bool) -> void:
 	for child in get_tree().current_scene.get_children():

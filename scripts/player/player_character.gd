@@ -7,6 +7,8 @@ extends CharacterBody3D
 #@onready var animation_player: AnimationPlayer = $Gnome_smooth/AnimationPlayer
 @onready var animation_player: AnimationPlayer = $gnome_low_poly_smooth/AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var animation_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
+@onready var emote_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/Emotes/playback")
 
 @export var camera_follow_speed: float = 3.0
 @export var target_yaw: float = PI
@@ -113,6 +115,61 @@ func set_player_name(display_name: String) -> void:
 	if is_node_ready():
 		player_name_label.text = display_name
 
+func request_emote(emote_name: String) -> void:
+	if not is_multiplayer_authority():
+		return
+
+	print("Playing emote: ", emote_name)
+	server_request_emote.rpc_id(1, emote_name)
+
+@rpc("any_peer", "call_local", "reliable")
+func server_request_emote(emote_name: String) -> void:
+	if not multiplayer.is_server():
+		return
+
+	# Only the player who owns this character can request its emotes.
+	var sender := multiplayer.get_remote_sender_id()
+	
+	if sender == 0:
+		sender = multiplayer.get_unique_id()
+	
+	if sender != get_multiplayer_authority():
+		return
+
+	if emote_name not in ["Wave", "Lay Down", "Slap", "Sit"]:
+		print("emote name not in player list")
+		return
+
+	play_emote.rpc(emote_name)
+	
+@rpc("any_peer", "call_local", "reliable")
+func play_emote(emote_name: String) -> void:
+	if multiplayer.get_remote_sender_id() != 1 and not multiplayer.is_server():
+		return
+	
+	trigger_emote(emote_name)
+
+func trigger_emote(emote_name: String) -> void:
+	animation_playback.travel("Emotes")
+
+	match emote_name:
+		"Wave":
+			emote_playback.travel("Gnome_Rig|Wave")
+			print("wave emote used")
+		
+		"Slap":
+			emote_playback.travel("Gnome_Rig|SlapR")
+		
+		"Lay Down":
+			emote_playback.travel("Gnome_Rig|ImpactDeath")
+			
+			if is_multiplayer_authority():
+				is_lying_down = true
+				is_standing_up = false
+
+		"Sit":
+			pass 
+
 func update_animation() -> void:
 	if is_multiplayer_authority():
 		var vertical_speed = velocity.y
@@ -129,40 +186,20 @@ func update_animation() -> void:
 		is_rising = not is_grounded and vertical_speed > 0.1
 		
 		if movement_input.length() > 0.1 or Input.is_action_just_pressed("Jump"):
-			is_lying_down = false
-			is_standing_up = true
-		
-		if (Input.is_action_just_pressed("Wave") or Input.is_action_just_pressed("Lay_Down") or Input.is_action_just_pressed("Slap")) and is_grounded:
-			just_emoted = true
-			
-			if Input.is_action_just_pressed("Wave") and is_grounded:
-				just_waved = true
-			else:
-				just_waved = false
+			if is_lying_down:
+				is_lying_down = false
+				is_standing_up = true
 
-			if Input.is_action_just_pressed("Lay_Down") and is_grounded:
-				is_lying_down = true
-				is_standing_up = false
-
-			if Input.is_action_just_pressed("Slap") and is_grounded:
-				just_slapped = true
-			else:
-				just_slapped = false
-
-		else:
-			just_emoted = false
-			
 	animation_tree.set("parameters/conditions/is_idle", is_idle)
 	animation_tree.set("parameters/conditions/is_walking", is_walking)
 	animation_tree.set("parameters/conditions/jumped", just_jumped)
 	animation_tree.set("parameters/conditions/is_falling", is_falling)
 	animation_tree.set("parameters/conditions/is_rising", is_rising)
 	animation_tree.set("parameters/conditions/is_grounded", is_grounded)
-	animation_tree.set("parameters/conditions/emoted", just_emoted)
-	animation_tree.set("parameters/Emotes/conditions/waved", just_waved)
+	
 	animation_tree.set("parameters/Emotes/conditions/layed_down", is_lying_down)
 	animation_tree.set("parameters/Emotes/conditions/stand_up", is_standing_up)
-	animation_tree.set("parameters/Emotes/conditions/slapped", just_slapped)
+
 
 func is_ball_grounded() -> bool:
 	var ground_cast := ball.get_node("GroundCast") as ShapeCast3D
