@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dbdade66bivb2"]
+
+[ext_resource type="Script" uid="uid://csp33aa24xisb" path="res://scripts/selection_wheel.gd" id="1_5dcvy"]
+
+[node name="SelectionWheel" type="Control" unique_id=623086750]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5dcvy")
+bkg_color = Color(0.20511726, 0.2051175, 0.20511737, 1)
+line_color = Color(0.581033, 0.58103293, 0.5810329, 1)
+highlight_color = Color(0.70796657, 0.7079665, 0.7079665, 1)
+options = Array[String](["", "", "", "", ""])

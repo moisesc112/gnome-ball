@@ -219,7 +219,7 @@ func get_ball_physics_position() -> Vector3:
 func _process(_delta: float) -> void:
 	if ball == null:
 		return
-	
+		
 	#var visual_ball_position: Vector3 = ball.get_global_transform_interpolated().origin
 	#var should_tumble := not is_walking and GameManager.game_state == GameManager.GameState.PLAYING
 	#var should_tumble = false

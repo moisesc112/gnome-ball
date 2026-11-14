@@ -21,7 +21,7 @@ func _ready() -> void:
 	else:
 		steam_lobby_id.visible = false
 		lobby_id_button.visible = false
-		invite_friends_button.visible = false
+		invite_friends_button.visible = false 
 
 func _on_start_game_button_pressed() -> void:
 	HighLevelNetworkHandler.start_game()

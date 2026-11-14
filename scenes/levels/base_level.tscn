@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://okbjfchtv0kh" path="res://scenes/rotating_platform.tscn" id="25"]
 [ext_resource type="PackedScene" uid="uid://c73gv5lndkvf4" path="res://scenes/ui/victory_screen.tscn" id="25_7plrf"]
 [ext_resource type="PackedScene" uid="uid://cmgrres4u7xyg" path="res://scenes/rotating_clockhand.tscn" id="26"]
+[ext_resource type="PackedScene" uid="uid://dbdade66bivb2" path="res://scenes/ui/selection_wheel.tscn" id="26_ii06k"]
 [ext_resource type="PackedScene" uid="uid://dex36f4a8heyc" path="res://scenes/moving_platform.tscn" id="27"]
 [ext_resource type="PackedScene" uid="uid://b0eigd8vegl2j" path="res://scenes/rotating_shield.tscn" id="28_64olr"]
 [ext_resource type="PackedScene" uid="uid://c638h7o78jp0" path="res://scenes/rotating_log.tscn" id="29_yo52i"]
@@ -1386,6 +1387,9 @@ button_pressed = true
 text = "Toggle Player Collisions"
 
 [node name="VictoryScreen" parent="HUD" unique_id=311751585 instance=ExtResource("25_7plrf")]
+
+[node name="SelectionWheel" parent="HUD" unique_id=623086750 instance=ExtResource("26_ii06k")]
+highlight_color = Color(0.76240367, 0.76240367, 0.76240367, 1)
 
 [node name="StartingArea" type="CSGCombiner3D" parent="." unique_id=1378081612]
 use_collision = true
