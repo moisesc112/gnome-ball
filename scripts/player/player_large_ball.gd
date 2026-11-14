@@ -100,6 +100,7 @@ func apply_push(push_direction: Vector3, contact_offset: Vector3) -> void:
 		GameManager.GameState.LOBBY:
 			var current_push_force := push_direction.normalized() * lobby_push_force
 			apply_force(current_push_force, contact_offset)
+			#apply_central_force(current_push_force)
 		GameManager.GameState.PLAYING:
 			var direction := push_direction.normalized()
 			
@@ -144,6 +145,9 @@ func _process(_delta: float) -> void:
 	pass
 
 func apply_gravity_assist() -> void:
+	if GameManager.game_state == GameManager.GameState.LOBBY:
+		return
+	
 	if ground_cast.is_colliding():
 
 		var normal := ground_cast.get_collision_normal(0)
