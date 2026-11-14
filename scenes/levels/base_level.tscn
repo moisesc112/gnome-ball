@@ -1389,7 +1389,6 @@ text = "Toggle Player Collisions"
 [node name="VictoryScreen" parent="HUD" unique_id=311751585 instance=ExtResource("25_7plrf")]
 
 [node name="SelectionWheel" parent="HUD" unique_id=623086750 instance=ExtResource("26_ii06k")]
-highlight_color = Color(0.76240367, 0.76240367, 0.76240367, 1)
 
 [node name="StartingArea" type="CSGCombiner3D" parent="." unique_id=1378081612]
 use_collision = true

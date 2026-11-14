@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://dbdade66bivb2"]
 
 [ext_resource type="Script" uid="uid://csp33aa24xisb" path="res://scripts/selection_wheel.gd" id="1_5dcvy"]
+[ext_resource type="Texture2D" uid="uid://cef7ge5qbkvdx" path="res://assets/characters/wave_emote.png" id="2_u3j7b"]
+[ext_resource type="Texture2D" uid="uid://cvq8u6hb8ictr" path="res://assets/characters/laydown_emote.png" id="3_ia5md"]
+[ext_resource type="Texture2D" uid="uid://cbu3807x2kn10" path="res://assets/characters/sit_emote.png" id="4_fff2e"]
+[ext_resource type="Texture2D" uid="uid://ctt2xqtm81m8j" path="res://assets/characters/slap_emote.png" id="5_k7i5b"]
 
 [node name="SelectionWheel" type="Control" unique_id=623086750]
 layout_mode = 3
@@ -12,10 +16,13 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5dcvy")
-bkg_color = Color(0.20511726, 0.2051175, 0.20511737, 1)
+bkg_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
 line_color = Color(0.5803922, 0.5803922, 0.5803922, 0)
-highlight_color = Color(0.70796657, 0.7079665, 0.7079665, 1)
+highlight_color = Color(0.7882353, 0.58431375, 0.28235295, 1)
 outer_radius = 171
 inner_radius = 50
 line_width = 16
 options = Array[String](["Cancel", "Wave", "Lay Down", "Sit", "Slap"])
+emote_icons = Array[Texture2D]([ExtResource("2_u3j7b"), ExtResource("3_ia5md"), ExtResource("4_fff2e"), ExtResource("5_k7i5b")])
+icon_size = 240.0
+icon_offsets = Array[Vector2]([Vector2(0, -20), Vector2(0, 0), Vector2(0, -20), Vector2(0, -20)])

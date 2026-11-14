@@ -9,6 +9,9 @@ extends Control
 @export var line_width: int = 4
 
 @export var options: Array[String] = []
+@export var emote_icons: Array[Texture2D] = []
+@export var icon_size: float = 80.0
+@export var icon_offsets: Array[Vector2] = []
 
 var selection: int = 0
 
@@ -65,6 +68,22 @@ func _draw() -> void:
 			color = highlight_color
 
 		draw_colored_polygon(points, color)
+		
+		# Draw emote icon
+		if i < emote_icons.size() and emote_icons[i] != null:
+			var mid_angle = (start_angle + end_angle) / 2.0
+			var mid_radius = (inner_radius + outer_radius) / 2.0
+
+			#var icon_center = Vector2.from_angle(-mid_angle) * mid_radius
+
+			var icon_center = Vector2.from_angle(-mid_angle) * mid_radius
+
+			if i < icon_offsets.size():
+				icon_center += icon_offsets[i]
+
+			var icon_rect = Rect2(icon_center - Vector2.ONE * icon_size / 2.0, Vector2.ONE * icon_size)
+
+			draw_texture_rect(emote_icons[i], icon_rect, false)
 
 
 func _process(_delta: float) -> void:
