@@ -63,6 +63,12 @@ layout_mode = 2
 text = "Join Game
 "
 
+[node name="PlayerNameInput" type="LineEdit" parent="CenterContainer/VBoxContainer" unique_id=299192660]
+layout_mode = 2
+placeholder_text = "Enter your name"
+alignment = 1
+max_length = 24
+
 [node name="PlayOfflineButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1973979544]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2

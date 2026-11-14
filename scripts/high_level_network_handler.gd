@@ -41,6 +41,9 @@ var transition_id: int = 0
 var steam_available: bool = false
 var session_player_count: int = 1
 
+var player_names: Dictionary = {}
+var local_player_name: String = ""
+
 func _ready() -> void:
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
@@ -58,6 +61,51 @@ func _ready() -> void:
 	Steam.lobby_joined.connect(_on_steam_lobby_joined)
 	Steam.join_requested.connect(_on_steam_join_requested)
 	
+
+@rpc("any_peer", "call_remote", "reliable")
+func submit_player_name(display_name: String) -> void:
+	if not multiplayer.is_server():
+		return
+
+	var sender := multiplayer.get_remote_sender_id()
+	
+	var clean_name := display_name.strip_edges().substr(0, 24)
+	
+	if clean_name.is_empty():
+		clean_name = "Gnome"
+	
+	player_names[sender] = clean_name
+
+	sync_player_names.rpc(player_names)
+
+@rpc("authority", "call_local", "reliable")
+func sync_player_names(names: Dictionary) -> void:
+	player_names = names.duplicate()
+	update_player_name_labels()
+
+func update_player_name_labels() -> void:
+	var scene_root := get_tree().current_scene
+
+	if scene_root == null:
+		return
+
+	for peer_id in player_names:
+		var player := scene_root.get_node_or_null(str(peer_id))
+
+		if player != null:
+			player.set_player_name(player_names[peer_id])
+
+func get_session_player_name() -> String:
+	if network_transport == NetworkTransport.STEAM and steam_available:
+		var steam_name := Steam.getPersonaName().strip_edges()
+		if not steam_name.is_empty():
+			return steam_name.substr(0, 24)
+
+	var custom_name := local_player_name.strip_edges()
+	if custom_name.is_empty():
+		return "Gnome"
+
+	return custom_name.substr(0, 24)
 
 func start_steam_server() -> void:
 	network_transport = NetworkTransport.STEAM
@@ -159,6 +207,8 @@ func _on_peer_disconnected(id: int) -> void:
 	ready_peers.erase(id)
 	cleanup_prepared_peers.erase(id)
 	cleanup_ready_peers.erase(id)
+	player_names.erase(id)
+	sync_player_names.rpc(player_names)
 	
 	if scene_spawner != null and spawned_peers.has(id):
 		scene_spawner.despawn_player(id)
@@ -204,6 +254,7 @@ func leave_session() -> void:
 	spawned_peers.clear()
 	cleanup_prepared_peers.clear()
 	cleanup_ready_peers.clear()
+	player_names.clear()
 	
 	peer = null
 	network_transport = NetworkTransport.ENET
@@ -627,7 +678,9 @@ func start_solo() -> void :
 	spawned_peers.clear()
 	cleanup_prepared_peers.clear()
 	cleanup_ready_peers.clear()
+	player_names.clear()
 	
+	player_names[1] = local_player_name
 	session_player_count = 1
 	transition_id = 0
 	removal_started = false
@@ -659,6 +712,7 @@ func initialize_lobby_session() -> void:
 	spawned_peers.clear()
 	cleanup_prepared_peers.clear()
 	cleanup_ready_peers.clear()
+	player_names.clear()
 	
 	session_player_count = 1
 	transition_id = 0
@@ -698,6 +752,8 @@ func finish_host_connection(new_peer: MultiplayerPeer) -> void:
 	multiplayer.multiplayer_peer = peer
 
 	initialize_lobby_session()
+	
+	player_names[1] = get_session_player_name()
 
 	get_tree().change_scene_to_file(lobby_scene)
 
@@ -712,6 +768,8 @@ func finish_client_connection(new_peer: MultiplayerPeer) -> void:
 
 	if multiplayer.multiplayer_peer != new_peer:
 		return
-
+	
+	submit_player_name.rpc_id(1, get_session_player_name())
+	
 	GameManager.request_server_time()
 	get_tree().change_scene_to_file(lobby_scene)

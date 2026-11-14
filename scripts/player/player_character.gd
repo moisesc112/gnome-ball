@@ -60,6 +60,9 @@ var idle_gnome_scale: Vector3
 
 @export var gnome_collisions_enabled: bool = true
 
+@onready var player_name_label: Label3D = $PlayerName
+var player_display_name: String = ""
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -81,7 +84,16 @@ func _ready() -> void:
 
 	if not is_multiplayer_authority():
 		relative_position = global_position - ball.global_position
+	
+	player_name_label.visible = not is_multiplayer_authority()
+	
+	var peer_id := get_multiplayer_authority()
 
+	if HighLevelNetworkHandler.player_names.has(peer_id): 
+		set_player_name(HighLevelNetworkHandler.player_names[peer_id])
+	else:
+		set_player_name("Player %d" % peer_id)
+	
 	smoothed_relative_position = relative_position
 	previous_ball_position = get_ball_physics_position()
 
@@ -94,6 +106,12 @@ func setup(shared_ball: RigidBody3D) -> void:
 func set_gnome_collisions(enabled: bool) -> void:
 	gnome_collisions_enabled = enabled
 	set_collision_mask_value(2, enabled)
+
+func set_player_name(display_name: String) -> void:
+	player_display_name = display_name
+
+	if is_node_ready():
+		player_name_label.text = display_name
 
 func update_animation() -> void:
 	if is_multiplayer_authority():

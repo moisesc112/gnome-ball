@@ -4,12 +4,15 @@ const lobby_scene = preload("res://scenes/ui/menus/lobby.tscn")
 
 @onready var disconnect_popup: AcceptDialog = $CenterContainer/DisconnectPopup
 @onready var steam_lobby_input: LineEdit = $CenterContainer/VBoxContainer/SteamLobbyIDInput
+@onready var player_name_input: LineEdit = $CenterContainer/VBoxContainer/PlayerNameInput
 
 func _ready() -> void:
 	if GameManager.disconnect_reason != "":
 		disconnect_popup.dialog_text = GameManager.disconnect_reason
 		disconnect_popup.popup_centered()
 		GameManager.disconnect_reason = "" 
+		
+	player_name_input.text = HighLevelNetworkHandler.local_player_name
 
 
 func _process(_delta: float) -> void:
@@ -17,9 +20,11 @@ func _process(_delta: float) -> void:
 
 
 func _on_host_game_button_pressed() -> void:
+	save_player_name()
 	HighLevelNetworkHandler.start_server()
 
 func _on_join_game_button_pressed() -> void:
+	save_player_name()
 	HighLevelNetworkHandler.start_client()
 
 
@@ -53,3 +58,11 @@ func _on_join_steam_button_pressed() -> void:
 		return
 	
 	HighLevelNetworkHandler.join_steam_lobby(lobby_id)
+	
+func save_player_name() -> void:
+	var display_name := player_name_input.text.strip_edges()
+	
+	if display_name.is_empty():
+		display_name = "Gnome"
+		
+	HighLevelNetworkHandler.local_player_name = display_name.substr(0, 24)
