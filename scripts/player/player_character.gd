@@ -28,11 +28,9 @@ var target_roll = 0.0
 @export var is_falling: bool = false
 @export var is_rising: bool = false
 @export var is_lying_down: bool = false
+@export var is_sitting_down: bool = false
 @export var is_standing_up: bool = false
 @export var just_jumped: bool = false
-@export var just_emoted: bool = false
-@export var just_waved: bool = false
-@export var just_slapped: bool = false
 
 @onready var ball: RigidBody3D = get_node_or_null("../PlayerLargeBall") as RigidBody3D
 @export var interior_radius: float = 1.0
@@ -165,10 +163,16 @@ func trigger_emote(emote_name: String) -> void:
 			
 			if is_multiplayer_authority():
 				is_lying_down = true
+				is_sitting_down = false
 				is_standing_up = false
 
 		"Sit":
-			pass 
+			emote_playback.travel("Gnome_Rig|IdleSit")
+			
+			if is_multiplayer_authority():
+				is_lying_down = false
+				is_sitting_down = true
+				is_standing_up = false
 
 func update_animation() -> void:
 	if is_multiplayer_authority():
@@ -186,8 +190,9 @@ func update_animation() -> void:
 		is_rising = not is_grounded and vertical_speed > 0.1
 		
 		if movement_input.length() > 0.1 or Input.is_action_just_pressed("Jump"):
-			if is_lying_down:
+			if is_lying_down or is_sitting_down:
 				is_lying_down = false
+				is_sitting_down = false
 				is_standing_up = true
 
 	animation_tree.set("parameters/conditions/is_idle", is_idle)
@@ -198,6 +203,7 @@ func update_animation() -> void:
 	animation_tree.set("parameters/conditions/is_grounded", is_grounded)
 	
 	animation_tree.set("parameters/Emotes/conditions/layed_down", is_lying_down)
+	animation_tree.set("parameters/Emotes/conditions/sat_down", is_sitting_down)
 	animation_tree.set("parameters/Emotes/conditions/stand_up", is_standing_up)
 
 
