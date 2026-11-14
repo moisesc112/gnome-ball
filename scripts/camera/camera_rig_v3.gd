@@ -23,6 +23,16 @@ extends Node3D
 @export var steering_follow_speed: float = 1.0
 @export var minimum_follow_speed: float = 2.0
 
+@export_group("Camera Zoom")
+@export var zoom_step: float = 0.5
+@export var min_zoom: float = 2.0
+@export var zoom_smoothness: float = 10.0
+@export var zoom_out_height: float = 1.0
+@export var zoom_in_height: float = -0.5
+
+var target_zoom: float
+var max_zoom: float
+
 var ball: RigidBody3D
 var camera_pitch: float = 0.0
 var time_since_mouse_input: float = 999.0
@@ -50,6 +60,8 @@ func _ready() -> void:
 
 	camera_pitch = deg_to_rad(default_pitch)
 	spring_arm.rotation.x = camera_pitch
+	max_zoom = spring_arm.spring_length
+	target_zoom = max_zoom
 
 	ball = player.get_node_or_null("../PlayerLargeBall") as RigidBody3D
 
@@ -76,7 +88,7 @@ func update_camera() -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not is_multiplayer_authority():
+	if not player.is_multiplayer_authority():
 		return
 		
 	if GameManager.game_state != GameManager.GameState.PLAYING:
@@ -101,6 +113,15 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		spring_arm.rotation.x = camera_pitch
 		time_since_mouse_input = 0.0
+	
+	if event is InputEventMouseButton and event.pressed:
+		match event.button_index:
+			MOUSE_BUTTON_WHEEL_UP:
+				target_zoom -= zoom_step
+			MOUSE_BUTTON_WHEEL_DOWN:
+				target_zoom += zoom_step
+
+		target_zoom = clampf(target_zoom, min_zoom, max_zoom)
 
 func _process(delta: float) -> void:
 	if not player.is_multiplayer_authority():
@@ -114,6 +135,14 @@ func _process(delta: float) -> void:
 
 	# Camera position: follow the visual ball.
 	global_position = ball.get_global_transform_interpolated().origin
+	
+	spring_arm.spring_length = lerpf(spring_arm.spring_length, target_zoom, 1.0 - exp(-zoom_smoothness * delta))
+	
+	# Adjust spring arm height based on zoom.
+	var zoom_ratio := inverse_lerp(max_zoom, min_zoom, spring_arm.spring_length)
+
+	spring_arm.position.y = lerpf(zoom_out_height, zoom_in_height, zoom_ratio)
+	
 	# Camera rotation.
 	time_since_mouse_input += delta
 
