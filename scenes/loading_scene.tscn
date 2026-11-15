@@ -17,7 +17,7 @@ transform = Transform3D(0.9396926, -0.17101006, 0.2961981, 0, 0.8660254, 0.5, -0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.787475, 0.46743286)
 
 [node name="Gnome2" parent="." unique_id=1277959951 instance=ExtResource("2_smnf2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14233434, -1.787475, -0.5716019)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14233434, -1.787475, -0.6663826)
 
 [node name="Gnome3" parent="." unique_id=1111186616 instance=ExtResource("2_smnf2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.611163, -1.787475, -0.23316914)

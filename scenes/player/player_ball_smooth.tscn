@@ -3,9 +3,74 @@
 [ext_resource type="PackedScene" uid="uid://7ktxpwe3uoit" path="res://assets/characters/player_ball_smooth.glb" id="1_sdalv"]
 [ext_resource type="Material" uid="uid://nsobe4rfun8l" path="res://assets/characters/SphereTop.tres" id="2_4p2av"]
 [ext_resource type="Material" uid="uid://bvlg8fx7yk78l" path="res://assets/characters/SphereBottom.tres" id="3_dxjy0"]
+[ext_resource type="Shader" uid="uid://cgjtk7cha682s" path="res://shaders/glass_sphere.gdshader" id="4_dxjy0"]
+[ext_resource type="Shader" uid="uid://b12m0ieiekic3" path="res://shaders/rune_sphere.gdshader" id="5_mjy54"]
+[ext_resource type="Texture2D" uid="uid://dt00lmipup7ki" path="res://assets/runes_texture.png" id="6_e2uwg"]
+[ext_resource type="Shader" uid="uid://cy5l6qu50elnp" path="res://shaders/gold_sphere.gdshader" id="7_q6r18"]
+[ext_resource type="Texture2D" uid="uid://dyi2d3t50nwwd" path="res://assets/trim_texture.png" id="8_c08ld"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q6r18"]
+render_priority = 0
+shader = ExtResource("4_dxjy0")
+shader_parameter/glass_color = Color(0.25, 0.35, 0.8, 1)
+shader_parameter/glow_color = Color(0.45, 0.3, 1, 1)
+shader_parameter/center_opacity = 0.02
+shader_parameter/edge_opacity = 0.35
+shader_parameter/fresnel_power = 3.0
+shader_parameter/emission_strength = 1.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_mjy54"]
+material = SubResource("ShaderMaterial_q6r18")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxjy0"]
+render_priority = 0
+shader = ExtResource("5_mjy54")
+shader_parameter/rune_texture = ExtResource("6_e2uwg")
+shader_parameter/uv_scale = 4.0
+shader_parameter/rune_color = Color(0.05, 0.8, 1, 1)
+shader_parameter/emission_strength = 5.0000002375
+shader_parameter/pulse_speed = 1.5
+shader_parameter/pulse_amount = 0.77200003667
+shader_parameter/opacity = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_4p2av"]
+material = SubResource("ShaderMaterial_dxjy0")
+radius = 1.006
+height = 2.012
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c08ld"]
+render_priority = 0
+shader = ExtResource("7_q6r18")
+shader_parameter/gold_texture = ExtResource("8_c08ld")
+shader_parameter/gold_color = Color(1, 0.65, 0.2, 1)
+shader_parameter/emission_strength = 0.6
+shader_parameter/opacity = 1.0
+shader_parameter/horizontal_scale = 1.0
+shader_parameter/vertical_scale = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_dxjy0"]
+material = SubResource("ShaderMaterial_c08ld")
+radius = 1.012
+height = 2.024
 
 [node name="player_ball_smooth" unique_id=1141308037 instance=ExtResource("1_sdalv")]
 
-[node name="Sphere" parent="." index="0" unique_id=1896198807]
+[node name="Sphere" parent="." index="0" unique_id=1705636063]
+visible = false
+cast_shadow = 0
 surface_material_override/0 = ExtResource("2_4p2av")
 surface_material_override/1 = ExtResource("3_dxjy0")
+
+[node name="GlassSphere" type="MeshInstance3D" parent="." index="1" unique_id=1637201591]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_mjy54")
+
+[node name="RuneSphere" type="MeshInstance3D" parent="." index="2" unique_id=2001545589]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_4p2av")
+
+[node name="GoldSphere" type="MeshInstance3D" parent="." index="3" unique_id=2072151841]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_dxjy0")

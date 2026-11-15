@@ -78,6 +78,8 @@ ambient_light_source = 3
 ambient_light_color = Color(0.72156864, 0.79607844, 0.8784314, 1)
 reflected_light_source = 2
 tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 1.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 
@@ -1767,4 +1769,6 @@ material = SubResource("FogMaterial_4bcl2")
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToMenuButton" to="HUD" method="_on_return_to_menu_button_pressed"]
 
+[editable path="PlayerLargeBall"]
+[editable path="PlayerLargeBall/BallVisual/player_ball_smooth"]
 [editable path="HUD/VictoryScreen"]

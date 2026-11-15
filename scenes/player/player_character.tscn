@@ -245,6 +245,30 @@ script = ExtResource("4_s66ro")
 [node name="gnome_low_poly_smooth" parent="." unique_id=33204168 instance=ExtResource("5_0icub")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
+[node name="Beard" parent="gnome_low_poly_smooth/Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(33204168, 197169744) index="0" unique_id=241003928]
+layers = 2
+
+[node name="Body" parent="gnome_low_poly_smooth/Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(33204168, 197169744) index="1" unique_id=277172813]
+layers = 2
+
+[node name="Body_V2" parent="gnome_low_poly_smooth/Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(33204168, 197169744) index="2" unique_id=747589563]
+layers = 2
+
+[node name="HairL" parent="gnome_low_poly_smooth/Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(33204168, 197169744) index="3" unique_id=1550345383]
+layers = 2
+
+[node name="HairR" parent="gnome_low_poly_smooth/Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(33204168, 197169744) index="4" unique_id=471074642]
+layers = 2
+
+[node name="Hat" parent="gnome_low_poly_smooth/Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(33204168, 197169744) index="5" unique_id=1996024597]
+layers = 2
+
+[node name="Hat_WithEyes" parent="gnome_low_poly_smooth/Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(33204168, 197169744) index="6" unique_id=1073693421]
+layers = 2
+
+[node name="Moustache" parent="gnome_low_poly_smooth/Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(33204168, 197169744) index="7" unique_id=340495759]
+layers = 2
+
 [node name="gnome_low_poly" parent="." unique_id=1396917824 instance=ExtResource("6_ocp37")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, -1, 0)
 visible = false
