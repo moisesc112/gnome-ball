@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 HighLevelNetworkHandler="*uid://bt3ptadvhjh11"
 GameManager="*uid://ctmmmlms8fqmd"
 LoadingScreen="*uid://1ybmiupi7ssd"
+UIAudioManager="*uid://d2jk8u4g7qswn"
 
 [display]
 

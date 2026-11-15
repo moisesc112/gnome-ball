@@ -93,4 +93,5 @@ text = "Quit"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JoinGameButton" to="." method="_on_join_game_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayOfflineButton" to="." method="_on_play_offline_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

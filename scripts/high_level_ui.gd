@@ -25,13 +25,17 @@ func _ready() -> void:
 
 
 func _on_start_game_button_pressed() -> void:
+	UIAudioManager.play_click()
 	HighLevelNetworkHandler.start_game()
 
 func _on_leave_lobby_button_pressed() -> void:
+	UIAudioManager.play_click()
 	HighLevelNetworkHandler.leave_session()
 
 func _on_copy_lobby_id_button_pressed() -> void:
+	UIAudioManager.play_click()
 	DisplayServer.clipboard_set(str(HighLevelNetworkHandler.steam_lobby_id))
 
 func _on_invite_friends_button_pressed() -> void:
+	UIAudioManager.play_click()
 	HighLevelNetworkHandler.invite_steam_friends()

@@ -20,31 +20,38 @@ func _process(_delta: float) -> void:
 
 
 func _on_host_game_button_pressed() -> void:
+	UIAudioManager.play_click()
 	save_player_name()
 	HighLevelNetworkHandler.start_server()
 
 func _on_join_game_button_pressed() -> void:
+	UIAudioManager.play_click()
 	save_player_name()
 	HighLevelNetworkHandler.start_client()
 
 
 func _on_play_offline_button_pressed() -> void:
+	UIAudioManager.play_click()
 	HighLevelNetworkHandler.start_solo()
 
 
 func _on_settings_button_pressed() -> void:
+	UIAudioManager.play_click()
 	pass
 
 
 func _on_quit_button_pressed() -> void:
+	UIAudioManager.play_click()
 	get_tree().quit()
 
 
 func _on_host_steam_button_pressed() -> void:
+	UIAudioManager.play_click()
 	HighLevelNetworkHandler.start_steam_server()
 
 
 func _on_join_steam_button_pressed() -> void:
+	UIAudioManager.play_click()
 	var lobby_id_text := steam_lobby_input.text.strip_edges()
 	
 	if not lobby_id_text.is_valid_int():
@@ -66,3 +73,8 @@ func save_player_name() -> void:
 		display_name = "Gnome"
 		
 	HighLevelNetworkHandler.local_player_name = display_name.substr(0, 24)
+
+
+func _on_credits_button_pressed() -> void:
+	UIAudioManager.play_click()
+	pass 

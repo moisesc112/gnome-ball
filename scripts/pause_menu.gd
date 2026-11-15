@@ -34,14 +34,17 @@ func close_pause_menu() -> void:
 		resume()
 
 func _on_resume_button_pressed() -> void:
+	UIAudioManager.play_click()
 	resume()
 
 
 func _on_settings_button_pressed() -> void:
+	UIAudioManager.play_click()
 	pass # Replace with function body.
 
 
 func _on_quit_button_pressed() -> void:
+	UIAudioManager.play_click()
 	get_tree().paused = false
 	GameManager.local_pause_menu_open = false
 	GameManager.disconnect_reason = ""

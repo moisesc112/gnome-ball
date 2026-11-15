@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d2jk8u4g7qswn"]
+
+[ext_resource type="AudioStream" uid="uid://dvahnwmo62244" path="res://assets/audio/ui/470451__erokia__menu-ui-click-203.wav" id="1_ocd0o"]
+[ext_resource type="Script" uid="uid://c4xob6cvgw2in" path="res://scripts/ui_audio_manager.gd" id="2_uvaht"]
+
+[node name="UIAudioManager" type="Node" unique_id=277392588]
+script = ExtResource("2_uvaht")
+
+[node name="ClickAudio" type="AudioStreamPlayer" parent="." unique_id=1859984761]
+stream = ExtResource("1_ocd0o")
+volume_db = -10.0
+
+[node name="HoverAudio" type="AudioStreamPlayer" parent="." unique_id=1652886902]
+
+[node name="ConfirmAudio" type="AudioStreamPlayer" parent="." unique_id=1019490770]
