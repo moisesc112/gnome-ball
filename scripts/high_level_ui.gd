@@ -13,7 +13,7 @@ func _ready() -> void:
 	else:
 		start_button.visible = false
 		
-	if HighLevelNetworkHandler.network_transport == HighLevelNetworkHandler.NetworkTransport.STEAM:
+	if not HighLevelNetworkHandler.is_solo and HighLevelNetworkHandler.network_transport == HighLevelNetworkHandler.NetworkTransport.STEAM:
 		steam_lobby_id.text = "Lobby ID: " + str(HighLevelNetworkHandler.steam_lobby_id)
 		steam_lobby_id.visible = true
 		lobby_id_button.visible = true
@@ -22,6 +22,7 @@ func _ready() -> void:
 		steam_lobby_id.visible = false
 		lobby_id_button.visible = false
 		invite_friends_button.visible = false 
+
 
 func _on_start_game_button_pressed() -> void:
 	HighLevelNetworkHandler.start_game()

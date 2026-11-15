@@ -675,39 +675,19 @@ func check_all_ready() -> void :
 	#GameManager.start_game.rpc()
 	GameManager.begin_game()
 
-func start_solo() -> void :
-	LoadingScreen.show_loading()
-	
+func start_solo() -> void:
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 
-	current_scene = NetworkScene.GAME
+	initialize_lobby_session()
 
-	ready_peers.clear()
-	expected_peers.clear()
-	spawned_peers.clear()
-	cleanup_prepared_peers.clear()
-	cleanup_ready_peers.clear()
-	player_names.clear()
-	
-	player_names[1] = local_player_name
-	session_player_count = 1
-	transition_id = 0
-	removal_started = false
-	transitioning = false
-	scene_spawner = null
 	is_solo = true
-	target_scene = NetworkScene.LOBBY
+	session_player_count = 1
 
-	expected_peers.append(1)
+	player_names[1] = get_session_player_name()
 
-	#GameManager.game_state = GameManager.GameState.STARTING
-	#GameManager.game_state = GameManager.GameState.PLAYING
-	#GameManager.game_active = false
-	
-	GameManager.reset_clock()
-	GameManager.reset_level()
-	
-	get_tree().change_scene_to_file(base_level_scene)
+	GameManager.game_state = GameManager.GameState.LOBBY
+
+	get_tree().change_scene_to_file(lobby_scene)
 
 
 func initialize_lobby_session() -> void:
