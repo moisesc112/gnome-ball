@@ -14,10 +14,12 @@ extends CanvasLayer
 @onready var return_menu_button: Button = $VictoryScreen/CenterContainer/VBoxContainer/ReturnToMenuButton
 @onready var selection_wheel: Control = $SelectionWheel
 
+var debug_menu_visible: bool = false
 
 func _ready() -> void:
 	victory_screen.hide()
 	selection_wheel.hide()
+	hide_debug_menu()
 	
 	if HighLevelNetworkHandler.is_solo:
 		return_lobby_button.hide()
@@ -37,7 +39,13 @@ func _process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if GameManager.game_state != GameManager.GameState.PLAYING:
 		return
-
+	
+	if event.is_action_pressed("Debug_Menu") and not event.is_echo():
+		if debug_menu_visible:
+			hide_debug_menu()
+		else:
+			show_debug_menu()
+	
 	if event.is_action_pressed("Emote_Wheel"):
 		selection_wheel.show()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -83,3 +91,19 @@ func _on_return_to_lobby_button_pressed() -> void:
 
 func _on_return_to_menu_button_pressed() -> void:
 	HighLevelNetworkHandler.leave_session()
+
+func show_debug_menu() -> void:
+	debug_menu_visible = true
+	
+	force_label.show()
+	player_count_label.show()
+	fps_label.show()
+	collision_button.show()
+	
+func hide_debug_menu() -> void:
+	debug_menu_visible = false
+	
+	force_label.hide()
+	player_count_label.hide()
+	fps_label.hide()
+	collision_button.hide()
