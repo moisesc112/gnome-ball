@@ -1323,7 +1323,7 @@ visible = false
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 3.7868648, 0.04504118, -16.789612)
 
 [node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("23")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.782535, 28.548023, 61.211803)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.163675, 13.275784, -66.76236)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1297982833 node_paths=PackedStringArray("ball")]
 script = ExtResource("24")

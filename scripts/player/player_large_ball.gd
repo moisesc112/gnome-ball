@@ -25,6 +25,7 @@ var was_grounded: bool = false
 var previous_vertical_velocity: float = 0.0
 @export var min_impact_speed: float = 0.75
 @export var max_impact_speed: float = 10.0
+var impact_suppression_time: float = 0.0
 
 var session_push_force: float = 25.0
 
@@ -53,20 +54,24 @@ func _ready() -> void:
 	
 	rolling_audio.play()
 
-func update_impact_audio() -> void:
+func suppress_impact_audio(duration: float = 0.2) -> void:
+	impact_suppression_time = maxf(impact_suppression_time, duration)
+
+func update_impact_audio(delta: float) -> void:
 	var grounded := ground_cast.is_colliding()
 
 	if GameManager.game_state != GameManager.GameState.PLAYING:
 		was_grounded = grounded
 		previous_vertical_velocity = linear_velocity.y
 		return
-
-	# Detect transition from airborne to grounded
+	
+	impact_suppression_time = maxf(impact_suppression_time - delta, 0.0)
+	
 	if grounded and not was_grounded:
 		var impact_speed := maxf(0.0, -previous_vertical_velocity)
 
-		if impact_speed > min_impact_speed:
-			var impact_ratio := clampf((impact_speed - min_impact_speed) / (max_impact_speed - min_impact_speed), 0.0, 1.0)
+		if impact_speed > 0.75 and impact_suppression_time <= 0.0:
+			var impact_ratio := clampf((impact_speed - 0.75) / 10.0, 0.0, 1.0)
 
 			impact_audio.volume_db = lerpf(-35.0, -15.0, impact_ratio)
 			impact_audio.pitch_scale = randf_range(0.95, 1.05)
@@ -309,4 +314,4 @@ func _physics_process(delta: float) -> void:
 	
 	update_contact_shadow()
 	update_ball_audio(delta)
-	update_impact_audio()
+	update_impact_audio(delta)
