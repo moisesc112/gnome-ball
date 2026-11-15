@@ -25,10 +25,10 @@ extends Node3D
 
 @export_group("Camera Zoom")
 @export var zoom_step: float = 0.5
-@export var min_zoom: float = 2.0
+@export var min_zoom: float = 1.5
 @export var zoom_smoothness: float = 10.0
 @export var zoom_out_height: float = 1.0
-@export var zoom_in_height: float = -0.5
+@export var zoom_in_height: float = -0.25
 
 var target_zoom: float
 var max_zoom: float
