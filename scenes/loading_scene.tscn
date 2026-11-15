@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c57f4ngrigvj5"]
+
+[ext_resource type="Script" uid="uid://c5xa6x42mupac" path="res://scripts/loading_scene.gd" id="1_a0egu"]
+[ext_resource type="PackedScene" uid="uid://clqxp1726i8bq" path="res://scenes/player/player_ball_smooth.tscn" id="2_a0egu"]
+[ext_resource type="PackedScene" uid="uid://vkil7vuwyxpv" path="res://scenes/player/gnome_low_poly_smooth.tscn" id="2_smnf2"]
+
+[node name="LoadingScene" type="Node3D" unique_id=140589211]
+script = ExtResource("1_a0egu")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=701371710]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=694057307]
+transform = Transform3D(0.9396926, -0.17101006, 0.2961981, 0, 0.8660254, 0.5, -0.34202012, -0.4698463, 0.81379765, 0, 0, 0)
+
+[node name="Gnome1" parent="." unique_id=33204168 instance=ExtResource("2_smnf2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.787475, 0.46743286)
+
+[node name="Gnome2" parent="." unique_id=1277959951 instance=ExtResource("2_smnf2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14233434, -1.787475, -0.5716019)
+
+[node name="Gnome3" parent="." unique_id=1111186616 instance=ExtResource("2_smnf2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.611163, -1.787475, -0.23316914)
+
+[node name="Gnome4" parent="." unique_id=415544338 instance=ExtResource("2_smnf2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60612607, -1.6773278, 0.09825432)
+
+[node name="player_ball_smooth" parent="." unique_id=1141308037 instance=ExtResource("2_a0egu")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

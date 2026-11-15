@@ -201,6 +201,8 @@ func activate_game() -> void:
 	start_scheduled = false
 	game_state = GameState.PLAYING
 
+	LoadingScreen.fade_out()
+
 	game_started.emit()
 
 	print("Game started! Level time: ", get_level_time())

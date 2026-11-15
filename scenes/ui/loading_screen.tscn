@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://1ybmiupi7ssd"]
+
+[ext_resource type="Script" uid="uid://gnec42c6y87n" path="res://scripts/dots_label.gd" id="1_5fj0j"]
+[ext_resource type="Shader" uid="uid://clltc4lrd5ec8" path="res://shaders/loading_screen.gdshader" id="1_q4fso"]
+[ext_resource type="PackedScene" uid="uid://c57f4ngrigvj5" path="res://scenes/loading_scene.tscn" id="1_rqdcv"]
+[ext_resource type="Script" uid="uid://drcnsrtc172pa" path="res://scripts/loading_screen.gd" id="1_s2kth"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4fso"]
+shader = ExtResource("1_q4fso")
+shader_parameter/threshold = 0.5
+
+[node name="LoadingScreen" type="CanvasLayer" unique_id=667428102]
+layer = 10
+script = ExtResource("1_s2kth")
+
+[node name="Content" type="Control" parent="." unique_id=1461565837]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Content" unique_id=728452663]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.18606511, 0.20131615, 0.23941839, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Content" unique_id=1498320585]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -256.0
+offset_right = 156.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LoadingLabel" type="Label" parent="Content/HBoxContainer" unique_id=832102979]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Loading "
+
+[node name="DotsLabel" type="Label" parent="Content/HBoxContainer" unique_id=116477979]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = ". . ."
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_5fj0j")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/HBoxContainer" unique_id=389580396]
+material = SubResource("ShaderMaterial_q4fso")
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="Content/HBoxContainer/SubViewportContainer" unique_id=505086032]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="LoadingScene" parent="Content/HBoxContainer/SubViewportContainer/SubViewport" unique_id=140589211 instance=ExtResource("1_rqdcv")]

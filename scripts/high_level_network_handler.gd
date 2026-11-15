@@ -239,6 +239,8 @@ func _on_peer_connected(id: int) -> void:
 	print("Peer connected: ", id)
 
 func leave_session() -> void:
+	LoadingScreen.hide()
+	
 	if steam_lobby_id != 0:
 		Steam.leaveLobby(steam_lobby_id)
 		steam_lobby_id = 0
@@ -345,6 +347,9 @@ func prepare_scene_cleanup(request_id: int, source_scene: NetworkScene, player_i
 		transition_id = request_id
 		transitioning = true
 		removal_started = false
+	
+	if source_scene == NetworkScene.LOBBY:
+		LoadingScreen.show_loading()
 	
 	var prepared := await wait_for_players(player_ids, request_id, source_scene, true)
 	
@@ -536,6 +541,8 @@ func cancel_scene_transition(request_id: int) -> void:
 
 	cleanup_prepared_peers.clear()
 	cleanup_ready_peers.clear()
+	
+	LoadingScreen.fade_out()
 
 	print("Scene transition cancelled")
 
@@ -669,6 +676,8 @@ func check_all_ready() -> void :
 	GameManager.begin_game()
 
 func start_solo() -> void :
+	LoadingScreen.show_loading()
+	
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 
 	current_scene = NetworkScene.GAME
