@@ -15,10 +15,7 @@ func _ready() -> void:
 		var anim_player: AnimationPlayer = gnomes[i].get_node("AnimationPlayer")
 
 		anim_player.play("Gnome_Rig|Skip")
-		anim_player.seek(
-			fmod(i * 0.15, anim_player.current_animation_length),
-			true
-		)
+		anim_player.seek(fmod(i * 0.15, anim_player.current_animation_length), true)
 
 func _process(delta: float) -> void:
 	ball_pivot.rotate_x(ball_rotation_speed * delta)

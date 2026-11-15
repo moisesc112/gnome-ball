@@ -21,6 +21,7 @@ transform = Transform3D(0.8750521, 0.03618975, -0.48267394, 0.049971934, 0.98511
 
 [node name="player_ball_smooth" parent="." unique_id=1141308037 instance=ExtResource("4_hf8dy")]
 transform = Transform3D(1.0075295, 0, -1.7276819, 0, 2, 0, 1.7276819, 0, 1.0075295, 0.636026, 1.770821, -4.7683716e-07)
+visible = false
 
 [node name="Gnome_smooth" parent="." unique_id=119455235 instance=ExtResource("3_mgxyb")]
 transform = Transform3D(0.5037647, 0, -0.863841, 0, 1, 0, 0.863841, 0, 0.5037647, 0.636026, -0.0628196, -4.7683716e-07)
@@ -31,3 +32,19 @@ transform = Transform3D(-0.043803826, -0.22773312, -0.97273785, -0.0354526, 0.97
 
 [node name="gnome_low_poly_smooth" parent="." unique_id=33204168 instance=ExtResource("6_7akwi")]
 transform = Transform3D(0.9557378, 0, -1.6421221, 0, 1.9, 0, 1.6421221, 0, 0.9557378, 0.636, -0.06, 0)
+visible = false
+
+[node name="Gnome1" parent="." unique_id=1929895865 instance=ExtResource("6_7akwi")]
+transform = Transform3D(0.4529655, 0, -0.891528, 0, 1, 0, 0.891528, 0, 0.4529655, 0.28735507, 0.03182316, 0.150723)
+
+[node name="Gnome2" parent="." unique_id=1601436675 instance=ExtResource("6_7akwi")]
+transform = Transform3D(0.4529655, 0, -0.891528, 0, 1, 0, 0.891528, 0, 0.4529655, 1.3626559, 0.03182316, -0.23596129)
+
+[node name="Gnome3" parent="." unique_id=281063519 instance=ExtResource("6_7akwi")]
+transform = Transform3D(0.4529655, 0, -0.891528, 0, 1, 0, 0.891528, 0, 0.4529655, 0.63512564, 0.03182316, -0.71149457)
+
+[node name="Gnome4" parent="." unique_id=382185397 instance=ExtResource("6_7akwi")]
+transform = Transform3D(0.4529655, 0, -0.891528, 0, 1, 0, 0.891528, 0, 0.4529655, 0.8910423, 0.1419704, 0.5238762)
+
+[node name="player_ball_smooth2" parent="." unique_id=59010991 instance=ExtResource("4_hf8dy")]
+transform = Transform3D(0.905931, 0, -1.783056, 0, 2, 0, 1.783056, 0, 0.905931, 0.70408463, 1.8192983, -0.06100799)
