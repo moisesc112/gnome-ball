@@ -13,6 +13,19 @@ extends RigidBody3D
 @export var air_gravity_multiplier: float = 3.0
 @export var air_steer_multiplier: float = 0.4
 
+@onready var rolling_audio: AudioStreamPlayer3D = $RollingAudio
+@export var rolling_audio_grace_period: float = 0.15
+
+@onready var air_audio: AudioStreamPlayer3D = $AirAudio
+@export var air_audio_delay: float = 0.3
+var airborne_time: float = 0.0
+
+@onready var impact_audio: AudioStreamPlayer3D = $ImpactAudio
+var was_grounded: bool = false
+var previous_vertical_velocity: float = 0.0
+@export var min_impact_speed: float = 0.75
+@export var max_impact_speed: float = 10.0
+
 var session_push_force: float = 25.0
 
 var server_transform: Transform3D
@@ -37,6 +50,80 @@ func _ready() -> void:
 	set_multiplayer_authority(1)
 	
 	configure_player_force(HighLevelNetworkHandler.session_player_count)
+	
+	rolling_audio.play()
+
+func update_impact_audio() -> void:
+	var grounded := ground_cast.is_colliding()
+
+	if GameManager.game_state != GameManager.GameState.PLAYING:
+		was_grounded = grounded
+		previous_vertical_velocity = linear_velocity.y
+		return
+
+	# Detect transition from airborne to grounded
+	if grounded and not was_grounded:
+		var impact_speed := maxf(0.0, -previous_vertical_velocity)
+
+		if impact_speed > min_impact_speed:
+			var impact_ratio := clampf((impact_speed - min_impact_speed) / (max_impact_speed - min_impact_speed), 0.0, 1.0)
+
+			impact_audio.volume_db = lerpf(-35.0, -15.0, impact_ratio)
+			impact_audio.pitch_scale = randf_range(0.95, 1.05)
+			impact_audio.play()
+
+	was_grounded = grounded
+	previous_vertical_velocity = linear_velocity.y
+
+func update_ball_audio(delta: float) -> void:
+	if GameManager.game_state != GameManager.GameState.PLAYING:
+		airborne_time = 0.0
+		rolling_audio.stop()
+		air_audio.stop()
+		return
+
+	if not rolling_audio.playing:
+		rolling_audio.volume_db = -60.0
+		rolling_audio.play()
+
+	if not air_audio.playing:
+		air_audio.volume_db = -60.0
+		air_audio.play()
+
+	var grounded := ground_cast.is_colliding()
+
+	if grounded:
+		airborne_time = 0.0
+	else:
+		airborne_time += delta
+
+	var horizontal_speed := Vector2(
+		linear_velocity.x,
+		linear_velocity.z
+	).length()
+
+	var total_speed := linear_velocity.length()
+
+	var rolling_ratio := clampf(horizontal_speed / max_input_speed, 0.0, 1.0)
+	var air_ratio := clampf(total_speed / max_input_speed, 0.0, 1.0)
+
+	var rolling_target := -60.0
+	var air_target := -60.0
+
+	if airborne_time < rolling_audio_grace_period and horizontal_speed > 0.5:
+		rolling_target = lerpf(-30.0, -10.0, rolling_ratio)
+
+	if not grounded and airborne_time >= air_audio_delay and total_speed > 1.0:
+		air_target = lerpf(-35.0, -12.0, air_ratio)
+
+	var fade := clampf(delta * 8.0, 0.0, 1.0)
+
+	rolling_audio.volume_db = lerpf(rolling_audio.volume_db, rolling_target, fade)
+
+	air_audio.volume_db = lerpf(air_audio.volume_db, air_target, fade)
+
+	rolling_audio.pitch_scale = lerpf(0.85, 1.25, rolling_ratio)
+	air_audio.pitch_scale = lerpf(0.9, 1.15, air_ratio)
 
 @rpc("any_peer", "call_local", "reliable")
 func request_jump() -> void:
@@ -192,7 +279,7 @@ func update_contact_shadow() -> void:
 	contact_shadow.global_position = point + normal * 0.02
 	contact_shadow.global_basis = Basis(Quaternion(Vector3.UP, normal))
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	ground_cast.global_position = global_position
 	ground_cast.global_rotation = Vector3.ZERO
 	
@@ -221,3 +308,5 @@ func _physics_process(_delta: float) -> void:
 			correction_frames_remaining -= 1
 	
 	update_contact_shadow()
+	update_ball_audio(delta)
+	update_impact_audio()
