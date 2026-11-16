@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dldqrakqfidgd" path="res://scripts/player/player_large_ball.gd" id="1_26lfa"]
 [ext_resource type="PackedScene" uid="uid://clqxp1726i8bq" path="res://scenes/player/player_ball_smooth.tscn" id="1_32ypb"]
-[ext_resource type="AudioStream" uid="uid://cv0w4y6xiywey" path="res://assets/audio/Ball/807186__sound368__boulder-roll.wav" id="3_ki6ht"]
+[ext_resource type="AudioStream" uid="uid://bsdbbwsx111n5" path="res://assets/audio/Ball/rolling_ball_jam_triple.wav" id="3_4kis8"]
 [ext_resource type="AudioStream" uid="uid://bv0i4kv2x565u" path="res://assets/audio/Ball/653951__janbezouska__soft-neutral-wind_trimmed.wav" id="4_xqbeu"]
 [ext_resource type="AudioStream" uid="uid://dqj7x5wk8nn4s" path="res://assets/audio/Ball/639754__ryanz-official__marble-impact_trimmed.wav" id="5_cpiu5"]
 [ext_resource type="Script" uid="uid://domqcggqy2yj7" path="res://scripts/player/ball_light.gd" id="6_4kis8"]
@@ -68,7 +68,7 @@ mesh = SubResource("PlaneMesh_26lfa")
 target_position = Vector3(0, -4, 0)
 
 [node name="RollingAudio" type="AudioStreamPlayer3D" parent="." unique_id=658221096]
-stream = ExtResource("3_ki6ht")
+stream = ExtResource("3_4kis8")
 volume_db = -5.0
 
 [node name="AirAudio" type="AudioStreamPlayer3D" parent="." unique_id=1264079124]
@@ -82,3 +82,5 @@ light_color = Color(0.2509804, 0.8745098, 1, 1)
 light_size = 0.3
 light_cull_mask = 4294967293
 script = ExtResource("6_4kis8")
+
+[node name="SurfaceAudio" type="AudioStreamPlayer3D" parent="." unique_id=564775916]

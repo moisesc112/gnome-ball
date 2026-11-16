@@ -14,11 +14,16 @@ extends RigidBody3D
 @export var air_steer_multiplier: float = 0.4
 
 @onready var rolling_audio: AudioStreamPlayer3D = $RollingAudio
-@export var rolling_audio_grace_period: float = 0.15
+@export var rolling_audio_grace_period: float = 0.5
+@export var max_rolling_pitch_speed: float = 30.0
 
 @onready var air_audio: AudioStreamPlayer3D = $AirAudio
 @export var air_audio_delay: float = 0.3
 var airborne_time: float = 0.0
+
+@onready var surface_audio: AudioStreamPlayer3D = $SurfaceAudio
+var grass_sound: AudioStream = preload("res://assets/audio/Ball/833458__darceyprodanovic__rustling-in-leaves.wav")
+var wood_sound: AudioStream = preload("res://assets/audio/Ball/535369__nagwense__glass-ball-rolling-on-wood_trimmed.wav")
 
 @onready var impact_audio: AudioStreamPlayer3D = $ImpactAudio
 var was_grounded: bool = false
@@ -52,6 +57,7 @@ func _ready() -> void:
 	
 	configure_player_force(HighLevelNetworkHandler.session_player_count)
 	
+	surface_audio.stream = grass_sound
 	rolling_audio.play()
 
 func suppress_impact_audio(duration: float = 0.2) -> void:
@@ -85,12 +91,17 @@ func update_ball_audio(delta: float) -> void:
 		airborne_time = 0.0
 		rolling_audio.stop()
 		air_audio.stop()
+		surface_audio.stop()
 		return
 
 	if not rolling_audio.playing:
-		rolling_audio.volume_db = -60.0
+		rolling_audio.volume_db = 0.0
 		rolling_audio.play()
-
+	
+	if not surface_audio.playing:
+		surface_audio.volume_db = -60.0
+		#surface_audio.play()
+	
 	if not air_audio.playing:
 		air_audio.volume_db = -60.0
 		air_audio.play()
@@ -116,7 +127,7 @@ func update_ball_audio(delta: float) -> void:
 	var air_target := -60.0
 
 	if airborne_time < rolling_audio_grace_period and horizontal_speed > 0.5:
-		rolling_target = lerpf(-30.0, -10.0, rolling_ratio)
+		rolling_target = lerpf(-10.0, -3.0, rolling_ratio)
 
 	if not grounded and airborne_time >= air_audio_delay and total_speed > 1.0:
 		air_target = lerpf(-35.0, -12.0, air_ratio)
@@ -126,9 +137,14 @@ func update_ball_audio(delta: float) -> void:
 	rolling_audio.volume_db = lerpf(rolling_audio.volume_db, rolling_target, fade)
 
 	air_audio.volume_db = lerpf(air_audio.volume_db, air_target, fade)
-
-	rolling_audio.pitch_scale = lerpf(0.85, 1.25, rolling_ratio)
+	
+	var pitch_ratio := clampf(horizontal_speed / max_rolling_pitch_speed, 0.0, 1.0)
+	
+	rolling_audio.pitch_scale = lerpf(0.95, 1.25, pitch_ratio)
 	air_audio.pitch_scale = lerpf(0.9, 1.15, air_ratio)
+	
+	surface_audio.volume_db = rolling_audio.volume_db - 10.0
+	surface_audio.pitch_scale = rolling_audio.pitch_scale
 
 @rpc("any_peer", "call_local", "reliable")
 func request_jump() -> void:
@@ -314,4 +330,4 @@ func _physics_process(delta: float) -> void:
 	
 	update_contact_shadow()
 	update_ball_audio(delta)
-	update_impact_audio(delta)
+	#update_impact_audio(delta)

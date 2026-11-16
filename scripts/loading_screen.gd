@@ -4,8 +4,8 @@ extends CanvasLayer
 
 var fade_tween: Tween
 
-#func _ready() -> void:
-	#hide()
+func _ready() -> void:
+	hide()
 
 func show_loading() -> void:
 	if fade_tween and fade_tween.is_running():
