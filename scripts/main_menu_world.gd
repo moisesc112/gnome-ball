@@ -5,10 +5,10 @@ extends Node3D
 @onready var fairy_animation_player: AnimationPlayer = $fairy_king_smooth/AnimationPlayer
 @onready var player_ball: Node3D = $player_ball_smooth2
 @onready var gnomes: Array[Node3D] = [
-	$Gnome1,
-	$Gnome2,
-	$Gnome3,
-	$Gnome4
+	$gnome_rerig,
+	$gnome_rerig2,
+	$gnome_rerig3,
+	$gnome_rerig4
 ]
 
 @export var rotation_speed: float = 1.5

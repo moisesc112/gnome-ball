@@ -4,10 +4,10 @@ extends Node3D
 
 @onready var ball_pivot: Node3D = $player_ball_smooth
 @onready var gnomes: Array[Node3D] = [
-	$Gnome1,
-	$Gnome2,
-	$Gnome3,
-	$Gnome4
+	$gnome_rerig,
+	$gnome_rerig2,
+	$gnome_rerig3,
+	$gnome_rerig4
 ]
 
 func _ready() -> void:
