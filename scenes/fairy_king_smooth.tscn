@@ -2,12 +2,34 @@
 
 [ext_resource type="PackedScene" uid="uid://8ttu5orrsc48" path="res://assets/characters/fairy_king/fairy_king_smooth.glb" id="1_87j27"]
 [ext_resource type="Script" uid="uid://bxpiwmgrs5i3s" path="res://scripts/fairy_king.gd" id="2_gk1d4"]
+[ext_resource type="Material" uid="uid://cn48xkanckqyt" path="res://assets/characters/fairy_king/Skin.tres" id="3_gxgod"]
+[ext_resource type="Material" uid="uid://baq7cdbu4ermj" path="res://assets/characters/fairy_king/Face.tres" id="4_owe2p"]
+[ext_resource type="Material" uid="uid://cg80c3o1c24ho" path="res://assets/characters/fairy_king/TopHead.001.tres" id="5_wnd25"]
+[ext_resource type="Material" uid="uid://hd8due7i4ptj" path="res://assets/characters/fairy_king/WingsOutline.tres" id="6_frfh4"]
+[ext_resource type="Material" uid="uid://bus580ecdmxd0" path="res://assets/characters/fairy_king/WingsInterior.tres" id="7_s6tr5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4bcl2"]
 size = Vector3(5, 5, 5)
 
 [node name="fairy_king_smooth" unique_id=1816964908 instance=ExtResource("1_87j27")]
 script = ExtResource("2_gk1d4")
+
+[node name="Arms" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1277360430) index="0" unique_id=617253661]
+surface_material_override/0 = ExtResource("3_gxgod")
+
+[node name="Body" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1277360430) index="1" unique_id=1191851767]
+surface_material_override/0 = ExtResource("3_gxgod")
+
+[node name="Head" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1277360430) index="2" unique_id=507128168]
+surface_material_override/0 = ExtResource("4_owe2p")
+surface_material_override/1 = ExtResource("5_wnd25")
+
+[node name="Legs" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1277360430) index="3" unique_id=1549268589]
+surface_material_override/0 = ExtResource("3_gxgod")
+
+[node name="Wings" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1277360430) index="4" unique_id=1621134857]
+surface_material_override/0 = ExtResource("6_frfh4")
+surface_material_override/1 = ExtResource("7_s6tr5")
 
 [node name="Area3D" type="Area3D" parent="." index="2" unique_id=592008187]
 collision_mask = 5
