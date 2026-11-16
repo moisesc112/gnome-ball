@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dbf000medmufh"]
+
+[resource]
+resource_name = "Beard"
+cull_mode = 2
+albedo_color = Color(0.75131106, 0.75131106, 0.75131106, 1)
