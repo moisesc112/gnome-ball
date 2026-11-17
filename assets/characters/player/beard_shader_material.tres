@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://kacstft1wio2"]
+
+[ext_resource type="Shader" uid="uid://bxhpvxjeb48ga" path="res://shaders/gnome_toon.gdshader" id="1_aoyar"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_aoyar")
+shader_parameter/base_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+shader_parameter/shadow_color = Color(0.54901963, 0.61960787, 0.73333335, 1)
+shader_parameter/highlight_color = Color(1, 0.9411765, 0.8352941, 1)
+shader_parameter/shadow_threshold = 0.35
+shader_parameter/highlight_threshold = 0.570000027075
+shader_parameter/transition_softness = 0.04
+shader_parameter/shadow_strength = 0.55
+shader_parameter/highlight_strength = 0.25
+shader_parameter/rim_color = Color(1, 0.6509804, 0.3019608, 1)
+shader_parameter/rim_strength = 0.150000007125
+shader_parameter/rim_power = 4.0

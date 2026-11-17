@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cljil4mrx4v53"]
+
+[ext_resource type="Shader" uid="uid://bxhpvxjeb48ga" path="res://shaders/gnome_toon.gdshader" id="1_02kle"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_02kle")
+shader_parameter/base_color = Color(0.39607844, 0.21568628, 0.12156863, 1)
+shader_parameter/shadow_color = Color(0.21725649, 0.10773275, 0.05047775, 1)
+shader_parameter/highlight_color = Color(0.88290685, 0.5973777, 0.45563436, 1)
+shader_parameter/shadow_threshold = 0.35
+shader_parameter/highlight_threshold = 0.75
+shader_parameter/transition_softness = 0.04
+shader_parameter/shadow_strength = 0.55
+shader_parameter/highlight_strength = 0.25
+shader_parameter/rim_color = Color(1, 0.65, 0.3, 1)
+shader_parameter/rim_strength = 0.150000007125
+shader_parameter/rim_power = 4.0

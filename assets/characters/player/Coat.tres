@@ -4,6 +4,6 @@
 resource_name = "Coat"
 cull_mode = 2
 diffuse_mode = 3
-specular_mode = 2
+specular_mode = 1
 albedo_color = Color(0, 0.3732673, 0.5299077, 1)
 roughness = 0.5

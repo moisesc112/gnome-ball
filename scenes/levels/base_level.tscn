@@ -129,7 +129,7 @@ script = ExtResource("1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1920299976]
 transform = Transform3D(0.9539651, -0.12362555, 0.27325332, -0.010633663, 0.8965796, 0.44275516, -0.29972914, -0.42527863, 0.85399103, 0, 0, 0)
-light_color = Color(1, 0.94509804, 0.8392157, 1)
+light_color = Color(1, 0.83137256, 0.6039216, 1)
 shadow_enabled = true
 
 [node name="CameraRig" parent="." unique_id=187381219 instance=ExtResource("2")]

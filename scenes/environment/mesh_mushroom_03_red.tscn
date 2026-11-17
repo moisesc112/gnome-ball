@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://c1q8qtova877j"]
 
 [ext_resource type="PackedScene" uid="uid://c3ltcj0ilh4ae" path="res://assets/fbx/mushrooms/mesh_mushroom_03_red.fbx" id="1_dbdsh"]
+[ext_resource type="Material" uid="uid://vjouphebk5bs" path="res://assets/fbx/branches/m_lowworld_naturekit.tres" id="2_pu7u4"]
 
 [node name="mesh_mushroom_03_red" unique_id=1740913427 instance=ExtResource("1_dbdsh")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh_mushroom_03_red_LOD0" parent_id_path=PackedInt32Array(836430351) index="0" unique_id=1205479203]
+[node name="mesh_mushroom_03_red_LOD0" parent="." index="0" unique_id=836430351]
+surface_material_override/0 = ExtResource("2_pu7u4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh_mushroom_03_red_LOD0" index="0" unique_id=1205479203]
 transform = Transform3D(1.5459195, 0, 0, 0, 1.5459195, 6.757429e-08, 0, -6.757429e-08, 1.5459195, 0, 0, 0)
 
 [node name="mesh_mushroom_03_red_LOD1" parent="." index="1" unique_id=381272532]

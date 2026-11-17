@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dtmvj8qst8c5b"]
+
+[ext_resource type="Shader" uid="uid://bxhpvxjeb48ga" path="res://shaders/gnome_toon.gdshader" id="1_vmf0x"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vmf0x")
+shader_parameter/base_color = Color(0.72156864, 0, 0.043137256, 1)
+shader_parameter/shadow_color = Color(0.52156866, 0.22745098, 0.30980393, 1)
+shader_parameter/highlight_color = Color(1, 0.8235294, 0.60784316, 1)
+shader_parameter/shadow_threshold = 0.35
+shader_parameter/highlight_threshold = 0.75
+shader_parameter/transition_softness = 0.04
+shader_parameter/shadow_strength = 0.55
+shader_parameter/highlight_strength = 0.25
+shader_parameter/rim_color = Color(1, 0.65, 0.3, 1)
+shader_parameter/rim_strength = 0.25
+shader_parameter/rim_power = 4.0

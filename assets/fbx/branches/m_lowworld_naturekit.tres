@@ -4,6 +4,9 @@
 
 [resource]
 resource_name = "m_lowworld_naturekit"
+diffuse_mode = 3
+specular_mode = 1
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_c0xmp")
+roughness = 0.5
 emission_enabled = true

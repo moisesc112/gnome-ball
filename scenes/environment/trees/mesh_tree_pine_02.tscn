@@ -1,5 +1,22 @@
 [gd_scene format=3 uid="uid://dmylcs1ufpgg7"]
 
 [ext_resource type="PackedScene" uid="uid://bih2kged0a8ag" path="res://assets/fbx/trees/mesh_tree_pine_02.fbx" id="1_2nvho"]
+[ext_resource type="Material" uid="uid://vjouphebk5bs" path="res://assets/fbx/branches/m_lowworld_naturekit.tres" id="2_jqxfy"]
+[ext_resource type="Material" uid="uid://0buxd6wmowvr" path="res://assets/fbx/trees/m_lowworld_naturekit_foliage.tres" id="3_biyyp"]
 
 [node name="mesh_tree_pine_02" unique_id=584212452 instance=ExtResource("1_2nvho")]
+
+[node name="mesh_tree_pine_02_trunk_LOD0" parent="." index="0" unique_id=1400014415]
+surface_material_override/0 = ExtResource("2_jqxfy")
+
+[node name="mesh_tree_pine_02_leaves_LOD0" parent="." index="1" unique_id=95417083]
+surface_material_override/0 = ExtResource("3_biyyp")
+
+[node name="mesh_tree_pine_02_trunk_LOD1" parent="." index="2" unique_id=1716457955]
+visible = false
+
+[node name="mesh_tree_pine_02_trunk_LOD2" parent="." index="3" unique_id=1990700827]
+visible = false
+
+[node name="mesh_tree_pine_02_trunk_LOD3" parent="." index="4" unique_id=828764686]
+visible = false
