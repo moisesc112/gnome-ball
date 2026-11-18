@@ -76,3 +76,15 @@ func set_face(index: int) -> void:
 
 		material.albedo_texture = texture
 		material.albedo_color = Color.WHITE
+
+func apply_customization(customization: Dictionary) -> void:
+	var face_index: int = customization.get("face", 0)
+	var hat_index: int = customization.get("hat", 0)
+	var outfit_index: int = customization.get("outfit", 0)
+	var beard_index: int = customization.get("beard", 0)
+
+	set_face(face_index)
+	
+	set_color("hat", ColorPalettes.HAT_COLORS[hat_index])
+	set_color("outfit", ColorPalettes.OUTFIT_COLORS[outfit_index])
+	set_color("beard", ColorPalettes.BEARD_COLORS[beard_index])

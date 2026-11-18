@@ -44,6 +44,17 @@ var session_player_count: int = 1
 var player_names: Dictionary = {}
 var local_player_name: String = ""
 
+signal player_customization_changed(peer_id: int, customization: Dictionary)
+
+const DEFAULT_CUSTOMIZATION := {
+	"face": 0,
+	"hat": 0,
+	"outfit": 0,
+	"beard": 0
+}
+
+var player_customizations: Dictionary = {}
+
 func _ready() -> void:
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
@@ -61,6 +72,77 @@ func _ready() -> void:
 	Steam.lobby_joined.connect(_on_steam_lobby_joined)
 	Steam.join_requested.connect(_on_steam_join_requested)
 	
+
+func submit_customization(customization: Dictionary) -> void:
+	if multiplayer.is_server():
+		_save_customization(
+			multiplayer.get_unique_id(),
+			customization
+		)
+	else:
+		server_receive_customization.rpc_id(1, customization)
+
+
+@rpc("any_peer", "call_remote", "reliable")
+func server_receive_customization(customization: Dictionary) -> void:
+	if not multiplayer.is_server():
+		return
+
+	var peer_id := multiplayer.get_remote_sender_id()
+
+	_save_customization(peer_id, customization)
+
+
+func _save_customization(peer_id: int, customization: Dictionary) -> void:
+	if not multiplayer.is_server():
+		return
+
+	# Validate all indices before accepting them.
+	var clean := DEFAULT_CUSTOMIZATION.duplicate()
+
+	for category in clean:
+		var value = customization.get(category, 0)
+
+		if typeof(value) != TYPE_INT:
+			return
+
+		var max_count := 0
+
+		match category:
+			"face":
+				max_count = 3 # Replace with your face texture count
+			"hat":
+				max_count = 6
+			"outfit":
+				max_count = 5
+			"beard":
+				max_count = 5
+
+		if value < 0 or value >= max_count:
+			return
+
+		clean[category] = value
+
+	# Runs locally on host and remotely on clients.
+	sync_customization.rpc(peer_id, clean)
+
+
+@rpc("authority", "call_local", "reliable")
+func sync_customization(peer_id: int, customization: Dictionary) -> void:
+	player_customizations[peer_id] = customization.duplicate()
+
+	player_customization_changed.emit(peer_id, customization)
+
+
+@rpc("authority", "call_local", "reliable")
+func sync_all_customizations(all_customizations: Dictionary) -> void:
+	player_customizations = all_customizations.duplicate(true)
+
+	for peer_id in player_customizations:
+		player_customization_changed.emit(
+			peer_id,
+			player_customizations[peer_id]
+		)
 
 @rpc("any_peer", "call_remote", "reliable")
 func submit_player_name(display_name: String) -> void:
@@ -209,6 +291,8 @@ func _on_peer_disconnected(id: int) -> void:
 	cleanup_ready_peers.erase(id)
 	player_names.erase(id)
 	sync_player_names.rpc(player_names)
+	player_customizations.erase(id)
+	sync_all_customizations.rpc(player_customizations)
 	
 	if scene_spawner != null and spawned_peers.has(id):
 		scene_spawner.despawn_player(id)
@@ -237,6 +321,8 @@ func _on_connection_failed() -> void:
 
 func _on_peer_connected(id: int) -> void:
 	print("Peer connected: ", id)
+	if multiplayer.is_server():
+		sync_all_customizations.rpc_id(id, player_customizations)
 
 func leave_session() -> void:
 	LoadingScreen.hide()
@@ -257,6 +343,7 @@ func leave_session() -> void:
 	cleanup_prepared_peers.clear()
 	cleanup_ready_peers.clear()
 	player_names.clear()
+	player_customizations.clear()
 	
 	peer = null
 	network_transport = NetworkTransport.ENET
@@ -702,6 +789,7 @@ func initialize_lobby_session() -> void:
 	cleanup_prepared_peers.clear()
 	cleanup_ready_peers.clear()
 	player_names.clear()
+	player_customizations.clear()
 	
 	session_player_count = 1
 	transition_id = 0

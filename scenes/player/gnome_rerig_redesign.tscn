@@ -11,7 +11,7 @@
 
 [node name="gnome_rerig_redesign" unique_id=318860482 instance=ExtResource("1_d12m8")]
 
-[node name="Skeleton3D" parent="Gnome_Rig" parent_id_path=PackedInt32Array(481176413) index="0" unique_id=1811965998]
+[node name="Skeleton3D" parent="Gnome_Rig" parent_id_path=PackedInt32Array(1145184710) index="0" unique_id=1950475479]
 bones/0/position = Vector3(-6.6613403e-16, 0.28995758, 0.010364786)
 bones/0/rotation = Quaternion(-0.053381167, 1.19039356e-07, -6.3635515e-09, 0.9985742)
 bones/1/rotation = Quaternion(0.053381257, -1.3572081e-14, 1.2727085e-08, 0.9985742)
@@ -87,42 +87,42 @@ bones/62/rotation = Quaternion(0.005365762, 0.022213861, -0.0014944082, 0.999737
 bones/63/rotation = Quaternion(-0.7441423, -0.024782144, -0.019420182, 0.6672788)
 bones/64/rotation = Quaternion(-0.003175731, 0.008615967, 0.06040073, 0.998132)
 
-[node name="Head" parent="Gnome_Rig/Skeleton3D" index="0" unique_id=438979111]
+[node name="Head" parent="Gnome_Rig/Skeleton3D" index="0" unique_id=429895465]
 transform = Transform3D(0.9999633, -0.008572089, -2.3258073e-05, 0.008572039, 0.9999384, 0.007031782, -3.702042e-05, -0.0070317243, 0.99997526, -0.0017784175, 0.7626295, -0.0013960438)
 
-[node name="Moustache" parent="Gnome_Rig/Skeleton3D/Head" index="0" unique_id=1447265551]
+[node name="Moustache" parent="Gnome_Rig/Skeleton3D/Head" index="0" unique_id=1678731410]
 surface_material_override/0 = ExtResource("2_cfdey")
 
-[node name="Arms" parent="Gnome_Rig/Skeleton3D" index="1" unique_id=742378816]
+[node name="Arms" parent="Gnome_Rig/Skeleton3D" index="1" unique_id=196091111]
 surface_material_override/0 = ExtResource("3_qh4yy")
 
-[node name="Beard" parent="Gnome_Rig/Skeleton3D" index="2" unique_id=1686408310]
+[node name="Beard" parent="Gnome_Rig/Skeleton3D" index="2" unique_id=363493830]
 surface_material_override/0 = ExtResource("2_cfdey")
 
-[node name="Belt" parent="Gnome_Rig/Skeleton3D" index="3" unique_id=1966912672]
+[node name="Belt" parent="Gnome_Rig/Skeleton3D" index="3" unique_id=1204400310]
 surface_material_override/0 = ExtResource("6_vmfkc")
 
-[node name="Body" parent="Gnome_Rig/Skeleton3D" index="4" unique_id=1882549869]
+[node name="Body" parent="Gnome_Rig/Skeleton3D" index="4" unique_id=174555164]
 surface_material_override/0 = ExtResource("3_qh4yy")
 
-[node name="Coat" parent="Gnome_Rig/Skeleton3D" index="5" unique_id=1042890913]
+[node name="Coat" parent="Gnome_Rig/Skeleton3D" index="5" unique_id=1012330701]
 surface_material_override/0 = ExtResource("4_bcp24")
 
-[node name="Face" parent="Gnome_Rig/Skeleton3D" index="6" unique_id=1222874473]
+[node name="Face" parent="Gnome_Rig/Skeleton3D" index="6" unique_id=224854302]
 surface_material_override/0 = ExtResource("6_qh4yy")
 
-[node name="Hands" parent="Gnome_Rig/Skeleton3D" index="7" unique_id=1155026072]
+[node name="Hands" parent="Gnome_Rig/Skeleton3D" index="7" unique_id=1642562517]
 surface_material_override/0 = ExtResource("3_qh4yy")
 
-[node name="Hat" parent="Gnome_Rig/Skeleton3D" index="8" unique_id=961567397]
+[node name="Hat" parent="Gnome_Rig/Skeleton3D" index="8" unique_id=1597363959]
 surface_material_override/0 = ExtResource("5_tpn3w")
 
-[node name="Legs" parent="Gnome_Rig/Skeleton3D" index="9" unique_id=2129550090]
+[node name="Legs" parent="Gnome_Rig/Skeleton3D" index="9" unique_id=1135095661]
 surface_material_override/0 = ExtResource("6_vmfkc")
 surface_material_override/1 = ExtResource("7_8nua1")
 
-[node name="Nose" parent="Gnome_Rig/Skeleton3D" index="10" unique_id=1011670886]
+[node name="Nose" parent="Gnome_Rig/Skeleton3D" index="10" unique_id=873695287]
 surface_material_override/0 = ExtResource("3_qh4yy")
 
-[node name="Sleeves" parent="Gnome_Rig/Skeleton3D" index="11" unique_id=565236909]
+[node name="Sleeves" parent="Gnome_Rig/Skeleton3D" index="11" unique_id=322594297]
 surface_material_override/0 = ExtResource("4_bcp24")

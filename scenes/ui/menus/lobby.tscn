@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dghoqycw0qqka" path="res://scenes/high_level_ui.tscn" id="1_a1g6y"]
 [ext_resource type="Script" uid="uid://duk23tg7y1ejn" path="res://scripts/lobby.gd" id="1_t7lud"]
 [ext_resource type="PackedScene" uid="uid://cu4015ff0jps4" path="res://scenes/player/player_large_ball.tscn" id="2_cstg3"]
+[ext_resource type="PackedScene" uid="uid://c0w6rkuiux43a" path="res://scenes/ui/customization_ui.tscn" id="3_t7lud"]
 [ext_resource type="Script" uid="uid://bt3cgoef0ldx" path="res://scripts/high_level_multiplayer_spawner.gd" id="3_y584s"]
 [ext_resource type="PackedScene" uid="uid://dg7mpbxjsltc6" path="res://scenes/player/player_character.tscn" id="4_y584s"]
 
@@ -29,7 +30,11 @@ properties/1/replication_mode = 1
 [node name="Lobby" type="Node3D" unique_id=1352970754]
 script = ExtResource("1_t7lud")
 
-[node name="LobbyUI" parent="." unique_id=354274264 instance=ExtResource("1_a1g6y")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1513184164]
+
+[node name="LobbyUI" parent="CanvasLayer" unique_id=354274264 instance=ExtResource("1_a1g6y")]
+
+[node name="CustomizationUI" parent="CanvasLayer" unique_id=334645855 instance=ExtResource("3_t7lud")]
 
 [node name="SuspensionAnchor" type="StaticBody3D" parent="." unique_id=1475856857]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
@@ -80,3 +85,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6893437, 6.1534276)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="LobbyCamera" unique_id=727958002]
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=695713757]
+
+[connection signal="pressed" from="CanvasLayer/LobbyUI/VBoxContainer/CustomizeButton" to="." method="_on_customize_button_pressed"]
+
+[editable path="CanvasLayer/LobbyUI"]
+[editable path="CanvasLayer/CustomizationUI"]
+[editable path="CanvasLayer/CustomizationUI/PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport/gnome_rerig_redesign"]

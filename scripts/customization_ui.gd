@@ -8,31 +8,6 @@ enum Category {
 	BEARD
 }
 
-const HAT_COLORS: Array[Color] = [
-	Color("#c94343"),
-	Color("#3f78c5"),
-	Color("#53934d"),
-	Color("#8c5ac4"),
-	Color("#e5ad43"),
-	Color("#e9e3d6")
-]
-
-const OUTFIT_COLORS: Array[Color] = [
-	Color("#3f78c5"),
-	Color("#c94343"),
-	Color("#53934d"),
-	Color("#8c5ac4"),
-	Color("#8a6347")
-]
-
-const BEARD_COLORS: Array[Color] = [
-	Color("#f5f0e5"),
-	Color("#c8b79c"),
-	Color("#a87546"),
-	Color("#5e4637"),
-	Color("#343434")
-]
-
 @onready var tab_bar: TabBar = $PanelContainer/HBoxContainer/CustomizePanel/TabBar
 
 @onready var grid: GridContainer = $PanelContainer/HBoxContainer/CustomizePanel/ScrollContainer/GridContainer
@@ -41,12 +16,14 @@ const BEARD_COLORS: Array[Color] = [
 
 @onready var gnome: GnomeCustomization = $PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport/gnome_rerig_redesign
 
-var selected_colors: Dictionary = {
+var selected_customization: Dictionary = {
+	"face": 0,
 	"hat": 0,
 	"outfit": 0,
 	"beard": 0
 }
 
+signal customization_finished
 
 func _ready() -> void:
 	tab_bar.clear_tabs()
@@ -120,17 +97,18 @@ func _populate_face_grid() -> void:
 
 
 func _on_face_selected(index: int) -> void:
+	selected_customization["face"] = index
 	gnome.set_face(index)
 
 
 func _get_colors(category: int) -> Array[Color]:
 	match category:
 		Category.HAT:
-			return HAT_COLORS
+			return ColorPalettes.HAT_COLORS
 		Category.OUTFIT:
-			return OUTFIT_COLORS
+			return ColorPalettes.OUTFIT_COLORS
 		Category.BEARD:
-			return BEARD_COLORS
+			return ColorPalettes.BEARD_COLORS
 
 	return []
 
@@ -149,10 +127,13 @@ func _on_color_selected(category: int, index: int) -> void:
 	var colors := _get_colors(category)
 	var color: Color = colors[index]
 
-	selected_colors[category_name] = index
+	selected_customization[category_name] = index
 	gnome.set_color(category_name, color)
 
 
 func _on_done_pressed() -> void:
-	print("Selected customization: ", selected_colors)
+	print("Selected customization: ", selected_customization)
+	HighLevelNetworkHandler.submit_customization(selected_customization)
+	
+	customization_finished.emit()
 	hide()

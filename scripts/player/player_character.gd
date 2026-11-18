@@ -27,6 +27,7 @@ var target_roll = 0.0
 #@onready var gnome_mesh: Node3D = $gnome_low_poly_smooth
 #@onready var gnome_mesh: Node3D = $gnome_rerig
 @onready var gnome_mesh: Node3D = $gnome_rerig_redesign
+@onready var gnome_customization: GnomeCustomization = $gnome_rerig_redesign
 @export var is_walking: bool = false
 @export var is_idle: bool = false
 @export var is_falling: bool = false
@@ -100,6 +101,10 @@ func _ready() -> void:
 	
 	smoothed_relative_position = relative_position
 	previous_ball_position = get_ball_physics_position()
+	
+	HighLevelNetworkHandler.player_customization_changed.connect(_on_player_customization_changed)
+	var customization: Dictionary = HighLevelNetworkHandler.player_customizations.get(peer_id, HighLevelNetworkHandler.DEFAULT_CUSTOMIZATION)
+	_apply_player_customization(customization)
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
@@ -116,6 +121,15 @@ func set_player_name(display_name: String) -> void:
 
 	if is_node_ready():
 		player_name_label.text = display_name
+
+func _on_player_customization_changed(peer_id: int, customization: Dictionary) -> void:
+	if peer_id != get_multiplayer_authority():
+		return
+
+	_apply_player_customization(customization)
+
+func _apply_player_customization(customization: Dictionary) -> void:
+	gnome_customization.apply_customization(customization)
 
 func request_emote(emote_name: String) -> void:
 	if not is_multiplayer_authority():
