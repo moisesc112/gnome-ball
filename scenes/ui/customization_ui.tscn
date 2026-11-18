@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://c0w6rkuiux43a"]
+
+[ext_resource type="PackedScene" uid="uid://dburydv6ystmq" path="res://scenes/player/gnome_rerig_redesign.tscn" id="1_al85l"]
+[ext_resource type="Script" uid="uid://dugtcgwhyemcq" path="res://scripts/customization_ui.gd" id="1_najp0"]
+[ext_resource type="Script" uid="uid://dvphpwu1eg4h" path="res://scripts/gnome_customization.gd" id="3_owh1k"]
+[ext_resource type="Texture2D" uid="uid://b6tn8yoermypu" path="res://assets/characters/player_redesign/gnome_rerig_redesign_gnome_face_happy.png" id="4_d8twn"]
+[ext_resource type="Texture2D" uid="uid://bwj45qljnyjkv" path="res://assets/characters/player_redesign/gnome_face_mad.png" id="5_xdvjo"]
+[ext_resource type="Texture2D" uid="uid://rcklfb2avamk" path="res://assets/characters/player_redesign/gnome_face.png" id="6_ejyr2"]
+
+[node name="CustomizationUI" type="Control" unique_id=334645855]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_najp0")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2045006144]
+custom_maximum_size = Vector2(1100, 600)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=143331084]
+layout_mode = 2
+
+[node name="PreviewPanel" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=1730883622]
+custom_minimum_size = Vector2(400, 0)
+custom_maximum_size = Vector2(-1, 550)
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer/HBoxContainer/PreviewPanel" unique_id=1239950349]
+custom_minimum_size = Vector2(400, 500)
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer" unique_id=1344570013]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(400, 500)
+size_2d_override = Vector2i(400, 500)
+render_target_update_mode = 4
+
+[node name="gnome_rerig_redesign" parent="PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport" unique_id=318860482 node_paths=PackedStringArray("face_meshes", "hat_meshes", "outfit_meshes", "beard_meshes") instance=ExtResource("1_al85l")]
+script = ExtResource("3_owh1k")
+face_meshes = [NodePath("Gnome_Rig/Skeleton3D/Face")]
+face_textures = Array[Texture2D]([ExtResource("4_d8twn"), ExtResource("5_xdvjo"), ExtResource("6_ejyr2")])
+hat_meshes = [NodePath("Gnome_Rig/Skeleton3D/Hat")]
+outfit_meshes = [NodePath("Gnome_Rig/Skeleton3D/Coat"), NodePath("Gnome_Rig/Skeleton3D/Sleeves")]
+beard_meshes = [NodePath("Gnome_Rig/Skeleton3D/Face"), NodePath("Gnome_Rig/Skeleton3D/Hands"), NodePath("Gnome_Rig/Skeleton3D/Nose")]
+
+[node name="Camera3D" type="Camera3D" parent="PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport" unique_id=1613592507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8062256, 1.6404679)
+projection = 1
+size = 2.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport" unique_id=1427609052]
+light_specular = 0.0
+
+[node name="CustomizePanel" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=2020949631]
+custom_minimum_size = Vector2(700, 0)
+custom_maximum_size = Vector2(-1, 500)
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="PanelContainer/HBoxContainer/CustomizePanel" unique_id=1254196254]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/HBoxContainer/CustomizePanel" unique_id=910559372]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/HBoxContainer/CustomizePanel/ScrollContainer" unique_id=1123247120]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 5
+
+[node name="DoneButton" type="Button" parent="PanelContainer/HBoxContainer/CustomizePanel" unique_id=954345765]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Done"
+
+[editable path="PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport/gnome_rerig_redesign"]
