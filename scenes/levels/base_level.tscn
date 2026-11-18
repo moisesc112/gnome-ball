@@ -990,6 +990,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.57, 32.83336, -116.82411)
 radius = 16.631836
 height = 1.0
 
+[node name="CSGCylinder3D18" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=2007491934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.27642, 49.48057, -143.00194)
+radius = 16.631836
+height = 1.0
+
+[node name="CSGCylinder3D19" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1781856588]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6960716, 60.872906, -177.58656)
+radius = 16.631836
+height = 1.0
+
+[node name="CSGCylinder3D20" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=869546396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.70536, 60.872906, -136.97664)
+radius = 16.631836
+height = 1.0
+
+[node name="CSGCylinder3D21" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1065050361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.272858, 60.872906, -68.58769)
+radius = 16.4917
+height = 1.0
+
 [node name="CSGCylinder3D5" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1992044383]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.82557, 10.113441, -10.567102)
 radius = 13.354492

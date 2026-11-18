@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dwpbm6w5s772c"]
+
+[ext_resource type="Texture2D" uid="uid://dxfywl1droroy" path="res://assets/characters/player_redesign/gnome_rerig_redesign_backup_gnome_face_happy.png" id="1_hkdbb"]
+
+[resource]
+resource_name = "Skin"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_hkdbb")
+roughness = 0.5
