@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dbdade66bivb2" path="res://scenes/ui/selection_wheel.tscn" id="21_pohmv"]
 [ext_resource type="PackedScene" uid="uid://bvjd7gdpcv7lv" path="res://scenes/tree_sap.tscn" id="22_p7bm1"]
 [ext_resource type="PackedScene" uid="uid://dmrpubgv5gtwi" path="res://scenes/wind_zone.tscn" id="22_plain"]
+[ext_resource type="PackedScene" uid="uid://crpnwildl2apy" path="res://scenes/rotating_hollow_log.tscn" id="23_p7bm1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_eo7uf")
@@ -157,8 +158,8 @@ depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
 [node name="Ramp5" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=922392584]
-transform = Transform3D(0.03046155, 0.020187737, -0.9993321, -0.018299576, 0.9996397, 0.019636156, 0.9993689, 0.017689196, 0.030819952, 11.622529, 0.13899708, 7.029419)
-polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+transform = Transform3D(0.99945337, 0.01883029, -0.027192255, -0.018886348, 0.99981993, -0.0018057935, 0.027153337, 0.0023183692, 0.9996287, 5.6846647, 0.13899708, 29.73782)
+polygon = PackedVector2Array(-4.980927, 0.020687401, -4.888932, 7.502518, 14.966292, 0.6498225, 16.536942, 0.0849193)
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
@@ -300,6 +301,10 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -22.604517, 9.638586, 69.6797
 
 [node name="TreeSap3" parent="." unique_id=1950237034 instance=ExtResource("22_p7bm1")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 9.553167, -0.15192556, 78.03624)
+
+[node name="RotatingHollowLog" parent="." unique_id=846490396 instance=ExtResource("23_p7bm1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.850714, 12.359652, 27.086903)
+rotation_speed = 100.0
 
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]
