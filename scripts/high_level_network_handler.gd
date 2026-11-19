@@ -48,6 +48,7 @@ signal player_customization_changed(peer_id: int, customization: Dictionary)
 
 const DEFAULT_CUSTOMIZATION := {
 	"face": 0,
+	"hat_style": 0,
 	"hat": 0,
 	"outfit": 0,
 	"beard": 0
@@ -111,6 +112,8 @@ func _save_customization(peer_id: int, customization: Dictionary) -> void:
 		match category:
 			"face":
 				max_count = 3 # Replace with your face texture count
+			"hat_style":
+				max_count = 2
 			"hat":
 				max_count = 6
 			"outfit":

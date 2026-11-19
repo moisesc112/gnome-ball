@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cm8fyb1a7idme"]
+
+[ext_resource type="PackedScene" uid="uid://0caqvkbjx8k7" path="res://assets/characters/gnome_v7/gnome_v7.glb" id="1_wgf8n"]
+[ext_resource type="Material" uid="uid://7ven3gjwdrig" path="res://assets/characters/gnome_v7/wizard_hat.tres" id="2_pxurw"]
+
+[node name="gnome_v7" unique_id=1118346108 instance=ExtResource("1_wgf8n")]
+
+[node name="Wizard_Hat" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1553696864) index="12" unique_id=1335528079]
+surface_material_override/0 = ExtResource("2_pxurw")

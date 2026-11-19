@@ -5,6 +5,7 @@ class_name GnomeCustomization
 @export var face_meshes: Array[MeshInstance3D]
 @export var face_textures: Array[Texture2D]
 
+@export var hat_options: Array[Node3D]
 @export var hat_meshes: Array[MeshInstance3D]
 @export var outfit_meshes: Array[MeshInstance3D]
 @export var beard_meshes: Array[MeshInstance3D]
@@ -17,6 +18,8 @@ func _ready() -> void:
 	materials["hat"] = _make_unique_materials(hat_meshes)
 	materials["outfit"] = _make_unique_materials(outfit_meshes)
 	materials["beard"] = _make_unique_materials(beard_meshes)
+	
+	set_hat_style(0)
 
 
 func _make_unique_materials(meshes: Array[MeshInstance3D]) -> Array[Material]:
@@ -76,15 +79,25 @@ func set_face(index: int) -> void:
 
 		material.albedo_texture = texture
 		material.albedo_color = Color.WHITE
+		
+func set_hat_style(index: int) -> void:
+	if index < 0 or index >= hat_options.size():
+		return
+
+	for i in range(hat_options.size()):
+		hat_options[i].visible = (i == index)
 
 func apply_customization(customization: Dictionary) -> void:
 	var face_index: int = customization.get("face", 0)
-	var hat_index: int = customization.get("hat", 0)
+	var hat_style: int = customization.get("hat_style", 0)
+	var hat_color: int = customization.get("hat", 0)
 	var outfit_index: int = customization.get("outfit", 0)
 	var beard_index: int = customization.get("beard", 0)
 
 	set_face(face_index)
 	
-	set_color("hat", ColorPalettes.HAT_COLORS[hat_index])
+	set_hat_style(hat_style)
+	
+	set_color("hat", ColorPalettes.HAT_COLORS[hat_color])
 	set_color("outfit", ColorPalettes.OUTFIT_COLORS[outfit_index])
 	set_color("beard", ColorPalettes.BEARD_COLORS[beard_index])

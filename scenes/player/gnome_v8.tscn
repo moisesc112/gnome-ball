@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://daeu7yg8651y3"]
+
+[ext_resource type="PackedScene" uid="uid://dm1uepjyj4l3l" path="res://assets/characters/gnome_v8/gnome_v8.glb" id="1_7te4c"]
+[ext_resource type="Material" uid="uid://dbf000medmufh" path="res://assets/characters/player/Beard.tres" id="2_1jhbg"]
+[ext_resource type="Script" uid="uid://dvphpwu1eg4h" path="res://scripts/gnome_customization.gd" id="2_iu38o"]
+[ext_resource type="Texture2D" uid="uid://b6tn8yoermypu" path="res://assets/characters/player_redesign/gnome_rerig_redesign_gnome_face_happy.png" id="3_8cxet"]
+[ext_resource type="Material" uid="uid://sjauvye443qe" path="res://assets/characters/player/Skin.tres" id="3_iu38o"]
+[ext_resource type="Material" uid="uid://5iqob5nbjhjs" path="res://assets/characters/player/Pants.tres" id="4_rda6f"]
+[ext_resource type="Texture2D" uid="uid://bwj45qljnyjkv" path="res://assets/characters/player_redesign/gnome_face_mad.png" id="4_xch64"]
+[ext_resource type="Material" uid="uid://bxl4n6mjucyg8" path="res://assets/characters/player/Coat.tres" id="5_nqxqp"]
+[ext_resource type="Texture2D" uid="uid://rcklfb2avamk" path="res://assets/characters/player_redesign/gnome_face.png" id="5_pqd5x"]
+[ext_resource type="Material" uid="uid://dwpbm6w5s772c" path="res://assets/characters/player/Face.tres" id="6_8cxet"]
+[ext_resource type="Material" uid="uid://c1drm6fr3qgwu" path="res://assets/characters/player/Hat.001.tres" id="7_xch64"]
+[ext_resource type="Material" uid="uid://drunybwx0eqq7" path="res://assets/characters/player/Shoes.tres" id="8_pqd5x"]
+[ext_resource type="Material" uid="uid://7ven3gjwdrig" path="res://assets/characters/gnome_v7/wizard_hat.tres" id="9_llygn"]
+
+[node name="gnome_v8" unique_id=62685171 node_paths=PackedStringArray("face_meshes", "hat_options", "hat_meshes", "outfit_meshes", "beard_meshes") instance=ExtResource("1_7te4c")]
+script = ExtResource("2_iu38o")
+face_meshes = [NodePath("Gnome_Rig/Skeleton3D/Face")]
+face_textures = Array[Texture2D]([ExtResource("3_8cxet"), ExtResource("4_xch64"), ExtResource("5_pqd5x")])
+hat_options = [NodePath("Gnome_Rig/Skeleton3D/Hat"), NodePath("Gnome_Rig/Skeleton3D/Wizard_Hat")]
+hat_meshes = [NodePath("Gnome_Rig/Skeleton3D/Hat")]
+outfit_meshes = [NodePath("Gnome_Rig/Skeleton3D/Coat"), NodePath("Gnome_Rig/Skeleton3D/Sleeves")]
+beard_meshes = [NodePath("Gnome_Rig/Skeleton3D/Beard"), NodePath("Gnome_Rig/Skeleton3D/Head/Moustache")]
+
+[node name="Moustache" parent="Gnome_Rig/Skeleton3D/Head" parent_id_path=PackedInt32Array(760052476) index="0" unique_id=797274552]
+surface_material_override/0 = ExtResource("2_1jhbg")
+
+[node name="Arms" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1795994997) index="1" unique_id=424248328]
+layers = 2
+surface_material_override/0 = ExtResource("3_iu38o")
+
+[node name="Beard" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1795994997) index="2" unique_id=1574270251]
+layers = 2
+surface_material_override/0 = ExtResource("2_1jhbg")
+
+[node name="Belt" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1795994997) index="3" unique_id=892121338]
+layers = 2
+surface_material_override/0 = ExtResource("4_rda6f")
+
+[node name="Body" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1795994997) index="4" unique_id=983191512]
+layers = 2
+surface_material_override/0 = ExtResource("3_iu38o")
+
+[node name="Coat" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1795994997) index="5" unique_id=592597001]
+layers = 2
+surface_material_override/0 = ExtResource("5_nqxqp")
+
+[node name="Face" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1795994997) index="6" unique_id=550949351]
+layers = 2
+surface_material_override/0 = ExtResource("6_8cxet")
+
+[node name="Hands" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1795994997) index="7" unique_id=760173169]
+layers = 2
+surface_material_override/0 = ExtResource("3_iu38o")
+
+[node name="Hat" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1795994997) index="8" unique_id=1946682352]
+layers = 2
+surface_material_override/0 = ExtResource("7_xch64")
+
+[node name="Legs" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1795994997) index="9" unique_id=1941446505]
+layers = 2
+surface_material_override/0 = ExtResource("4_rda6f")
+surface_material_override/1 = ExtResource("8_pqd5x")
+
+[node name="Nose" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1795994997) index="10" unique_id=293034187]
+layers = 2
+surface_material_override/0 = ExtResource("3_iu38o")
+
+[node name="Sleeves" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1795994997) index="11" unique_id=1853361599]
+layers = 2
+surface_material_override/0 = ExtResource("5_nqxqp")
+
+[node name="Wizard_Hat" parent="Gnome_Rig/Skeleton3D" parent_id_path=PackedInt32Array(1795994997) index="12" unique_id=1030234888]
+visible = false
+layers = 2
+surface_material_override/0 = ExtResource("9_llygn")

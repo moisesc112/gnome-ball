@@ -1,11 +1,7 @@
 [gd_scene format=3 uid="uid://c0w6rkuiux43a"]
 
-[ext_resource type="PackedScene" uid="uid://dburydv6ystmq" path="res://scenes/player/gnome_rerig_redesign.tscn" id="1_al85l"]
 [ext_resource type="Script" uid="uid://dugtcgwhyemcq" path="res://scripts/customization_ui.gd" id="1_najp0"]
-[ext_resource type="Script" uid="uid://dvphpwu1eg4h" path="res://scripts/gnome_customization.gd" id="3_owh1k"]
-[ext_resource type="Texture2D" uid="uid://b6tn8yoermypu" path="res://assets/characters/player_redesign/gnome_rerig_redesign_gnome_face_happy.png" id="4_hcdht"]
-[ext_resource type="Texture2D" uid="uid://bwj45qljnyjkv" path="res://assets/characters/player_redesign/gnome_face_mad.png" id="5_d8twn"]
-[ext_resource type="Texture2D" uid="uid://rcklfb2avamk" path="res://assets/characters/player_redesign/gnome_face.png" id="6_xdvjo"]
+[ext_resource type="PackedScene" uid="uid://daeu7yg8651y3" path="res://scenes/player/gnome_v8.tscn" id="8_xdvjo"]
 
 [node name="CustomizationUI" type="Control" unique_id=334645855]
 layout_mode = 3
@@ -46,21 +42,16 @@ size = Vector2i(400, 500)
 size_2d_override = Vector2i(400, 500)
 render_target_update_mode = 4
 
-[node name="gnome_rerig_redesign" parent="PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport" unique_id=318860482 node_paths=PackedStringArray("face_meshes", "hat_meshes", "outfit_meshes", "beard_meshes") instance=ExtResource("1_al85l")]
-script = ExtResource("3_owh1k")
-face_meshes = [NodePath("Gnome_Rig/Skeleton3D/Face")]
-face_textures = Array[Texture2D]([ExtResource("4_hcdht"), ExtResource("5_d8twn"), ExtResource("6_xdvjo")])
-hat_meshes = [NodePath("Gnome_Rig/Skeleton3D/Hat")]
-outfit_meshes = [NodePath("Gnome_Rig/Skeleton3D/Coat"), NodePath("Gnome_Rig/Skeleton3D/Sleeves")]
-beard_meshes = [NodePath("Gnome_Rig/Skeleton3D/Beard"), NodePath("Gnome_Rig/Skeleton3D/Head/Moustache")]
-
 [node name="Camera3D" type="Camera3D" parent="PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport" unique_id=1613592507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8062256, 1.6404679)
 projection = 1
 size = 2.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport" unique_id=1427609052]
+transform = Transform3D(1, 0, 0, 0, 0.85720485, 0.51497567, 0, -0.51497567, 0.85720485, 0, 0, 0)
 light_specular = 0.0
+
+[node name="gnome_v8" parent="PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport" unique_id=62685171 instance=ExtResource("8_xdvjo")]
 
 [node name="CustomizePanel" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=2020949631]
 custom_minimum_size = Vector2(700, 0)
@@ -86,4 +77,4 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Done"
 
-[editable path="PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport/gnome_rerig_redesign"]
+[editable path="PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport/gnome_v8"]

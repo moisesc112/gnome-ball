@@ -14,10 +14,11 @@ enum Category {
 
 @onready var done_button: Button = $PanelContainer/HBoxContainer/CustomizePanel/DoneButton
 
-@onready var gnome: GnomeCustomization = $PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport/gnome_rerig_redesign
+@onready var gnome: GnomeCustomization = $PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport/gnome_v8
 
 var selected_customization: Dictionary = {
 	"face": 0,
+	"hat_style": 0,
 	"hat": 0,
 	"outfit": 0,
 	"beard": 0
@@ -52,6 +53,13 @@ func _populate_grid(category: int) -> void:
 		_populate_face_grid()
 		return
 
+	if category == Category.HAT:
+		_populate_hat_grid()
+		return
+
+	_populate_color_grid(category)
+
+func _populate_color_grid(category: int) -> void:
 	var colors := _get_colors(category)
 
 	for i in range(colors.size()):
@@ -78,6 +86,31 @@ func _populate_grid(category: int) -> void:
 
 		grid.add_child(button)
 
+func _populate_hat_grid() -> void:
+	var hat_names := ["Default Hat", "Wizard Hat"]
+
+	# Create buttons for each hat style.
+	for i in range(gnome.hat_options.size()):
+		var button := Button.new()
+
+		button.custom_minimum_size = Vector2(100, 75)
+
+		if i < hat_names.size():
+			button.text = hat_names[i]
+		else:
+			button.text = "Hat %d" % i
+
+		button.pressed.connect(
+			_on_hat_style_selected.bind(i)
+		)
+
+		grid.add_child(button)
+		
+		button.toggle_mode = true
+		button.button_pressed = (selected_customization["hat_style"] == i)
+
+	if selected_customization["hat_style"] == 0:
+		_populate_color_grid(Category.HAT)
 
 func _populate_face_grid() -> void:
 	for i in range(gnome.face_textures.size()):
@@ -130,6 +163,11 @@ func _on_color_selected(category: int, index: int) -> void:
 	selected_customization[category_name] = index
 	gnome.set_color(category_name, color)
 
+func _on_hat_style_selected(index: int) -> void:
+	selected_customization["hat_style"] = index
+	gnome.set_hat_style(index)
+	
+	_populate_grid(Category.HAT)
 
 func _on_done_pressed() -> void:
 	print("Selected customization: ", selected_customization)

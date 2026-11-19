@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://7ven3gjwdrig"]
+
+[ext_resource type="Shader" uid="uid://bu8nsj7qjtuxq" path="res://shaders/wizard_hat.gdshader" id="1_rq7vm"]
+[ext_resource type="Texture2D" uid="uid://bqd5431twoqki" path="res://assets/characters/gnome_v7/gnome_v7_starry_night_star_pintreset.jpg" id="2_v2lmh"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_rq7vm")
+shader_parameter/star_texture = ExtResource("2_v2lmh")
+shader_parameter/texture_scale = Vector2(0.5, 0.5)
+shader_parameter/texture_offset = Vector2(0.5, 0.5)
