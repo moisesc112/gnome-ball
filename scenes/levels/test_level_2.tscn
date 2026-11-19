@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bvjd7gdpcv7lv" path="res://scenes/tree_sap.tscn" id="22_p7bm1"]
 [ext_resource type="PackedScene" uid="uid://dmrpubgv5gtwi" path="res://scenes/wind_zone.tscn" id="22_plain"]
 [ext_resource type="PackedScene" uid="uid://crpnwildl2apy" path="res://scenes/rotating_hollow_log.tscn" id="23_p7bm1"]
+[ext_resource type="PackedScene" uid="uid://ch58l5ujld2w6" path="res://scenes/anti_gravity_zone.tscn" id="24_pohmv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_eo7uf")
@@ -86,6 +87,11 @@ use_collision = true
 [node name="NarrowBridge" type="CSGBox3D" parent="CSGCombiner3D" unique_id=216196074]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.056046, 8.379194, -5.919409)
 size = Vector3(1.0839844, 0.7696533, 10.278809)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=812605089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.99313, 17.382998, 100.67621)
+size = Vector3(24.079224, 0.7696533, 22.372498)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=862319619]
@@ -305,6 +311,9 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 9.553167, -0.15192556, 78.036
 [node name="RotatingHollowLog" parent="." unique_id=846490396 instance=ExtResource("23_p7bm1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.850714, 12.359652, 27.086903)
 rotation_speed = 100.0
+
+[node name="AntiGravityZone" parent="." unique_id=240673675 instance=ExtResource("24_pohmv")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -12.991897, 5.6106815, 100.54389)
 
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]

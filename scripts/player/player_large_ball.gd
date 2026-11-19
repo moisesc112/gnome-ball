@@ -13,6 +13,8 @@ extends RigidBody3D
 @export var air_gravity_multiplier: float = 3.0
 @export var air_steer_multiplier: float = 0.4
 
+var is_anti_gravity: bool = false
+
 @onready var rolling_audio: AudioStreamPlayer3D = $RollingAudio
 @export var rolling_audio_grace_period: float = 0.5
 @export var max_rolling_pitch_speed: float = 30.0
@@ -146,6 +148,10 @@ func update_ball_audio(delta: float) -> void:
 	surface_audio.volume_db = rolling_audio.volume_db - 10.0
 	surface_audio.pitch_scale = rolling_audio.pitch_scale
 
+func set_anti_gravity(enabled: bool) -> void:
+	is_anti_gravity = enabled
+	gravity_scale = -1.0 if enabled else 1.0
+
 @rpc("any_peer", "call_local", "reliable")
 func request_jump() -> void:
 	if not multiplayer.is_server():
@@ -233,7 +239,7 @@ func apply_push(push_direction: Vector3, contact_offset: Vector3) -> void:
 	
 
 @rpc("authority", "call_remote", "unreliable")
-func receive_ball_state(frame: int, ball_transform: Transform3D, ball_linear_velocity: Vector3, ball_angular_velocity: Vector3) -> void:
+func receive_ball_state(frame: int, ball_transform: Transform3D, ball_linear_velocity: Vector3, ball_angular_velocity: Vector3, anti_gravity: bool) -> void:
 	if multiplayer.is_server():
 		return
 
@@ -242,7 +248,9 @@ func receive_ball_state(frame: int, ball_transform: Transform3D, ball_linear_vel
 		return
 
 	last_received_frame = frame
-
+	
+	set_anti_gravity(anti_gravity)
+	
 	server_transform = ball_transform
 	server_linear_velocity = ball_linear_velocity
 	server_angular_velocity = ball_angular_velocity
@@ -254,6 +262,9 @@ func _process(_delta: float) -> void:
 
 func apply_gravity_assist() -> void:
 	if GameManager.game_state == GameManager.GameState.LOBBY:
+		return
+	
+	if is_anti_gravity:
 		return
 	
 	if ground_cast.is_colliding():
@@ -314,7 +325,7 @@ func _physics_process(delta: float) -> void:
 		
 		server_frame += 1
 		
-		receive_ball_state.rpc(server_frame, global_transform, linear_velocity, angular_velocity)
+		receive_ball_state.rpc(server_frame, global_transform, linear_velocity, angular_velocity, is_anti_gravity)
 	else:
 		if correction_frames_remaining > 0:
 			linear_velocity = linear_velocity.lerp(server_linear_velocity, 0.85)
