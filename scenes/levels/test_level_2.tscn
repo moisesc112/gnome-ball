@@ -67,20 +67,6 @@ ambient_light_color = Color(0.72156864, 0.79607844, 0.8784314, 1)
 reflected_light_source = 2
 tonemap_mode = 2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_plain"]
-size = Vector3(10.34668, 2, 7.84494)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_plain"]
-emission_shape = 3
-emission_box_extents = Vector3(5, 1, 3)
-angle_min = 1.0728835e-05
-angle_max = 1.0728835e-05
-direction = Vector3(0, 0, -1)
-spread = 5.0
-initial_velocity_min = 3.0
-initial_velocity_max = 5.0
-gravity = Vector3(0, 0, 0)
-
 [node name="TestLevel2" type="Node3D" unique_id=302026370]
 script = ExtResource("1_p5wyh")
 
@@ -119,6 +105,12 @@ material = SubResource("StandardMaterial3D_43bxi")
 [node name="Ramp" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=423698541]
 transform = Transform3D(-0.023415538, -1.92521e-12, -0.9997258, -0.01920228, 0.9998155, 0.000449755, 0.9995415, 0.019207552, -0.023411216, -1.5981207, 0.102332115, 6.7131367)
 polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
+depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp6" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=684509598]
+transform = Transform3D(0.99838513, 0.019198865, -0.053466655, -0.019202279, 0.99981546, 0.00044975532, 0.053465463, 0.0005776542, 0.99856955, -1.5981207, 0.102332115, 55.653824)
+polygon = PackedVector2Array(-26.063591, -2.4627795, -25.787268, 10.9866495, 5.982024, 0.008583069, 8.842717, -0.61364967)
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
@@ -269,18 +261,8 @@ text = "Toggle Player Collisions"
 [node name="SelectionWheel" parent="HUD" unique_id=623086750 instance=ExtResource("21_pohmv")]
 
 [node name="WindZone" parent="." unique_id=1575908464 instance=ExtResource("22_plain")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.356758, 2.9374058, 50.70653)
-wind_strength = 12.0
-
-[node name="CollisionShape3D" parent="WindZone" index="0" unique_id=151760613]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.17334, 0, -4.167984)
-shape = SubResource("BoxShape3D_plain")
-
-[node name="GPUParticles3D" parent="WindZone" index="1" unique_id=1840704016]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1244965, 0, -3.0047114)
-amount = 120
-lifetime = 0.6
-process_material = SubResource("ParticleProcessMaterial_plain")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8005967, 6.253522, 53.493584)
+wind_strength = 16.0
 
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]
