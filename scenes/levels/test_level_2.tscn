@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bqkbfusxln3q3" path="res://scenes/ui/menus/pause_menu.tscn" id="19_plain"]
 [ext_resource type="PackedScene" uid="uid://c73gv5lndkvf4" path="res://scenes/ui/victory_screen.tscn" id="20_p7bm1"]
 [ext_resource type="PackedScene" uid="uid://dbdade66bivb2" path="res://scenes/ui/selection_wheel.tscn" id="21_pohmv"]
+[ext_resource type="PackedScene" uid="uid://dmrpubgv5gtwi" path="res://scenes/wind_zone.tscn" id="22_plain"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_eo7uf")
@@ -65,6 +66,20 @@ ambient_light_source = 3
 ambient_light_color = Color(0.72156864, 0.79607844, 0.8784314, 1)
 reflected_light_source = 2
 tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_plain"]
+size = Vector3(10.34668, 2, 7.84494)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_plain"]
+emission_shape = 3
+emission_box_extents = Vector3(5, 1, 3)
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+direction = Vector3(0, 0, -1)
+spread = 5.0
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
 
 [node name="TestLevel2" type="Node3D" unique_id=302026370]
 script = ExtResource("1_p5wyh")
@@ -253,6 +268,20 @@ text = "Toggle Player Collisions"
 
 [node name="SelectionWheel" parent="HUD" unique_id=623086750 instance=ExtResource("21_pohmv")]
 
+[node name="WindZone" parent="." unique_id=1575908464 instance=ExtResource("22_plain")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.356758, 2.9374058, 50.70653)
+wind_strength = 12.0
+
+[node name="CollisionShape3D" parent="WindZone" index="0" unique_id=151760613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.17334, 0, -4.167984)
+shape = SubResource("BoxShape3D_plain")
+
+[node name="GPUParticles3D" parent="WindZone" index="1" unique_id=1840704016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1244965, 0, -3.0047114)
+amount = 120
+lifetime = 0.6
+process_material = SubResource("ParticleProcessMaterial_plain")
+
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToMenuButton" to="HUD" method="_on_return_to_menu_button_pressed"]
@@ -260,3 +289,4 @@ text = "Toggle Player Collisions"
 [editable path="PlayerLargeBall"]
 [editable path="PlayerLargeBall/BallVisual/player_ball_smooth"]
 [editable path="HUD/VictoryScreen"]
+[editable path="WindZone"]
