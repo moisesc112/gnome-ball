@@ -1,14 +1,14 @@
 extends Node3D
 
 #@onready var gnome_animation_player: AnimationPlayer = $Gnome_smooth/AnimationPlayer
-@onready var gnome_animation_player: AnimationPlayer = $gnome_low_poly_smooth/AnimationPlayer
+@onready var gnome_animation_player: AnimationPlayer = $gnome1_v8/AnimationPlayer
 @onready var fairy_animation_player: AnimationPlayer = $fairy_king_smooth/AnimationPlayer
 @onready var player_ball: Node3D = $player_ball_smooth2
 @onready var gnomes: Array[Node3D] = [
-	$gnome_rerig,
-	$gnome_rerig2,
-	$gnome_rerig3,
-	$gnome_rerig4
+	$gnome1_v8,
+	$gnome2_v8,
+	$gnome3_v8,
+	$gnome4_v8
 ]
 
 @export var rotation_speed: float = 1.5

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://clqxp1726i8bq" path="res://scenes/player/player_ball_smooth.tscn" id="2_a0egu"]
 [ext_resource type="PackedScene" uid="uid://vkil7vuwyxpv" path="res://scenes/player/gnome_low_poly_smooth.tscn" id="2_smnf2"]
 [ext_resource type="PackedScene" uid="uid://bs3bamljocskr" path="res://scenes/player/gnome_rerig.tscn" id="4_o5idu"]
+[ext_resource type="PackedScene" uid="uid://daeu7yg8651y3" path="res://scenes/player/gnome_v8.tscn" id="5_7vner"]
 
 [node name="LoadingScene" type="Node3D" unique_id=140589211]
 script = ExtResource("1_a0egu")
@@ -35,12 +36,34 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="gnome_rerig" parent="." unique_id=1215632196 instance=ExtResource("4_o5idu")]
 transform = Transform3D(0.49915567, 0, -0.029044814, 0, 0.5, 0, 0.029044814, 0, 0.49915567, 0.008478217, -1.7327223, 0.5601133)
+visible = false
 
 [node name="gnome_rerig2" parent="." unique_id=1235932920 instance=ExtResource("4_o5idu")]
 transform = Transform3D(0.49915567, 0, -0.029044814, 0, 0.5, 0, 0.029044814, 0, 0.49915567, 0.6510255, -1.7327223, 0.008091584)
+visible = false
 
 [node name="gnome_rerig3" parent="." unique_id=1095146427 instance=ExtResource("4_o5idu")]
 transform = Transform3D(0.49915567, 0, -0.029044814, 0, 0.5, 0, 0.029044814, 0, 0.49915567, -0.5708121, -1.7327223, -0.21268559)
+visible = false
 
 [node name="gnome_rerig4" parent="." unique_id=232947915 instance=ExtResource("4_o5idu")]
 transform = Transform3D(0.49915567, 0, -0.029044814, 0, 0.5, 0, 0.029044814, 0, 0.49915567, 0.20076019, -1.7327223, -0.73226166)
+visible = false
+
+[node name="gnome1_v8" parent="." unique_id=62685171 instance=ExtResource("5_7vner")]
+transform = Transform3D(1.1300002, 0, 0, 0, 1.1300001, 0, 0, 0, 1.1300002, 0.02237618, -1.7309816, 0.5580488)
+script = null
+
+[node name="gnome2_v8" parent="." unique_id=999258046 instance=ExtResource("5_7vner")]
+transform = Transform3D(1.1300002, 0, 0, 0, 1.1300001, 0, 0, 0, 1.1300002, 0.6310816, -1.7309816, -0.052085582)
+script = null
+
+[node name="gnome3_v8" parent="." unique_id=927052887 instance=ExtResource("5_7vner")]
+transform = Transform3D(1.1300002, 0, 0, 0, 1.1300001, 0, 0, 0, 1.1300002, -0.61139196, -1.7309816, -0.19899271)
+script = null
+
+[node name="gnome4_v8" parent="." unique_id=897090726 instance=ExtResource("5_7vner")]
+transform = Transform3D(1.1300002, 0, 0, 0, 1.1300001, 0, 0, 0, 1.1300002, 0.11613405, -1.7309816, -0.7481434)
+script = null
+
+[editable path="gnome1_v8"]
