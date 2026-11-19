@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bqkbfusxln3q3" path="res://scenes/ui/menus/pause_menu.tscn" id="19_plain"]
 [ext_resource type="PackedScene" uid="uid://c73gv5lndkvf4" path="res://scenes/ui/victory_screen.tscn" id="20_p7bm1"]
 [ext_resource type="PackedScene" uid="uid://dbdade66bivb2" path="res://scenes/ui/selection_wheel.tscn" id="21_pohmv"]
+[ext_resource type="PackedScene" uid="uid://bvjd7gdpcv7lv" path="res://scenes/tree_sap.tscn" id="22_p7bm1"]
 [ext_resource type="PackedScene" uid="uid://dmrpubgv5gtwi" path="res://scenes/wind_zone.tscn" id="22_plain"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
@@ -109,7 +110,7 @@ material = SubResource("StandardMaterial3D_53c65")
 
 [node name="Ramp8" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=279815446]
 transform = Transform3D(-0.020153584, 0.9989613, -0.040866997, 0.022601947, 0.041320074, 0.9988903, 0.99954164, 0.019207554, -0.023411218, 28.41887, 3.8593438, 51.707886)
-polygon = PackedVector2Array(-2.5765305, -5.788727, -0.12888718, 6.6974325, 11.325626, 5.6366687, 11.4739685, -3.9809241)
+polygon = PackedVector2Array(-2.5765305, -5.788727, -0.12888718, 6.6974325, 26.848442, 9.155069, 25.54261, -2.8406048)
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
@@ -119,10 +120,22 @@ polygon = PackedVector2Array(-26.063591, -2.4627795, -25.787268, 10.9866495, 5.9
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
+[node name="Ramp9" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=376831167]
+transform = Transform3D(0.99838513, 0.019198865, -0.053466655, -0.019202279, 0.99981546, 0.00044975532, 0.053465463, 0.0005776542, 0.99856955, -1.5981207, 0.102332115, 77.43022)
+polygon = PackedVector2Array(-26.063591, -2.4627795, -25.787268, 10.9866495, 5.982024, 0.008583069, 8.842717, -0.61364967)
+depth = 8.0
+material = SubResource("StandardMaterial3D_53c65")
+
 [node name="Ramp7" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1297879440]
 transform = Transform3D(0.81756073, -0.57420146, -0.043441687, 0.57335514, 0.8187139, -0.031172194, 0.05346546, 0.0005776541, 0.99856955, 8.097223, -3.2777972, 55.199795)
 polygon = PackedVector2Array(-26.063591, -2.4627795, -25.787268, 10.9866495, 6.0697727, 0.026074886, 8.842717, -0.61364967)
 depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp10" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1957830861]
+transform = Transform3D(0.81756073, -0.57420146, -0.043441687, 0.57335514, 0.8187139, -0.031172194, 0.05346546, 0.0005776541, 0.99856955, 8.097223, -3.2777972, 77.79697)
+polygon = PackedVector2Array(-26.063591, -2.4627795, -25.787268, 10.9866495, 6.0697727, 0.026074886, 8.842717, -0.61364967)
+depth = 8.0
 material = SubResource("StandardMaterial3D_53c65")
 
 [node name="Ramp2" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=202147019]
@@ -272,6 +285,22 @@ text = "Toggle Player Collisions"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8005967, 6.253522, 53.493584)
 wind_strength = 18.0
 
+[node name="WindZone2" parent="." unique_id=1017898902 instance=ExtResource("22_plain")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8005967, 6.253522, 74.31106)
+wind_strength = 18.0
+
+[node name="TreeSap" parent="." unique_id=1868267166 instance=ExtResource("22_p7bm1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.14627242, 1.606452, 69.63582)
+
+[node name="TreeSap2" parent="." unique_id=775236273 instance=ExtResource("22_p7bm1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -9.507412, 4.8632417, 77.741646)
+
+[node name="TreeSap4" parent="." unique_id=827965670 instance=ExtResource("22_p7bm1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -22.604517, 9.638586, 69.679756)
+
+[node name="TreeSap3" parent="." unique_id=1950237034 instance=ExtResource("22_p7bm1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 9.553167, -0.15192556, 78.03624)
+
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToMenuButton" to="HUD" method="_on_return_to_menu_button_pressed"]
@@ -280,3 +309,8 @@ wind_strength = 18.0
 [editable path="PlayerLargeBall/BallVisual/player_ball_smooth"]
 [editable path="HUD/VictoryScreen"]
 [editable path="WindZone"]
+[editable path="WindZone2"]
+[editable path="TreeSap"]
+[editable path="TreeSap2"]
+[editable path="TreeSap4"]
+[editable path="TreeSap3"]

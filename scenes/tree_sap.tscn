@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bvjd7gdpcv7lv"]
+
+[ext_resource type="Script" uid="uid://hwjdoxj3wfx7" path="res://scripts/tree_sap.gd" id="1_chsct"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4bcl2"]
+size = Vector3(0.89489746, 1, 1.4584961)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chsct"]
+transparency = 1
+albedo_color = Color(0.7647059, 0.5294118, 0.18431373, 0.3372549)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nwxtl"]
+material = SubResource("StandardMaterial3D_chsct")
+height = 1.6104736
+
+[node name="TreeSap" type="Area3D" unique_id=1868267166]
+collision_mask = 7
+script = ExtResource("1_chsct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1099974262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002746582, 0, -0.22924805)
+shape = SubResource("BoxShape3D_4bcl2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=396859822]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 7.3448154e-09, -0.16802979)
+mesh = SubResource("CapsuleMesh_nwxtl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
