@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://dj6xy5q6v4u6v" path="res://scenes/environment/trees/mesh_tree_pine_01.tscn" id="12_0qbcn"]
 [ext_resource type="PackedScene" uid="uid://dmylcs1ufpgg7" path="res://scenes/environment/trees/mesh_tree_pine_02.tscn" id="13_4171j"]
 [ext_resource type="PackedScene" uid="uid://c48d5ohxu4r03" path="res://scenes/environment/trees/mesh_tree_pine_03.tscn" id="14_rg0q5"]
-[ext_resource type="PackedScene" uid="uid://var5yuo4o3jc" path="res://scenes/ramp_1.tscn" id="15_wpby6"]
 [ext_resource type="PackedScene" uid="uid://cu4015ff0jps4" path="res://scenes/player/player_large_ball.tscn" id="16_eo7uf"]
 [ext_resource type="Script" uid="uid://dut4ecbd8ymsh" path="res://scripts/hud.gd" id="18_l6j32"]
 [ext_resource type="PackedScene" uid="uid://bqkbfusxln3q3" path="res://scenes/ui/menus/pause_menu.tscn" id="19_plain"]
@@ -108,9 +107,21 @@ polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.00
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
+[node name="Ramp8" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=279815446]
+transform = Transform3D(-0.020153584, 0.9989613, -0.040866997, 0.022601947, 0.041320074, 0.9988903, 0.99954164, 0.019207554, -0.023411218, 28.41887, 3.8593438, 51.707886)
+polygon = PackedVector2Array(-2.5765305, -5.788727, -0.12888718, 6.6974325, 11.325626, 5.6366687, 11.4739685, -3.9809241)
+depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
 [node name="Ramp6" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=684509598]
 transform = Transform3D(0.99838513, 0.019198865, -0.053466655, -0.019202279, 0.99981546, 0.00044975532, 0.053465463, 0.0005776542, 0.99856955, -1.5981207, 0.102332115, 55.653824)
 polygon = PackedVector2Array(-26.063591, -2.4627795, -25.787268, 10.9866495, 5.982024, 0.008583069, 8.842717, -0.61364967)
+depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp7" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1297879440]
+transform = Transform3D(0.81756073, -0.57420146, -0.043441687, 0.57335514, 0.8187139, -0.031172194, 0.05346546, 0.0005776541, 0.99856955, 8.097223, -3.2777972, 55.199795)
+polygon = PackedVector2Array(-26.063591, -2.4627795, -25.787268, 10.9866495, 6.0697727, 0.026074886, 8.842717, -0.61364967)
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
@@ -186,9 +197,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.628384, 0.17943467, 8.8434
 [node name="mesh_tree_pine_03" parent="." unique_id=258871665 instance=ExtResource("14_rg0q5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.792534, 0.17943466, 3.0544338)
 
-[node name="ramp_1" parent="." unique_id=1836009263 instance=ExtResource("15_wpby6")]
-transform = Transform3D(0.511072, 0, 0.8595379, 0, 1, 0, -0.8595379, 0, 0.511072, 14.913351, -1.1920929e-07, 66.01151)
-
 [node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("16_eo7uf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1341438, 2.3076966, 59.909927)
 
@@ -262,7 +270,7 @@ text = "Toggle Player Collisions"
 
 [node name="WindZone" parent="." unique_id=1575908464 instance=ExtResource("22_plain")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8005967, 6.253522, 53.493584)
-wind_strength = 16.0
+wind_strength = 18.0
 
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]
