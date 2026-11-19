@@ -67,7 +67,7 @@ wind_strength = 12.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.032814026, 0.56829834, -1.6819855)
 shape = SubResource("BoxShape3D_4bcl2")
 
-[node name="WingParticles" type="GPUParticles3D" parent="." unique_id=1840704016]
+[node name="WindParticles" type="GPUParticles3D" parent="." unique_id=1840704016]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.023958802)
 amount = 120
 lifetime = 1.2

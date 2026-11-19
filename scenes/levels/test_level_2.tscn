@@ -69,6 +69,31 @@ ambient_light_color = Color(0.72156864, 0.79607844, 0.8784314, 1)
 reflected_light_source = 2
 tonemap_mode = 2
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pohmv"]
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 0.5, 0.5)
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.7
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 199.99998
+orbit_velocity_min = 200.00002
+orbit_velocity_max = 200.00002
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eyaig"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.6659797, 0.560763, 1, 0.42352942)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pohmv"]
+material = SubResource("StandardMaterial3D_eyaig")
+radius = 0.1
+height = 0.4
+
 [node name="TestLevel2" type="Node3D" unique_id=302026370]
 script = ExtResource("1_p5wyh")
 
@@ -90,8 +115,28 @@ size = Vector3(1.0839844, 0.7696533, 10.278809)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=812605089]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.99313, 17.382998, 100.67621)
-size = Vector3(24.079224, 0.7696533, 22.372498)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0271692, 17.382998, 128.06328)
+size = Vector3(15.366974, 0.7696533, 22.372498)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge7" type="CSGBox3D" parent="CSGCombiner3D" unique_id=406768313]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.433512, 9.011962, 195.6437)
+size = Vector3(18.774418, 0.7696533, 7.14044)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge10" type="CSGBox3D" parent="CSGCombiner3D" unique_id=227916459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.328785, 35.873745, 184.04358)
+size = Vector3(19.311829, 0.7696533, 7.152933)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge11" type="CSGBox3D" parent="CSGCombiner3D" unique_id=75281510]
+transform = Transform3D(0.013089567, 0, -0.99991435, 0, 1, 0, 0.99991435, 0, 0.013089567, -14.0374365, 20.482338, 188.31627)
+size = Vector3(19.311829, 0.7696533, 7.3786345)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="NarrowBridge6" type="CSGBox3D" parent="CSGCombiner3D" unique_id=766086663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.015472, 11.746544, 127.52203)
+size = Vector3(8.081696, 0.7696533, 9.757561)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=862319619]
@@ -115,6 +160,12 @@ polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.00
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
+[node name="Ramp11" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1157198887]
+transform = Transform3D(-0.9805312, 0.19589034, -0.013629555, -0.19587296, -0.9806257, -0.0026161724, -0.013878008, 0.000104421306, 0.9999037, -8.577765, 17.995224, 130.20251)
+polygon = PackedVector2Array(0.3842144, -2.661728, 0.13440132, 0.97971535, 10.666088, 3.7898216)
+depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
 [node name="Ramp8" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=279815446]
 transform = Transform3D(-0.020153584, 0.9989613, -0.040866997, 0.022601947, 0.041320074, 0.9988903, 0.99954164, 0.019207554, -0.023411218, 28.41887, 3.8593438, 51.707886)
 polygon = PackedVector2Array(-2.5765305, -5.788727, -0.12888718, 6.6974325, 26.848442, 9.155069, 25.54261, -2.8406048)
@@ -133,6 +184,12 @@ polygon = PackedVector2Array(-26.063591, -2.4627795, -25.787268, 10.9866495, 5.9
 depth = 8.0
 material = SubResource("StandardMaterial3D_53c65")
 
+[node name="Ramp14" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=132834531]
+transform = Transform3D(0.9906963, -0.12535979, -0.05297136, 0.1251499, 0.99211127, -0.0072746943, 0.05346546, 0.0005776541, 0.99856955, -23.583641, 0.102332115, 191.6636)
+polygon = PackedVector2Array(-11.799534, -1.9200734, -5.462451, 22.175581, 4.96865, 8.590802, 23.02861, -5.1692543)
+depth = 8.0
+material = SubResource("StandardMaterial3D_53c65")
+
 [node name="Ramp7" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1297879440]
 transform = Transform3D(0.81756073, -0.57420146, -0.043441687, 0.57335514, 0.8187139, -0.031172194, 0.05346546, 0.0005776541, 0.99856955, 8.097223, -3.2777972, 55.199795)
 polygon = PackedVector2Array(-26.063591, -2.4627795, -25.787268, 10.9866495, 6.0697727, 0.026074886, 8.842717, -0.61364967)
@@ -141,6 +198,18 @@ material = SubResource("StandardMaterial3D_53c65")
 
 [node name="Ramp10" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1957830861]
 transform = Transform3D(0.81756073, -0.57420146, -0.043441687, 0.57335514, 0.8187139, -0.031172194, 0.05346546, 0.0005776541, 0.99856955, 8.097223, -3.2777972, 77.79697)
+polygon = PackedVector2Array(-26.063591, -2.4627795, -25.787268, 10.9866495, 6.0697727, 0.026074886, 8.842717, -0.61364967)
+depth = 8.0
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp12" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1433903488]
+transform = Transform3D(-0.020153584, 0.9989613, -0.040866997, 0.022601947, 0.041320074, 0.9988903, 0.99954164, 0.019207554, -0.023411218, 19.083693, 3.8593438, 176.45496)
+polygon = PackedVector2Array(-2.5765305, -5.788727, -0.12888718, 6.6974325, 26.848442, 9.155069, 25.54261, -2.8406048)
+depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp13" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=751314878]
+transform = Transform3D(0.81756073, -0.57420146, -0.043441687, 0.57335514, 0.8187139, -0.031172194, 0.05346546, 0.0005776541, 0.99856955, -1.2379551, -3.2777972, 193.70468)
 polygon = PackedVector2Array(-26.063591, -2.4627795, -25.787268, 10.9866495, 6.0697727, 0.026074886, 8.842717, -0.61364967)
 depth = 8.0
 material = SubResource("StandardMaterial3D_53c65")
@@ -218,7 +287,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.628384, 0.17943467, 8.8434
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.792534, 0.17943466, 3.0544338)
 
 [node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("16_eo7uf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1341438, 2.3076966, 59.909927)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.292576, 2.3076966, 182.43642)
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=243943069]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.819884, 63.80239)
@@ -313,7 +382,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.850714, 12.359652, 27.086
 rotation_speed = 100.0
 
 [node name="AntiGravityZone" parent="." unique_id=240673675 instance=ExtResource("24_pohmv")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -12.991897, 5.6106815, 100.54389)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -12.991897, 5.6106815, 127.93096)
+
+[node name="GravityParticles" parent="AntiGravityZone" index="2" unique_id=52282629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0021150112)
+amount = 200
+lifetime = 0.05
+visibility_aabb = AABB(-0.5, 0, -0.5, 1, 1, 1)
+process_material = SubResource("ParticleProcessMaterial_pohmv")
+draw_pass_1 = SubResource("CapsuleMesh_pohmv")
+
+[node name="AntiGravityZone2" parent="." unique_id=1076728086 instance=ExtResource("24_pohmv")]
+transform = Transform3D(20, 0, 0, 0, 40, 0, 0, 0, 20, -12.975808, 20.919668, 190.03467)
 
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]
@@ -328,3 +408,4 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -12.991897, 5.6106815, 100
 [editable path="TreeSap2"]
 [editable path="TreeSap4"]
 [editable path="TreeSap3"]
+[editable path="AntiGravityZone"]

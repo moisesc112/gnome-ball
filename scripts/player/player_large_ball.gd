@@ -151,6 +151,11 @@ func update_ball_audio(delta: float) -> void:
 func set_anti_gravity(enabled: bool) -> void:
 	is_anti_gravity = enabled
 	gravity_scale = -1.0 if enabled else 1.0
+	
+	if enabled:
+		ground_cast.target_position.y = absf(ground_cast.target_position.y)
+	else:
+		ground_cast.target_position.y = -absf(ground_cast.target_position.y)
 
 @rpc("any_peer", "call_local", "reliable")
 func request_jump() -> void:
@@ -264,20 +269,26 @@ func apply_gravity_assist() -> void:
 	if GameManager.game_state == GameManager.GameState.LOBBY:
 		return
 	
+	var gravity_direction := Vector3.DOWN
+	air_gravity_multiplier = 3.0
+	air_steer_multiplier = 0.4
+	
 	if is_anti_gravity:
-		return
+		gravity_direction = Vector3.UP
+		air_gravity_multiplier = 1.0
+		air_steer_multiplier = 1.0
+		
+	var gravity := gravity_direction * 9.8
 	
 	if ground_cast.is_colliding():
-
+		print ("ball is on ground")
 		var normal := ground_cast.get_collision_normal(0)
 		
-		if normal.y < 0.5:
-			if GameManager.game_state != GameManager.GameState.LOBBY:
+		if normal.dot(-gravity_direction) <= 0.0:
 				print("ball contact is not the floor")
 				return
 
 		# Gravity projected onto the slope.
-		var gravity := Vector3.DOWN * 9.8
 		var downhill := gravity.slide(normal)
 		
 		if downhill.length_squared() < 0.001:
@@ -290,7 +301,7 @@ func apply_gravity_assist() -> void:
 		if downhill_speed > 0.0:
 			apply_central_force(downhill * downhill_assist * mass)
 	else:
-		var gravity := Vector3.DOWN * 9.8
+		print ("ball is not on ground")
 		var extra_gravity := gravity * (air_gravity_multiplier - 1.0)
 		
 		apply_central_force(extra_gravity * mass)
