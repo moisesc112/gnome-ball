@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://c0w6rkuiux43a" path="res://scenes/ui/customization_ui.tscn" id="3_t7lud"]
 [ext_resource type="Script" uid="uid://bt3cgoef0ldx" path="res://scripts/high_level_multiplayer_spawner.gd" id="3_y584s"]
 [ext_resource type="PackedScene" uid="uid://dg7mpbxjsltc6" path="res://scenes/player/player_character.tscn" id="4_y584s"]
+[ext_resource type="Shader" uid="uid://bqt0ilrb4hdjb" path="res://shaders/mosaic_glass.gdshader" id="7_3yofj"]
+[ext_resource type="PackedScene" uid="uid://b8bps7tirfldp" path="res://scenes/fairy_king.tscn" id="7_su17d"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4bcl2"]
 size = Vector3(3, 1, 1)
@@ -26,6 +28,50 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vqusj"]
+render_priority = 0
+shader = ExtResource("7_3yofj")
+shader_parameter/tile_count = 12.0
+shader_parameter/grout_width = 0.055
+shader_parameter/glass_opacity = 0.55
+shader_parameter/glow_strength = 1.5
+shader_parameter/roughness_value = 0.12
+shader_parameter/grout_color = Color(0.07, 0.045, 0.12, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w1cr4"]
+render_priority = 0
+shader = ExtResource("7_3yofj")
+shader_parameter/tile_count = 10.0
+shader_parameter/grout_width = 0.045
+shader_parameter/glass_opacity = 0.55
+shader_parameter/glow_strength = 0.35
+shader_parameter/roughness_value = 0.12
+shader_parameter/grout_color = Color(0.035, 0.025, 0.06, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fu5j4"]
+render_priority = 0
+shader = ExtResource("7_3yofj")
+shader_parameter/tile_count = 10.0
+shader_parameter/grout_width = 0.045
+shader_parameter/glass_opacity = 0.55
+shader_parameter/glow_strength = 0.35
+shader_parameter/roughness_value = 0.12
+shader_parameter/grout_color = Color(0.035, 0.025, 0.06, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vqusj"]
+sky_top_color = Color(1.7808378e-06, 0.3695422, 0.49762452, 1)
+sky_horizon_color = Color(1, 0.83137256, 0.6039216, 1)
+
+[sub_resource type="Sky" id="Sky_68av8"]
+sky_material = SubResource("ProceduralSkyMaterial_vqusj")
+
+[sub_resource type="Environment" id="Environment_t1wbj"]
+background_mode = 2
+sky = SubResource("Sky_68av8")
+ambient_light_color = Color(1, 0.83137256, 0.6039216, 1)
+ambient_light_energy = 8.44
+reflected_light_source = 2
 
 [node name="Lobby" type="Node3D" unique_id=1352970754]
 script = ExtResource("1_t7lud")
@@ -80,14 +126,112 @@ spawn_point = NodePath("../SpawnPoint")
 ball = NodePath("../PlayerLargeBall")
 
 [node name="LobbyCamera" type="Camera3D" parent="." unique_id=1503390896]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6893437, 6.1534276)
+transform = Transform3D(1, 0, 0, 0, 0.9764421, 0.2157796, 0, -0.2157796, 0.9764421, 0, 1.6893437, 6.1534276)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="LobbyCamera" unique_id=727958002]
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=695713757]
 
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=269185903]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=228044119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09677124, -3.3706436, -0.513916)
+size = Vector3(34.2265, 1, 31.027832)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D" unique_id=172058995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09677124, 4.590172, -15.475708)
+size = Vector3(34.2265, 16.92163, 1.104248)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="CSGCombiner3D" unique_id=783029569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.774164, 4.590172, -0.51797485)
+size = Vector3(0.87171584, 16.92163, 31.019714)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1696501599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5966, 4.590172, -0.51797485)
+size = Vector3(0.87171584, 16.92163, 31.019714)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCombiner3D" unique_id=17555175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.126183, 5.145033, -15.993774)
+operation = 2
+size = Vector3(7.200424, 10.646088, 5.237549)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="CSGCombiner3D" unique_id=607010044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.126183, 5.145033, -15.568067)
+size = Vector3(7.2, 10.646, 0.001)
+material = SubResource("ShaderMaterial_vqusj")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D" unique_id=42091612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51291466, 5.145033, -15.993774)
+operation = 2
+size = Vector3(7.200424, 10.646088, 5.237549)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="CSGCombiner3D" unique_id=620595678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45602798, 5.145033, -15.518566)
+size = Vector3(7.200424, 10.646088, 0.001)
+material = SubResource("ShaderMaterial_w1cr4")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="CSGCombiner3D" unique_id=942876863]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.723003, 5.145033, -15.993774)
+operation = 2
+size = Vector3(7.200424, 10.646088, 5.237549)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1294926024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.690846, 5.145033, -15.518566)
+size = Vector3(7.200424, 10.646088, 0.001)
+material = SubResource("ShaderMaterial_fu5j4")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=929257495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8066406, 0)
+operation = 2
+radius = 2.8154297
+height = 5.6132813
+sides = 16
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1151461350]
+transform = Transform3D(0.49746883, 0, -0.8674818, 0, 1, 0, 0.8674818, 0, 0.49746883, 9.497762, -2.6924798, -4.337046)
+size = Vector3(4.473633, 0.5185547, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1629919316]
+transform = Transform3D(0.49746883, 0, -0.8674818, 0, 1, 0, 0.8674818, 0, 0.49746883, 10.083788, -2.5375116, -4.688674)
+size = Vector3(4.473633, 0.8284912, 1.0405273)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=15040727]
+transform = Transform3D(0.49746883, 0, -0.8674818, 0, 1, 0, 0.8674818, 0, 0.49746883, 10.731755, -2.3975275, -5.091346)
+size = Vector3(4.473633, 1.1084595, 1.0405273)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1140289068]
+transform = Transform3D(0.49746883, 0, -0.8674818, 0, 1, 0, 0.8674818, 0, 0.49746883, 12.790117, -2.397527, -6.2321396)
+size = Vector3(4.473633, 1.1084595, 4.3186035)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D" unique_id=783810425]
+transform = Transform3D(0.49746883, 0, -0.8674818, 0, 1, 0, 0.8674818, 0, 0.49746883, 13.35927, -1.499135, -6.475692)
+size = Vector3(3.4373474, 0.6521683, 2.7175903)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1246036381]
+transform = Transform3D(0.49746883, 0, -0.8674818, 0, 1, 0, 0.8674818, 0, 0.49746883, 14.607981, -0.110907555, -7.2722387)
+size = Vector3(3.1777802, 3.4286232, 0.21865845)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1771933609]
+transform = Transform3D(0.8321873, 0.5544946, -2.4237728e-08, 0, -4.371138e-08, -1, -0.5544946, 0.8321873, -3.6376065e-08, 12.61078, -1.6279271, -7.9627857)
+size = Vector3(2.9167938, 0.19862366, 2.4604034)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D" unique_id=978815237]
+transform = Transform3D(0.86185884, 0.5071482, -2.2168159e-08, 0, -4.371138e-08, -1, -0.5071482, 0.86185884, -3.767305e-08, 14.244745, -1.6113255, -5.1422787)
+size = Vector3(2.9167938, 0.19862366, 2.4936066)
+
+[node name="fairy_king" parent="." unique_id=1342506538 instance=ExtResource("7_su17d")]
+transform = Transform3D(0.5991716, 0, -0.8006207, 0, 1, 0, 0.8006207, 0, 0.5991716, 6.527612, -2.100823, -3.603262)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1196440244]
+environment = SubResource("Environment_t1wbj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=612898605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.066787, -12.5725765)
+light_color = Color(1, 0.83137256, 0.6039216, 1)
+light_energy = 0.335
+
 [connection signal="pressed" from="CanvasLayer/LobbyUI/VBoxContainer/CustomizeButton" to="." method="_on_customize_button_pressed"]
 
 [editable path="CanvasLayer/LobbyUI"]
 [editable path="CanvasLayer/CustomizationUI"]
-[editable path="CanvasLayer/CustomizationUI/PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport/gnome_rerig_redesign"]
+[editable path="CanvasLayer/CustomizationUI/PanelContainer/HBoxContainer/PreviewPanel/SubViewportContainer/SubViewport/gnome_v8"]
