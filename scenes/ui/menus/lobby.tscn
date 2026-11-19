@@ -230,7 +230,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.066787, -12.5725765)
 light_color = Color(1, 0.83137256, 0.6039216, 1)
 light_energy = 0.335
 
-[connection signal="pressed" from="CanvasLayer/LobbyUI/VBoxContainer/CustomizeButton" to="." method="_on_customize_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LobbyUI/MarginContainer/VBoxContainer/CustomizeButton" to="." method="_on_customize_button_pressed"]
 
 [editable path="CanvasLayer/LobbyUI"]
 [editable path="CanvasLayer/CustomizationUI"]

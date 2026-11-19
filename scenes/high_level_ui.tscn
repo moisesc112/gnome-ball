@@ -11,46 +11,46 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xi2ms")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2001693769]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=143319733]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -33.0
-offset_right = 200.0
-offset_bottom = 33.0
-grow_horizontal = 2
+offset_left = 60.0
+offset_top = -99.0
+offset_right = 300.0
+offset_bottom = 141.0
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2001693769]
+layout_mode = 2
 alignment = 1
 
-[node name="StartGameButton" type="Button" parent="VBoxContainer" unique_id=476767187]
+[node name="StartGameButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=476767187]
 layout_mode = 2
 text = "Start Game"
 
-[node name="LeaveLobbyButton" type="Button" parent="VBoxContainer" unique_id=1419493746]
-layout_mode = 2
-text = "Leave Lobby"
-
-[node name="SteamLobbyID" type="Label" parent="VBoxContainer" unique_id=658913311]
+[node name="SteamLobbyID" type="Label" parent="MarginContainer/VBoxContainer" unique_id=658913311]
 layout_mode = 2
 
-[node name="CopyLobbyIDButton" type="Button" parent="VBoxContainer" unique_id=134984242]
+[node name="CopyLobbyIDButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=134984242]
 layout_mode = 2
 text = "Copy Lobby ID"
 
-[node name="InviteFriendsButton" type="Button" parent="VBoxContainer" unique_id=1287004089]
+[node name="InviteFriendsButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1287004089]
 layout_mode = 2
 text = "Invite Friends"
 
-[node name="CustomizeButton" type="Button" parent="VBoxContainer" unique_id=2047332759]
+[node name="CustomizeButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2047332759]
 layout_mode = 2
 text = "Customize
 "
 
-[connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/LeaveLobbyButton" to="." method="_on_leave_lobby_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/CopyLobbyIDButton" to="." method="_on_copy_lobby_id_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/InviteFriendsButton" to="." method="_on_invite_friends_button_pressed"]
+[node name="LeaveLobbyButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1419493746]
+layout_mode = 2
+text = "Leave Lobby"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CopyLobbyIDButton" to="." method="_on_copy_lobby_id_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/InviteFriendsButton" to="." method="_on_invite_friends_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LeaveLobbyButton" to="." method="_on_leave_lobby_button_pressed"]

@@ -1,9 +1,9 @@
 extends Control
 
-@onready var start_button: Button = $VBoxContainer/StartGameButton
-@onready var lobby_id_button: Button = $VBoxContainer/CopyLobbyIDButton
-@onready var steam_lobby_id: Label = $VBoxContainer/SteamLobbyID
-@onready var invite_friends_button: Button = $VBoxContainer/InviteFriendsButton
+@onready var start_button: Button = $MarginContainer/VBoxContainer/StartGameButton
+@onready var lobby_id_button: Button = $MarginContainer/VBoxContainer/CopyLobbyIDButton
+@onready var steam_lobby_id: Label = $MarginContainer/VBoxContainer/SteamLobbyID
+@onready var invite_friends_button: Button = $MarginContainer/VBoxContainer/InviteFriendsButton
 
 const base_level_scene = "res://scenes/levels/base_level.tscn"
 
