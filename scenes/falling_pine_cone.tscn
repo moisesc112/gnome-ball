@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://de821r2m3dhhc"]
+
+[ext_resource type="Script" uid="uid://drcwmu2f7v11w" path="res://scripts/falling_acorn.gd" id="1_0g1go"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0g1go"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4bcl2"]
+material = SubResource("StandardMaterial3D_0g1go")
+radius = 1.0
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sthun"]
+radius = 1.0
+height = 2.5
+
+[sub_resource type="Gradient" id="Gradient_0g1go"]
+offsets = PackedFloat32Array(0.99242425, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wtdjg"]
+gradient = SubResource("Gradient_0g1go")
+
+[node name="FallingPineCone" type="Node3D" unique_id=1627178832]
+script = ExtResource("1_0g1go")
+
+[node name="PineCone" type="RigidBody3D" parent="." unique_id=1408959844]
+collision_layer = 5
+collision_mask = 5
+mass = 75.0
+gravity_scale = 3.0
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PineCone" unique_id=688066917]
+mesh = SubResource("CapsuleMesh_4bcl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PineCone" unique_id=1273318707]
+shape = SubResource("CapsuleShape3D_sthun")
+
+[node name="WarningShadow" type="Decal" parent="." unique_id=888139548]
+size = Vector3(2, 0.32226563, 2)
+texture_albedo = SubResource("GradientTexture2D_wtdjg")
+
+[connection signal="body_entered" from="PineCone" to="." method="_on_acorn_body_entered"]

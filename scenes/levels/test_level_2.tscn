@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dmrpubgv5gtwi" path="res://scenes/wind_zone.tscn" id="22_plain"]
 [ext_resource type="PackedScene" uid="uid://crpnwildl2apy" path="res://scenes/rotating_hollow_log.tscn" id="23_p7bm1"]
 [ext_resource type="PackedScene" uid="uid://ch58l5ujld2w6" path="res://scenes/anti_gravity_zone.tscn" id="24_pohmv"]
+[ext_resource type="PackedScene" uid="uid://de821r2m3dhhc" path="res://scenes/falling_pine_cone.tscn" id="25_0qbcn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_eo7uf")
@@ -263,7 +264,7 @@ ball = NodePath("../PlayerLargeBall")
 transform = Transform3D(500, 0, 0, 0, 100, 0, 0, 0, 500, 0, -100, 0)
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=110014032]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1475150645]
 shape = SubResource("BoxShape3D_sthun")
@@ -395,6 +396,16 @@ draw_pass_1 = SubResource("CapsuleMesh_pohmv")
 [node name="AntiGravityZone2" parent="." unique_id=1076728086 instance=ExtResource("24_pohmv")]
 transform = Transform3D(20, 0, 0, 0, 40, 0, 0, 0, 20, -12.975808, 20.919668, 190.03467)
 
+[node name="FallingAcorn" parent="." unique_id=1627178832 instance=ExtResource("25_0qbcn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.335595, 14.646325, 181.6671)
+
+[node name="PineCone" parent="FallingAcorn" index="0" unique_id=1408959844]
+transform = Transform3D(1, 0, 0, 0, 0.7853444, 0.61905926, 0, -0.61905926, 0.7853444, 0, 0, 0)
+
+[node name="WarningShadow" parent="FallingAcorn" index="1" unique_id=888139548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.699347, 0)
+size = Vector3(2, 0.5957031, 2)
+
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToMenuButton" to="HUD" method="_on_return_to_menu_button_pressed"]
@@ -409,3 +420,4 @@ transform = Transform3D(20, 0, 0, 0, 40, 0, 0, 0, 20, -12.975808, 20.919668, 190
 [editable path="TreeSap4"]
 [editable path="TreeSap3"]
 [editable path="AntiGravityZone"]
+[editable path="FallingAcorn"]
