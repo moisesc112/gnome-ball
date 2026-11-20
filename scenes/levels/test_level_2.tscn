@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://ch58l5ujld2w6" path="res://scenes/anti_gravity_zone.tscn" id="24_pohmv"]
 [ext_resource type="PackedScene" uid="uid://de821r2m3dhhc" path="res://scenes/falling_pine_cone.tscn" id="25_0qbcn"]
 [ext_resource type="PackedScene" uid="uid://cbkjghlo24klp" path="res://scenes/swinging_ramp.tscn" id="26_4171j"]
+[ext_resource type="PackedScene" uid="uid://b25g2igm28pmc" path="res://scenes/speed_boost.tscn" id="27_rg0q5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_eo7uf")
@@ -251,6 +252,18 @@ polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.00
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
+[node name="Ramp19" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=422287110]
+transform = Transform3D(-0.97544134, -0.091644086, 0.20028844, -0.09309544, 0.99565476, 0.002180479, -0.19961804, -0.016519021, -0.97973454, 37.445587, 5.1772947, 73.13292)
+polygon = PackedVector2Array(-0.37745667, -0.25169444, -1.0931702, 2.1369958, 5.982024, 0.008583069, 7.3804855, -0.6415528)
+depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="Ramp18" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=745906440]
+transform = Transform3D(-0.082126945, -0.037155364, -0.995929, -0.09355448, 0.99517965, -0.029412644, 0.992221, 0.09075806, -0.085207045, 28.028154, 2.297748, 78.459984)
+polygon = PackedVector2Array(-0.34264374, -2.7395253, -1.017128, 2.14324, 12.211845, -2.5663981, 6.8917923, -2.4953732)
+depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
 [node name="Ramp15" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1152873550]
 transform = Transform3D(-0.9953923, -0.093019955, -0.023267746, -0.09309544, 0.99565476, 0.0021804762, 0.022963792, 0.004336549, -0.9997269, 26.67593, 2.209728, 97.83786)
 polygon = PackedVector2Array(-4.599146, -3.26081, -5.1646366, 3.9424415, 5.3789845, 0.23232806, 13.058319, -2.3227825)
@@ -310,6 +323,55 @@ polygon = PackedVector2Array(-554.2913, 2.0832949, -42.570847, 23.576729, 31.643
 depth = 100.0
 material = SubResource("StandardMaterial3D_0caop")
 
+[node name="CSGTorus3D" type="CSGTorus3D" parent="CSGCombiner3D" unique_id=1085816533]
+transform = Transform3D(0.74800956, 0.32746392, -0.57727695, -0.60130984, 0.70252454, -0.3806388, 0.28090602, 0.63184386, 0.7224025, 49.775852, 16.454504, 63.458427)
+inner_radius = 13.944
+outer_radius = 21.922
+sides = 24
+ring_sides = 12
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="CSGCombiner3D/CSGTorus3D" unique_id=709769189]
+operation = 2
+inner_radius = 7.162
+outer_radius = 19.17
+sides = 24
+ring_sides = 12
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/CSGTorus3D" unique_id=170797459]
+transform = Transform3D(1, 1.4901161e-08, 1.4901161e-08, -1.4901161e-08, 1, 0, -4.4703484e-08, 0, 1, -11.526127, 1.8140564, -3.4891968)
+operation = 2
+size = Vector3(24.052246, 13.735413, 59.624634)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/CSGTorus3D" unique_id=1317262029]
+transform = Transform3D(0.4509852, 0, -0.8925315, 0, 1, 0, 0.8925315, 0, 0.4509852, 14.222343, 1.8140564, -27.499336)
+operation = 2
+size = Vector3(24.052246, 13.735413, 54.37622)
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="CSGCombiner3D" unique_id=1635488149]
+transform = Transform3D(0.7616857, 0.022503944, -0.6475555, -0.33095974, -0.8456791, -0.41867998, -0.55704623, 0.53321725, -0.6366938, 70.40823, 20.863901, 63.273895)
+inner_radius = 13.944
+outer_radius = 21.922
+sides = 24
+ring_sides = 12
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="CSGCombiner3D/CSGTorus3D2" unique_id=2095527922]
+transform = Transform3D(1, 0, 0, -1.4901161e-08, 1.0000001, 2.9802322e-08, 0, 2.9802322e-08, 1, 0.029579163, -0.83161736, -0.43341064)
+operation = 2
+inner_radius = 7.162
+outer_radius = 19.17
+sides = 24
+ring_sides = 12
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/CSGTorus3D2" unique_id=1105931335]
+transform = Transform3D(1, 1.4901161e-08, 1.4901161e-08, -1.4901161e-08, 1, 0, -4.4703484e-08, 0, 1, -11.526127, 1.8140564, -3.4891968)
+operation = 2
+size = Vector3(24.052246, 13.735413, 59.624634)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/CSGTorus3D2" unique_id=1348377644]
+transform = Transform3D(0.4509852, 0, -0.8925315, 0, 1, 0, 0.8925315, 0, 0.4509852, 14.222343, 1.8140564, -27.499336)
+operation = 2
+size = Vector3(24.052246, 13.735413, 54.37622)
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1011803724 node_paths=PackedStringArray("spawn_point", "ball")]
 _spawnable_scenes = PackedStringArray("uid://dg7mpbxjsltc6")
 spawn_path = NodePath("..")
@@ -346,7 +408,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.628384, 0.17943467, 8.8434
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.792534, 0.17943466, 3.0544338)
 
 [node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("16_eo7uf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.292576, 2.3076966, 102.1521)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.476944, 7.728299, 63.44256)
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=243943069]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.819884, 63.80239)
@@ -509,6 +571,20 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 91, 
 [node name="AnimatableBody3D" parent="SwingingRamp9" index="0" unique_id=959534702]
 physics_material_override = SubResource("PhysicsMaterial_g1d12")
 
+[node name="SpeedPad" parent="." unique_id=248625820 instance=ExtResource("27_rg0q5")]
+transform = Transform3D(1.0329378, -0.014365345, -3.1392345, 2.710977, -0.022898743, 1.4534935, 2.1314788, 0.036085963, -0.32735723, 42.42779, 7.2481136, 77.54537)
+boost_strength = 20.0
+
+[node name="CollisionShape3D" parent="SpeedPad/Area3D" parent_id_path=PackedInt32Array(248625820, 1260450422) index="0" unique_id=1498973027]
+transform = Transform3D(1, -6.537048e-05, -1.276767e-08, 3.2685239e-06, 20, -1.0124171e-10, 1.276767e-08, 2.0239996e-09, 1, -1.9073486e-06, 0.007507324, -1.9073486e-06)
+
+[node name="SpeedPad2" parent="." unique_id=182683468 instance=ExtResource("27_rg0q5")]
+transform = Transform3D(0.7902558, -0.009976093, -3.30176, -2.9140522, -0.026374375, -0.17651695, 1.9604465, -0.03518212, 1.0685599, 64.792435, 11.936774, 49.1212)
+boost_strength = 20.0
+
+[node name="CollisionShape3D" parent="SpeedPad2/Area3D" parent_id_path=PackedInt32Array(182683468, 1260450422) index="0" unique_id=1498973027]
+transform = Transform3D(1, -9.804964e-05, -1.4901161e-08, 0, 30.000008, 0, 5.9604645e-08, 0, 1, -0.050632477, -5.7301025, 0.005215645)
+
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToMenuButton" to="HUD" method="_on_return_to_menu_button_pressed"]
@@ -530,3 +606,5 @@ physics_material_override = SubResource("PhysicsMaterial_g1d12")
 [editable path="SwingingRamp7"]
 [editable path="SwingingRamp8"]
 [editable path="SwingingRamp9"]
+[editable path="SpeedPad"]
+[editable path="SpeedPad2"]
