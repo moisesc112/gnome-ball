@@ -21,13 +21,13 @@ orbit_velocity_min = 200.00002
 orbit_velocity_max = 200.00002
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eyaig"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l8tg2"]
 transparency = 1
 shading_mode = 0
 albedo_color = Color(0.7490196, 0.83137256, 1, 0.42352942)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_l8tg2"]
-material = SubResource("StandardMaterial3D_eyaig")
+material = SubResource("StandardMaterial3D_l8tg2")
 radius = 0.005
 height = 0.4
 
