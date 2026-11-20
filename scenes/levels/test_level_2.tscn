@@ -96,6 +96,30 @@ material = SubResource("StandardMaterial3D_eyaig")
 radius = 0.1
 height = 0.4
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4171j"]
+friction = 0.25
+absorbent = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rg0q5"]
+friction = 0.25
+absorbent = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_otrbc"]
+friction = 0.25
+absorbent = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5x10f"]
+friction = 0.0
+absorbent = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hibci"]
+friction = 0.0
+absorbent = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g1d12"]
+friction = 0.0
+absorbent = true
+
 [node name="TestLevel2" type="Node3D" unique_id=302026370]
 script = ExtResource("1_p5wyh")
 
@@ -142,8 +166,8 @@ size = Vector3(8.081696, 0.7696533, 9.757561)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge8" type="CSGBox3D" parent="CSGCombiner3D" unique_id=964497262]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116, 5.829, 100.844)
-size = Vector3(9.173538, 0.7696533, 9.757561)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.22499, 5.829, 100.844)
+size = Vector3(12.18645, 0.7696533, 9.757561)
 material = SubResource("StandardMaterial3D_43bxi")
 
 [node name="NarrowBridge2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=862319619]
@@ -229,6 +253,28 @@ material = SubResource("StandardMaterial3D_53c65")
 
 [node name="Ramp15" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1152873550]
 transform = Transform3D(-0.9953923, -0.093019955, -0.023267746, -0.09309544, 0.99565476, 0.0021804762, 0.022963792, 0.004336549, -0.9997269, 26.67593, 2.209728, 97.83786)
+polygon = PackedVector2Array(-4.599146, -3.26081, -5.1646366, 3.9424415, 5.3789845, 0.23232806, 13.058319, -2.3227825)
+depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="NarrowBridge9" type="CSGBox3D" parent="CSGCombiner3D" unique_id=128974911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.22499, 5.829, 123.149086)
+size = Vector3(12.18645, 0.7696533, 9.757561)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="Ramp16" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=202831097]
+transform = Transform3D(-0.9953923, -0.093019955, -0.023267746, -0.09309544, 0.99565476, 0.0021804762, 0.022963792, 0.004336549, -0.9997269, 26.67593, 2.209728, 120.142944)
+polygon = PackedVector2Array(-4.599146, -3.26081, -5.1646366, 3.9424415, 5.3789845, 0.23232806, 13.058319, -2.3227825)
+depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
+[node name="NarrowBridge12" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1986934857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.22499, 5.829, 146.98917)
+size = Vector3(12.18645, 0.7696533, 9.757561)
+material = SubResource("StandardMaterial3D_43bxi")
+
+[node name="Ramp17" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=593362193]
+transform = Transform3D(-0.9953923, -0.093019955, -0.023267746, -0.09309544, 0.99565476, 0.0021804762, 0.022963792, 0.004336549, -0.9997269, 26.67593, 2.209728, 143.98303)
 polygon = PackedVector2Array(-4.599146, -3.26081, -5.1646366, 3.9424415, 5.3789845, 0.23232806, 13.058319, -2.3227825)
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
@@ -427,6 +473,42 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 66, 
 [node name="SwingingRamp3" parent="." unique_id=301904904 instance=ExtResource("26_4171j")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 91, 5.629, 99.75)
 
+[node name="SwingingRamp4" parent="." unique_id=1776059363 instance=ExtResource("26_4171j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 41, 5.629, 122.04808)
+
+[node name="AnimatableBody3D" parent="SwingingRamp4" index="0" unique_id=959534702]
+physics_material_override = SubResource("PhysicsMaterial_4171j")
+
+[node name="SwingingRamp5" parent="." unique_id=1669295400 instance=ExtResource("26_4171j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 66, 5.629, 122.055084)
+
+[node name="AnimatableBody3D" parent="SwingingRamp5" index="0" unique_id=959534702]
+physics_material_override = SubResource("PhysicsMaterial_rg0q5")
+
+[node name="SwingingRamp6" parent="." unique_id=459015632 instance=ExtResource("26_4171j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 91, 5.629, 122.055084)
+
+[node name="AnimatableBody3D" parent="SwingingRamp6" index="0" unique_id=959534702]
+physics_material_override = SubResource("PhysicsMaterial_otrbc")
+
+[node name="SwingingRamp7" parent="." unique_id=1047320797 instance=ExtResource("26_4171j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 41, 5.629, 145.88817)
+
+[node name="AnimatableBody3D" parent="SwingingRamp7" index="0" unique_id=959534702]
+physics_material_override = SubResource("PhysicsMaterial_5x10f")
+
+[node name="SwingingRamp8" parent="." unique_id=204200531 instance=ExtResource("26_4171j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 66, 5.629, 145.89517)
+
+[node name="AnimatableBody3D" parent="SwingingRamp8" index="0" unique_id=959534702]
+physics_material_override = SubResource("PhysicsMaterial_hibci")
+
+[node name="SwingingRamp9" parent="." unique_id=664892543 instance=ExtResource("26_4171j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 91, 5.629, 145.89517)
+
+[node name="AnimatableBody3D" parent="SwingingRamp9" index="0" unique_id=959534702]
+physics_material_override = SubResource("PhysicsMaterial_g1d12")
+
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToMenuButton" to="HUD" method="_on_return_to_menu_button_pressed"]
@@ -442,3 +524,9 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 91, 
 [editable path="TreeSap3"]
 [editable path="AntiGravityZone"]
 [editable path="FallingAcorn"]
+[editable path="SwingingRamp4"]
+[editable path="SwingingRamp5"]
+[editable path="SwingingRamp6"]
+[editable path="SwingingRamp7"]
+[editable path="SwingingRamp8"]
+[editable path="SwingingRamp9"]

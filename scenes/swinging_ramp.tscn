@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b0i6eujrhmvo" path="res://scripts/swinging_ramp.gd" id="1_y2v5s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y2v5s"]
-friction = 0.0
+friction = 0.5
 absorbent = true
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y2v5s"]
