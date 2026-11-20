@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://crpnwildl2apy" path="res://scenes/rotating_hollow_log.tscn" id="23_p7bm1"]
 [ext_resource type="PackedScene" uid="uid://ch58l5ujld2w6" path="res://scenes/anti_gravity_zone.tscn" id="24_pohmv"]
 [ext_resource type="PackedScene" uid="uid://de821r2m3dhhc" path="res://scenes/falling_pine_cone.tscn" id="25_0qbcn"]
+[ext_resource type="PackedScene" uid="uid://cbkjghlo24klp" path="res://scenes/swinging_ramp.tscn" id="26_4171j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43bxi"]
 albedo_texture = ExtResource("3_eo7uf")
@@ -140,6 +141,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.015472, 11.746544, 127.52
 size = Vector3(8.081696, 0.7696533, 9.757561)
 material = SubResource("StandardMaterial3D_43bxi")
 
+[node name="NarrowBridge8" type="CSGBox3D" parent="CSGCombiner3D" unique_id=964497262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116, 5.829, 100.844)
+size = Vector3(9.173538, 0.7696533, 9.757561)
+material = SubResource("StandardMaterial3D_43bxi")
+
 [node name="NarrowBridge2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=862319619]
 transform = Transform3D(0.8287709, 0.25130087, -0.49998668, 0, 0.8934906, 0.4490819, 0.5595881, -0.372186, 0.740499, -10.056046, 8.379194, 5.5599318)
 size = Vector3(1.0839844, 0.7696533, 10.278809)
@@ -221,6 +227,12 @@ polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.00
 depth = 4.58
 material = SubResource("StandardMaterial3D_53c65")
 
+[node name="Ramp15" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1152873550]
+transform = Transform3D(-0.9953923, -0.093019955, -0.023267746, -0.09309544, 0.99565476, 0.0021804762, 0.022963792, 0.004336549, -0.9997269, 26.67593, 2.209728, 97.83786)
+polygon = PackedVector2Array(-4.599146, -3.26081, -5.1646366, 3.9424415, 5.3789845, 0.23232806, 13.058319, -2.3227825)
+depth = 4.58
+material = SubResource("StandardMaterial3D_53c65")
+
 [node name="Ramp3" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1604579156]
 transform = Transform3D(0.3173197, 0.03174557, -0.94778705, -0.09309544, 0.99565476, 0.002180479, 0.943738, 0.08754276, 0.3188963, -0.26071882, 4.9227514, -12.235079)
 polygon = PackedVector2Array(0, 0, 0, 1, 5.982024, 0.008583069, 6.0041738, -0.0034742355)
@@ -288,7 +300,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.628384, 0.17943467, 8.8434
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.792534, 0.17943466, 3.0544338)
 
 [node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("16_eo7uf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.292576, 2.3076966, 182.43642)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.292576, 2.3076966, 102.1521)
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=243943069]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.819884, 63.80239)
@@ -405,6 +417,15 @@ transform = Transform3D(1, 0, 0, 0, 0.7853444, 0.61905926, 0, -0.61905926, 0.785
 [node name="WarningShadow" parent="FallingAcorn" index="1" unique_id=888139548]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.699347, 0)
 size = Vector3(2, 0.5957031, 2)
+
+[node name="SwingingRamp" parent="." unique_id=880534673 instance=ExtResource("26_4171j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 41, 5.629, 99.743)
+
+[node name="SwingingRamp2" parent="." unique_id=1504462498 instance=ExtResource("26_4171j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 66, 5.629, 99.75)
+
+[node name="SwingingRamp3" parent="." unique_id=301904904 instance=ExtResource("26_4171j")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 91, 5.629, 99.75)
 
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]
