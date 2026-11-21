@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://c3rso5ntvfogm"]
-
-[node name="ProceduralPlatform" type="StaticBody3D" unique_id=1202439729]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=480266151]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D" unique_id=990481074]
