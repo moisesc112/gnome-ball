@@ -50,7 +50,7 @@ enum PlatformType {
 		curve_strength = value
 		regenerate()
 
-@export_range(0.5, 30.0, 0.1) var corner_distance: float = 4.0:
+@export_range(0.5,  50.0, 0.1) var corner_distance: float = 4.0:
 	set(value):
 		corner_distance = value
 		regenerate()
