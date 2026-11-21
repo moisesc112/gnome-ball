@@ -311,6 +311,9 @@ func get_ball_speed() -> float:
 	return linear_velocity.length()
 
 func update_contact_shadow() -> void:
+	contact_shadow.visible = false
+	return
+	
 	if not shadow_ray.is_colliding():
 		contact_shadow.visible = false
 		return
