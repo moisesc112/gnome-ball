@@ -3,7 +3,7 @@ extends Node
 const IP_ADDRESS: String = "192.168.0.10"
 const PORT: int = 42069
 
-const base_level_scene = "res://scenes/levels/test_level_2.tscn"
+const base_level_scene = "res://scenes/levels/base_level.tscn"
 const lobby_scene = "res://scenes/ui/menus/lobby.tscn"
 
 enum NetworkTransport {

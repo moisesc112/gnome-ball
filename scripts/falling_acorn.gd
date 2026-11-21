@@ -64,7 +64,9 @@ func _on_acorn_body_entered(_body: Node) -> void:
 	
 	has_landed = true
 	stop_shadow_warning()
-	pine_cone.set_collision_layer_value(1, false)
+	
+	### If want to not let player be knocked after pinecone hits ground first time
+	#pine_cone.set_collision_layer_value(1, false)
 	
 	fade_out()
 
