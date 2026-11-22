@@ -40,7 +40,7 @@ enum PlatformType {
 
 @export_group("Curvature")
 
-@export_range(0.5, 30.0, 0.1) var turn_radius: float = 4.0:
+@export_range(0.5, 60.0, 0.1) var turn_radius: float = 4.0:
 	set(value):
 		turn_radius = value
 		regenerate()
