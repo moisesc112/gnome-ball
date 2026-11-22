@@ -335,6 +335,12 @@ func _physics_process(delta: float) -> void:
 
 	apply_gravity_assist()
 	
+	### Debug TP button	
+	if Input.is_action_just_pressed("Lay_Down"):
+		global_position = Vector3(73.0, 17.0, -70)
+	if Input.is_action_just_pressed("Slap"):
+		global_position = Vector3(-65, 33.0, -147)
+	
 	if multiplayer.is_server():
 		process_pending_pushes()
 		
