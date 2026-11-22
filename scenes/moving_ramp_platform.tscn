@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c6f7s6d8efucb"]
+
+[ext_resource type="PackedScene" uid="uid://dex36f4a8heyc" path="res://scenes/moving_platform.tscn" id="1_f0v3h"]
+[ext_resource type="PackedScene" uid="uid://1kgx44fvf3ag" path="res://assets/ramps/parabolic_ramp.tscn" id="2_qbsdk"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qbsdk"]
+friction = 0.1
+rough = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5jme5"]
+friction = 0.1
+
+[node name="MovingRampPlatform" unique_id=1569228954 instance=ExtResource("1_f0v3h")]
+physics_material_override = SubResource("PhysicsMaterial_qbsdk")
+
+[node name="ParabolicRamp" parent="." index="2" unique_id=1614782198 instance=ExtResource("2_qbsdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5932057, 0.49163008, 0.006541729)
+physics_material_override = SubResource("PhysicsMaterial_5jme5")
+ramp_length = 1.7000000000000002
+ramp_height = 0.5
+ramp_width = 6.0
+thickness = 0.1
+friction = 0.1

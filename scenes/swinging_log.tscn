@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cjtcw0xat2j5j"]
+
+[ext_resource type="Script" uid="uid://b0i6eujrhmvo" path="res://scripts/swinging_ramp.gd" id="1_awujn"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4bcl2"]
+radius = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4bcl2"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3pt6v"]
+
+[node name="SwingingLog" type="AnimatableBody3D" unique_id=1068523]
+script = ExtResource("1_awujn")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1930448087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56153846, 0)
+mesh = SubResource("CapsuleMesh_4bcl2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=155441651]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, 0, -1.9756513, 0)
+mesh = SubResource("CylinderMesh_4bcl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=477138002]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, 0, -1.9756513, 0)
+shape = SubResource("CylinderShape3D_3pt6v")
