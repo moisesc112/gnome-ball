@@ -90,6 +90,10 @@ func _ready() -> void:
 	#gnome_mesh.position = Vector3.ZERO
 	gnome_mesh.rotation.y = target_yaw
 
+	platform_floor_layers = 0
+	platform_wall_layers = 0
+	platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
+
 	if not is_multiplayer_authority():
 		relative_position = global_position - ball.global_position
 	

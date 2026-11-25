@@ -385,7 +385,7 @@ environment = SubResource("Environment_4bcl2")
 transform = Transform3D(-0.26705888, 0, 0.9636802, 0, 1, 0, -0.9636802, 0, -0.26705888, 33.646812, 2.6532679, 100.03819)
 
 [node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("23")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.764053, 107.31632, -78.058464)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.84354, 30.524326, -4.0772934)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1297982833 node_paths=PackedStringArray("ball")]
 script = ExtResource("24")
@@ -2298,7 +2298,7 @@ end_elevation = 10.0
 friction = 0.1
 
 [node name="90DegreePlatform11" parent="." unique_id=143119641 node_paths=PackedStringArray("previous_platform") instance=ExtResource("38_ktxvk")]
-transform = Transform3D(-0.9981018, -0.059934508, -0.014167974, -0.058201104, 0.9931609, -0.10121313, 0.020137237, -0.100196406, -0.9947639, 80.467064, -3.3256197, -107.303314)
+transform = Transform3D(-0.9981041, -0.059934504, -0.014003527, -0.058217775, 0.9931609, -0.10120354, 0.019973338, -0.100196406, -0.99476725, 74.29279, 7.839242, -102.72681)
 physics_material_override = SubResource("PhysicsMaterial_yajgy")
 width = 5.0
 turn_radius = 9.6
