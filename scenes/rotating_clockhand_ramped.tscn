@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://0v0ew6wvhtmc"]
+
+[ext_resource type="PackedScene" uid="uid://cmgrres4u7xyg" path="res://scenes/rotating_clockhand.tscn" id="1_sryop"]
+[ext_resource type="PackedScene" uid="uid://1kgx44fvf3ag" path="res://assets/ramps/parabolic_ramp.tscn" id="2_u2u0j"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hxskb"]
+friction = 0.1
+
+[node name="RotatingClockhand" unique_id=374107497 instance=ExtResource("1_sryop")]
+
+[node name="ParabolicRamp21" parent="." index="6" unique_id=1614782198 instance=ExtResource("2_u2u0j")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0.048029423, 0.5286832, -11.706199)
+physics_material_override = SubResource("PhysicsMaterial_hxskb")
+ramp_length = 3.3000000000000003
+ramp_height = 1.0
+ramp_width = 6.0
+thickness = 0.1
+friction = 0.1
+
+[node name="ParabolicRamp23" parent="." index="7" unique_id=2089356388 instance=ExtResource("2_u2u0j")]
+transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, -11.691748, 0.5286832, 0.008671284)
+physics_material_override = SubResource("PhysicsMaterial_hxskb")
+ramp_length = 3.3000000000000003
+ramp_height = 1.0
+ramp_width = 6.0
+thickness = 0.1
+friction = 0.1
+
+[node name="ParabolicRamp24" parent="." index="8" unique_id=286524792 instance=ExtResource("2_u2u0j")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 11.706802, 0.5286832, 0.008671284)
+physics_material_override = SubResource("PhysicsMaterial_hxskb")
+ramp_length = 3.3000000000000003
+ramp_height = 1.0
+ramp_width = 6.0
+thickness = 0.1
+friction = 0.1
+
+[node name="ParabolicRamp22" parent="." index="9" unique_id=1656690484 instance=ExtResource("2_u2u0j")]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 0.00965023, 0.54522324, 11.674671)
+physics_material_override = SubResource("PhysicsMaterial_hxskb")
+ramp_length = 3.3000000000000003
+ramp_height = 1.0
+ramp_width = 6.0
+thickness = 0.1
+friction = 0.1
