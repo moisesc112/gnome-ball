@@ -48,6 +48,8 @@
 [ext_resource type="PackedScene" uid="uid://cjtcw0xat2j5j" path="res://scenes/swinging_log.tscn" id="44_wqfp5"]
 [ext_resource type="PackedScene" uid="uid://c6f7s6d8efucb" path="res://scenes/moving_ramp_platform.tscn" id="45_mgxot"]
 [ext_resource type="PackedScene" uid="uid://cim2ue11gkm4k" path="res://assets/ramps/steep_ramp.tscn" id="48_4vjsr"]
+[ext_resource type="PackedScene" uid="uid://bvtuj1o7nfjaq" path="res://scenes/pine_combined.tscn" id="49_l0tmb"]
+[ext_resource type="Script" uid="uid://btmh7xdm0xe17" path="res://scripts/forest_generator.gd" id="49_r6xmv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t1wbj"]
 
@@ -367,28 +369,25 @@ _shader_parameters = {
 }
 show_checkered = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6xmv"]
-transparency = 4
-cull_mode = 2
-vertex_color_use_as_albedo = true
-backlight_enabled = true
-backlight = Color(0.5, 0.5, 0.5, 1)
-distance_fade_mode = 1
-distance_fade_min_distance = 128.0
-distance_fade_max_distance = 96.0
-metadata/terrain3d_generated_material = true
-
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_l0tmb"]
-generated_type = 1
-height_offset = 0.5
-density = 10.0
-material_override = SubResource("StandardMaterial3D_r6xmv")
+name = "mesh_tree_pine_01"
+scene_file = ExtResource("49_l0tmb")
+density = 0.017562378
+cast_shadows = 0
 last_lod = 0
 last_shadow_lod = 0
-lod0_range = 128.0
+lod0_range = 1000.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_1f552"]
+name = "mesh_tree_pine_03"
+id = 1
+scene_file = ExtResource("15")
+density = 0.11679496
+last_lod = 4
+last_shadow_lod = 4
 
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_rwtcy"]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_l0tmb")])
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_l0tmb"), SubResource("Terrain3DMeshAsset_1f552")])
 
 [node name="BaseLevel" type="Node3D" unique_id=302026370]
 script = ExtResource("1")
@@ -424,7 +423,7 @@ environment = SubResource("Environment_4bcl2")
 transform = Transform3D(-0.26705888, 0, 0.9636802, 0, 1, 0, -0.9636802, 0, -0.26705888, 33.646812, 2.6532679, 100.03819)
 
 [node name="PlayerLargeBall" parent="." unique_id=2043058082 instance=ExtResource("23")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.192851, 37.050167, 63.486557)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.201375, 99.65678, 76.11874)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1297982833 node_paths=PackedStringArray("ball")]
 script = ExtResource("24")
@@ -2815,6 +2814,13 @@ displacement_sharpness = 0.5
 show_checkered = true
 top_level = true
 metadata/_edit_lock_ = true
+
+[node name="ForestGenerator" type="Node3D" parent="." unique_id=2081359612 node_paths=PackedStringArray("terrain")]
+script = ExtResource("49_r6xmv")
+terrain = NodePath("../Terrain3D")
+village_clear_radius = 200.0
+min_tree_scale = 4.2
+max_tree_scale = 5.3
 
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]

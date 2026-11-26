@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bvtuj1o7nfjaq"]
+
+[ext_resource type="ArrayMesh" uid="uid://dk71crwyxvedy" path="res://assets/terrain/trees/pine_combined.res" id="1_ysm55"]
+
+[node name="PineCombined" type="MeshInstance3D" unique_id=228671201]
+mesh = ExtResource("1_ysm55")
