@@ -35,6 +35,15 @@ var start_scheduled: bool = false
 
 const START_DELAY: float = 1.0
 
+# Physics timing
+var physics_level_time: float = 0.0
+
+const PHYSICS_CLOCK_CORRECTION_SPEED: float = 0.5
+const MAX_PHYSICS_CLOCK_CORRECTION: float = 0.02
+
+func _ready() -> void:
+	process_physics_priority = -100
+
 func _process(delta: float) -> void:
 	# Client clock synchronization
 	if not multiplayer.has_multiplayer_peer():
@@ -54,11 +63,33 @@ func _process(delta: float) -> void:
 		sync_timer = 0.0
 		request_server_time()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# Activate gameplay at the scheduled server time
 	if start_scheduled and not game_active:
 		if get_server_time() >= level_start_time:
 			activate_game()
+			
+	if not game_active:
+		return
+
+	# Advance using fixed physics time.
+	physics_level_time += delta
+
+	# Gradually synchronize with the shared level clock.
+	var target_time := get_level_time()
+	var time_error := target_time - physics_level_time
+
+	var correction := clampf(
+		time_error * PHYSICS_CLOCK_CORRECTION_SPEED,
+		-MAX_PHYSICS_CLOCK_CORRECTION,
+		MAX_PHYSICS_CLOCK_CORRECTION
+	)
+
+	physics_level_time += correction * delta
+
+
+func get_physics_level_time() -> float:
+	return physics_level_time
 
 func local_time() -> float:
 	return Time.get_ticks_usec() / 1000000.0
@@ -92,8 +123,10 @@ func reset_level() -> void:
 	game_active = false
 	start_scheduled = false
 	level_start_time = 0.0
+	physics_level_time = 0.0
 	local_pause_menu_open = false
 	game_state = GameState.STARTING
+	
 
 
 # CLIENT -> SERVER
@@ -200,7 +233,9 @@ func activate_game() -> void:
 	game_active = true
 	start_scheduled = false
 	game_state = GameState.PLAYING
-
+	
+	physics_level_time = get_level_time()
+	
 	LoadingScreen.fade_out()
 
 	game_started.emit()

@@ -1,5 +1,5 @@
-extends AnimatableBody3D
 
+extends AnimatableBody3D
 
 enum MoveDirection {
 	UP,
@@ -12,40 +12,31 @@ enum MoveDirection {
 
 var start_position: Vector3
 var initial_direction: float = 1.0
+var elapsed_time: float = 0.0
+
 
 func _ready() -> void:
 	start_position = position
-	
+
 	if move_direction == MoveDirection.UP:
 		initial_direction = 1.0
-	elif move_direction == MoveDirection.DOWN:
+	else:
 		initial_direction = -1.0
+
 
 func _physics_process(_delta: float) -> void:
 	if not GameManager.game_active:
 		return
-		
+
 	if move_distance <= 0.0 or move_speed <= 0.0:
 		return
-		
-	var t := GameManager.get_level_time()
 
-	# Time required to travel from center to one endpoint
-	var half_duration := move_distance / move_speed
+	elapsed_time = GameManager.get_physics_level_time()
 
-	# Full cycle: center -> endpoint -> opposite endpoint -> center
-	var cycle_duration := half_duration * 4.0
+	var angular_frequency := move_speed / move_distance
 
-	# Position within the repeating cycle
-	var phase := fposmod(t, cycle_duration)
-
-	var offset: float
-
-	if phase < half_duration:
-		offset = phase * move_speed
-	elif phase < half_duration * 3.0:
-		offset = move_distance - (phase - half_duration) * move_speed
-	else:
-		offset = -move_distance + (phase - half_duration * 3.0) * move_speed
+	var offset := move_distance * sin(
+		elapsed_time * angular_frequency
+	)
 
 	position.y = start_position.y + offset * initial_direction
