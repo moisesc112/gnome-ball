@@ -1009,16 +1009,16 @@ depth = 4.5
 material = SubResource("StandardMaterial3D_53c65")
 
 [node name="TreeTrunk" type="CSGCylinder3D" parent="Level1/CSGCombiner3D" unique_id=1368578395]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 157.77711, -88.83297)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 124.99281, -88.83297)
 radius = 26.346
-height = 324.57227
+height = 259.00366
 sides = 12
 material = SubResource("StandardMaterial3D_j7gcg")
 
 [node name="TreeTrunk8" type="CSGCylinder3D" parent="Level1/CSGCombiner3D" unique_id=1429204571]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -268.9761, 810.7792, -1457.1997)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -268.9761, 512.81793, -1457.1997)
 radius = 26.346
-height = 1630.5764
+height = 1034.6539
 sides = 12
 material = SubResource("StandardMaterial3D_j7gcg")
 
@@ -2806,10 +2806,11 @@ ramp_height = 9.2
 friction = 0.1
 
 [node name="Terrain3D" type="Terrain3D" parent="." unique_id=1664193289 node_paths=PackedStringArray("collision_target")]
-data_directory = "res://assets/terrain/village"
+data_directory = "res://assets/terrain/mt_rainier_hm_v05"
 material = SubResource("Terrain3DMaterial_4vjsr")
 assets = SubResource("Terrain3DAssets_rwtcy")
 collision_target = NodePath("../PlayerLargeBall")
+vertex_spacing = 5.0
 displacement_sharpness = 0.5
 show_checkered = true
 top_level = true
