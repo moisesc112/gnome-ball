@@ -351,6 +351,45 @@ friction = 0.0
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kmbcf"]
 friction = 0.1
 
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_4vjsr"]
+_shader_parameters = {
+&"bias_distance": null,
+&"blend_sharpness": null,
+&"depth_blur": null,
+&"distant_normal_scale": null,
+&"flat_terrain_normals": null,
+&"general_uniforms": null,
+&"ground_level": null,
+&"mipmap_bias": null,
+&"mipmaps": null,
+&"private": null,
+&"region_blend": null
+}
+show_checkered = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6xmv"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+metadata/terrain3d_generated_material = true
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_l0tmb"]
+generated_type = 1
+height_offset = 0.5
+density = 10.0
+material_override = SubResource("StandardMaterial3D_r6xmv")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_rwtcy"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_l0tmb")])
+
 [node name="BaseLevel" type="Node3D" unique_id=302026370]
 script = ExtResource("1")
 
@@ -1377,10 +1416,12 @@ friction = 0.1
 
 [node name="Floor" type="StaticBody3D" parent="Level1" unique_id=110014032]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
 physics_material_override = ExtResource("17_0hr52")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level1/Floor" unique_id=1475150645]
 shape = SubResource("BoxShape3D_sthun")
+disabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level1/Floor" unique_id=1096400920]
 mesh = SubResource("BoxMesh_sthun")
@@ -2242,14 +2283,14 @@ ramp_width = 5.0
 
 [node name="LinearRamp3" parent="StartingArea" unique_id=453290453 instance=ExtResource("43_30kvp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.444572, 41.801304, -210.89842)
-ramp_length = 13.299999999999999
+ramp_length = 13.3
 ramp_height = 10.0
 thickness = 0.1
 
 [node name="LinearRamp6" parent="StartingArea" unique_id=1989496620 instance=ExtResource("43_30kvp")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -59.17672, 92.171844, -41.32735)
 physics_material_override = SubResource("PhysicsMaterial_58fux")
-ramp_length = 19.400000000000002
+ramp_length = 19.4
 ramp_height = 14.0
 ramp_width = 6.0
 thickness = 0.1
@@ -2257,14 +2298,14 @@ friction = 0.0
 
 [node name="LinearRamp4" parent="StartingArea" unique_id=1828477003 instance=ExtResource("43_30kvp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.15726, 50.492664, -210.89842)
-ramp_length = 13.299999999999999
+ramp_length = 13.3
 ramp_height = 10.0
 ramp_width = 2.0
 thickness = 0.1
 
 [node name="LinearRamp5" parent="StartingArea" unique_id=1165320487 instance=ExtResource("43_30kvp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.435534, 56.561474, -210.89842)
-ramp_length = 13.299999999999999
+ramp_length = 13.3
 ramp_height = 10.0
 ramp_width = 1.0
 thickness = 0.1
@@ -2297,7 +2338,7 @@ start_elevation = 8.0
 end_elevation = 10.0
 friction = 0.1
 
-[node name="90DegreePlatform11" parent="." unique_id=143119641 node_paths=PackedStringArray("previous_platform") instance=ExtResource("38_ktxvk")]
+[node name="90DegreePlatform11" parent="." unique_id=143119641 instance=ExtResource("38_ktxvk")]
 transform = Transform3D(-0.9981041, -0.059934504, -0.014003527, -0.058217775, 0.9931609, -0.10120354, 0.019973338, -0.100196406, -0.99476725, 74.29279, 7.839242, -102.72681)
 physics_material_override = SubResource("PhysicsMaterial_yajgy")
 width = 5.0
@@ -2305,7 +2346,6 @@ turn_radius = 9.6
 start_elevation = 13.0
 end_elevation = 11.0
 friction = 0.1
-previous_platform = NodePath("../90DegreePlatform12")
 
 [node name="90DegreePlatform12" parent="." unique_id=1154942855 instance=ExtResource("38_ktxvk")]
 transform = Transform3D(0.013294369, -0.059934516, -0.9981136, 0.101162255, 0.9931614, -0.05828967, 0.99478126, -0.10019645, 0.019266397, 83.62719, 9.413981, -112.662056)
@@ -2625,24 +2665,22 @@ width = 10.0
 turn_radius = 30.0
 friction = 0.2
 
-[node name="90DegreePlatform30" parent="." unique_id=287204042 node_paths=PackedStringArray("previous_platform") instance=ExtResource("38_ktxvk")]
-transform = Transform3D(0.99999, -0.00019092823, -0.00447683, 3.290637e-06, 0.99912286, -0.04187565, 0.0044808984, 0.041875213, 0.99911284, 93.062836, 13.608506, -183.35258)
+[node name="90DegreePlatform30" parent="." unique_id=287204042 instance=ExtResource("38_ktxvk")]
+transform = Transform3D(0.99999, -0.00019092823, -0.00447683, 3.290637e-06, 0.99912286, -0.04187565, 0.0044808984, 0.041875213, 0.99911284, 93.15999, 13.608506, -183.49245)
 physics_material_override = SubResource("PhysicsMaterial_m65fu")
 length = 27.0
 width = 10.0
 turn_radius = 30.0
 friction = 0.2
-previous_platform = NodePath("../StraightPlatform2")
 
-[node name="90DegreePlatform31" parent="." unique_id=1485051962 node_paths=PackedStringArray("previous_platform") instance=ExtResource("38_ktxvk")]
-transform = Transform3D(-0.004398282, -0.00019113129, -0.99999034, -0.041920967, 0.99912095, -6.5830873e-06, 0.9991113, 0.041920528, -0.0044024284, 122.92823, 12.352335, -153.24478)
+[node name="90DegreePlatform31" parent="." unique_id=1485051962 instance=ExtResource("38_ktxvk")]
+transform = Transform3D(-0.004398282, -0.00019113129, -0.99999034, -0.041920967, 0.99912095, -6.5830873e-06, 0.9991113, 0.041920528, -0.0044024284, 123.02538, 12.352335, -153.38464)
 physics_material_override = SubResource("PhysicsMaterial_7qjqu")
 length = 27.0
 width = 10.0
 turn_radius = 16.0
 end_elevation = 3.799999999999997
 friction = 0.2
-previous_platform = NodePath("../90DegreePlatform30")
 
 [node name="StraightPlatform" parent="." unique_id=842207669 node_paths=PackedStringArray("previous_platform") instance=ExtResource("37_cnqkx")]
 transform = Transform3D(0.9999896, -0.00019092823, -0.004555369, 1.7310894e-09, 0.99912286, -0.04187565, 0.0045593684, 0.041875213, 0.9991125, -43.73859, 13.608506, -184.11662)
@@ -2766,6 +2804,16 @@ physics_material_override = SubResource("PhysicsMaterial_u1rmh")
 ramp_length = 14.2
 ramp_height = 9.2
 friction = 0.1
+
+[node name="Terrain3D" type="Terrain3D" parent="." unique_id=1664193289 node_paths=PackedStringArray("collision_target")]
+data_directory = "res://assets/terrain/village"
+material = SubResource("Terrain3DMaterial_4vjsr")
+assets = SubResource("Terrain3DAssets_rwtcy")
+collision_target = NodePath("../PlayerLargeBall")
+displacement_sharpness = 0.5
+show_checkered = true
+top_level = true
+metadata/_edit_lock_ = true
 
 [connection signal="toggled" from="HUD/CollisionButton" to="HUD" method="_on_collision_button_toggled"]
 [connection signal="pressed" from="HUD/VictoryScreen/CenterContainer/VBoxContainer/ReturnToLobbyButton" to="HUD" method="_on_return_to_lobby_button_pressed"]
