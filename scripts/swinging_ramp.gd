@@ -19,13 +19,14 @@ func _ready() -> void:
 	initial_rotation = rotation
 
 
-func _physics_process(delta: float) -> void:
-	time += delta
+func _physics_process(_delta: float) -> void:
+	if not GameManager.game_active:
+		return
+
+	var t := GameManager.get_physics_level_time()
 
 	var direction := -1.0 if reverse_direction else 1.0
 
-	var angle := sin(
-		time * swing_speed + phase_offset
-	) * deg_to_rad(max_angle) * direction
+	var angle := sin(t * swing_speed + phase_offset) * deg_to_rad(max_angle) * direction
 
 	rotation.z = initial_rotation.z + angle

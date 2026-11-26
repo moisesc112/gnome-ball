@@ -24,7 +24,7 @@ func _physics_process(_delta: float) -> void:
 	if not GameManager.game_active:
 		return
 		
-	var t := GameManager.get_level_time()
+	var t := GameManager.get_physics_level_time()
 	
 	var direction := 1.0
 	if rotation_direction == RotationDirection.COUNTERCLOCKWISE:
