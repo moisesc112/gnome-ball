@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://msohvo60ums2"]
+
+[ext_resource type="PackedScene" uid="uid://bvtuj1o7nfjaq" path="res://scenes/pine_combined.tscn" id="1_avb8j"]
+[ext_resource type="ArrayMesh" uid="uid://vvmxyib8wsso" path="res://assets/terrain/trees/pine_combined_2.res" id="2_awirk"]
+
+[node name="PineCombined2" unique_id=228671201 instance=ExtResource("1_avb8j")]
+mesh = ExtResource("2_awirk")

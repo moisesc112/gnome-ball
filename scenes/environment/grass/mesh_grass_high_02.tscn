@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dh6l3sqblse8t"]
+
+[ext_resource type="PackedScene" uid="uid://5vlrq8jw0ac2" path="res://assets/fbx/grass/mesh_grass_high_02.fbx" id="1_m568w"]
+
+[node name="mesh_grass_high_02" unique_id=812760274 instance=ExtResource("1_m568w")]

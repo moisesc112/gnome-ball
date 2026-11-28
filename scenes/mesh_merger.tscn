@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://w2sljflq762q"]
 
 [ext_resource type="Script" uid="uid://b4ne8xtj3jcyj" path="res://scripts/mesh_merger.gd" id="1_wuupo"]
-[ext_resource type="PackedScene" uid="uid://dj6xy5q6v4u6v" path="res://scenes/environment/trees/mesh_tree_pine_01.tscn" id="2_ckm07"]
+[ext_resource type="PackedScene" uid="uid://c48d5ohxu4r03" path="res://scenes/environment/trees/mesh_tree_pine_03.tscn" id="2_ckm07"]
 
 [node name="Node3D" type="Node3D" unique_id=2081238764 node_paths=PackedStringArray("trunk", "leaves")]
 script = ExtResource("1_wuupo")
-trunk = NodePath("mesh_tree_pine_01/mesh_tree_pine_01_trunk_LOD0")
-leaves = NodePath("mesh_tree_pine_01/mesh_tree_pine_01_leaves_LOD0")
-save_path = "res://assets/terrain/trees/pine_combined.res"
-merge_now = true
+trunk = NodePath("mesh_tree_pine_03/mesh_tree_pine_03_trunk_LOD0")
+leaves = NodePath("mesh_tree_pine_03/mesh_tree_pine_03_leaves_LOD0")
+save_path = "res://assets/terrain/trees/pine_combined_3.res"
 
-[node name="mesh_tree_pine_01" parent="." unique_id=944735524 instance=ExtResource("2_ckm07")]
+[node name="mesh_tree_pine_03" parent="." unique_id=258871665 instance=ExtResource("2_ckm07")]
 
-[editable path="mesh_tree_pine_01"]
+[editable path="mesh_tree_pine_03"]
