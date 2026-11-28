@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ci53on84birss" path="res://scenes/environment/grass/mesh_grass_high_01.tscn" id="6_1pkdq"]
 [ext_resource type="Texture2D" uid="uid://d4mo1i80hukba" path="res://materials/environment/mountain/snow_texture.png" id="6_8mcg4"]
 [ext_resource type="PackedScene" uid="uid://dh6l3sqblse8t" path="res://scenes/environment/grass/mesh_grass_high_02.tscn" id="7_peg1m"]
+[ext_resource type="PackedScene" uid="uid://5j2l823im7k" path="res://scenes/environment/grass/grass_high_1_v2.tscn" id="8_5gma7"]
 
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_l0tmb"]
 name = "mesh_tree_pine_01"
@@ -79,6 +80,16 @@ cast_shadows = 0
 last_lod = 0
 last_shadow_lod = 0
 lod0_range = 1000.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_5gma7"]
+name = "grass_high_1_v2"
+id = 7
+scene_file = ExtResource("8_5gma7")
+density = 10.0
+cast_shadows = 0
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
 
 [sub_resource type="Image" id="Image_5gma7"]
 data = {
@@ -152,5 +163,5 @@ albedo_texture = ExtResource("6_8mcg4")
 normal_texture = SubResource("ImageTexture_g4wwi")
 
 [resource]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_l0tmb"), SubResource("Terrain3DMeshAsset_1f552"), SubResource("Terrain3DMeshAsset_wj48w"), SubResource("Terrain3DMeshAsset_gyvqb"), SubResource("Terrain3DMeshAsset_4bhnf"), SubResource("Terrain3DMeshAsset_6spx6"), SubResource("Terrain3DMeshAsset_urmkw")])
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_l0tmb"), SubResource("Terrain3DMeshAsset_1f552"), SubResource("Terrain3DMeshAsset_wj48w"), SubResource("Terrain3DMeshAsset_gyvqb"), SubResource("Terrain3DMeshAsset_4bhnf"), SubResource("Terrain3DMeshAsset_6spx6"), SubResource("Terrain3DMeshAsset_urmkw"), SubResource("Terrain3DMeshAsset_5gma7")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_q5741"), SubResource("Terrain3DTextureAsset_cuwrx"), SubResource("Terrain3DTextureAsset_wrrg6"), SubResource("Terrain3DTextureAsset_ys0gd")])

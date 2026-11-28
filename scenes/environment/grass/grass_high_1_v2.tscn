@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://5j2l823im7k"]
+
+[ext_resource type="PackedScene" uid="uid://d071xd5j6bg2h" path="res://assets/terrain/grass/grass_high_1_v2.glb" id="1_fcxjc"]
+[ext_resource type="Material" uid="uid://b5vbrr54qkd65" path="res://materials/environment/grass/grass_high_1_v2.tres" id="2_rl8vk"]
+
+[node name="grass_high_1_v2" unique_id=1239309434 instance=ExtResource("1_fcxjc")]
+
+[node name="mesh_grass_high_01" parent="." index="0" unique_id=947913061]
+surface_material_override/0 = ExtResource("2_rl8vk")
