@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://jjhg4agxkojn"]
+
+[ext_resource type="Shader" uid="uid://buq2rjvnjjt1r" path="res://shaders/stylized_grass.gdshader" id="1_3diux"]
+[ext_resource type="Texture2D" uid="uid://pe5wgbcfd56n" path="res://assets/fbx/grass/t_lowworld_naturekit_foliage.png" id="2_pqya0"]
+[ext_resource type="Texture2D" uid="uid://dvli1ygvyyvpq" path="res://materials/environment/grass/grass_noise_texture.tres" id="3_f4a3i"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_3diux")
+shader_parameter/grass_texture = ExtResource("2_pqya0")
+shader_parameter/noise_texture = ExtResource("3_f4a3i")
+shader_parameter/alpha_cutoff = 0.3
+shader_parameter/shadow_color = Color(0.141, 0.298, 0.196, 1)
+shader_parameter/midtone_color = Color(0.255, 0.435, 0.259, 1)
+shader_parameter/highlight_color = Color(0.514, 0.671, 0.314, 1)
+shader_parameter/color_variation_strength = 0.15
+shader_parameter/color_variation_scale = 0.08
+shader_parameter/root_darkening = 0.800000038
+shader_parameter/normal_up_strength = 1.0
+shader_parameter/grass_height = 0.5
+shader_parameter/wind_strength = 0.5
+shader_parameter/wind_speed = 0.3
+shader_parameter/wind_scale = 0.03
+shader_parameter/wind_direction = Vector2(1, 0.5)
+shader_parameter/wind_color_strength = 0.0800000038
+shader_parameter/bend_exponent = 2.0000000475
+shader_parameter/ball_radius = 2.0
+shader_parameter/interaction_radius = 2.0
+shader_parameter/interaction_strength = 0.8
+shader_parameter/interaction_vertical_range = 2.0
+shader_parameter/flatten_strength = 0.6

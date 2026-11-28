@@ -96,3 +96,10 @@ common/physics_interpolation=true
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+
+[shader_globals]
+
+ball_position={
+"type": "vec3",
+"value": Vector3(0, -10000, 0)
+}

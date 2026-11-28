@@ -264,7 +264,7 @@ func receive_ball_state(frame: int, ball_transform: Transform3D, ball_linear_vel
 	correction_frames_remaining = 2
 
 func _process(_delta: float) -> void:
-	pass
+	RenderingServer.global_shader_parameter_set("ball_position", get_global_transform_interpolated().origin)
 
 func apply_gravity_assist() -> void:
 	if GameManager.game_state == GameManager.GameState.LOBBY:
